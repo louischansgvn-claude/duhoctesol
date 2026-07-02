@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">Bright international campus illustration</title>
+  <desc id="desc">A bright modern campus scene in Du học TESOL brand colors.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff6ff"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#173C8F"/><stop offset="1" stop-color="#C4302B"/></linearGradient>
+  </defs>
+  <rect width="1200" height="820" rx="54" fill="url(#sky)"/>
+  <circle cx="990" cy="135" r="98" fill="#C4302B" opacity=".14"/>
+  <circle cx="170" cy="152" r="122" fill="#173C8F" opacity=".16"/>
+  <path d="M0 640 C230 560 410 650 620 590 C840 528 980 560 1200 500 V820 H0Z" fill="#FCEDEC"/>
+  <path d="M135 580 H1065 V640 H135Z" fill="#fff" opacity=".9"/>
+  <path d="M210 302 L600 132 L990 302 Z" fill="#fff" stroke="#dbe7f3" stroke-width="4"/>
+  <path d="M280 302 H920 V580 H280Z" fill="#ffffff" stroke="#dbe7f3" stroke-width="4"/>
+  <path d="M332 358 H438 V580 H332Z M486 358 H592 V580 H486Z M638 358 H744 V580 H638Z M792 358 H898 V580 H792Z" fill="#f7fbff" stroke="#dbe7f3" stroke-width="3"/>
+  <path d="M570 426 H630 V580 H570Z" fill="#0F2C6B" opacity=".86"/>
+  <path d="M150 642 H1050" stroke="#173C8F" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+  <g opacity=".92">
+    <circle cx="242" cy="650" r="32" fill="#C4302B"/>
+    <path d="M226 686 C232 650 252 650 258 686" stroke="#C4302B" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="930" cy="646" r="32" fill="#173C8F"/>
+    <path d="M914 682 C920 646 940 646 946 682" stroke="#173C8F" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <rect x="430" y="64" width="340" height="76" rx="38" fill="#fff" opacity=".88" stroke="#fff"/>
+  <path d="M485 103 H715" stroke="url(#accent)" stroke-width="18" stroke-linecap="round"/>
+</svg>
