@@ -12,30 +12,24 @@ Rewriting a 162-page static Vietnamese study-abroad site into a **TESOL-focused 
   - `93cc8f5` Task 2 — homepage
   - `db31568` Task 3a — 9 country landings + quoc-gia landing + 5 filter pages (15 files)
   - `98c8f18` Task 3b — 20 level subpages (my/uc/canada/new-zealand/tho-nhi-ky)
-  - **Task 3c IN-FLIGHT at sign-off** — 16 level subpages (singapore/han-quoc/duc/ha-lan). A background agent (strict single-agent) was committing `TESOL rewrite: level subpages (singapore/han-quoc/duc/ha-lan)`.
+  - `9cd41c3` Task 3c — 16 level subpages (singapore/han-quoc/duc/ha-lan). **Task 3 COMPLETE + verified** (51-file countries cluster clean, header/footer 1 hash each, 162 files, guardrails present).
 
-## ⚠️ FIRST THING ON RESUME — verify Task 3c
+## ⚠️ FIRST THING ON RESUME — start Task 4
+Task 3 is done and verified. Begin at **Task 4** (nganh-hoc + bac-hoc). Quick sanity check first:
 ```bash
 cd "/Users/louis/Library/CloudStorage/Dropbox/Tintt/claude code/duhoctesol"
-git log --oneline | head -6          # is the singapore/han-quoc/duc/ha-lan commit present?
+git log --oneline | head -6          # top should be 9cd41c3 (Task 3c)
 git status --short                    # should be clean
-# H1s of the 16 files should read TESOL tiers:
-for d in singapore han-quoc duc ha-lan; do for l in thpt cao-dang dai-hoc sau-dai-hoc; do
-  printf "%s/%s: " $d $l
-  python3 -c "import re,sys;h=open(sys.argv[1]).read();b=re.sub(r'<header.*?</header>','',h,flags=re.S);m=re.search(r'<h1[^>]*>(.*?)</h1>',b,re.S);print(re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',m.group(1))).strip() if m else 'NO H1')" quoc-gia/$d/$l/index.html
-done; done
-# Đức/Hà Lan honesty caveat present?
-grep -l "không phải\|học thuật\|nghiên cứu" quoc-gia/duc/sau-dai-hoc/index.html quoc-gia/ha-lan/sau-dai-hoc/index.html
+find . -name index.html -not -path './.git/*' | wc -l   # == 162
 ```
-If 3c did NOT commit or left files stale, re-dispatch it (prompt pattern below). If good, mark Task 3 complete in `.superpowers/sdd/progress.md` and move to Task 4.
 
 ## Task status
 - [x] Task 1 — shared header/footer/meta (`c8634c5`)
 - [x] Task 2 — homepage (`93cc8f5`)
 - [x] Task 3a — country landings + filters (`db31568`)
 - [x] Task 3b — level subpages batch 1 (`98c8f18`)
-- [~] Task 3c — level subpages batch 2 (singapore/han-quoc/duc/ha-lan) — **verify on resume**
-- [ ] Task 4 — Levels + Majors: `bac-hoc/` (2) + `nganh-hoc/` (10)
+- [x] Task 3c — level subpages batch 2 (`9cd41c3`) — **Task 3 COMPLETE**
+- [ ] **Task 4 (START HERE)** — Levels + Majors: `bac-hoc/` (2) + `nganh-hoc/` (10)
 - [ ] Task 5 — Schools: `truong/` (33)
 - [ ] Task 6 — Scholarships: `hoc-bong/` (8) + `gia-tri-hoc-bong/` (3)
 - [ ] Task 7 — News + guides: `tin-tuc/` (11) + topical root pages (~10)
@@ -56,6 +50,9 @@ For each task, give Codex: (1) "**Bật goal mode trước khi làm**"; (2) the 
 - **Big clusters → split** into ~15–20 file sub-batches per implementer to stay within context and keep quality.
 - **Verify from committed state**, not `git diff --quiet` on a clean tree (that always reports "no diff" and misled me once). Use tag-stripping H1 extraction (H1s contain a nested `<span>` eyebrow, so naive `grep` returns empty).
 - Header/footer are byte-identical site-wide — verify uniformity with an md5-of-block check across files.
+
+## Known cleanup for Task 10
+- **~28 pages still have old-style `<head>` `<title>`** (e.g. "Du học Mỹ bậc Đại học — Du học TESOL") on the level subpages. Bodies are correct; only the `<title>` tag lags. Normalize these to TESOL tier naming during the final sweep: `grep -rlE "<title>Du học (Mỹ|Úc|Canada|New Zealand|Thổ|Singapore|Hàn|Đức|Hà Lan) bậc" --include=index.html .`
 
 ## Global invariants to re-check before merge (Task 10)
 - `find . -name index.html -not -path './.git/*' | wc -l` == 162
