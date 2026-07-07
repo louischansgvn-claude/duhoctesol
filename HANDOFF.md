@@ -49,6 +49,16 @@ find . -name index.html -not -path './.git/*' | wc -l   # == 171
 
 All planned implementation tasks are complete. Keep this file for resume/review context.
 
+### ✅ Claude review — PASSED (2026-07-07)
+Full milestone (Task V + Tasks 5–10) reviewed against constraints:
+- 171 files; header & footer 1 hash each site-wide; tree clean.
+- No stale generic terms anywhere; old-style level `<title>` normalized (0 remaining).
+- **No broken content links** — the only unresolved hrefs are pre-existing WordPress `/…/feed/` auto-discovery links in `<head>` (present in original `main`, not user-facing).
+- Task V: 9 video pages present; nav has 5 country video links + exactly 1 "Đăng ký tư vấn" (appbar CTA); 4 non-dropdown countries link video from landing.
+- Guardrails honored: US OPT stated as 12 months with explicit "TESOL không thuộc STEM / không có gia hạn 24 tháng"; Đức/Hà Lan academic-linguistics caveat present; Bilkent = MA TEFL.
+- tin-tuc root/twin article pairs synced; content substance verified (real program/school names, hedged figures, VN-demand facts in ve-chung-toi).
+- **Next:** ready to merge `tesol-content-rewrite` → `main` (superpowers:finishing-a-development-branch), pending optional browser QA.
+
 ## Execution method going forward (per new mandatory workflow)
 Follow the **Claude ↔ Codex loop in `CLAUDE.md`**: Claude hands Codex a task prompt (each prompt MUST remind Codex to **bật "goal" mode**); Codex reviews the plan, implements with goal on, and returns **OUTPUT + PROMPT/GOAL it used**; Claude reviews against the constraints; both update this HANDOFF at each milestone. In this workflow, **Codex = the implementation agent currently doing the task in-session**.
 
