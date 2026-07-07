@@ -1,6 +1,6 @@
 # CLAUDE.md — Du học TESOL
 
-Project: static Vietnamese study-abroad site (162 HTML pages, WordPress export) being rewritten into a **TESOL-focused consultancy** (giúp học viên VN đi học chứng chỉ/bằng TESOL ở nước ngoài để thành giáo viên tiếng Anh). Design/CSS/images stay; only copy changes.
+Project: static Vietnamese study-abroad site (171 HTML pages after Task V video-page expansion, originally a WordPress export) being rewritten into a **TESOL-focused consultancy** (giúp học viên VN đi học chứng chỉ/bằng TESOL ở nước ngoài để thành giáo viên tiếng Anh). Design/CSS/images stay; only copy changes.
 
 ## MANDATORY WORKFLOW — Claude ↔ Codex (bắt buộc)
 
@@ -26,8 +26,8 @@ Every implementation task in this repo follows this loop. Do NOT skip steps.
 | Handoff | Both | Update `HANDOFF.md` at each milestone |
 
 ## Project rules (apply to all content tasks)
-- **Never change** the file count (stays **162**), any URL/slug/path, CSS/JS under `wp-content/**`, images, or any `class`/`href`. Replace only text inside tags.
-- **Shared header/footer/meta** are byte-identical across all 162 files (Task 1). Body tasks must NOT touch `<header>`, `<footer>`, `<meta>`, or JSON-LD.
+- **Never change** the file count (stays **171** after Task V), any URL/slug/path, CSS/JS under `wp-content/**`, images, or any `class`/`href`. Replace only text inside tags unless a task explicitly adds new pages/links.
+- **Shared header/footer/meta** are byte-identical across all 171 files after Task V. Body tasks must NOT touch `<header>`, `<footer>`, `<meta>`, or JSON-LD unless a task explicitly changes shared navigation.
 - **Numbers are indicative** — hedge ("tham khảo", "cập nhật 2026"); use REAL program/school names from the research reference.
 - **Accuracy guardrails:** Đức & Hà Lan = academic linguistics (English-medium, low cost), NOT a practical teaching licence — say so. Do NOT claim US STEM 24-month OPT for TESOL (only 12 months). Note Sydney M.Ed TESOL / USC MAT-TESOL may pause intake. Turkey Bilkent = MA **TEFL** (not TESOL); "NileTESOL" is Egypt, not Turkey.
 - **Sub-agent isolation:** when delegating, the implementer must do the work itself — **do NOT spawn nested sub-agents, run in background, or sleep**. (Nested self-parallelization caused file races in Task 3.)
