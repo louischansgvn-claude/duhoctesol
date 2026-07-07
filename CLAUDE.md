@@ -7,10 +7,13 @@ Project: static Vietnamese study-abroad site (162 HTML pages, WordPress export) 
 Every implementation task in this repo follows this loop. Do NOT skip steps.
 
 1. **Claude = kiến trúc + review.** Claude builds/owns the plan and specs, and **reviews Codex's output** (spec compliance, accuracy, no broken structure). Claude does NOT write the implementation itself — it delegates coding to Codex.
-2. **Codex = triển khai.** Codex implements the code, **reviews the plan first and gives feedback** before/while implementing, and **must turn on "goal" mode khi làm** (Codex runs with an explicit tracked goal).
+2. **Codex = triển khai.** Codex implements the code, **reviews the plan first and gives feedback** before/while implementing, and **must turn on "goal" mode khi làm** (Codex runs with an explicit tracked goal). In this workflow, **"Codex" means the implementation agent currently doing the task in-session**.
 3. **Prompt exchange is mandatory.** Every output handed over MUST be accompanied by the **prompt** that produced it (the prompts pass back and forth in both directions).
    - The prompt **Claude sends to Codex MUST explicitly remind Codex to bật "goal"/prompt mode** before it starts.
-   - When Codex returns output, it returns **output + the prompt it used**, so Claude can review both.
+   - When Codex returns output, it returns **OUTPUT + PROMPT/GOAL it used**, so Claude can review both.
+   - Codex's final response and any task report MUST include:
+     - **OUTPUT**: status (DONE/BLOCKED), commit hash if there is a commit, verification summary, and changed files/artifacts.
+     - **PROMPT/GOAL**: the task prompt Codex used (or a concise faithful restatement) plus the explicit tracked goal objective.
 4. **Handoff discipline.** At every important step/milestone, **update `HANDOFF.md`** immediately so nothing is missed when work resumes in a later session. Treat the handoff as the source of truth on resume.
 
 ### Roles at a glance
@@ -18,7 +21,7 @@ Every implementation task in this repo follows this loop. Do NOT skip steps.
 |---|---|---|
 | Plan / spec | Claude | Write & maintain plan; hand Codex a task prompt (with "bật goal" reminder) |
 | Plan feedback | Codex | Review the plan, flag issues before coding |
-| Implement | Codex | Code with goal mode ON; return output **+ its prompt** |
+| Implement | Codex | Code with goal mode ON; return **OUTPUT + PROMPT/GOAL** |
 | Review output | Claude | Verify against spec/constraints; approve or send fixes (with prompt) |
 | Handoff | Both | Update `HANDOFF.md` at each milestone |
 
