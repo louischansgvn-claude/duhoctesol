@@ -19,7 +19,8 @@ Rewriting a 171-page static Vietnamese study-abroad site into a **TESOL-focused 
   - `1f0fc1c` Task 5 — partner schools (`truong/` 33 files). **Task 5 COMPLETE + verified**.
   - `5fe1349` Task 6 — scholarships (`hoc-bong/` + `gia-tri-hoc-bong/`). **Task 6 COMPLETE + verified**.
   - `8b48a03` Task 7 — news & guides (`tin-tuc/`, root twins, `tai-cam-nang`). **Task 7 COMPLETE + verified**.
-  - Task 8 — events and student stories (`su-kien/`, `loai-su-kien/`, `hoc-sinh/`). **Task 8 COMPLETE + verified**.
+  - `24791a2` Task 8 — events and student stories (`su-kien/`, `loai-su-kien/`, `hoc-sinh/`). **Task 8 COMPLETE + verified**.
+  - Task 9 — roadmap, categories, static pages. **Task 9 COMPLETE + verified**.
 
 ## ⚠️ FIRST THING ON RESUME — start Task 5
 Task V is done and verified. Begin at **Task 5** (schools / `truong/`). Quick sanity check:
@@ -41,9 +42,9 @@ find . -name index.html -not -path './.git/*' | wc -l   # == 171
 - [x] Task 5 — Schools: `truong/` (33) (`1f0fc1c`) — **Task 5 COMPLETE**
 - [x] Task 6 — Scholarships: `hoc-bong/` (8) + `gia-tri-hoc-bong/` (3) (`5fe1349`) — **Task 6 COMPLETE**
 - [x] Task 7 — News + guides: `tin-tuc/` (11) + topical root pages (~10) (`8b48a03`) — **Task 7 COMPLETE**
-- [x] Task 8 — Events + Students: `su-kien/` (9) + `loai-su-kien/` (3) + `hoc-sinh/` (8) — **Task 8 COMPLETE**
-- [ ] **Task 9 (START HERE)** — Roadmap + categories + static: `lo-trinh-du-hoc/` (6) + `category/` (3) + `ve-chung-toi/ dich-vu/ lien-he/ tai-cam-nang/`
-- [ ] Task 10 — final verification sweep (see plan)
+- [x] Task 8 — Events + Students: `su-kien/` (9) + `loai-su-kien/` (3) + `hoc-sinh/` (8) (`24791a2`) — **Task 8 COMPLETE**
+- [x] Task 9 — Roadmap + categories + static: `lo-trinh-du-hoc/` (6) + `category/` (3) + `ve-chung-toi/ dich-vu/ lien-he/ tai-cam-nang/` — **Task 9 COMPLETE**
+- [ ] **Task 10 (START HERE)** — final verification sweep (see plan)
 
 Each remaining task's full brief + verification commands are in the plan file, sections "Task 4"…"Task 10".
 
