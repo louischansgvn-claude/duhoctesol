@@ -16,7 +16,8 @@ Rewriting a 171-page static Vietnamese study-abroad site into a **TESOL-focused 
   - `c4ca9d7` Task 4 — qualification levels + specializations (`bac-hoc/` 2 + `nganh-hoc/` 10). **Task 4 COMPLETE + verified**.
   - `05e1ce4` Document Codex prompt handoff rule (doc-only).
   - `e85cc29` Task V — added 9 country video pages and linked them from shared nav / country landings. **Task V COMPLETE + verified**; file count is now 171.
-  - Task 5 — partner schools (`truong/` 33 files). **Task 5 COMPLETE + verified**.
+  - `1f0fc1c` Task 5 — partner schools (`truong/` 33 files). **Task 5 COMPLETE + verified**.
+  - Task 6 — scholarships (`hoc-bong/` + `gia-tri-hoc-bong/`). **Task 6 COMPLETE + verified**.
 
 ## ⚠️ FIRST THING ON RESUME — start Task 5
 Task V is done and verified. Begin at **Task 5** (schools / `truong/`). Quick sanity check:
@@ -35,9 +36,9 @@ find . -name index.html -not -path './.git/*' | wc -l   # == 171
 - [x] Task 3c — level subpages batch 2 (`9cd41c3`) — **Task 3 COMPLETE**
 - [x] Task 4 — Levels + Majors: `bac-hoc/` (2) + `nganh-hoc/` (10) (`c4ca9d7`) — **Task 4 COMPLETE**
 - [x] Task V — 9 country video pages + nav/landing links (`e85cc29`) — **Task V COMPLETE**
-- [x] Task 5 — Schools: `truong/` (33) — **Task 5 COMPLETE**
-- [ ] **Task 6 (START HERE)** — Scholarships: `hoc-bong/` (8) + `gia-tri-hoc-bong/` (3)
-- [ ] Task 7 — News + guides: `tin-tuc/` (11) + topical root pages (~10)
+- [x] Task 5 — Schools: `truong/` (33) (`1f0fc1c`) — **Task 5 COMPLETE**
+- [x] Task 6 — Scholarships: `hoc-bong/` (8) + `gia-tri-hoc-bong/` (3) — **Task 6 COMPLETE**
+- [ ] **Task 7 (START HERE)** — News + guides: `tin-tuc/` (11) + topical root pages (~10)
 - [ ] Task 8 — Events + Students: `su-kien/` (9) + `loai-su-kien/` (3) + `hoc-sinh/` (8)
 - [ ] Task 9 — Roadmap + categories + static: `lo-trinh-du-hoc/` (6) + `category/` (3) + `ve-chung-toi/ dich-vu/ lien-he/ tai-cam-nang/`
 - [ ] Task 10 — final verification sweep (see plan)
