@@ -59,6 +59,9 @@ Full milestone (Task V + Tasks 5–10) reviewed against constraints:
 - tin-tuc root/twin article pairs synced; content substance verified (real program/school names, hedged figures, VN-demand facts in ve-chung-toi).
 - **Next:** ready to merge `tesol-content-rewrite` → `main` (superpowers:finishing-a-development-branch), pending optional browser QA.
 
+## 🚀 Deploy — runbook đầy đủ trong `DEPLOY.md`
+Khi user nói **"deploy"**: mở `DEPLOY.md`, **xin user gửi password FTP** (không lưu sẵn), rồi chạy runbook (curl, 1 phiên, ~30s). Tóm tắt: host `pbf43-22360.azdigihost.com` (port 21 plain FTP), user `uploadtesolhcm@duhoctesol.duystudy.vn`, docroot = FTP `/`; **ghi đè, không xoá** (giữ `.htaccess`/`.well-known`/`cgi-bin`/`wp-content`); chỉ upload `**/index.html`. Đã deploy lần đầu 2026-07-07 (171 HTML + 9 video), verify 200 OK. Nhắc user đổi pass FTP sau mỗi lần gửi qua chat.
+
 ## Execution method going forward (per new mandatory workflow)
 Follow the **Claude ↔ Codex loop in `CLAUDE.md`**: Claude hands Codex a task prompt (each prompt MUST remind Codex to **bật "goal" mode**); Codex reviews the plan, implements with goal on, and returns **OUTPUT + PROMPT/GOAL it used**; Claude reviews against the constraints; both update this HANDOFF at each milestone. In this workflow, **Codex = the implementation agent currently doing the task in-session**.
 
