@@ -14,14 +14,15 @@ Rewriting a 162-page static Vietnamese study-abroad site into a **TESOL-focused 
   - `98c8f18` Task 3b — 20 level subpages (my/uc/canada/new-zealand/tho-nhi-ky)
   - `9cd41c3` Task 3c — 16 level subpages (singapore/han-quoc/duc/ha-lan). **Task 3 COMPLETE + verified** (51-file countries cluster clean, header/footer 1 hash each, 162 files, guardrails present).
   - `c4ca9d7` Task 4 — qualification levels + specializations (`bac-hoc/` 2 + `nganh-hoc/` 10). **Task 4 COMPLETE + verified**.
+  - `05e1ce4` Document Codex prompt handoff rule (doc-only).
 
-## ⚠️ FIRST THING ON RESUME — start Task 5
-Task 4 is done and verified. Begin at **Task 5** (schools / `truong/`). Quick sanity check first:
+## ⚠️ FIRST THING ON RESUME — Task V (video pages) then Task 5
+Task 4 done + verified. **Interrupt request queued: Task V** — create 9 country video pages (`quoc-gia/<c>/video/index.html`) + repoint nav (5 dropdown countries swap "Đăng ký tư vấn" → video link; 4 others link video from their landing). Codex prompt for Task V was handed over 2026-07-07. **When Task V commits, file count → 171 and every "162" invariant (CLAUDE.md L3/L29, this file) must update.** After Task V, do **Task 5** (schools / `truong/`). Quick sanity check:
 ```bash
 cd "/Users/louis/Library/CloudStorage/Dropbox/Tintt/claude code/duhoctesol"
-git log --oneline | head -6          # top should be c4ca9d7 (Task 4)
+git log --oneline | head -6          # c4ca9d7 (Task 4) present; top may be a later doc/Task-V commit
 git status --short                    # should be clean
-find . -name index.html -not -path './.git/*' | wc -l   # == 162
+find . -name index.html -not -path './.git/*' | wc -l   # == 162 (→ 171 after Task V)
 ```
 
 ## Task status
@@ -31,7 +32,8 @@ find . -name index.html -not -path './.git/*' | wc -l   # == 162
 - [x] Task 3b — level subpages batch 1 (`98c8f18`)
 - [x] Task 3c — level subpages batch 2 (`9cd41c3`) — **Task 3 COMPLETE**
 - [x] Task 4 — Levels + Majors: `bac-hoc/` (2) + `nganh-hoc/` (10) (`c4ca9d7`) — **Task 4 COMPLETE**
-- [ ] **Task 5 (START HERE)** — Schools: `truong/` (33)
+- [ ] **Task V (DO FIRST)** — 9 country video pages + nav/landing links (adds 9 files → 171). Codex prompt handed over 2026-07-07.
+- [ ] **Task 5** — Schools: `truong/` (33)
 - [ ] Task 6 — Scholarships: `hoc-bong/` (8) + `gia-tri-hoc-bong/` (3)
 - [ ] Task 7 — News + guides: `tin-tuc/` (11) + topical root pages (~10)
 - [ ] Task 8 — Events + Students: `su-kien/` (9) + `loai-su-kien/` (3) + `hoc-sinh/` (8)
