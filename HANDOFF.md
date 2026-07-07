@@ -1,6 +1,6 @@
 # HANDOFF — Du học TESOL rewrite
 
-_Last updated: 2026-07-07 (Task V video pages complete). Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-07-07 (MEGA TASK 5-10 complete). Update this at every milestone (see CLAUDE.md)._
 
 ## What this project is
 Rewriting a 171-page static Vietnamese study-abroad site into a **TESOL-focused consultancy**. Keep design/CSS/images/URLs; rewrite only copy except explicit page/link tasks. Full context: `CLAUDE.md`, plan `docs/superpowers/plans/2026-07-03-duhoc-tesol-rewrite.md`, spec `docs/superpowers/specs/2026-07-02-duhoc-tesol-rewrite-design.md`, facts `docs/superpowers/research/2026-07-02-tesol-facts.md`.
@@ -20,13 +20,14 @@ Rewriting a 171-page static Vietnamese study-abroad site into a **TESOL-focused 
   - `5fe1349` Task 6 — scholarships (`hoc-bong/` + `gia-tri-hoc-bong/`). **Task 6 COMPLETE + verified**.
   - `8b48a03` Task 7 — news & guides (`tin-tuc/`, root twins, `tai-cam-nang`). **Task 7 COMPLETE + verified**.
   - `24791a2` Task 8 — events and student stories (`su-kien/`, `loai-su-kien/`, `hoc-sinh/`). **Task 8 COMPLETE + verified**.
-  - Task 9 — roadmap, categories, static pages. **Task 9 COMPLETE + verified**.
+  - `688b324` Task 9 — roadmap, categories, static pages. **Task 9 COMPLETE + verified**.
+  - Task 10 — final sweep: titles, stale terms, links, header/footer hashes, guardrails. **Task 10 COMPLETE + verified**.
 
-## ⚠️ FIRST THING ON RESUME — start Task 5
-Task V is done and verified. Begin at **Task 5** (schools / `truong/`). Quick sanity check:
+## ⚠️ FIRST THING ON RESUME — Claude review / final QA
+Tasks 1-10 plus Task V are implemented and verified on branch `tesol-content-rewrite`. Next step is Claude review using Codex's OUTPUT + PROMPT/GOAL reports. Quick sanity check:
 ```bash
 cd "/Users/louis/Library/CloudStorage/Dropbox/Tintt/claude code/duhoctesol"
-git log --oneline | head -6          # e85cc29 (Task V) present; top may be a later doc commit
+git log --oneline | head -10
 git status --short                    # should be clean
 find . -name index.html -not -path './.git/*' | wc -l   # == 171
 ```
@@ -43,10 +44,10 @@ find . -name index.html -not -path './.git/*' | wc -l   # == 171
 - [x] Task 6 — Scholarships: `hoc-bong/` (8) + `gia-tri-hoc-bong/` (3) (`5fe1349`) — **Task 6 COMPLETE**
 - [x] Task 7 — News + guides: `tin-tuc/` (11) + topical root pages (~10) (`8b48a03`) — **Task 7 COMPLETE**
 - [x] Task 8 — Events + Students: `su-kien/` (9) + `loai-su-kien/` (3) + `hoc-sinh/` (8) (`24791a2`) — **Task 8 COMPLETE**
-- [x] Task 9 — Roadmap + categories + static: `lo-trinh-du-hoc/` (6) + `category/` (3) + `ve-chung-toi/ dich-vu/ lien-he/ tai-cam-nang/` — **Task 9 COMPLETE**
-- [ ] **Task 10 (START HERE)** — final verification sweep (see plan)
+- [x] Task 9 — Roadmap + categories + static: `lo-trinh-du-hoc/` (6) + `category/` (3) + `ve-chung-toi/ dich-vu/ lien-he/ tai-cam-nang/` (`688b324`) — **Task 9 COMPLETE**
+- [x] Task 10 — final verification sweep — **Task 10 COMPLETE**
 
-Each remaining task's full brief + verification commands are in the plan file, sections "Task 4"…"Task 10".
+All planned implementation tasks are complete. Keep this file for resume/review context.
 
 ## Execution method going forward (per new mandatory workflow)
 Follow the **Claude ↔ Codex loop in `CLAUDE.md`**: Claude hands Codex a task prompt (each prompt MUST remind Codex to **bật "goal" mode**); Codex reviews the plan, implements with goal on, and returns **OUTPUT + PROMPT/GOAL it used**; Claude reviews against the constraints; both update this HANDOFF at each milestone. In this workflow, **Codex = the implementation agent currently doing the task in-session**.
@@ -64,9 +65,6 @@ For each task, give Codex: (1) "**Bật goal mode trước khi làm**"; (2) the 
 - **Big clusters → split** into ~15–20 file sub-batches per implementer to stay within context and keep quality.
 - **Verify from committed state**, not `git diff --quiet` on a clean tree (that always reports "no diff" and misled me once). Use tag-stripping H1 extraction (H1s contain a nested `<span>` eyebrow, so naive `grep` returns empty).
 - Header/footer are byte-identical site-wide — verify uniformity with an md5-of-block check across files.
-
-## Known cleanup for Task 10
-- **~28 pages still have old-style `<head>` `<title>`** (e.g. "Du học Mỹ bậc Đại học — Du học TESOL") on the level subpages. Bodies are correct; only the `<title>` tag lags. Normalize these to TESOL tier naming during the final sweep: `grep -rlE "<title>Du học (Mỹ|Úc|Canada|New Zealand|Thổ|Singapore|Hàn|Đức|Hà Lan) bậc" --include=index.html .`
 
 ## Global invariants to re-check before merge (Task 10)
 - `find . -name index.html -not -path './.git/*' | wc -l` == 171
