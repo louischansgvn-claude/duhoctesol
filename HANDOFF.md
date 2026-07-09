@@ -1,6 +1,19 @@
 # HANDOFF — Du học TESOL (site du học tổng quát)
 
-_Last updated: 2026-07-09 (org renamed to full name "Ban Du học Hội TESOL TP.HCM"). Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-07-09 (cleaned remaining tuition placeholders on school pages). Update this at every milestone (see CLAUDE.md)._
+
+## Milestone 2026-07-09 — Clean remaining tuition placeholders on school pages
+- Prior commit had replaced `<span class="price">Học phí cần xác nhận</span>` → `Học phí: liên hệ` (70 chỗ).
+  This milestone finishes the job: the **3 remaining markup forms** of `Học phí cần xác nhận` across **19
+  `truong/*` pages** (57 hits, 3 per page) → `Học phí: liên hệ`:
+  1. subtitle `<p>… · Học phí cần xác nhận</p>` (phần trước dấu `·` giữ nguyên),
+  2. `<b>Học phí cần xác nhận</b>`,
+  3. bare `<span>Học phí cần xác nhận</span>` (icon award svg/use kept intact).
+- No invented tuition figures; school/country/level/program names all untouched.
+- Verify: 171 html · `git diff -- wp-content`=0 · `Học phí cần xác nhận` hits=0 · noindex in 171 · header 1 md5
+  (`482537d6b5e00b6df298935c27b4eefb`) & footer 1 md5 (`3e1a808c1520d98d61f7616b4c193be1`) each across 171 ·
+  diff symmetric (57 added / 57 removed, 19 files). Combined with prior revert + internal-note cleanup + org
+  rename + footer tagline → **ready to deploy** (see DEPLOY.md).
 
 ## Milestone 2026-07-09 — Rename org to full name + fix duplicated titles
 - **Org name** across all 171: every use of `Du học TESOL` / `Công ty Tư vấn Du học TESOL` as the organisation
