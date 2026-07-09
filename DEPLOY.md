@@ -3,7 +3,7 @@
 **Cách deploy: Claude tự chạy qua FTP (curl). Khi user nói "deploy" → chỉ cần user gửi PASSWORD FTP, làm theo runbook dưới.**
 
 ## Thông tin tài khoản (KHÔNG lưu password — hỏi user mỗi lần)
-- **Site (live/review):** https://duhoctesol.duystudy.vn/  (đang `noindex,nofollow`, footer "bản dev — chưa live")
+- **Site (live/review):** https://duhoctesol.duystudy.vn/  (đang `noindex,nofollow`; footer đã dọn sạch note nội bộ từ 2026-07-09)
 - **FTP host:** `pbf43-22360.azdigihost.com`  **port 21, PLAIN FTP** (server từ chối AUTH TLS → dùng FTP thường, không `--ssl`)
 - **FTP username:** `uploadtesolhcm@duhoctesol.duystudy.vn`
 - **FTP password:** ⚠️ KHÔNG lưu ở đây. Hỏi user gửi mỗi lần deploy. (User đã đồng ý cách này.)
@@ -59,3 +59,4 @@ Thêm các file đó vào vòng upload (đổi glob `**/index.html` → cần th
 
 ## Lịch sử
 - 2026-07-07: Deploy lần đầu bản TESOL (171 HTML + 9 trang video) qua FTP, ghi đè bản gốc Jul 1. Verify 200 OK.
+- 2026-07-09: Deploy bản revert về nội dung du học tổng quát + đổi tên tổ chức thành "Ban Du học Hội TESOL TP.HCM" + dọn sạch note nội bộ + tagline footer. 171 HTML, verify 200 OK.
