@@ -1,6 +1,24 @@
 # HANDOFF — Du học TESOL (site du học tổng quát)
 
-_Last updated: 2026-07-09 (REVERT to pre-TESOL content complete). Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-07-09 (internal-note cleanup + footer tagline complete). Update this at every milestone (see CLAUDE.md)._
+
+## Milestone 2026-07-09 — Remove internal dev/demo notes + footer tagline
+- **Footer** (all 171): removed the `Bản dev theme — chưa phải bản live` copyright suffix and deleted the
+  `Liquid Glass design · … chính sách sẽ được rà soát trước khi live.` line from `.foot-bottom`; added
+  `<p class="muted">Ban Du học Hội TESOL TP.HCM …</p>` tagline right under the footer logo `</a>` (uses existing
+  `muted` class, no new CSS). Footer is now **1 new md5** (`c300b61c9d8438994fbe8dd53f8a7a0a`) across all 171.
+- **Header** untouched → still the original single md5 (`2270e0e04a56e71a92987c1e18b724af`).
+- **Body cleanup** — rewrote every remaining internal/dev/demo/repo/"xác minh"/placeholder-"mẫu" note into
+  natural marketing copy: 4 × 404 pages; 5 video pages ("Repo…"/"trong repo" → "Danh sách trường tại <nước>
+  đang được cập nhật. Liên hệ Du học TESOL…"); 32-page "Ranking và ghi chú xác minh" heading + "claim chưa xác
+  minh"/"cần xác minh" paragraphs/rows; empty-states ("… mẫu" → "…"); `demo` in meta/OG/Twitter/JSON-LD/body of
+  `tai-cam-nang`, `su-kien`, `truong`, and 8 `hoc-bong/*`; removed the `<!-- Demo stats … -->` HTML comment on
+  the homepage; and placeholder "học bổng mẫu"/"ngân sách mẫu" phrases.
+- **Kept `noindex,nofollow`** on every page (user wants it), brand `Du học TESOL`, all URLs/slugs/classes/hrefs,
+  and `wp-content/**`. Legit "mẫu" copy (lộ trình mẫu / chi phí mẫu / hồ sơ mẫu / khu học tập mẫu) left intact —
+  these are real consultancy deliverables, and the spec's own verify grep scopes only the placeholder set.
+- Verify: 171 html · `git diff -- wp-content` empty · internal-note grep no hits · tagline in 171 · noindex in
+  171 · header/footer 1 md5 each · every file exactly one `<footer>`/`</footer>`.
 
 ## What this project is
 A **171-page static Vietnamese study-abroad site** on the Duy Study template. Content is **general du học**
