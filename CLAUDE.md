@@ -1,6 +1,14 @@
-# CLAUDE.md — Du học TESOL
+# CLAUDE.md — Du học TESOL (site du học tổng quát)
 
-Project: static Vietnamese study-abroad site (171 HTML pages after Task V video-page expansion, originally a WordPress export) being rewritten into a **TESOL-focused consultancy** (giúp học viên VN đi học chứng chỉ/bằng TESOL ở nước ngoài để thành giáo viên tiếng Anh). Design/CSS/images stay; only copy changes.
+Project: static Vietnamese **study-abroad** site (171 HTML pages) built on the Duy Study template
+(originally a WordPress export). The content is **general du học** — định hướng, chọn quốc gia,
+chọn trường, ngành học, học bổng, visa và chuẩn bị trước khi lên đường. Design/CSS/images stay;
+only copy changes.
+
+> Lịch sử: site từng được viết lại thành một TESOL consultancy trên nhánh `tesol-content-rewrite`,
+> sau đó **hoàn nguyên về bản du học tổng quát** (base `5eeecd0`) trong khi **giữ lại 9 trang video**
+> quốc gia. Brand `Du học TESOL` + `logo.png` + màu sắc giữ nguyên như base. Các tài liệu TESOL cũ
+> (plan/spec/research) được giữ trong `docs/superpowers/**` làm lưu trữ, không còn phản ánh nội dung site.
 
 ## MANDATORY WORKFLOW — Claude ↔ Codex (bắt buộc)
 
@@ -26,17 +34,18 @@ Every implementation task in this repo follows this loop. Do NOT skip steps.
 | Handoff | Both | Update `HANDOFF.md` at each milestone |
 
 ## Project rules (apply to all content tasks)
-- **Never change** the file count (stays **171** after Task V), any URL/slug/path, CSS/JS under `wp-content/**`, images, or any `class`/`href`. Replace only text inside tags unless a task explicitly adds new pages/links.
-- **Shared header/footer/meta** are byte-identical across all 171 files after Task V. Body tasks must NOT touch `<header>`, `<footer>`, `<meta>`, or JSON-LD unless a task explicitly changes shared navigation.
-- **Numbers are indicative** — hedge ("tham khảo", "cập nhật 2026"); use REAL program/school names from the research reference.
-- **Accuracy guardrails:** Đức & Hà Lan = academic linguistics (English-medium, low cost), NOT a practical teaching licence — say so. Do NOT claim US STEM 24-month OPT for TESOL (only 12 months). Note Sydney M.Ed TESOL / USC MAT-TESOL may pause intake. Turkey Bilkent = MA **TEFL** (not TESOL); "NileTESOL" is Egypt, not Turkey.
-- **Sub-agent isolation:** when delegating, the implementer must do the work itself — **do NOT spawn nested sub-agents, run in background, or sleep**. (Nested self-parallelization caused file races in Task 3.)
+- **Never change** the file count (stays **171**), any URL/slug/path, CSS/JS under `wp-content/**`, images, or any `class`/`href`. Replace only text inside tags unless a task explicitly adds new pages/links.
+- **Shared header/footer/meta** are byte-identical across all 171 files. Body tasks must NOT touch `<header>`, `<footer>`, `<meta>`, or JSON-LD unless a task explicitly changes shared navigation.
+- **Brand stays:** `Du học TESOL` (header/footer/title/logo alt) is the site brand — keep it. It is a name, not a claim about specific TESOL programs.
+- **9 country video pages** live at `quoc-gia/{my,uc,canada,new-zealand,tho-nhi-ky,duc,ha-lan,singapore,han-quoc}/video/`. Nav has 5 dropdown-country video links (my/uc/canada/new-zealand/tho-nhi-ky); the other 4 link their video page from the country landing body (`Xem tất cả video`).
+- **Numbers are indicative** — hedge ("tham khảo", "cập nhật 2026"); use REAL program/school names.
+- **Sub-agent isolation:** when delegating, the implementer must do the work itself — **do NOT spawn nested sub-agents, run in background, or sleep**. (Nested self-parallelization caused file races before.)
 
 ## Key files
-- Plan: `docs/superpowers/plans/2026-07-03-duhoc-tesol-rewrite.md`
-- Design spec: `docs/superpowers/specs/2026-07-02-duhoc-tesol-rewrite-design.md`
-- Research (copy source, source-cited): `docs/superpowers/research/2026-07-02-tesol-facts.md`
+- Revert plan: `docs/superpowers/plans/2026-07-09-revert-to-pre-tesol.md`
 - Live status & next steps: `HANDOFF.md`
+- Deploy runbook (FTP): `DEPLOY.md`
+- Archived TESOL docs (không còn phản ánh site): `docs/superpowers/plans/2026-07-03-duhoc-tesol-rewrite.md`, `docs/superpowers/specs/2026-07-02-duhoc-tesol-rewrite-design.md`, `docs/superpowers/research/2026-07-02-tesol-facts.md`
 - Progress ledger: `.superpowers/sdd/progress.md` (git-ignored)
 
 Work happens on branch **`tesol-content-rewrite`** (base `5eeecd0` on `main`).
