@@ -1,6 +1,28 @@
 # HANDOFF — Du học TESOL (site du học tổng quát)
 
-_Last updated: 2026-07-09 (internal-note cleanup + footer tagline complete). Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-07-09 (org renamed to full name "Ban Du học Hội TESOL TP.HCM"). Update this at every milestone (see CLAUDE.md)._
+
+## Milestone 2026-07-09 — Rename org to full name + fix duplicated titles
+- **Org name** across all 171: every use of `Du học TESOL` / `Công ty Tư vấn Du học TESOL` as the organisation
+  name → **`Ban Du học Hội TESOL TP.HCM`** (a Ban thuộc Hội, not a company). ~2.6k body/meta hits + 171 copyright
+  spans + 513 JSON-LD office-name fields. `TESOL` alone (chứng chỉ) and common-noun `du học` left untouched.
+- **Header/footer** (still 1 md5 each, NEW hashes): logo `alt`, `aria-label="… trang chủ"`, footer
+  `aria-label="Văn phòng …"`, nav `Về …`, and copyright `<span>&copy; 2026 Ban Du học Hội TESOL TP.HCM.</span>`
+  (dropped "Công ty Tư vấn"). Footer tagline was already correct — untouched. Same transform applied to all 171
+  so both blocks stay byte-identical.
+- **JSON-LD**: only `name` fields changed; `@id`/`url` (and every `duhoctesol.duystudy.vn` URL) preserved. Offices
+  now `Ban Du học Hội TESOL TP.HCM – VP TP.HCM` / `– VP Đà Nẵng` / `– VP Buôn Ma Thuột`. All 171 blocks re-parse.
+- **Titles**: normal suffix `— Du học TESOL` → `— Ban Du học Hội TESOL TP.HCM`. Fixed **17 duplicated titles**
+  (`Du học TESOL — Du học TESOL` in 16 taxonomy pages + `Về Du học TESOL — Du học TESOL` in `ve-chung-toi`) by
+  giving each a real page-specific first part (e.g. `Hội thảo — …`, `Văn phòng — …`, `Về chúng tôi — …`);
+  title/og:title/twitter:title kept in sync. 0 `X — X` titles remain, 1 `<title>` per file.
+- **Internal notes cleaned** (VIỆC 2): "…cần Du học TESOL xác nhận trước khi public" (9), "…công bố logo" +
+  "…cần user…trước khi public" (ve-chung-toi), "…cần trường xác nhận trước khi công bố" (32), "…claim nào cần
+  xác nhận trước khi nộp" (ve-chung-toi), "Lưu lại claim…" (17), and 7 `hoc-sinh/*` cards' "…cần đối chiếu hồ sơ
+  trước khi công bố rộng rãi" → neutral copy. `du học TESOL` in 2 cẩm-nang alts → `du học chứng chỉ TESOL`.
+- Verify: 171 html · `git diff -- wp-content` empty · `Công ty Tư vấn`=0 · bare `Du học TESOL` (ci)=0 · full name
+  in 171 · dup titles=0 · noindex in 171 · url hits `duhoctesol.duystudy.vn`=3007 (unchanged) · header & footer
+  1 md5 each · 171 ld+json blocks valid · 1 `<title>` per file · residual claim/internal/TODO/publish=0.
 
 ## Milestone 2026-07-09 — Remove internal dev/demo notes + footer tagline
 - **Footer** (all 171): removed the `Bản dev theme — chưa phải bản live` copyright suffix and deleted the
