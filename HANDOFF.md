@@ -1,6 +1,29 @@
-# HANDOFF — Du học TESOL (site du học tổng quát)
+# HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-07-09 (cleaned remaining tuition placeholders on school pages). Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-07-09 (deployed to review site). Update this at every milestone (see CLAUDE.md)._
+
+## ✅ TRẠNG THÁI: milestone hoàn tất, đã deploy. Không có việc đang dở.
+
+Toàn bộ chuỗi việc (revert → dọn note nội bộ → đổi tên tổ chức → tagline footer → dọn placeholder học phí)
+đã xong, đã review, đã deploy và verify trên live. Nhánh sạch, chưa merge vào `main`.
+
+## Milestone 2026-07-09 — Deploy lên review site
+- Deploy 171 `index.html` qua FTP theo `DEPLOY.md` (1 phiên curl, `wp-content` không upload vì không đổi).
+- Verify live: `/`, `/quoc-gia/my/video/`, `/lien-he/`, `/truong/duke-university/`, `/hoc-sinh/minh-anh/` → **200** cả 5.
+- Live spot-check: footer hiện `© 2026 Ban Du học Hội TESOL TP.HCM.` + tagline; `Học phí: liên hệ` trên trang trường;
+  `Nhập học tại University of Sydney · Úc.` trên trang học sinh; `noindex,nofollow` vẫn còn (user muốn giữ).
+- Grep live homepage cho `bản dev|Liquid Glass|Du học TESOL` → **0 hit**.
+- ⚠️ Password FTP đã gửi qua chat → **nhắc user đổi lại**.
+
+## Việc gợi ý cho lần sau (chưa làm, không gấp)
+- Merge `tesol-content-rewrite` vào `main` (nhánh đã sạch, verify đầy đủ).
+- Khi đẩy lên domain chính thức: gỡ `<meta name="robots" content="noindex,nofollow">` khỏi 171 trang.
+- Còn **159 chỗ** dùng cụm "cần xác nhận" dạng câu hedge hợp lệ trong nội dung học bổng/trường
+  (vd `Phạm vi áp dụng cần xác nhận theo thư học bổng.`). Cố ý giữ — user dặn không đụng thông tin
+  chương trình/trường. Chỉ sửa nếu user yêu cầu rõ.
+- Bản export tham chiếu `duystudy - website/exports/duy-study-full-html/` **cũng còn nguyên** các note nội bộ
+  của dev theme (76 hit `Bản dev theme`, 107 hit `Học phí cần xác nhận`, footer `… Bản dev theme — chưa phải bản live.`).
+  ⇒ **Không dùng nó làm nguồn copy sạch.** Site duystudy.vn có thể đang lộ chúng — đáng báo user.
 
 ## Milestone 2026-07-09 — Clean remaining tuition placeholders on school pages
 - Prior commit had replaced `<span class="price">Học phí cần xác nhận</span>` → `Học phí: liên hệ` (70 chỗ).
@@ -61,9 +84,11 @@ A **171-page static Vietnamese study-abroad site** on the Duy Study template. Co
 rewrite only copy except explicit page/link tasks.
 
 The site was briefly rewritten into a **TESOL consultancy**, then **reverted to the general study-abroad copy**
-(base `5eeecd0`) while **keeping the 9 country video pages**. Brand `Du học TESOL`, `logo.png` and colors are
-unchanged (they already existed in base). Old TESOL plan/spec/research under `docs/superpowers/**` are kept as
-**archive only** — they no longer describe the live content.
+(base `5eeecd0`) while **keeping the 9 country video pages**. `logo.png` and colors are unchanged (they already
+existed in base). The organisation is named **`Ban Du học Hội TESOL TP.HCM`** — always written in full, never
+abbreviated. `TESOL` on its own is only a certificate type and must **not** be used as the org name (the old
+brand string `Du học TESOL` was removed site-wide on 2026-07-09). Old TESOL plan/spec/research under
+`docs/superpowers/**` are kept as **archive only** — they no longer describe the live content.
 
 ## Branch & commits
 - Branch: **`tesol-content-rewrite`** (base `5eeecd0` on `main`). Not merged yet.
@@ -80,7 +105,9 @@ unchanged (they already existed in base). Old TESOL plan/spec/research under `do
   `Video du học …` link (5 dropdown countries), and 4 landings (`duc/ha-lan/singapore/han-quoc`) gained one
   `Xem tất cả video` button in the country-video block.
 - The **9 video pages** carry general study-abroad copy — no standalone "TESOL"/"Applied Linguistics"/
-  "practicum"/"giáo viên tiếng Anh" business content; only the brand `Du học TESOL` remains (title/header/footer).
+  "practicum"/"giáo viên tiếng Anh" business content.
+- **No internal/dev notes anywhere**: `bản dev`, `Liquid Glass design`, `demo`, `repo`, `trước khi công bố`,
+  `Học phí cần xác nhận`, `Kết quả cần xác nhận` all = 0 hits.
 
 ## FIRST THING ON RESUME — sanity check
 ```bash
@@ -89,15 +116,22 @@ git log --oneline | head -5
 git status --short                                   # should be clean
 find . -name index.html -not -path './.git/*' | wc -l   # == 171
 git diff 5eeecd0 -- wp-content | wc -l                # == 0
-# every non-brand TESOL hit should be empty:
-grep -rniE 'TESOL' --include=index.html . | grep -viE 'Du học TESOL|duhoctesol' | grep -v 'IELTS'
+grep -rl 'Ban Du học Hội TESOL TP.HCM' --include=index.html . | wc -l   # == 171
+# old brand + internal notes must all be gone (expect 0):
+grep -rniE 'Du học TESOL|Công ty Tư vấn|bản dev|Liquid Glass|\bdemo\b|\brepo\b' \
+  --include=index.html . | grep -v duhoctesol | wc -l
+# placeholder học phí — CASE-SENSITIVE (viết hoa). Đừng dùng -i: nó bắt nhầm câu hedge hợp lệ
+# `<span class="muted">học phí cần xác nhận theo ngành và kỳ nhập học</span>` (32 chỗ, cố ý giữ).
+grep -rn 'Học phí cần xác nhận' --include=index.html . | wc -l          # == 0
 ```
 
 ## Global invariants to re-check before merge
 - `find . -name index.html -not -path './.git/*' | wc -l` == 171
 - `git diff 5eeecd0 -- wp-content | wc -l` == 0 (design untouched)
-- header/footer still 1 distinct md5 hash each site-wide
-- no standalone `TESOL` (non-brand) in any `index.html` body
+- header/footer still 1 distinct md5 hash each site-wide (dùng Python, **không** dùng awk one-liner — `<` `>` làm vỡ)
+- org name always full `Ban Du học Hội TESOL TP.HCM`; zero hits of `Du học TESOL` / `Công ty Tư vấn`
+- zero internal/dev/demo/repo notes in any `index.html`
+- `<meta name="robots" content="noindex,nofollow">` present in all 171 (until the official domain go-live)
 - every `/quoc-gia/<slug>/video/` link resolves to an existing file
 
 ## 🚀 Deploy — runbook đầy đủ trong `DEPLOY.md`
@@ -119,3 +153,12 @@ milestone. Hard rule for the implementer: **do the work yourself — no sub-agen
 - **Header/footer are byte-identical site-wide** — verify uniformity with an md5-of-block check across files.
 - `wp-content/**` (design/logo/colors) was never touched by the TESOL rewrite, so reverting content alone keeps
   the current look intact (`git diff 5eeecd0 HEAD -- wp-content` was empty).
+- **The dev theme ships placeholder copy that looks like real content** — `Học phí cần xác nhận`,
+  `Kết quả cần xác nhận`, `Danh sách trường cần xác nhận`, the `Bản dev theme` footer. Both this site *and* the
+  reference `duy-study-full-html` export carry them. Grep for the **phrase**, not one markup form: the tuition
+  placeholder existed in 4 different wrappers (`<span class="price">`, bare `<span>`, `<b>`, `<p>… · …`).
+- When mass-inserting into a shared block, **anchor on the enclosing container** (`footer-brand`), not on a class
+  that appears in both header and footer (`logo`/`logo-img`) — otherwise the edit lands in the header and breaks
+  the byte-identical invariant.
+- Verifying header/footer md5 with `awk '/<header/,/<\/header>/'` inside a `for f in $(...)` loop is fragile
+  (word-splitting + `<`/`>` redirection). Use Python.
