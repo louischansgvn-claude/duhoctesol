@@ -1,6 +1,6 @@
 # CLAUDE.md — Du học TESOL (site du học tổng quát)
 
-Project: static Vietnamese **study-abroad** site (171 HTML pages) built on the Duy Study template
+Project: static Vietnamese **study-abroad** site (**748 HTML pages**, LIVE at https://duhoctesolhcmc.vn since 2026-09-18) built on the Duy Study template
 (originally a WordPress export). The content is **general du học** — định hướng, chọn quốc gia,
 chọn trường, ngành học, học bổng, visa và chuẩn bị trước khi lên đường. Design/CSS/images stay;
 only copy changes.
@@ -34,8 +34,8 @@ Every implementation task in this repo follows this loop. Do NOT skip steps.
 | Handoff | Both | Update `HANDOFF.md` at each milestone |
 
 ## Project rules (apply to all content tasks)
-- **Never change** the file count (stays **171**), any URL/slug/path, CSS/JS under `wp-content/**`, images, or any `class`/`href`. Replace only text inside tags unless a task explicitly adds new pages/links.
-- **Shared header/footer/meta** are byte-identical across all 171 files. Body tasks must NOT touch `<header>`, `<footer>`, `<meta>`, or JSON-LD unless a task explicitly changes shared navigation.
+- **Never change** the file count (currently **748**), any URL/slug/path, CSS/JS under `wp-content/**`, images, or any `class`/`href`. Replace only text inside tags unless a task explicitly adds new pages/links.
+- **Shared header/footer/meta** are byte-identical across all 748 files. Body tasks must NOT touch `<header>`, `<footer>`, `<meta>`, or JSON-LD unless a task explicitly changes shared navigation.
 - **Brand stays:** `Du học TESOL` (header/footer/title/logo alt) is the site brand — keep it. It is a name, not a claim about specific TESOL programs.
 - **9 country video pages** live at `quoc-gia/{my,uc,canada,new-zealand,tho-nhi-ky,duc,ha-lan,singapore,han-quoc}/video/`. Nav has 5 dropdown-country video links (my/uc/canada/new-zealand/tho-nhi-ky); the other 4 link their video page from the country landing body (`Xem tất cả video`).
 - **Numbers are indicative** — hedge ("tham khảo", "cập nhật 2026"); use REAL program/school names.

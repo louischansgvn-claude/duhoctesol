@@ -1,2 +1,11 @@
 .DS_Store
 *.log
+
+# Anh upload: 1.753 file / 442 MB. Khong dua vao git de repo khong phinh vinh vien.
+# Ban lam viec nam tren Dropbox + server; nguon goc o ../duystudy - website/wp/wp-content/uploads/
+# va ../duystudy.vn - content/assets/. Xem HANDOFF.md muc "Git".
+wp-content/uploads/
+
+# Python bytecode cache
+__pycache__/
+*.pyc

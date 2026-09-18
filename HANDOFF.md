@@ -1,11 +1,145 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-07-09 (deployed to review site). Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-18 — đã go-live trên domain mới + structured data. Update this at every milestone (see CLAUDE.md)._
 
-## ✅ TRẠNG THÁI: milestone hoàn tất, đã deploy. Không có việc đang dở.
+## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
-Toàn bộ chuỗi việc (revert → dọn note nội bộ → đổi tên tổ chức → tagline footer → dọn placeholder học phí)
-đã xong, đã review, đã deploy và verify trên live. Nhánh sạch, chưa merge vào `main`.
+**Site đang LIVE:** https://duhoctesolhcmc.vn — 748 trang · 571 trường · 9 sự kiện · 72 video thật.
+Google đã được phép index (`noindex` đã gỡ). Mọi thứ trong bảng dưới đã làm xong và verify trên server.
+
+### Việc tiếp theo, theo thứ tự ưu tiên
+| # | Việc | Ai làm | Ghi chú |
+|---|---|---|---|
+| 1 | 🔴 **Đổi mật khẩu FTP** | user | Đã lộ qua chat ngày 2026-09-18. cPanel → FTP Accounts → `uploadtesolhcm@duhoctesol.duystudy.vn` → Change Password. Rồi sửa `C:\Users\louis\.duhoctesol-ftp.cfg` |
+| 2 | Khai báo **Google Search Console** + nộp `https://duhoctesolhcmc.vn/sitemap.xml` | user | Cần tài khoản Google. Không cần "Change of Address" — domain cũ luôn `noindex`, chưa từng được index |
+| 3 | Kiểm **Rich Results Test** với 1 trang trường | user | https://search.google.com/test/rich-results — kỳ vọng thấy *Breadcrumbs* hợp lệ |
+| 4 | Sửa **32 `<title>` bị cắt sẵn bằng `…`** | Claude | vd `…THPT Mỹ tại Pennsylvania từ…` — lỗi có từ trước, chưa đụng |
+| 5 | Sửa **138 meta description trùng lặp** | Claude | 26 trang dùng chung 1 câu giới thiệu tổ chức |
+| 6 | Tạo **`llms.txt`** cho AI answer engine | Claude | chuẩn đang hình thành (ChatGPT / Perplexity) |
+| 7 | 32 trang trường có mô tả tiếng Việt dính vào `<h1>` + breadcrumb | Claude, **chỉ khi user yêu cầu** | vd `Đại học Cape Breton University (CBU – Thu hút rất đông sinh viên…)`. Schema đã sạch, chữ hiển thị vẫn còn. Nội dung có sẵn → user dặn không tự sửa |
+
+### Deploy — 1 lệnh, không cần hỏi mật khẩu
+Credential nằm **ngoài repo** ở `C:\Users\louis\.duhoctesol-ftp.cfg` (Git Bash: `~/.duhoctesol-ftp.cfg`).
+Nếu file tồn tại và không còn chuỗi `DANMATKHAUVAODAY` → deploy luôn, **không hỏi user**:
+```bash
+cd "/c/Users/louis/Dropbox/Tintt/claude code/duhoctesol"
+python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html     # chỉ sửa chữ  (~2 phút)
+python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg seo      # robots.txt + sitemap.xml
+python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg css      # main.css
+python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg images   # 442 MB (~4 phút) - chỉ khi đổi ảnh
+```
+Chỉ hỏi user khi: file mất · còn placeholder · `login` trả `530` (mật khẩu đã đổi).
+Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DEPLOY.md`.
+
+### Công cụ trong repo
+| File | Dùng khi |
+|---|---|
+| `tools/deploy-ftp.py` | deploy. Phase: `login` `images` `css` `html` `seo` `all`. Đã sửa chạy được trên Windows (path `\` → `/`, stdout UTF-8) |
+| `tools/add-schema.py` | **chạy lại mỗi khi sinh lại trang trường hoặc thêm trường mới.** Idempotent — thay khối `id="page-schema"` cũ, không nhân đôi. Đọc dataset từ thư mục anh em `../duystudy.vn - content/` |
+
+### Git
+- Nhánh `tesol-content-rewrite` — đã push lên `origin` (github.com/louischansgvn-claude/duhoctesol). **Chưa merge vào `main`.**
+- ⚠️ **`wp-content/uploads/` KHÔNG nằm trong git** (`.gitignore`) — 1.753 ảnh / 442 MB.
+  Ảnh sống ở 3 nơi: thư mục repo trên Dropbox (bản làm việc) · server · nguồn gốc `../duystudy - website/wp/wp-content/uploads/`
+  và `../duystudy.vn - content/assets/`. Clone mới từ GitHub **sẽ không có ảnh** → deploy ảnh phải chạy từ máy có Dropbox.
+
+---
+
+## Trạng thái hạ tầng (2026-09-18)
+
+| Hạng mục | Trạng thái |
+|---|---|
+| Domain | `duhoctesolhcmc.vn` — **addon domain**, docroot `/home/infkkcwh/duhoctesol.duystudy.vn` |
+| DNS | `@` + `www` → A `103.221.223.76` (Shared IP của cPanel), TTL 300 |
+| SSL | Let's Encrypt (AutoSSL), SAN `duhoctesolhcmc.vn` + `www`, hết hạn **17/12/2026** — AutoSSL tự gia hạn |
+| Deploy | 1.753 ảnh · 748 HTML · main.css · robots + sitemap — **0 lỗi** |
+| 34 thư mục demo trên server | đã xoá qua FTP, cả 34 URL trả **404** |
+| `noindex,nofollow` | **đã gỡ** khỏi 748 trang |
+| `robots.txt` | chặn `/wp-json/`, `/feed/`, `/category/`, `/loai-su-kien/`, `/quoc-gia-filter/` |
+| `sitemap.xml` | **727 URL** (748 trừ 11 trang bị robots chặn, trừ 10 bản tin trùng) |
+| 301 (`.htaccess`) | subdomain cũ + `duhoctesolhcmc.vn.amigoagency.vn` + `www` + `http` → `https://duhoctesolhcmc.vn`, **giữ nguyên đường dẫn** |
+| `.well-known/` | loại trừ khỏi 301 — nếu chặn, AutoSSL không gia hạn được cert, sau 90 ngày site chết HTTPS |
+| 10 bài tin trùng `/<slug>/` + `/tin-tuc/<slug>/` | bản root (rác WP export, không ai link tới) đã trỏ canonical về bản `/tin-tuc/` |
+
+### `.htaccess` trên server
+Block PHP do cPanel sinh **giữ nguyên 100%**; phần rewrite nằm dưới, trong
+`# BEGIN duhoctesolhcmc.vn canonical host` … `# END`. Backup bản gốc (chỉ có block cPanel, 612 byte) —
+nếu cần khôi phục, xoá toàn bộ phần nằm giữa 2 marker đó.
+
+### ⚠️ Hosting dùng chung — đừng làm những việc này
+cPanel `infkkcwh` còn chạy **`amigoagency.vn` (primary domain)**, `duystudy.vn`, `vnguide.vn`…
+- ❌ Đừng đổi Primary Domain
+- ❌ Đừng sửa `.htaccess` ở `/home/infkkcwh/` hay `/public_html/`
+- ❌ Đừng "Run AutoSSL For All Domains"
+- ❌ **Đừng xoá subdomain `duhoctesol.duystudy.vn`** — FTP account deploy gắn với nó, docroot mang tên nó, và nó đang làm nhiệm vụ 301
+- ❌ Đừng đổi tên thư mục docroot — nội bộ, khách không thấy, đổi là hỏng mapping addon domain + chroot FTP
+
+FTP account `uploadtesolhcm@duhoctesol.duystudy.vn` bị **chroot** trong docroot → script deploy không thể ghi sang site khác.
+
+### Structured data (đã deploy)
+Mỗi trang có thêm **1** khối `<script type="application/ld+json" id="page-schema">` ngay sau graph
+site-wide (graph cũ — `EducationalOrganization` + `WebSite` + 3 `LocalBusiness` — không đụng).
+- **571 trang trường**: `WebPage` + entity trường + `BreadcrumbList`
+  - `@type`: 371 `CollegeOrUniversity` · 161 `HighSchool` · 39 `EducationalOrganization`
+    (31 khu học chánh / hội đồng trường + NSISP + 7 trường Anh ngữ Philippines — không phải 1 trường THPT)
+  - `name` = tên chính thức: bỏ mô tả tiếng Việt trong ngoặc / sau gạch nối (199 tên)
+  - `alternateName` = viết tắt thật (105: UofT, UBC, NUS, LSE, TU Delft, UNSW Sydney, TDSB…)
+  - `url` + `sameAs` = website chính thức từ dataset (571/571 hợp lệ)
+  - `WebPage.name` lấy từ `<h1>`, **không** lấy `<title>` (32 title bị cắt sẵn)
+- **176 trang còn lại**: chỉ `BreadcrumbList` (trang chủ không có — breadcrumb chỉ 1 cấp)
+- Verify: 0 lỗi parse JSON · 2.287 mục breadcrumb đều trỏ trang có thật · `position` liên tục · header/footer vẫn 1 md5
+
+## Milestone 2026-08-18 — Import dữ liệu trường + sự kiện từ duystudy.vn
+
+**Yêu cầu user:** lấy dữ liệu các trường / sự kiện đã import bên `duystudy - website` đưa sang duhoctesol,
+**không sửa nội dung/hình ảnh**, rồi deploy.
+
+### Nguồn dữ liệu
+Site live **https://duystudy.vn** (đã seed đủ 5 dataset) là source of truth — mirror phần `<main>` của từng
+trang. Dataset gốc nằm ở `duystudy - website/wp-content/themes/duy-study/inc/data/`:
+`seo/seo-import.json` (129 THPT Mỹ) · `postsecondary/` (103 CĐ/ĐH Mỹ) · `canada-australia/` (195) ·
+`other-countries/` (144) · `events/` (9).
+
+### Đã làm
+- **572 trang trường** `truong/<slug>/` + **9 trang sự kiện** `su-kien/<slug>/` (mới).
+- **38 trang danh sách cập nhật lại**: `truong/`, `su-kien/`, và 36 trang `quoc-gia/{9 nước}/{4 bậc}/`.
+- **37 trang mới cho nước/bậc chưa có**: `quoc-gia/{anh,malaysia,thuy-sy,philippines}/` (landing + 5 bậc + video)
+  và bậc `anh-ngu/` cho 9 nước cũ — dữ liệu import có 4 quốc gia + 1 bậc học mà site chưa có route.
+- **1.712 ảnh** → `wp-content/uploads/{thpt-seo,postsecondary,canada-australia,other-countries,events}/` (414 MB).
+  4 thư mục copy từ dataset local; `thpt-seo` (347 file) tải từ duystudy.vn.
+- **CSS**: append 50 rule block còn thiếu (`.seo-article/.sa-*/.school-logo-thumb/.ev-*` …) vào
+  `wp-content/themes/duy-study/assets/css/main.css`. **Chỉ append**, không sửa rule cũ → 171 trang cũ không đổi.
+- **Tổng file HTML: 171 → 782.**
+
+### Quy tắc brand khi mirror (quan trọng)
+Nội dung bài import (`<div class="seo-body">`) và **tiêu đề sự kiện** giữ **nguyên văn**, kể cả các chỗ ghi
+"Duy Study" (9 sự kiện là sự kiện thật của Duy Study — user dặn không sửa nội dung).
+Chỉ đổi **chữ khung của theme** `Duy Study` → `Ban Du học Hội TESOL TP.HCM` (CTA tư vấn, eyebrow, lead của
+trang danh sách…) cho khớp 171 trang cũ. URL `duystudy.vn` → root-relative.
+
+### Verify (local)
+- 782 file · header 1 md5 `482537d6b5e00b6df298935c27b4eefb` · footer 1 md5 `3e1a808c1520d98d61f7616b4c193be1`
+  (đúng cả 782 file) · đúng 1 `<h1>`/trang · 0 `{{TODO}}` · 0 link `https://duystudy.vn` sót lại.
+- 44.709 link root-relative: **0 link nội bộ gãy**, **1 ảnh thiếu** (xem dưới).
+- Serve local + browser: trang trường / sự kiện / `truong/` / `su-kien/` / `quoc-gia/anh/dai-hoc/` render đúng,
+  finder lọc được (chọn "Anh" → 30 kết quả), nút "Tải thêm" chạy client-side (không cần AJAX).
+
+### Trạng thái deploy
+**CHƯA DEPLOY.** Kiểm chứng lúc 2026-08-18: `/truong/winthrop-high-school/`,
+`/su-kien/hoi-xuan-thpt-trung-vuong-2024/`, `/quoc-gia/anh/dai-hoc/` → **404** trên live;
+`/truong/` live vẫn 32 card. Script deploy đã viết sẵn: `tools/deploy-ftp.py`.
+
+### Tồn đọng
+- `wp-content/uploads/thpt-seo/jordan-school-district-campus.jpg` **404 ngay trên duystudy.vn** → trang
+  `truong/jordan-school-district/` thiếu 1 ảnh trong bài. Giữ nguyên như nguồn; cần fix ở phía duystudy.
+- 25 trang trường demo cũ (`truong/asu`, `toronto`, `sydney`…) vẫn còn trên đĩa nhưng **không còn nằm trong
+  finder** vì bản duystudy đã bỏ. Không xoá (deploy theo nguyên tắc ghi đè, không xoá).
+- Deploy lần này **phải upload cả `wp-content/uploads/` (414 MB) + `main.css`**, khác runbook mặc định
+  (mặc định chỉ upload `**/index.html`). Kiểm tra dung lượng host còn đủ trước khi đẩy.
+- Chưa commit. Nếu muốn commit: 588 file mới (`truong/*`, `su-kien/*`, `quoc-gia/*`, `wp-content/uploads/*`,
+  `tools/deploy-ftp.py`) + 47 file sửa. Cân nhắc `.gitignore` cho `wp-content/uploads/` vì 414 MB ảnh.
+- Password FTP `deploy@duystudy.vn` trong `~/.duy-ftp.cfg` đã **lộ ra log phiên chat 2026-08-18**
+  (lệnh che password sai định dạng) → **nhắc user đổi password tài khoản đó**.
 
 ## Milestone 2026-07-09 — Deploy lên review site
 - Deploy 171 `index.html` qua FTP theo `DEPLOY.md` (1 phiên curl, `wp-content` không upload vì không đổi).
@@ -17,7 +151,7 @@ Toàn bộ chuỗi việc (revert → dọn note nội bộ → đổi tên tổ
 
 ## Việc gợi ý cho lần sau (chưa làm, không gấp)
 - Merge `tesol-content-rewrite` vào `main` (nhánh đã sạch, verify đầy đủ).
-- Khi đẩy lên domain chính thức: gỡ `<meta name="robots" content="noindex,nofollow">` khỏi 171 trang.
+- ~~Gỡ `noindex` khi lên domain chính thức~~ → **ĐÃ LÀM 2026-09-18** trên `duhoctesolhcmc.vn`.
 - Còn **159 chỗ** dùng cụm "cần xác nhận" dạng câu hedge hợp lệ trong nội dung học bổng/trường
   (vd `Phạm vi áp dụng cần xác nhận theo thư học bổng.`). Cố ý giữ — user dặn không đụng thông tin
   chương trình/trường. Chỉ sửa nếu user yêu cầu rõ.
@@ -79,7 +213,9 @@ Toàn bộ chuỗi việc (revert → dọn note nội bộ → đổi tên tổ
   171 · header/footer 1 md5 each · every file exactly one `<footer>`/`</footer>`.
 
 ## What this project is
-A **171-page static Vietnamese study-abroad site** on the Duy Study template. Content is **general du học**
+A static Vietnamese study-abroad site on the Duy Study template — **LIVE at https://duhoctesolhcmc.vn**,
+**748 pages** (grew from 171 after the 2026-08/09 import of 571 schools + 9 events from duystudy.vn).
+The "171" figures in the historical sections below describe the site *before* that import. Content is **general du học**
 (định hướng, chọn quốc gia/trường/ngành, học bổng, visa, chuẩn bị lên đường). Keep design/CSS/images/URLs;
 rewrite only copy except explicit page/link tasks.
 
@@ -109,37 +245,40 @@ brand string `Du học TESOL` was removed site-wide on 2026-07-09). Old TESOL pl
 - **No internal/dev notes anywhere**: `bản dev`, `Liquid Glass design`, `demo`, `repo`, `trước khi công bố`,
   `Học phí cần xác nhận`, `Kết quả cần xác nhận` all = 0 hits.
 
-## FIRST THING ON RESUME — sanity check
+## FIRST THING ON RESUME — sanity check (cập nhật 2026-09-18, máy Windows)
 ```bash
-cd "/Users/louis/Library/CloudStorage/Dropbox/Tintt/claude code/duhoctesol"
+cd "/c/Users/louis/Dropbox/Tintt/claude code/duhoctesol"
 git log --oneline | head -5
-git status --short                                   # should be clean
-find . -name index.html -not -path './.git/*' | wc -l   # == 171
-git diff 5eeecd0 -- wp-content | wc -l                # == 0
-grep -rl 'Ban Du học Hội TESOL TP.HCM' --include=index.html . | wc -l   # == 171
-# old brand + internal notes must all be gone (expect 0):
-grep -rniE 'Du học TESOL|Công ty Tư vấn|bản dev|Liquid Glass|\bdemo\b|\brepo\b' \
-  --include=index.html . | grep -v duhoctesol | wc -l
-# placeholder học phí — CASE-SENSITIVE (viết hoa). Đừng dùng -i: nó bắt nhầm câu hedge hợp lệ
-# `<span class="muted">học phí cần xác nhận theo ngành và kỳ nhập học</span>` (32 chỗ, cố ý giữ).
-grep -rn 'Học phí cần xác nhận' --include=index.html . | wc -l          # == 0
+git status --short | wc -l                                              # 0 = sạch
+find . -name index.html -not -path './.git/*' | wc -l                   # == 748
+ls -d truong/*/ | wc -l                                                 # == 571
+ls -d su-kien/*/ | wc -l                                                # == 9
+grep -rl 'noindex' --include=index.html . | wc -l                       # == 0  ← PHẢI = 0, site đang live
+grep -rl 'id="page-schema"' --include=index.html . | wc -l              # == 747
+grep -rl 'M7lc1UVf-VE\|ScMzIvxBSi4' --include=index.html . | wc -l      # == 0  (video demo Google)
+grep -rl 'duhoctesol.duystudy.vn' --include=index.html . | wc -l        # == 0  (domain cũ)
+curl -s -o /dev/null -w '%{http_code}\n' https://duhoctesolhcmc.vn/     # 200
+curl -s https://duhoctesolhcmc.vn/truong/ | grep -o data-finder-card | wc -l   # 571
 ```
+Header/footer đồng nhất: kiểm bằng Python (xem invariants), **không** dùng awk one-liner.
 
-## Global invariants to re-check before merge
-- `find . -name index.html -not -path './.git/*' | wc -l` == 171
-- `git diff 5eeecd0 -- wp-content | wc -l` == 0 (design untouched)
-- header/footer still 1 distinct md5 hash each site-wide (dùng Python, **không** dùng awk one-liner — `<` `>` làm vỡ)
-- org name always full `Ban Du học Hội TESOL TP.HCM`; zero hits of `Du học TESOL` / `Công ty Tư vấn`
-- zero internal/dev/demo/repo notes in any `index.html`
-- `<meta name="robots" content="noindex,nofollow">` present in all 171 (until the official domain go-live)
-- every `/quoc-gia/<slug>/video/` link resolves to an existing file
+## Global invariants (cập nhật 2026-09-18 — site đã LIVE)
+- `index.html` == **748** · `truong/*` == **571** · `su-kien/*` == **9**
+- header == 1 md5 `482537d6b5e00b6df298935c27b4eefb` · footer == 1 md5 `3e1a808c1520d98d61f7616b4c193be1`
+  (dùng Python, **không** dùng awk one-liner — `<` `>` làm vỡ)
+- 🔴 **`noindex` == 0 trên mọi trang.** Site đã go-live. Invariant cũ "noindex có trên cả 171 trang" đã
+  **HẾT HIỆU LỰC** — **tuyệt đối không thêm lại**, thêm lại là Google gỡ cả site khỏi kết quả tìm kiếm.
+- mọi URL tuyệt đối trỏ `https://duhoctesolhcmc.vn`; 0 lần xuất hiện `duhoctesol.duystudy.vn` trong HTML
+- mọi trang (trừ trang chủ) có đúng **1** khối `id="page-schema"`; mọi khối JSON-LD parse được
+- 0 video demo Google (`M7lc1UVf-VE`, `ScMzIvxBSi4`); 0 link nội bộ gãy; 0 ảnh thiếu
+- org name luôn viết đầy đủ `Ban Du học Hội TESOL TP.HCM`; 0 lần `Du học TESOL` / `Công ty Tư vấn`
+- 0 ghi chú nội bộ/dev/demo trong `index.html`
 
 ## 🚀 Deploy — runbook đầy đủ trong `DEPLOY.md`
-Khi user nói **"deploy"**: mở `DEPLOY.md`, **xin user gửi password FTP** (không lưu sẵn), rồi chạy runbook
-(curl, 1 phiên, ~30s). Tóm tắt: host `pbf43-22360.azdigihost.com` (port 21 plain FTP),
-user `uploadtesolhcm@duhoctesol.duystudy.vn`, docroot = FTP `/`; **ghi đè, không xoá**
-(giữ `.htaccess`/`.well-known`/`cgi-bin`/`wp-content`); chỉ upload `**/index.html`.
-Nhắc user đổi pass FTP sau mỗi lần gửi qua chat.
+Khi user nói **"deploy"**: dùng credential file `~/.duhoctesol-ftp.cfg` — **không hỏi mật khẩu** nếu file có sẵn
+(xem mục *Deploy* ở đầu file). Host `pbf43-22360.azdigihost.com` (port 21, plain FTP), user
+`uploadtesolhcm@duhoctesol.duystudy.vn`, docroot = FTP `/`; **ghi đè, không xoá** (giữ `.htaccess`/`.well-known`/`cgi-bin`).
+Xoá file trên server thì làm tay qua FTP (`DELE` + `RMD`) sau khi **liệt kê nội dung thư mục trước**.
 
 ## Execution method going forward (mandatory workflow)
 Follow the **Claude ↔ Codex loop in `CLAUDE.md`**: Claude hands Codex a task prompt (each prompt MUST remind
@@ -162,3 +301,150 @@ milestone. Hard rule for the implementer: **do the work yourself — no sub-agen
   the byte-identical invariant.
 - Verifying header/footer md5 with `awk '/<header/,/<\/header>/'` inside a `for f in $(...)` loop is fragile
   (word-splitting + `<`/`>` redirection). Use Python.
+
+## Milestone 2026-09-18 — Bù 4 gap còn sót của lần import duystudy.vn
+
+**Yêu cầu user:** clone tiếp nội dung/hình ảnh từ duystudy sang cho site đủ nội dung hơn;
+**không sửa gì đang có** ("tôi đã sửa lại đúng thông tin rồi"), **chỉ bơm phần đang thiếu**.
+Với 3 nước không có video: "nếu không có video thì xóa demo đi để trống".
+
+### Gap analysis — kết quả đối chiếu toàn bộ
+Đã đủ, không cần làm gì: 571/571 record trường có trang · 20/20 route `quoc-gia/<nước>/<bậc>` và link đủ
+571 trường · 9/9 sự kiện + 45 ảnh · `tin-tuc` (11) / `hoc-sinh` (8) / `hoc-bong` (7) trùng khớp nguồn 100%.
+103 trang CĐ/ĐH Mỹ **giàu hơn** `content_html` nguồn (7.520 vs 2.700 ký tự, 12 heading vs 5) — không phải gap.
+
+| # | Gap | Đã xử lý |
+|---|---|---|
+| 1 | 65/72 video thật của kênh Duy Study chưa có | bơm đủ **72/72** vào 13 trang `/video/` |
+| 2 | 9 trang `/video/` + 9 trang landing hiện **video demo của Google** (`M7lc1UVf-VE`, `ScMzIvxBSi4`) | **0 placeholder** còn lại trên trang nước |
+| 3 | 42 trang trường thiếu ảnh (4 trang 1 ảnh, 38 trang 2 ảnh) | 37 trang bù xong → còn 6 trang 2 ảnh |
+| 4 | 1 ảnh hỏng `jordan-school-district-campus.jpg` | restore từ kho → **0 broken ref** |
+
+### Nguồn video (gap #1)
+`duystudy - website/wp-content/themes/duy-study/inc/components.php` →
+`duy_official_youtube_videos()`: **72 entry** (đồng bộ 2026-07-27), mỗi entry có
+`id / countries / level / title / school / school_slug / desc / published`.
+Phân bổ: canada 32 · my 23 · uc 7 · thuy-sy 5 · malaysia 2 · tho-nhi-ky 1 · singapore 1 · new-zealand 1.
+`duc / ha-lan / han-quoc / anh / philippines` **không có video** trong dataset → dùng empty-state.
+
+### Đã làm
+- **13 trang `quoc-gia/<nước>/video/`**: 6 nước được bơm video thật (canada 32, my 23, uc 7,
+  new-zealand/singapore/tho-nhi-ky 1); `duc/ha-lan/han-quoc` chuyển sang empty-state "đang cập nhật"
+  giống `anh`/`philippines`; `thuy-sy`/`malaysia` đã đúng từ trước → không đụng.
+- **9 trang landing `quoc-gia/<nước>/`**: teaser "Video du học X" → 3 video thật đầu tiên + link
+  "Xem tất cả N video"; 3 nước không có video thì **xoá hẳn teaser** (đúng như `anh`/`philippines`).
+- **37 trang trường** thêm 1–2 `<figure>` vào gallery `HÌNH ẢNH TRƯỜNG`; **41 ảnh** copy vào
+  `wp-content/uploads/{thpt-seo,other-countries}/`. Ảnh **1.712 → 1.753**.
+- 4 trang trước đây không có gallery (`bishop-rosecrans`, `evangel-christian-academy`,
+  `kuemper-catholic`, `sparta-high-school-kent-isd`) giờ có gallery.
+
+### Còn lại — cố ý không làm
+- **6 trang trường vẫn 2 ảnh**: `bishop-carroll-catholic-high-school`, `comstock-park-high-school-kent-isd`,
+  `kent-city-high-school-kent-isd`, `kuemper-catholic-high-school`, `greenbay-highschool`,
+  `swinburne-university-of-technology-sarawak-kuching`. Kho **không có** ảnh thứ hai khác thật —
+  các file `-article-1/2` của chúng khi hash ra **trùng byte** với logo hoặc với ảnh đã có trên trang.
+- **8 trang sự kiện mẫu mồ côi** (`su-kien/{australia-webinar,canada-fair,essay-workshop,parent-night,`
+  `pre-departure-aug,top-aus-unis,turkey-open-day,visa-check-day}/`) vẫn còn video demo Google.
+  Không có link trỏ tới từ `su-kien/index.html`; là rác template, không thuộc dữ liệu duystudy → chờ user quyết.
+- `the-gilbert-school`: `-hinh-1.webp` và `-logo.webp` trùng byte (lỗi có từ trước, không do milestone này).
+
+### Verify (local, sau khi apply)
+- 782 file (không đổi) · header 1 md5 · footer 1 md5 (đúng cả 782 file)
+- **72/72** video thật · **0** video demo Google trên mọi trang nước
+- **0** broken upload ref · 1.753 ảnh trên đĩa = 1.753 ref duy nhất
+- ảnh/trang trường: `{2: 6, 3: 565}` (trước: `{1: 4, 2: 38, 3: 528}`)
+- mọi link nội bộ trong khối video mới đều resolve; mọi youtube id đều thuộc dataset Duy Study
+
+### Learnings
+- **Generator phải tự chứng minh**: cả 3 script chạy `--selftest` — tái tạo lại các trang **đã đúng**
+  (`thuy-sy`, `malaysia`, `anh`, `philippines`) từ dataset rồi diff **byte-for-byte** trước khi cho ghi.
+  Cách này bắt được toàn bộ sai lệch tab (theme xuất thụt lề rất lệch: `t=17`, `t=22`, `t=25`).
+- File repo dùng **LF thuần**, không phải CRLF. Ghi file tạm bằng Python trên Windows sẽ tự đổi thành CRLF
+  rồi `cat -A` báo `^M` → **kết luận sai**. Luôn mở bằng `newline=""`.
+- **2 template video song song**: trang placeholder thụt sâu hơn 1 tab (`<section class="band">` ở t=1)
+  so với trang đã đúng (t=0). Dùng base-indent shift, đừng hardcode.
+- **Tên nước có 2 dạng**, đừng dùng lẫn: tên ngắn (`Philippines`, lấy từ `<h2>Cẩm nang X</h2>` /
+  `<h2>Trường liên quan tại X</h2>`) và tên link (`Anh ngữ Philippines`, lấy từ h1/breadcrumb).
+- **Luôn hash + đo kích thước ảnh trước khi thêm vào gallery.** Hash chặn được 3 trang sắp bị chèn
+  chính file logo làm "ảnh khuôn viên" (`-article-1.png` trùng byte với `-logo-favicon.png`); đo kích thước
+  loại thêm 6 ảnh crest/banner 256–500px mà tên file nhìn như ảnh thật.
+- Suy ra tên trường từ `<h1>` dễ sinh lặp tiền tố (`Trường Trung học Trung học Evangel…`) — h1 đã chứa
+  "Trung học". Ưu tiên lấy tên từ alt của ảnh gallery/logo có sẵn.
+- `truong/index.html` chỉ link 573 slug; 25 trang slug ngắn cũ (`asu`, `boston`, `sydney`, `toronto`,
+  `washington`, `melbourne`, `monash`…) là trang legacy trước import, không được list. Đã có từ trước.
+
+## Milestone 2026-09-18 (b) — Dọn sạch nội dung demo của template
+
+**Yêu cầu user:** "các trường đang có ở demo thì xóa đi không cần giữ lại"; 8 trang sự kiện mẫu → "xoá luôn";
+9 landing quốc gia còn lại → liệt kê **toàn bộ** trường thật giống 4 trang đã chuẩn.
+
+### Đã xoá
+- **26 trang trường demo** `truong/*` — không nằm trong dataset duystudy, mang số liệu bịa
+  (`#19 QS`, `38.000 AUD/năm`, `Học phí 31.000 USD/năm`) và ảnh minh hoạ của theme:
+  `asu` `auckland` `australian-national-university` `boston` `broward` `dalhousie-university`
+  `massey-university` `melbourne` `metu` `monash` `olympic` `oregon-state-university` `purdue-nw`
+  `sheridan-college` `st-peters` `sydney` `the-university-of-melbourne`
+  `the-university-of-new-south-wales` `the-university-of-queensland` `toronto` `university-of-auckland`
+  `university-of-canterbury` `university-of-connecticut` `university-of-otago` `university-of-waikato` `washington`
+- **8 trang sự kiện mẫu** `su-kien/*`: `australia-webinar` `canada-fair` `essay-workshop` `parent-night`
+  `pre-departure-aug` `top-aus-unis` `turkey-open-day` `visa-check-day`
+- ⚠️ **GIỮ LẠI** `truong/north-yarmouth-academy-educatius-exclusive/` — đây là trường thật, slug bị đổi tên
+  (dataset ghi `north-yarmouth-academy`). Đừng xoá nhầm.
+
+### Xử lý 190 link trỏ tới trường demo (25 trang)
+| Dạng markup | Số | Xử lý | Lý do |
+|---|---|---|---|
+| `<article class="card" data-finder-card>` | 29 | xoá card | chứa số liệu bịa + ảnh theme |
+| `<a class="promo-banner">` (quoc-gia/index) | 5 | xoá banner | chứa học phí bịa |
+| `<a class="school-mini">` chip | 40 | **repoint** sang trường thật | chip chỉ có tên + khu vực, không số liệu |
+| `<a class="school-mini">` chip (không có trường thật) | 11 | xoá chip | 6 trường demo không có bản thật |
+| `<a class="event-school-card">` | 21 | repoint/xoá | nằm trên 8 trang bị xoá |
+
+Mapping 19 legacy → trường thật **tra bằng tên chính xác trong dataset, không dùng fuzzy match**
+(`sydney`→`the-university-of-sydney-usyd-bang-nsw`, `toronto`→`university-of-toronto-uoft`,
+`asu`→`arizona-state-university`, `melbourne`+`the-university-of-melbourne`→`the-university-of-melbourne-unimelb-bang-victoria`…).
+**Cố ý KHÔNG map `purdue-nw` → `purdue-university`**: Purdue University Northwest là campus khác.
+7 trường demo không có bản thật: `boston` `broward` `metu` `oregon-state-university` `purdue-nw`
+`st-peters` `university-of-connecticut`.
+
+### Bơm trường thật vào chỗ card demo bị xoá
+- **9 landing quốc gia** dựng lại khối "Các trường tại X" theo đúng chuẩn 4 trang `anh`/`malaysia`/`thuy-sy`/`philippines`
+  (toàn bộ trường, nhóm theo bậc THPT→Cao đẳng→Đại học→Sau đại học→Anh ngữ, A→Z trong từng bậc, kèm link
+  "Xem tất cả" sang finder). Card **harvest nguyên văn** từ trang bậc học của chính nước đó → không tự viết markup:
+  `my` 232 · `canada` 136 · `uc` 59 · `new-zealand` 27 · `ha-lan` 21 · `singapore` 12 · `duc` 8 ·
+  `tho-nhi-ky` 6 · `han-quoc` 4. (4 trang trước đó có **0 card**: duc, ha-lan, han-quoc, singapore.)
+- **Trang chủ** khối "Trường và học bổng đang được quan tâm": 3 card demo → 3 card thật
+  (`harvard-university`, `university-of-toronto-uoft`, `the-university-of-sydney-usyd-bang-nsw`).
+- **Trang chủ** khối sự kiện: 8 sự kiện bịa → **9 sự kiện thật** (3 featured card mới nhất + 6 dòng agenda).
+  Heading `Lịch sắp tới` → `Sự kiện đã diễn ra` (mọi sự kiện thật đều đã qua; `su-kien/index.html` cũng ghi "Đã diễn ra").
+  4 sự kiện chỉ có năm trong manifest → `date-badge` hiện đúng `2024`, **không bịa ngày/tháng**.
+- **`nganh-hoc/{cong-nghe,kinh-te,suc-khoe}`** khối "Trường tiêu biểu ngành X": 4 card demo →
+  **empty-state y như `nganh-hoc/giao-duc` và `nganh-hoc/tieng-anh` đang dùng**. Dataset **không có** mapping
+  ngành→trường, nên tự chọn "trường tiêu biểu ngành X" là bịa nhận định → không làm.
+
+### Verify (local, sau khi apply)
+- **748 trang** (782 − 26 trường − 8 sự kiện) · `truong/` **571** thư mục = đúng 571 record dataset
+- `su-kien/` **9** thư mục = đúng 9 sự kiện thật · `truong/index.html` **571** `data-finder-card`
+- header 1 md5 · footer 1 md5 (đúng cả 748 file)
+- **0** link nội bộ gãy · **0** broken upload ref · **0** ảnh mồ côi trong uploads (1.753 file = 1.753 ref)
+- **72** video thật · **0** placeholder Google
+- grep = 0 với `#19 QS` / `38.000 AUD/năm` / `31.000 USD/năm` / `Top innovation` / `Trọng tâm:` / `Lịch sắp tới`
+
+### Learnings
+- **Xoá trang không bao giờ chỉ là xoá trang.** 26 trang trường demo có **190 link** từ 25 trang khác
+  (trang chủ, 13 landing, ngành học, trang video, trang sự kiện) ở **5 dạng markup khác nhau**. Phải phân loại
+  markup trước, rồi mới quyết từng dạng: dạng chứa số liệu bịa thì xoá, dạng chỉ có tên thì repoint.
+- **Kiểm "container thành rỗng" trước khi xoá.** Xoá card xong thì 4 khối "Các trường tại X" + 1 khối trang chủ
+  còn lại grid trắng. Phát hiện bằng cách đo content-weight của từng container trước/sau.
+- **Đừng tin fuzzy match cho tên trường.** `difflib` khớp `melbourne`→`melbourne-central-catholic-high-school`
+  và `sydney`→`sydney-grammar-school` (đều sai, trung học vs đại học). Phải tra bằng tên chính xác.
+- Trang bậc học `quoc-gia/*/dai-hoc/` **cũng chứa card demo** (`metu` trong `tho-nhi-ky/dai-hoc`) → khi harvest
+  card thật phải lọc legacy, nếu không sẽ nhân bản card demo sang landing.
+- `su-kien/index.html` dùng layout magazine: 1 `lead-story` + 2 `secondary-story` + 6 `card` = 9. Đếm
+  `data-finder-card` sẽ ra 6 và tưởng thiếu 3 sự kiện.
+- Icon phải có thật trong `assets/icons/sprite.svg` (26 id: i-alert i-arrow i-award i-book i-calendar i-cap
+  i-chat i-check i-clock i-globe i-heart i-layers i-mail i-map i-news i-phone i-pin i-play i-route i-search
+  i-send i-shield i-sparkles i-star i-target i-user). **Không có `i-image`.**
+- `Minh họa campus` / `photo-campus-library.webp` / `photo-event-workshop.webp` còn lại là **asset thiết kế
+  của theme** (og:image mọi trang, hero landing, slideshow `ve-chung-toi`, rail "Trường đối tác nổi bật" trên
+  `truong/index.html`) — **không phải nội dung demo**, đừng dọn.

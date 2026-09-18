@@ -1025,3 +1025,128 @@ footer.site{margin-top:clamp(28px,3.5vw,44px);padding:clamp(30px,4vw,46px) 0 1.5
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+
+/* ===== Imported school/event article styles (synced from duy-study theme 2026-08-18) ===== */
+
+
+/* Ảnh bìa sự kiện trong card: `.card .thumb` là flex + align-items:flex-end nên
+   `height:100%` không nở ra — ảnh dọc (poster) sẽ phá vỡ khung 16/10. Ghim tuyệt
+   đối để mọi tỉ lệ ảnh nguồn đều được crop về đúng khung. */
+.card .thumb .ev-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+
+
+/* Trang sự kiện dạng tin: bài chính + bài phụ có ảnh bìa thật */
+.ev-status-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+
+.ev-status-row .ev-date{display:inline-flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--muted)}
+
+.ev-status-row .ev-date .ic{width:14px;height:14px}
+
+/* Bài phụ trang sự kiện: card dọc, ảnh bìa full-width tỉ lệ 16/9 để không cắt
+   mất người trong ảnh. Đặt sau `.secondary-story` vì cùng độ ưu tiên (0,1,0)
+   nên thứ tự nguồn quyết định. */
+.secondary-story--ev{padding:.6rem;gap:.6rem;justify-content:flex-start}
+
+.secondary-story--ev .ss-cover{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--bg-soft)}
+
+.secondary-story--ev .ss-cover img{width:100%;height:100%;object-fit:cover;display:block}
+
+.secondary-story--ev .ss-body{display:flex;flex-direction:column;gap:.32rem;min-width:0;padding:0 .3rem .25rem}
+
+.secondary-story--ev .ss-body strong{font-size:.98rem;line-height:1.34}
+
+.secondary-story--ev .ss-body small{color:var(--muted);font-size:.78rem}
+
+
+/* THPT school logo thumbnails (featured image) */
+.card .thumb .school-logo-thumb{
+	position:absolute; inset:0; width:100%; height:100%;
+	object-fit:contain; padding:14px; background:#fff;
+}
+
+
+/* Light/white logos on a dark backdrop so they stay visible */
+.card .thumb .school-logo-thumb--dark{ background:#14283f; }
+
+
+/* THPT school detail — blog/article layout */
+/* padding-block only — keep the .wrap horizontal gutter (don't let content go flush to the screen edge on mobile) */
+.school-article{max-width:920px;margin:0 auto;padding-block:6px 24px;color:var(--ink)}
+
+.school-article .sa-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+
+.school-article .sa-loc{color:var(--muted);font-size:.95rem;display:inline-flex;align-items:center;gap:5px}
+
+.school-article .sa-loc svg{width:15px;height:15px}
+
+.school-article .sa-chip{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:.78rem;padding:5px 12px;border-radius:999px}
+
+.school-article .sa-chip svg{width:15px;height:15px}
+
+.school-article .sa-badge{background:var(--accent);color:#fff;font-weight:700;font-size:.74rem;letter-spacing:.02em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+
+.school-article .sa-lead{font-size:1.14rem;line-height:1.75;font-weight:500;color:var(--ink);margin:0 0 18px}
+
+.school-article .sa-div{border:0;border-top:1px solid var(--line);margin:22px 0}
+
+.school-article .sa-idblock{display:grid;grid-template-columns:210px 1fr;gap:26px;align-items:center;margin:6px 0 26px}
+
+.school-article .sa-logo{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;min-height:156px}
+
+.school-article .sa-logo.dark{background:#14283f;border-color:#14283f}
+
+.school-article .sa-logo img{max-width:100%;max-height:120px;object-fit:contain}
+
+.school-article .sa-facts p{margin:0 0 9px;line-height:1.6;color:var(--ink-2)}
+
+.school-article .sa-facts b{color:var(--ink);font-weight:600}
+
+.school-article h2{font-size:1.12rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--ink);margin:34px 0 14px;padding-bottom:9px;border-bottom:2px solid var(--primary)}
+
+.school-article .sa-prose{line-height:1.85;color:var(--ink-2);font-size:1.005rem}
+
+.school-article .sa-prose p{margin:0 0 13px}
+
+.school-article .sa-list{margin:0 0 12px;padding-left:22px;line-height:1.8;color:var(--ink-2)}
+
+.school-article .sa-list li{margin:0 0 9px}
+
+.school-article .sa-list li::marker{color:var(--accent)}
+
+.school-article .sa-figure{margin:0 0 16px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+
+.school-article .sa-figure img{width:100%;height:auto;display:block}
+
+.school-article .sa-panel{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:4px 0 8px}
+
+.school-article .sa-note{color:var(--muted);font-size:.86rem;font-style:italic;margin:0 0 12px}
+
+.school-article .sa-feehero{margin:0 0 12px;font-size:1.05rem}
+
+.school-article .sa-feehero span{color:var(--accent);font-weight:800}
+
+.school-article .sa-consult{margin-top:34px}
+@media(max-width:640px){
+.school-article .sa-idblock{grid-template-columns:1fr}
+}
+
+
+/* SEO article body (content_html from namphong-style import) */
+.seo-article .seo-body{line-height:1.85;color:var(--ink-2);font-size:1.01rem}
+
+.seo-article .seo-body p{margin:0 0 14px}
+
+.seo-article .seo-body ul,.seo-article .seo-body ol{padding-left:22px;margin:0 0 14px}
+
+.seo-article .seo-body li{margin:0 0 8px}
+
+.seo-article .seo-body li::marker{color:var(--accent)}
+
+.seo-article .seo-body img{max-width:100%;height:auto;border-radius:12px;margin:8px 0 16px;border:1px solid var(--line)}
+
+.seo-article .seo-body a{color:var(--primary-2);font-weight:600;word-break:break-word}
+
+.seo-article .seo-body strong,.seo-article .seo-body b{color:var(--ink)}
+
+.seo-article .seo-body h2{margin-top:32px}

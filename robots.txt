@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Chan cac endpoint ky thuat cua WordPress export (khong phai noi dung)
+Disallow: /wp-json/
+Disallow: /*/feed/
+Disallow: /feed/
+Disallow: /quoc-gia-filter/
+Disallow: /loai-su-kien/
+Disallow: /category/
+
+Sitemap: https://duhoctesolhcmc.vn/sitemap.xml
