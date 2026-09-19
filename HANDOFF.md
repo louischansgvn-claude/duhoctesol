@@ -24,7 +24,7 @@ Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 
 
 
 ### Google Search Console (bắt đầu 2026-09-19)
-Trạng thái: **đang chờ user xác minh** (cập nhật dòng này khi xong).
+Trạng thái 2026-09-19: **ĐÃ XÁC MINH** thuộc tính Miền `duhoctesolhcmc.vn` qua TXT DNS tại PA Việt Nam (`google-site-verification=MpSZ4Fa7X4fjarqolEwm9fzdW4rB10725al9zf91nU8`, host `@`, TTL 300 — giữ bản ghi này mãi, xoá là mất quyền). Bước còn lại do user làm trong GSC: nộp `sitemap.xml`, yêu cầu index 5 URL, import sang Bing Webmaster — cập nhật khi user báo xong.
 - Thuộc tính khuyến nghị: **Miền (Domain)** `duhoctesolhcmc.vn` — gom http/https/www/non-www vào 1 chỗ. Xác minh bằng **TXT DNS** `google-site-verification=…`
   thêm ở đúng panel DNS nơi đã tạo A record `103.221.223.76`. Claude kiểm: `nslookup -type=TXT duhoctesolhcmc.vn 8.8.8.8`.
 - Phương án B (nếu không vào được DNS): thuộc tính **Tiền tố URL** `https://duhoctesolhcmc.vn/` + xác minh bằng **file HTML**:
