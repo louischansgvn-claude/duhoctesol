@@ -1,6 +1,6 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-19 — SEO meta cleanup (title · description · canonical) + `llms.txt` đã deploy. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-19 (cuối phiên) — SEO meta cleanup + `llms.txt` đã deploy · Google Search Console đã xác minh + nộp sitemap. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
@@ -8,11 +8,18 @@ _Last updated: 2026-09-19 — SEO meta cleanup (title · description · canonica
 Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 file** (kiểm 2026-09-19).
 **Trước khi deploy bất kỳ lần nào:** `python tools/verify-site.py` phải in `OK — all invariants hold`.
 
+**Phiên sau bắt đầu bằng 3 việc này (theo ngày):**
+1. **Từ 2026-09-20** — user vào Search Console → ô "Kiểm tra mọi URL" → dán từng URL đầy đủ → *Yêu cầu lập chỉ mục* cho các URL còn thiếu trong 5 URL:
+   `https://duhoctesolhcmc.vn/` · `/truong/` · `/quoc-gia/my/` · `/quoc-gia/canada/` · `/quoc-gia/uc/` (hạn mức ~10/ngày, hôm 19/09 đã hết hạn mức giữa chừng).
+2. **Bing Webmaster** (chưa xác nhận đã làm): https://www.bing.com/webmasters → đăng nhập Google → *Import from Google Search Console* → tick `duhoctesolhcmc.vn`.
+3. **Từ ~2026-09-22** — user gửi ảnh *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*; Claude đọc, xử lý lỗi (kỳ vọng: 723 URL hợp lệ dần tăng, Breadcrumbs hợp lệ, 0 lỗi).
+   Trang bị Google báo "Trùng lặp, Google chọn canonical khác" cho 10 bản tin gốc `/<slug>/` là **đúng thiết kế** (canonical trỏ `/tin-tuc/`), không sửa.
+
 ### Việc tiếp theo, theo thứ tự ưu tiên
 | # | Việc | Ai làm | Ghi chú |
 |---|---|---|---|
 | 1 | ~~Đổi mật khẩu FTP~~ — **user quyết định 2026-09-19: GIỮ NGUYÊN, không đổi.** Đừng nhắc lại. Credential ở `C:\Users\louis\.duhoctesol-ftp.cfg` (ngoài repo, KHÔNG có trong DEPLOY.md/HANDOFF.md — cố ý vì repo trên GitHub) → deploy không hỏi | — | xong |
-| 2 | **Google Search Console** — đang làm 2026-09-19, xem mục *Google Search Console* ngay dưới bảng này | user + Claude | Domain property (TXT DNS); Claude kiểm TXT bằng nslookup, sau xác minh nộp sitemap |
+| 2 | **Google Search Console** — ✅ đã xác minh (Miền, TXT DNS) + ✅ đã nộp sitemap 2026-09-19. Còn: yêu cầu index 5 URL (từ 20/09) · Bing import · đọc báo cáo từ 22/09 | user + Claude | chi tiết ở mục *Google Search Console* dưới bảng |
 | 3 | Kiểm **Rich Results Test** với 1 trang trường | user | https://search.google.com/test/rich-results — kỳ vọng thấy *Breadcrumbs* hợp lệ |
 | 4 | ✅ **xong 2026-09-19** — title: sửa **170** (102 bị generator cũ cắt cứng ở 68 ký tự, 61 `thpt`→`THPT`, 3 trang học sinh, 4 stub ngành) | Claude | đã deploy · chi tiết ở *Milestone 2026-09-19* |
 | 5 | ✅ **xong 2026-09-19** — description: viết lại **273** (158 trùng + 129 THPT Mỹ bị cắt dở câu + 3 quá dài) · gỡ **35 canonical thừa** (9 trang sự kiện từng trỏ về `/su-kien/canada-fair/` 404) | Claude | đã deploy |
@@ -25,12 +32,12 @@ Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 
 
 ### Google Search Console (bắt đầu 2026-09-19)
 Trạng thái 2026-09-19: **ĐÃ XÁC MINH** thuộc tính Miền `duhoctesolhcmc.vn` qua TXT DNS tại PA Việt Nam (`google-site-verification=MpSZ4Fa7X4fjarqolEwm9fzdW4rB10725al9zf91nU8`, host `@`, TTL 300 — giữ bản ghi này mãi, xoá là mất quyền). Đã nộp sitemap (thuộc tính Miền phải nhập URL đầy đủ `https://duhoctesolhcmc.vn/sitemap.xml`, không nhập tên file). Yêu cầu lập chỉ mục: **hết hạn mức ngày 2026-09-19**, user làm tiếp ngày 2026-09-20 với các URL còn lại trong 5 URL (`/`, `/truong/`, `/quoc-gia/my/`, `/quoc-gia/canada/`, `/quoc-gia/uc/`). Bing Webmaster import: chưa xác nhận. Sau 3–7 ngày (từ ~2026-09-22): xem *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*.
-- Thuộc tính khuyến nghị: **Miền (Domain)** `duhoctesolhcmc.vn` — gom http/https/www/non-www vào 1 chỗ. Xác minh bằng **TXT DNS** `google-site-verification=…`
+- Cách đã làm: thuộc tính **Miền (Domain)** `duhoctesolhcmc.vn` — gom http/https/www/non-www vào 1 chỗ. Xác minh bằng **TXT DNS** (user điền ở PA Việt Nam: Host `@`, Loại TXT — lần đầu điền nhầm Host=TXT/Loại=A, panel báo "phải là IP").
   thêm ở đúng panel DNS nơi đã tạo A record `103.221.223.76`. Claude kiểm: `nslookup -type=TXT duhoctesolhcmc.vn 8.8.8.8`.
-- Phương án B (nếu không vào được DNS): thuộc tính **Tiền tố URL** `https://duhoctesolhcmc.vn/` + xác minh bằng **file HTML**:
+- Phương án B (không cần nữa, giữ để tham khảo): thuộc tính **Tiền tố URL** + xác minh bằng **file HTML** upload qua FTP. KHÔNG dùng cách "thẻ meta" (phải sửa `<head>` trang chủ).
   user tải file `googleXXXX.html` → đưa Claude → Claude upload lên docroot qua FTP (curl -T, cùng credential deploy) → user bấm Xác minh.
   KHÔNG dùng cách "thẻ meta" (phải sửa `<head>` trang chủ → phá invariant header/meta).
-- Sau xác minh: Sơ đồ trang web → nộp `sitemap.xml` (kỳ vọng 723 URL) · Kiểm tra URL → yêu cầu lập chỉ mục trang chủ, `/truong/`, `/quoc-gia/my/`, `/quoc-gia/canada/`, `/quoc-gia/uc/` (hạn ~10 URL/ngày)
+- Sitemap: với thuộc tính Miền phải nhập **URL đầy đủ** `https://duhoctesolhcmc.vn/sitemap.xml` (nhập `sitemap.xml` không thì Google báo "Địa chỉ không hợp lệ"). Đã nộp 19/09; "Các trang đã khám phá" lên 723 sau vài giờ–1 ngày.
   · sau 3–7 ngày xem *Lập chỉ mục trang* + *Cải tiến → Breadcrumbs*.
 - Tiền kiểm 2026-09-19 (Claude): homepage 200, không có header `X-Robots-Tag`; sitemap/robots/llms trả 200; http + www đều 301 về `https://duhoctesolhcmc.vn/`.
 - Bước phụ đáng làm: **Bing Webmaster Tools** → "Import from Google Search Console" (1 click) — Bing index là nguồn của ChatGPT search / Copilot (GEO).
