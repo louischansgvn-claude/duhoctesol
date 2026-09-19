@@ -24,6 +24,11 @@ stacking duplicates.
 """
 import glob, html, json, os, re, sys, collections, hashlib
 
+try:  # Windows console is cp1252 -> force UTF-8 so Vietnamese output does not crash
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 TGT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # repo root
 ROOT = os.path.dirname(TGT)                  # parent folder holding "duystudy.vn - content"
 DATA = os.path.join(ROOT, "duystudy.vn - content", "outputs",

@@ -1,18 +1,21 @@
-# DEPLOY — Du học TESOL (review site)
+# DEPLOY — Ban Du học Hội TESOL TP.HCM (https://duhoctesolhcmc.vn)
 
-**Cách deploy: Claude tự chạy qua FTP (curl). Khi user nói "deploy" → cần credential FTP (xem §Credential), rồi chạy `tools/deploy-ftp.py`.**
+**Cách deploy: Claude tự chạy qua FTP (curl). Credential đã có sẵn trong `~/.duhoctesol-ftp.cfg` (xem §Credential) → không hỏi user. Trước khi deploy: `python tools/verify-site.py` phải in `OK`.**
 
-## ⚠️ ĐANG CHỜ DEPLOY + ĐỔI DOMAIN (cập nhật 2026-09-18)
+## Trạng thái (cập nhật 2026-09-19)
 
-Bản **571 trường + 9 sự kiện + 72 video thật** đã dựng xong và verify trên máy, **chưa lên server**.
-Live hiện tại vẫn là bản cũ 171 trang trên `https://duhoctesol.duystudy.vn`.
+Site **đã LIVE trên `https://duhoctesolhcmc.vn` từ 2026-09-18** (748 HTML · 1.753 ảnh · main.css · robots + sitemap + llms.txt).
+Domain cũ `duhoctesol.duystudy.vn` chỉ còn làm 301. §Đổi domain bên dưới là **hồ sơ việc đã làm xong**, giữ để tra cứu — không làm lại.
 
-**Metadata trong repo đã trỏ sang domain mới `https://duhoctesolhcmc.vn`** (canonical / og:url /
-og:image / JSON-LD — 12.799 URL). Vì vậy **phải trỏ domain mới vào docroot TRƯỚC khi deploy**,
-xem **§Đổi domain** ngay dưới. `noindex,nofollow` vẫn còn trên cả 748 trang — chỉ gỡ ở bước cuối.
-
-Khi deploy: dùng **§Deploy lớn**, KHÔNG dùng runbook `**/index.html` mặc định — lần này phải đẩy cả
-`wp-content/uploads/` (**1.753 file**) + `main.css`, rồi **xoá tay 34 thư mục demo** (xem §Xoá thư mục demo).
+Deploy thường ngày (chỉ đổi chữ / meta) — máy Windows, Git Bash:
+```bash
+cd "/c/Users/louis/Dropbox/Tintt/claude code/duhoctesol"
+python tools/verify-site.py                              # phải in "OK — all invariants hold"
+python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html    # 748 index.html, ~2 phút
+python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg seo     # robots.txt + sitemap.xml + llms.txt
+```
+Sau deploy: so byte live vs local (748 trang + 3 file seo, GET từng URL — LiteSpeed trả Content-Length sai với HEAD).
+Lần 2026-09-19 khớp **751/751**.
 
 ## Đổi domain — `duhoctesol.duystudy.vn` → `duhoctesolhcmc.vn`
 
@@ -133,12 +136,13 @@ thì **nhắc user đổi password**.
 ## Deploy lớn — dùng `tools/deploy-ftp.py`
 
 ```bash
-cd "/Users/louis/Library/CloudStorage/Dropbox/Tintt/claude code/duhoctesol"
+cd "/c/Users/louis/Dropbox/Tintt/claude code/duhoctesol"     # Windows Git Bash (máy Mac cũ: /Users/louis/Library/CloudStorage/Dropbox/...)
 CFG=~/.duhoctesol-ftp.cfg
-python3 tools/deploy-ftp.py $CFG login     # kỳ vọng "< 230"; nếu 530 → sai pass, ĐỪNG thử lại nhiều (cPHulk)
-python3 tools/deploy-ftp.py $CFG images    # 1.712 file / 414 MB — lâu nhất, chia batch 150
-python3 tools/deploy-ftp.py $CFG css       # assets/css/main.css
-python3 tools/deploy-ftp.py $CFG html      # 782 index.html, batch 400
+python tools/deploy-ftp.py $CFG login     # kỳ vọng "< 230"; nếu 530 → sai pass, ĐỪNG thử lại nhiều (cPHulk khoá IP)
+python tools/deploy-ftp.py $CFG images    # 1.753 file / 442 MB — lâu nhất (~4 phút), chia batch 150
+python tools/deploy-ftp.py $CFG css       # assets/css/main.css
+python tools/deploy-ftp.py $CFG html      # 748 index.html, batch 400
+python tools/deploy-ftp.py $CFG seo       # robots.txt + sitemap.xml + llms.txt
 ```
 
 **Thứ tự ảnh → CSS → HTML là cố ý**: nếu đứt giữa chừng thì site cũ vẫn nguyên vẹn, chưa trang nào trỏ vào ảnh thiếu.
@@ -156,19 +160,19 @@ for u in "https://duhoctesolhcmc.vn/" \
          "https://duhoctesolhcmc.vn/wp-content/uploads/thpt-seo/winthrop-high-school-logo-scaled.png" \
          "https://duhoctesolhcmc.vn/wp-content/uploads/events/hoi-xuan-thpt-trung-vuong-2024-img-01.jpg"; do
   echo "$(curl -s -o /dev/null -w '%{http_code}' "$u")  $u"; done
-# kỳ vọng 200 cả 9. Thêm: /truong/ phải có 572 'data-finder-card'
+# kỳ vọng 200 cả 9. Thêm: /truong/ phải có 571 'data-finder-card'
 curl -s "https://duhoctesolhcmc.vn/truong/" | grep -o "data-finder-card" | wc -l
 ```
 
 ---
 
 ## Thông tin tài khoản (KHÔNG lưu password trong file này)
-- **Site đang live:** https://duhoctesol.duystudy.vn/ (bản cũ 171 trang, `noindex,nofollow`)
-- **Domain đích:** https://duhoctesolhcmc.vn/ — metadata trong repo đã trỏ về đây; cần làm §Đổi domain trước khi deploy
+- **Site đang live:** https://duhoctesolhcmc.vn/ (748 trang, index bình thường — `noindex` = 0, đừng thêm lại)
+- **Domain cũ:** `duhoctesol.duystudy.vn` → 301 sang domain mới (giữ path). Subdomain + FTP account + docroot vẫn mang tên cũ — KHÔNG xoá / đổi tên
 - **Hosting dùng chung:** cPanel `infkkcwh` còn chạy `duystudy.vn`, `vnguide.vn`… → xem phần "KHÔNG được làm" ở §Đổi domain
 - **FTP host:** `pbf43-22360.azdigihost.com`  **port 21, PLAIN FTP** (server từ chối AUTH TLS → dùng FTP thường, không `--ssl`)
 - **FTP username:** `uploadtesolhcm@duhoctesol.duystudy.vn`
-- **FTP password:** ⚠️ KHÔNG lưu ở đây. Hỏi user gửi mỗi lần deploy. (User đã đồng ý cách này.)
+- **FTP password:** ⚠️ KHÔNG lưu ở đây. Nằm trong `~/.duhoctesol-ftp.cfg` ngoài repo (xem §Credential) — có file là deploy luôn, không hỏi. 🔴 Mật khẩu hiện tại đã lộ qua chat 2026-09-18 → user cần đổi rồi cập nhật file cfg.
 - **Docroot:** FTP account chroot thẳng vào docroot — FTP `/` == `/home/infkkcwh/duhoctesol.duystudy.vn`. Upload path = repo-relative (vd `quoc-gia/my/index.html`).
 - cPanel: `pbf43-22360.azdigihost.com:2083`, cPanel user `infkkcwh` (home `/home/infkkcwh`).
 
@@ -218,7 +222,7 @@ curl -s "https://duhoctesolhcmc.vn/truong/" | grep -o "data-finder-card" | wc -l
 5. **Xoá mọi file tạm chứa password** (config/mktemp). Nhắc user đổi lại pass FTP sau khi deploy vì đã gửi qua chat.
 
 ## Runbook nhỏ (chỉ đổi text, KHÔNG đổi ảnh/CSS)
-Dùng khi task chỉ sửa nội dung HTML: `python3 tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html` (bỏ qua images/css).
+Dùng khi task chỉ sửa nội dung HTML: `python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html` (bỏ qua images/css); đổi robots/sitemap/llms thì thêm phase `seo`. Trên Windows dùng `python`, không phải `python3`.
 
 ## Nếu wp-content / ảnh / CSS có thay đổi (hiếm)
 Thêm các file đó vào vòng upload (đổi glob `**/index.html` → cần thiết) hoặc upload cả cây. Mặc định KHÔNG cần vì các task nội dung không đụng `wp-content`.
@@ -228,6 +232,8 @@ Thêm các file đó vào vòng upload (đổi glob `**/index.html` → cần th
 - 2026-07-09: Deploy bản revert về nội dung du học tổng quát + đổi tên tổ chức thành "Ban Du học Hội TESOL TP.HCM" + dọn sạch note nội bộ + tagline footer. 171 HTML, verify 200 OK.
 - 2026-08-18: **CHƯA DEPLOY** — bản import 572 trường + 9 sự kiện dựng xong, verify local đủ, chờ credential FTP.
   Khi deploy: 782 HTML + 1.712 ảnh (414 MB) + `main.css`. Kiểm tra dung lượng host còn đủ trước khi đẩy.
+- 2026-09-18: **GO-LIVE domain mới `duhoctesolhcmc.vn`** — addon domain trỏ vào docroot cũ, AutoSSL, 301 trong `.htaccess`; deploy đủ 1.753 ảnh + 748 HTML + css + robots/sitemap (0 lỗi); xoá 34 thư mục demo; gỡ `noindex`; thêm JSON-LD `page-schema`. Live == local 748/748.
+- 2026-09-19: Deploy `html` + `seo` — 170 title, 273 description, 35 canonical thừa, 4 stub nganh-hoc, sitemap 723, `llms.txt` mới. Live == local 751/751.
 
 ## Xoá thư mục demo (bắt buộc sau lần deploy lớn đầu tiên)
 

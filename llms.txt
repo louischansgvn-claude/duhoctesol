@@ -1,0 +1,131 @@
+# Ban Du học Hội TESOL TP.HCM — Du học
+
+> Website tư vấn du học bằng tiếng Việt của Ban Du học Hội TESOL TP.HCM: 571 trang trường tại 13 quốc gia (THPT, cao đẳng, đại học, sau đại học, Anh ngữ), lộ trình du học, học bổng, sự kiện và cẩm nang. Hotline 0906.510.747 · văn phòng TP.HCM, Đà Nẵng, Buôn Ma Thuột.
+
+Lưu ý khi trích dẫn:
+- Học phí, giá trị học bổng và deadline trên site là số liệu tham khảo (cập nhật 2026); luôn xác nhận lại với trường.
+- Mỗi trang trường có JSON-LD (CollegeOrUniversity / HighSchool / EducationalOrganization + BreadcrumbList) kèm website chính thức của trường trong `url` / `sameAs`.
+- Ngôn ngữ: tiếng Việt (vi-VN). Toàn bộ URL: https://duhoctesolhcmc.vn/sitemap.xml
+
+## Trang chính
+- [Trang chủ](https://duhoctesolhcmc.vn/): Ban Du học Hội TESOL TP.HCM đồng hành cùng học sinh và phụ huynh trong lộ trình du học: chọn quốc gia, chọn trường, học bổng, visa và chuẩn bị lên đường.
+- [Danh sách 571 trường](https://duhoctesolhcmc.vn/truong/): Tìm trường du học theo quốc gia, bậc học, ngành học và chi phí tham khảo.
+- [Quốc gia du học](https://duhoctesolhcmc.vn/quoc-gia/): So sánh các điểm đến du học Mỹ, Úc, Canada, New Zealand, Thổ Nhĩ Kỳ, Singapore, Hàn Quốc, Đức và Hà Lan cùng Ban Du học Hội TESOL TP.HCM.
+- [Lộ trình du học](https://duhoctesolhcmc.vn/lo-trinh-du-hoc/): Tổng quan lộ trình du học từ định hướng, kế hoạch, hồ sơ, thư mời đến chuẩn bị lên đường.
+- [Học bổng du học](https://duhoctesolhcmc.vn/hoc-bong/): Danh sách học bổng theo quốc gia, deadline và giá trị hỗ trợ cần xác nhận.
+- [Ngành học HOT](https://duhoctesolhcmc.vn/nganh-hoc/): Những nhóm ngành được học sinh và phụ huynh quan tâm nhất, kèm định hướng, cơ hội nghề nghiệp và trường tiêu biểu.
+- [Sự kiện du học](https://duhoctesolhcmc.vn/su-kien/): Lịch hội thảo, webinar và buổi tư vấn du học của Ban Du học Hội TESOL TP.HCM.
+- [Tin tức du học](https://duhoctesolhcmc.vn/tin-tuc/): Cẩm nang du học, visa, học bổng và kinh nghiệm chuẩn bị hồ sơ.
+- [Dịch vụ tư vấn du học](https://duhoctesolhcmc.vn/dich-vu/): Dịch vụ tư vấn du học, chọn trường, học bổng, hồ sơ visa và chuẩn bị trước khi lên đường.
+- [Về chúng tôi](https://duhoctesolhcmc.vn/ve-chung-toi/): Ban Du học Hội TESOL TP.HCM đồng hành cùng học sinh và phụ huynh từ chọn trường đến ngày lên đường.
+- [Liên hệ tư vấn du học](https://duhoctesolhcmc.vn/lien-he/): Liên hệ Ban Du học Hội TESOL TP.HCM qua hotline 0906.510.747 và 3 văn phòng hỗ trợ tại TP.HCM, Đà Nẵng, Buôn Ma Thuột.
+- [Tải cẩm nang du học](https://duhoctesolhcmc.vn/tai-cam-nang/): Nhận cẩm nang du học với timeline, checklist hồ sơ và kế hoạch ngân sách.
+
+## Quốc gia
+- [Du học Mỹ](https://duhoctesolhcmc.vn/quoc-gia/my/): 232 trường. Hệ thống đại học đa dạng, cơ hội nghiên cứu mạnh và môi trường học tập cạnh tranh.
+- [Du học Úc](https://duhoctesolhcmc.vn/quoc-gia/uc/): 59 trường. Điểm đến quen thuộc với du học sinh Việt Nam: chương trình rõ, cộng đồng lớn và nhiều học bổng.
+- [Du học Canada](https://duhoctesolhcmc.vn/quoc-gia/canada/): 136 trường. Môi trường học an toàn, chi phí tương đối hợp lý và lộ trình sau tốt nghiệp được nhiều gia đình quan tâm.
+- [Du học Anh](https://duhoctesolhcmc.vn/quoc-gia/anh/): 30 trường. Du học Anh: đại học lâu đời, bằng cấp được công nhận rộng; cử nhân 3 năm, thạc sĩ 1 năm giúp rút ngắn thời gian và chi phí. Chuẩn bị hồ sơ sớm theo lịch UCAS.
+- [Du học New Zealand](https://duhoctesolhcmc.vn/quoc-gia/new-zealand/): 27 trường. Môi trường học tập yên bình, an toàn, phù hợp học sinh thích lớp học gần gũi và chất lượng sống cao.
+- [Du học Singapore](https://duhoctesolhcmc.vn/quoc-gia/singapore/): 12 trường. Trung tâm giáo dục hàng đầu châu Á, gần Việt Nam, môi trường an toàn và song ngữ.
+- [Du học Malaysia](https://duhoctesolhcmc.vn/quoc-gia/malaysia/): 15 trường. Malaysia là lựa chọn chi phí hợp lý tại châu Á, giảng dạy bằng tiếng Anh, có nhiều phân hiệu của đại học Anh - Úc và chương trình chuyển tiếp sang nước thứ ba.
+- [Du học Hàn Quốc](https://duhoctesolhcmc.vn/quoc-gia/han-quoc/): 4 trường. Nền giáo dục năng động, học bổng đa dạng và cơ hội làm thêm, gần gũi văn hoá với Việt Nam.
+- [Du học Đức](https://duhoctesolhcmc.vn/quoc-gia/duc/): 8 trường. Nhiều chương trình học phí thấp hoặc miễn phí ở trường công, nền công nghiệp - kỹ thuật mạnh.
+- [Du học Hà Lan](https://duhoctesolhcmc.vn/quoc-gia/ha-lan/): 21 trường. Quốc gia có nhiều chương trình tiếng Anh nhất châu Âu lục địa, giáo dục thực tiễn và quốc tế hoá cao.
+- [Du học Thụy Sỹ](https://duhoctesolhcmc.vn/quoc-gia/thuy-sy/): 14 trường. Thụy Sỹ mạnh về quản trị khách sạn, du lịch và tài chính, mô hình học gắn kỳ thực tập. Học phí và sinh hoạt phí thuộc nhóm cao, cần dự trù ngân sách kỹ từ đầu.
+- [Du học Thổ Nhĩ Kỳ](https://duhoctesolhcmc.vn/quoc-gia/tho-nhi-ky/): 6 trường. Điểm đến mới với học phí cạnh tranh, vị trí giao thoa Á-Âu và nhiều chương trình học bằng tiếng Anh.
+- [Du học Philippines](https://duhoctesolhcmc.vn/quoc-gia/philippines/): 7 trường. Philippines phù hợp với học sinh cần nâng tiếng Anh nhanh trước khóa chính: lớp một kèm một, độ dài khóa linh hoạt và chi phí thấp đã gồm ăn ở tại ký túc.
+
+## Bậc học theo quốc gia (trang có danh sách trường)
+- [Đại học Mỹ](https://duhoctesolhcmc.vn/quoc-gia/my/dai-hoc/): Du học đại học Mỹ: 70 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Cao đẳng Mỹ](https://duhoctesolhcmc.vn/quoc-gia/my/cao-dang/): Du học cao đẳng Mỹ: 33 trường cao đẳng, bách khoa tiêu biểu, chương trình thực hành, chi phí nhẹ hơn đại học và cơ hội liên thông. Checklist hồ sơ.
+- [THPT Mỹ](https://duhoctesolhcmc.vn/quoc-gia/my/thpt/): Du học THPT Mỹ: 129 trường trung học nhận du học sinh Việt Nam, học phí tham khảo, dải lớp và yêu cầu đầu vào. Lưu ý cho phụ huynh khi cho con du học sớm.
+- [Đại học Úc](https://duhoctesolhcmc.vn/quoc-gia/uc/dai-hoc/): Du học đại học Úc: 36 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [THPT Úc](https://duhoctesolhcmc.vn/quoc-gia/uc/thpt/): Du học THPT Úc: 23 trường trung học nhận du học sinh Việt Nam, học phí tham khảo, dải lớp và yêu cầu đầu vào. Lưu ý cho phụ huynh khi cho con du học sớm.
+- [Đại học Canada](https://duhoctesolhcmc.vn/quoc-gia/canada/dai-hoc/): Du học đại học Canada: 69 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Cao đẳng Canada](https://duhoctesolhcmc.vn/quoc-gia/canada/cao-dang/): Du học cao đẳng Canada: 47 trường cao đẳng, bách khoa tiêu biểu, chương trình thực hành, chi phí nhẹ hơn đại học và cơ hội liên thông. Checklist hồ sơ.
+- [THPT Canada](https://duhoctesolhcmc.vn/quoc-gia/canada/thpt/): Du học THPT Canada: 20 trường trung học nhận du học sinh Việt Nam, học phí tham khảo, dải lớp và yêu cầu đầu vào. Lưu ý cho phụ huynh khi cho con du học sớm.
+- [Đại học Anh](https://duhoctesolhcmc.vn/quoc-gia/anh/dai-hoc/): Du học đại học Anh: 28 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [THPT Anh](https://duhoctesolhcmc.vn/quoc-gia/anh/thpt/): Du học THPT Anh: 2 trường trung học nhận du học sinh Việt Nam, học phí tham khảo, dải lớp và yêu cầu đầu vào. Lưu ý cho phụ huynh khi cho con du học sớm.
+- [Đại học New Zealand](https://duhoctesolhcmc.vn/quoc-gia/new-zealand/dai-hoc/): Du học đại học New Zealand: 8 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [THPT New Zealand](https://duhoctesolhcmc.vn/quoc-gia/new-zealand/thpt/): Du học THPT New Zealand: 19 trường trung học nhận du học sinh Việt Nam, học phí tham khảo, dải lớp, yêu cầu đầu vào và lưu ý cho phụ huynh.
+- [Đại học Singapore](https://duhoctesolhcmc.vn/quoc-gia/singapore/dai-hoc/): Du học đại học Singapore: 12 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Đại học Malaysia](https://duhoctesolhcmc.vn/quoc-gia/malaysia/dai-hoc/): Du học đại học Malaysia: 15 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Đại học Hàn Quốc](https://duhoctesolhcmc.vn/quoc-gia/han-quoc/dai-hoc/): Du học đại học Hàn Quốc: 4 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Đại học Đức](https://duhoctesolhcmc.vn/quoc-gia/duc/dai-hoc/): Du học đại học Đức: 8 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Đại học Hà Lan](https://duhoctesolhcmc.vn/quoc-gia/ha-lan/dai-hoc/): Du học đại học Hà Lan: 21 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Đại học Thụy Sỹ](https://duhoctesolhcmc.vn/quoc-gia/thuy-sy/dai-hoc/): Du học đại học Thụy Sỹ: 14 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Đại học Thổ Nhĩ Kỳ](https://duhoctesolhcmc.vn/quoc-gia/tho-nhi-ky/dai-hoc/): Du học đại học Thổ Nhĩ Kỳ: 6 trường đại học tiêu biểu kèm học phí tham khảo, yêu cầu đầu vào và học bổng. Ai nên chọn bậc đại học và checklist hồ sơ.
+- [Anh ngữ Philippines](https://duhoctesolhcmc.vn/quoc-gia/philippines/anh-ngu/): Khoá Anh ngữ tại Philippines: 7 trường Anh ngữ tiêu biểu, nâng tiếng Anh tập trung trước khoá chính, độ dài khoá linh hoạt, chi phí tham khảo. Checklist hồ sơ.
+
+## Lộ trình du học
+- [Chuẩn bị hồ sơ du học](https://duhoctesolhcmc.vn/lo-trinh-du-hoc/chuan-bi-ho-so-du-hoc/): Hồ sơ mạnh và đúng yêu cầu giúp tăng cơ hội nhận offer và học bổng.
+- [Lên kế hoạch du học](https://duhoctesolhcmc.vn/lo-trinh-du-hoc/len-ke-hoach-du-hoc/): Một kế hoạch rõ ràng từ đầu giúp bạn chủ động về thời gian, chi phí và cơ hội học bổng.
+- [Sau khi nhận thư mời nhập học](https://duhoctesolhcmc.vn/lo-trinh-du-hoc/sau-khi-nhan-thu-moi/): Nhận offer là một cột mốc lớn — đây là các bước để biến offer thành tấm vé lên đường.
+- [Trước khi lên đường](https://duhoctesolhcmc.vn/lo-trinh-du-hoc/truoc-khi-len-duong/): Chuẩn bị kỹ những ngày cuối giúp bạn tự tin bắt đầu cuộc sống mới.
+- [Vì sao nên đi du học?](https://duhoctesolhcmc.vn/lo-trinh-du-hoc/vi-sao-nen-di-du-hoc/): Du học không chỉ là tấm bằng — đó là bước ngoặt về tư duy, nghề nghiệp và con người bạn.
+
+## Ngành học
+- [Du học ngành Công nghệ](https://duhoctesolhcmc.vn/nganh-hoc/cong-nghe/): CNTT, khoa học dữ liệu, AI, kỹ thuật phần mềm — nhóm ngành dẫn đầu xu hướng và thu nhập cao.
+- [Du học ngành Giáo dục](https://duhoctesolhcmc.vn/nganh-hoc/giao-duc/): Sư phạm, giáo dục mầm non, quản lý giáo dục, công nghệ giáo dục — nhóm ngành nền tảng, nhu cầu nhân lực ổn định.
+- [Du học ngành Kinh tế](https://duhoctesolhcmc.vn/nganh-hoc/kinh-te/): Kinh doanh, tài chính, quản trị, marketing — nhóm ngành nhu cầu cao và dễ chuyển đổi quốc gia.
+- [Du học ngành Sức khoẻ](https://duhoctesolhcmc.vn/nganh-hoc/suc-khoe/): Y, điều dưỡng, dược, y tế công cộng — nhóm ngành ổn định, nhân văn và cơ hội định cư tốt.
+- [Du học ngành Tiếng Anh](https://duhoctesolhcmc.vn/nganh-hoc/tieng-anh/): Ngôn ngữ Anh, sư phạm Anh, biên - phiên dịch — nền tảng vững cho học thuật và nhiều nghề nghiệp.
+
+## Cẩm nang / tin tức
+- [Học bổng du học Úc: phân loại và hồ sơ](https://duhoctesolhcmc.vn/tin-tuc/australia-scholarship/): Tổng quan các nhóm học bổng merit, early-bird, ngành STEM và cách chuẩn bị hồ sơ. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Canada và lộ trình sau tốt nghiệp](https://duhoctesolhcmc.vn/tin-tuc/canada-pgwp/): Các thuật ngữ cần hiểu khi cân nhắc học tập và làm việc sau tốt nghiệp tại Canada. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Deadline học bổng kỳ tháng 9 sắp đóng](https://duhoctesolhcmc.vn/tin-tuc/deadline-sep/): Danh sách deadline mẫu để học sinh kiểm tra cùng chuyên viên trước khi nộp. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Phụ huynh nên dự trù ngân sách du học thế nào?](https://duhoctesolhcmc.vn/tin-tuc/parent-budget/): Khung ngân sách tham khảo gồm học phí, sinh hoạt, bảo hiểm và khoản dự phòng. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [5 mẹo săn học bổng toàn phần hiệu quả](https://duhoctesolhcmc.vn/tin-tuc/scholarship-tips/): Cách xây hồ sơ học bổng có câu chuyện rõ, số liệu cụ thể và deadline chủ động. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Văn hoá Mỹ: điều du học sinh cần biết](https://duhoctesolhcmc.vn/tin-tuc/us-culture/): Những khác biệt về lớp học, giao tiếp, tự lập và văn hóa campus. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Bảo hiểm cho du học sinh Mỹ](https://duhoctesolhcmc.vn/tin-tuc/us-health-insurance/): Các loại bảo hiểm trường yêu cầu và câu hỏi cần hỏi trước khi chọn gói. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Du học ngành công nghệ thông tin tại Mỹ](https://duhoctesolhcmc.vn/tin-tuc/us-it-major/): Gợi ý cách chọn trường, ngành, học phí và cơ hội thực tập cho nhóm ngành công nghệ. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Chi phí sinh hoạt khi du học tại Mỹ](https://duhoctesolhcmc.vn/tin-tuc/us-living-cost/): So sánh chi phí theo bang, loại chỗ ở và phong cách sống để gia đình lập ngân sách. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+- [Úc cập nhật chính sách visa 500 cho 2026](https://duhoctesolhcmc.vn/tin-tuc/visa-500-2026/): Những điểm cần kiểm tra trước khi nộp hồ sơ visa du học Úc trong kỳ mới. Cẩm nang du học từ Ban Du học Hội TESOL TP.HCM.
+
+## Học bổng (tham khảo, cần xác nhận với trường)
+- [Early Bird Award](https://duhoctesolhcmc.vn/hoc-bong/early-bird-ca/): Học bổng Early Bird Award: 5.000 CAD tại University of Toronto, deadline tham khảo 05/08/2026. Điều kiện, hồ sơ, cách nộp; cần xác nhận lại với trường.
+- [Future Leaders 2026](https://duhoctesolhcmc.vn/hoc-bong/future-leaders/): Học bổng Future Leaders 2026: toàn phần tại Arizona State University, deadline tham khảo 20/08/2026. Điều kiện, hồ sơ, cách nộp; cần xác nhận lại với trường.
+- [Global Excellence Award](https://duhoctesolhcmc.vn/hoc-bong/global-excellence/): Học bổng Global Excellence Award: 25-100% tại University of Toronto, deadline tham khảo 15/09/2026. Điều kiện, hồ sơ, cách nộp; cần xác nhận lại với trường.
+- [International Merit](https://duhoctesolhcmc.vn/hoc-bong/international-merit/): Học bổng International Merit: tới NZ$20.000 tại University of Auckland, deadline tham khảo 01/10/2026. Điều kiện, hồ sơ, cách nộp; cần xác nhận lại với trường.
+- [Học bổng Hiệu trưởng 50%](https://duhoctesolhcmc.vn/hoc-bong/principal-50/): Học bổng Hiệu trưởng 50%: 50% học phí tại University of Sydney, deadline tham khảo 30/08/2026. Điều kiện, hồ sơ, cách nộp; cần xác nhận lại với trường.
+- [STEM Scholarship](https://duhoctesolhcmc.vn/hoc-bong/stem-30/): Học bổng STEM Scholarship: 30% học phí tại Monash University, deadline tham khảo 12/09/2026. Điều kiện, hồ sơ, cách nộp; cần xác nhận lại với trường.
+- [Türkiye Pathway Support](https://duhoctesolhcmc.vn/hoc-bong/turkiye-pathway/): Học bổng Türkiye Pathway Support: một phần học phí tại METU, deadline tham khảo 18/09/2026. Điều kiện, hồ sơ, cách nộp; cần xác nhận lại với trường.
+
+## Sự kiện đã tổ chức
+- [Duy Study & Cella English đồng hành Tuần lễ Công dân GDU](https://duhoctesolhcmc.vn/su-kien/gdu-tuan-le-cong-dan/): Duy Study và Cella English đồng hành cùng Tuần lễ Công dân GDU 2024: tư vấn du học, học bổng và lộ trình hồ sơ cho sinh viên Đại học Gia Định. Xem lại hình ảnh.
+- [Hội thảo Giấc Mơ Du Học – Bình Phước](https://duhoctesolhcmc.vn/su-kien/hoi-thao-lien-minh-tieng-anh-binh-phuoc-2025/): Hội thảo Giấc Mơ Du Học 26/10/2025 tại Đồng Xoài, Bình Phước: thông tin du học Mỹ, Úc, Canada, Singapore, Malaysia, Hàn Quốc cùng đại diện tuyển sinh.
+- [Duy Study đồng hành cùng Hội Xuân THPT Trưng Vương 2024](https://duhoctesolhcmc.vn/su-kien/hoi-xuan-thpt-trung-vuong-2024/): Gian hàng tư vấn du học của Duy Study tại Hội Xuân THPT Trưng Vương 2024: tư vấn lộ trình, học bổng và giải đáp thắc mắc cho học sinh. Xem lại hình ảnh.
+- [Lễ ký kết MOU Duy Study & Đại học Gia Định](https://duhoctesolhcmc.vn/su-kien/le-ky-ket-mou-dai-hoc-gia-dinh/): Ngày 19/09/2024, Duy Study và Đại học Gia Định ký kết MOU hợp tác chiến lược về giáo dục quốc tế, mở thêm cơ hội du học cho sinh viên. Hình ảnh buổi lễ.
+- [Duy Study đồng hành cùng UEF – Mở Khoá Tuổi 18](https://duhoctesolhcmc.vn/su-kien/mo-khoa-tuoi-18-2026-uef/): Ngày 03/01/2026, Duy Study đồng hành cùng UEF tại Ngày hội Mở Khoá Tuổi 18 cho học sinh THPT TP.HCM: tư vấn lộ trình du học Úc, Mỹ, Canada, châu Âu, Hàn Quốc.
+- [Sự kiện du học BMI HCM cùng Ontario Eschool](https://duhoctesolhcmc.vn/su-kien/su-kien-du-hoc-bmi-2025/): Ngày 18-19/10/2025, Duy Study cùng Ontario Eschool tham gia sự kiện du học BMI TP.HCM: chương trình học online lấy bằng THPT OSSD của Canada.
+- [Duy Study đồng hành cùng Miss UEF 2024](https://duhoctesolhcmc.vn/su-kien/uef-miss-uef-2024/): Duy Study đồng hành cùng chung kết Miss UEF 2024: chúc mừng Hoa khôi Nguyễn Phương Hồng Thắm và các Á khôi, giới thiệu cơ hội du học tới sinh viên UEF.
+- [Workshop “From Home To Globe” cùng UEF](https://duhoctesolhcmc.vn/su-kien/uef-workshop-from-home-to-globe-2024/): Workshop “From Home To Globe” 2024 do UEF phối hợp Duy Study tổ chức: định hướng du học và học bổng sau tốt nghiệp cho sinh viên UEF. Xem lại hình ảnh.
+- [Workshop Săn học bổng triệu USD](https://duhoctesolhcmc.vn/su-kien/workshop-bi-kip-san-hoc-bong-2025-07-19/): Workshop Săn học bổng triệu USD ngày 19/07/2025 do Duy Study tổ chức: bí kíp xây hồ sơ, chọn trường và săn học bổng cho học sinh, phụ huynh. Xem lại hình ảnh.
+
+## Optional
+
+### Video du học theo quốc gia
+- [Video du học Mỹ](https://duhoctesolhcmc.vn/quoc-gia/my/video/): Video giới thiệu chương trình học, trường tiêu biểu, học bổng và kinh nghiệm chuẩn bị hồ sơ du học tại Mỹ.
+- [Video du học Úc](https://duhoctesolhcmc.vn/quoc-gia/uc/video/): Video giới thiệu các trường, ngành học, học bổng và kinh nghiệm chuẩn bị hồ sơ du học tại Úc.
+- [Video du học Canada](https://duhoctesolhcmc.vn/quoc-gia/canada/video/): Video giới thiệu trường, ngành học, lộ trình sau tốt nghiệp và kinh nghiệm chuẩn bị hồ sơ du học tại Canada.
+- [Video du học Anh](https://duhoctesolhcmc.vn/quoc-gia/anh/video/): Tổng hợp video giới thiệu trường, ngành học và điểm cần kiểm tra khi chuẩn bị hồ sơ du học Anh.
+- [Video du học New Zealand](https://duhoctesolhcmc.vn/quoc-gia/new-zealand/video/): Video giới thiệu trường, ngành học, cơ hội làm việc sau tốt nghiệp và kinh nghiệm chọn trường tại New Zealand.
+- [Video du học Singapore](https://duhoctesolhcmc.vn/quoc-gia/singapore/video/): Video giới thiệu trường, ngành học, môi trường học gần Việt Nam và kinh nghiệm hồ sơ du học Singapore.
+- [Video du học Malaysia](https://duhoctesolhcmc.vn/quoc-gia/malaysia/video/): Tổng hợp video giới thiệu trường, ngành học và điểm cần kiểm tra khi chuẩn bị hồ sơ du học Malaysia.
+- [Video du học Hàn Quốc](https://duhoctesolhcmc.vn/quoc-gia/han-quoc/video/): Video giới thiệu chương trình học bằng tiếng Anh và kinh nghiệm chuẩn bị hồ sơ du học Hàn Quốc.
+- [Video du học Đức](https://duhoctesolhcmc.vn/quoc-gia/duc/video/): Video giới thiệu các chương trình học bằng tiếng Anh, chi phí tham khảo và kinh nghiệm chuẩn bị hồ sơ du học tại Đức.
+- [Video du học Hà Lan](https://duhoctesolhcmc.vn/quoc-gia/ha-lan/video/): Video giới thiệu các chương trình học bằng tiếng Anh, học phí tham khảo và cách đọc yêu cầu đầu vào khi du học Hà Lan.
+- [Video du học Thụy Sỹ](https://duhoctesolhcmc.vn/quoc-gia/thuy-sy/video/): Tổng hợp video giới thiệu trường, ngành học và điểm cần kiểm tra khi chuẩn bị hồ sơ du học Thụy Sỹ.
+- [Video du học Thổ Nhĩ Kỳ](https://duhoctesolhcmc.vn/quoc-gia/tho-nhi-ky/video/): Video giới thiệu các chương trình học bằng tiếng Anh, chi phí tham khảo và góc nhìn hồ sơ du học tại Thổ Nhĩ Kỳ.
+- [Video du học Philippines](https://duhoctesolhcmc.vn/quoc-gia/philippines/video/): Tổng hợp video giới thiệu trường, ngành học và điểm cần kiểm tra khi chuẩn bị hồ sơ du học Philippines.
+
+### Câu chuyện học sinh
+- [An Nhiên](https://duhoctesolhcmc.vn/hoc-sinh/an-nhien/): Câu chuyện du học của An Nhiên tại Arizona State University, Mỹ: từ câu hỏi đầu tiên về trường, ngành, học bổng đến hồ sơ hoàn chỉnh và checklist visa.
+- [Hoàng Khương Duy](https://duhoctesolhcmc.vn/hoc-sinh/khuong-duy/): Câu chuyện du học của Hoàng Khương Duy tại UTS Sydney, Úc: từ câu hỏi đầu tiên về trường, ngành, học bổng đến hồ sơ hoàn chỉnh và checklist visa.
+- [Minh Anh](https://duhoctesolhcmc.vn/hoc-sinh/minh-anh/): Câu chuyện du học của Minh Anh tại University of Sydney, Úc: từ câu hỏi đầu tiên về trường, ngành, học bổng đến hồ sơ hoàn chỉnh và checklist visa.
+- [Quốc Bảo](https://duhoctesolhcmc.vn/hoc-sinh/quoc-bao/): Câu chuyện du học của Quốc Bảo tại University of Toronto, Canada: từ câu hỏi đầu tiên về trường, ngành, học bổng đến hồ sơ hoàn chỉnh và checklist visa.
+- [Liễu Dương Thảo Vy](https://duhoctesolhcmc.vn/hoc-sinh/thao-vy-video/): Câu chuyện du học của Liễu Dương Thảo Vy tại RMIT University, Úc: từ câu hỏi đầu tiên về trường, ngành, học bổng đến hồ sơ hoàn chỉnh và checklist visa.
+- [Thảo Vy](https://duhoctesolhcmc.vn/hoc-sinh/thao-vy/): Câu chuyện du học của Thảo Vy tại University of Auckland, New Zealand: từ câu hỏi đầu tiên về trường, ngành, học bổng đến hồ sơ hoàn chỉnh và checklist visa.
+- [Nguyễn Tường Vân](https://duhoctesolhcmc.vn/hoc-sinh/tuong-van/): Câu chuyện du học của Nguyễn Tường Vân tại University of Sydney, Úc: từ câu hỏi đầu tiên về trường, ngành, học bổng đến hồ sơ hoàn chỉnh và checklist visa.

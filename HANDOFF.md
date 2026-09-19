@@ -1,11 +1,12 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-18 — đã go-live trên domain mới + structured data. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-19 — SEO meta cleanup (title · description · canonical) + `llms.txt` đã deploy. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
-**Site đang LIVE:** https://duhoctesolhcmc.vn — 748 trang · 571 trường · 9 sự kiện · 72 video thật.
-Google đã được phép index (`noindex` đã gỡ). Mọi thứ trong bảng dưới đã làm xong và verify trên server.
+**Site đang LIVE:** https://duhoctesolhcmc.vn — 748 trang · 571 trường · 9 sự kiện · 72 video thật · sitemap 723 URL · `llms.txt`.
+Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 file** (kiểm 2026-09-19).
+**Trước khi deploy bất kỳ lần nào:** `python tools/verify-site.py` phải in `OK — all invariants hold`.
 
 ### Việc tiếp theo, theo thứ tự ưu tiên
 | # | Việc | Ai làm | Ghi chú |
@@ -13,10 +14,13 @@ Google đã được phép index (`noindex` đã gỡ). Mọi thứ trong bảng
 | 1 | 🔴 **Đổi mật khẩu FTP** | user | Đã lộ qua chat ngày 2026-09-18. cPanel → FTP Accounts → `uploadtesolhcm@duhoctesol.duystudy.vn` → Change Password. Rồi sửa `C:\Users\louis\.duhoctesol-ftp.cfg` |
 | 2 | Khai báo **Google Search Console** + nộp `https://duhoctesolhcmc.vn/sitemap.xml` | user | Cần tài khoản Google. Không cần "Change of Address" — domain cũ luôn `noindex`, chưa từng được index |
 | 3 | Kiểm **Rich Results Test** với 1 trang trường | user | https://search.google.com/test/rich-results — kỳ vọng thấy *Breadcrumbs* hợp lệ |
-| 4 | Sửa **32 `<title>` bị cắt sẵn bằng `…`** | Claude | vd `…THPT Mỹ tại Pennsylvania từ…` — lỗi có từ trước, chưa đụng |
-| 5 | Sửa **138 meta description trùng lặp** | Claude | 26 trang dùng chung 1 câu giới thiệu tổ chức |
-| 6 | Tạo **`llms.txt`** cho AI answer engine | Claude | chuẩn đang hình thành (ChatGPT / Perplexity) |
-| 7 | 32 trang trường có mô tả tiếng Việt dính vào `<h1>` + breadcrumb | Claude, **chỉ khi user yêu cầu** | vd `Đại học Cape Breton University (CBU – Thu hút rất đông sinh viên…)`. Schema đã sạch, chữ hiển thị vẫn còn. Nội dung có sẵn → user dặn không tự sửa |
+| 4 | ✅ **xong 2026-09-19** — title: sửa **170** (102 bị generator cũ cắt cứng ở 68 ký tự, 61 `thpt`→`THPT`, 3 trang học sinh, 4 stub ngành) | Claude | đã deploy · chi tiết ở *Milestone 2026-09-19* |
+| 5 | ✅ **xong 2026-09-19** — description: viết lại **273** (158 trùng + 129 THPT Mỹ bị cắt dở câu + 3 quá dài) · gỡ **35 canonical thừa** (9 trang sự kiện từng trỏ về `/su-kien/canada-fair/` 404) | Claude | đã deploy |
+| 6 | ✅ **xong 2026-09-19** — `https://duhoctesolhcmc.vn/llms.txt` (101 link), sinh bằng `tools/build-llms.py` | Claude | đã deploy, nằm trong phase `seo` |
+| 7 | 32 trang trường có mô tả tiếng Việt dính vào `<h1>` + breadcrumb | Claude, **chỉ khi user yêu cầu** | vd `Đại học Cape Breton University (CBU – Thu hút rất đông sinh viên…)`. Schema + `<title>` đã sạch, chữ hiển thị vẫn còn. Nội dung có sẵn → user dặn không tự sửa |
+| 8 | (tuỳ chọn) 4 stub `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` = trang "Không tìm thấy" từ WP export | Claude, **hỏi user trước** | 2026-09-19 đã canonical về trang ngành thật + bỏ khỏi sitemap. Sạch hẳn thì thêm 301 vào block `.htaccess` của mình trên server — là sửa file server nên chưa làm |
+| 9 | (tuỳ chọn) graph JSON-LD site-wide: `EducationalOrganization.description` + `WebSite.description` copy description của từng trang → 607 trang mô tả tổ chức lệch (trang Anh mang câu của Đức…) | Claude, **hỏi user trước** | nên đặt 1 câu cố định cho cả 748 trang. CLAUDE.md cấm đụng JSON-LD site-wide nếu task không yêu cầu |
+| 10 | (không cần làm) 61 title trang trường dài > 65 ký tự | — | không bị cắt, chỉ Google rút gọn khi hiển thị; tên trường dài là lý do |
 
 ### Deploy — 1 lệnh, không cần hỏi mật khẩu
 Credential nằm **ngoài repo** ở `C:\Users\louis\.duhoctesol-ftp.cfg` (Git Bash: `~/.duhoctesol-ftp.cfg`).
@@ -24,7 +28,7 @@ Nếu file tồn tại và không còn chuỗi `DANMATKHAUVAODAY` → deploy lu�
 ```bash
 cd "/c/Users/louis/Dropbox/Tintt/claude code/duhoctesol"
 python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html     # chỉ sửa chữ  (~2 phút)
-python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg seo      # robots.txt + sitemap.xml
+python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg seo      # robots.txt + sitemap.xml + llms.txt
 python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg css      # main.css
 python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg images   # 442 MB (~4 phút) - chỉ khi đổi ảnh
 ```
@@ -35,7 +39,10 @@ Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DE
 | File | Dùng khi |
 |---|---|
 | `tools/deploy-ftp.py` | deploy. Phase: `login` `images` `css` `html` `seo` `all`. Đã sửa chạy được trên Windows (path `\` → `/`, stdout UTF-8) |
-| `tools/add-schema.py` | **chạy lại mỗi khi sinh lại trang trường hoặc thêm trường mới.** Idempotent — thay khối `id="page-schema"` cũ, không nhân đôi. Đọc dataset từ thư mục anh em `../duystudy.vn - content/` |
+| `tools/add-schema.py` | **chạy lại mỗi khi sinh lại trang trường hoặc thêm trường mới.** Idempotent — thay khối `id="page-schema"` cũ, không nhân đôi. Đọc dataset từ thư mục anh em `../duystudy.vn - content/`. `WebPage.description` copy meta description → đổi description xong phải chạy lại |
+| `tools/verify-site.py` | **chạy trước mỗi lần deploy.** Kiểm 748/571/9, header/footer md5, `noindex`=0, 1 canonical/trang, title/description không cắt · không trùng · ≤160, sitemap 723 tự-canonical, JSON-LD parse. Phải in `OK — all invariants hold` |
+| `tools/fix-meta.py` | sửa title/description/canonical hàng loạt (2026-09-19). Dry-run mặc định, `--apply` ghi, `-v` in diff. Idempotent. Nếu sinh lại trang trường: chạy `fix-meta.py --apply` → `add-schema.py --apply` → `verify-site.py` |
+| `tools/build-llms.py` | sinh lại `llms.txt` từ title/description thật. Chạy khi đổi description trang hub hoặc thêm/bớt trang, rồi deploy phase `seo` |
 
 ### Git
 - Nhánh `tesol-content-rewrite` — đã push lên `origin` (github.com/louischansgvn-claude/duhoctesol). **Chưa merge vào `main`.**
@@ -52,11 +59,13 @@ Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DE
 | Domain | `duhoctesolhcmc.vn` — **addon domain**, docroot `/home/infkkcwh/duhoctesol.duystudy.vn` |
 | DNS | `@` + `www` → A `103.221.223.76` (Shared IP của cPanel), TTL 300 |
 | SSL | Let's Encrypt (AutoSSL), SAN `duhoctesolhcmc.vn` + `www`, hết hạn **17/12/2026** — AutoSSL tự gia hạn |
-| Deploy | 1.753 ảnh · 748 HTML · main.css · robots + sitemap — **0 lỗi** |
+| Deploy | 1.753 ảnh · 748 HTML · main.css · robots + sitemap + llms.txt — **0 lỗi**. Lần cuối 2026-09-19 (`html` + `seo`), live == local 751/751 |
 | 34 thư mục demo trên server | đã xoá qua FTP, cả 34 URL trả **404** |
 | `noindex,nofollow` | **đã gỡ** khỏi 748 trang |
 | `robots.txt` | chặn `/wp-json/`, `/feed/`, `/category/`, `/loai-su-kien/`, `/quoc-gia-filter/` |
-| `sitemap.xml` | **727 URL** (748 trừ 11 trang bị robots chặn, trừ 10 bản tin trùng) |
+| `sitemap.xml` | **723 URL** (748 − 11 trang robots chặn − 10 bản tin trùng − 4 stub `/nganh-hoc/`) — mọi URL đều tự-canonical |
+| `llms.txt` | https://duhoctesolhcmc.vn/llms.txt — 101 link, `text/plain`, sinh bằng `tools/build-llms.py` |
+| canonical | đúng **1 thẻ/trang**, `og:url` == canonical. 2026-09-19 gỡ 35 thẻ thừa (9 trang sự kiện từng trỏ nhầm về `/su-kien/canada-fair/` đã xoá) |
 | 301 (`.htaccess`) | subdomain cũ + `duhoctesolhcmc.vn.amigoagency.vn` + `www` + `http` → `https://duhoctesolhcmc.vn`, **giữ nguyên đường dẫn** |
 | `.well-known/` | loại trừ khỏi 301 — nếu chặn, AutoSSL không gia hạn được cert, sau 90 ngày site chết HTTPS |
 | 10 bài tin trùng `/<slug>/` + `/tin-tuc/<slug>/` | bản root (rác WP export, không ai link tới) đã trỏ canonical về bản `/tin-tuc/` |
@@ -85,9 +94,39 @@ site-wide (graph cũ — `EducationalOrganization` + `WebSite` + 3 `LocalBusines
   - `name` = tên chính thức: bỏ mô tả tiếng Việt trong ngoặc / sau gạch nối (199 tên)
   - `alternateName` = viết tắt thật (105: UofT, UBC, NUS, LSE, TU Delft, UNSW Sydney, TDSB…)
   - `url` + `sameAs` = website chính thức từ dataset (571/571 hợp lệ)
-  - `WebPage.name` lấy từ `<h1>`, **không** lấy `<title>` (32 title bị cắt sẵn)
+  - `WebPage.name` lấy từ `<h1>`, **không** lấy `<title>`; `WebPage.description` = meta description (đồng bộ lại 2026-09-19)
 - **176 trang còn lại**: chỉ `BreadcrumbList` (trang chủ không có — breadcrumb chỉ 1 cấp)
 - Verify: 0 lỗi parse JSON · 2.287 mục breadcrumb đều trỏ trang có thật · `position` liên tục · header/footer vẫn 1 md5
+
+## Milestone 2026-09-19 — SEO meta cleanup + `llms.txt` (đã deploy)
+
+**OUTPUT** — DONE. Deploy `html` + `seo` 0 lỗi; live == local **751/751** file; `tools/verify-site.py` → OK.
+Commit: ngay sau `889d628` trên `tesol-content-rewrite` (xem `git log`). File đổi: 409 `index.html`, `sitemap.xml`,
+`llms.txt` (mới), `tools/fix-meta.py` (mới), `tools/verify-site.py` (mới), `tools/build-llms.py` (mới),
+`tools/add-schema.py` (stdout UTF-8), `tools/deploy-ftp.py` (phase `seo` += `llms.txt`).
+
+**PROMPT/GOAL** — user: *"tiếp tục phiên làm việc hôm nay"* → làm 3 việc Claude trong bảng "Việc tiếp theo"
+(title bị cắt · description trùng · `llms.txt`). Goal theo dõi: mọi trang có title/description sạch, duy nhất, không cắt;
+1 canonical/trang; `llms.txt` live; **không** đụng body, header/footer, JSON-LD site-wide, file count/URL/slug.
+
+Phát hiện khi đo — rộng hơn HANDOFF cũ ghi:
+- Generator cũ **cắt cứng `<title>` ở 68 ký tự**: 32 có `…` + **70 cắt giữa từ** (`| Du học đạ`, `| Du h`). Sửa 102 title bằng
+  `clean_name()` của add-schema (tên chính thức + tên tắt thật), **không bao giờ cắt tên trường**, rút đuôi cho ≤ 65 (giữ tên tắt tới 70).
+  61 title `Du học thpt X` → `Du học THPT X`. 3 trang học sinh dùng chung title "Câu chuyện học sinh" → tên học sinh. 4 stub ngành đổi title.
+- **129/129 description THPT Mỹ bị cắt dở câu** (`..., yêu cầu đầu vào,…`) → dựng lại từ khối THÔNG TIN NHANH của chính trang
+  (loại trường công/tư/nội trú, bang, dải lớp, học phí), ≤ 160.
+- 158 trang / 20 nhóm dùng chung description → mỗi trang 1 câu: quốc gia × bậc có **số trường thật**; video/tin tức lấy đoạn dẫn của trang;
+  sự kiện/học bổng/học sinh/archive viết tay trong `tools/fix-meta.py`. 3 description trang quốc gia quá dài (Anh 185, Thụy Sỹ 171, Philippines 166) rút gọn.
+- **35 trang có 2 thẻ canonical**: 9 trang sự kiện có thẻ thứ hai trỏ về `/su-kien/canada-fair/` (demo đã xoá → 404, Google có thể bỏ index
+  cả 9 trang); 10 bản tin gốc còn thẻ tự-canonical cạnh thẻ `/tin-tuc/`; 16 trang có 2 thẻ giống nhau. Giữ thẻ đầu, xoá thẻ sau.
+- 4 stub `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` (h1 "Không tìm thấy trang", vẫn nằm trong sitemap = soft-404)
+  → canonical + `og:url` về trang ngành thật (`cong-nghe` / `kinh-te` / `suc-khoe`), bỏ khỏi sitemap (727 → 723).
+- `llms.txt` theo llmstxt.org: 101 link (trang chính, 13 quốc gia kèm số trường, bậc học có danh sách, lộ trình, ngành, cẩm nang, học bổng,
+  sự kiện; Optional: video + học sinh), sinh từ title/description thật. Đã thêm vào phase `seo` của `deploy-ftp.py`.
+- Sau khi đổi description phải chạy lại `add-schema.py --apply` (WebPage.description copy meta) — đã chạy, idempotent (tree hash không đổi lần 3).
+Không đổi: body, header/footer (md5 giữ nguyên), graph JSON-LD site-wide, file count/URL/slug/CSS/ảnh.
+Đã cân nhắc nhưng **không** làm (cần user gật): 301 cho 4 stub (đụng `.htaccess` server) · đặt 1 câu cố định cho
+`Organization.description` site-wide (607 trang đang lệch) — xem "Việc tiếp theo" #8, #9.
 
 ## Milestone 2026-08-18 — Import dữ liệu trường + sự kiện từ duystudy.vn
 
@@ -257,6 +296,8 @@ grep -rl 'noindex' --include=index.html . | wc -l                       # == 0  
 grep -rl 'id="page-schema"' --include=index.html . | wc -l              # == 747
 grep -rl 'M7lc1UVf-VE\|ScMzIvxBSi4' --include=index.html . | wc -l      # == 0  (video demo Google)
 grep -rl 'duhoctesol.duystudy.vn' --include=index.html . | wc -l        # == 0  (domain cũ)
+grep -c '<loc>' sitemap.xml                                             # == 723
+python tools/verify-site.py                                             # "OK — all invariants hold"
 curl -s -o /dev/null -w '%{http_code}\n' https://duhoctesolhcmc.vn/     # 200
 curl -s https://duhoctesolhcmc.vn/truong/ | grep -o data-finder-card | wc -l   # 571
 ```
@@ -270,6 +311,9 @@ Header/footer đồng nhất: kiểm bằng Python (xem invariants), **không** 
   **HẾT HIỆU LỰC** — **tuyệt đối không thêm lại**, thêm lại là Google gỡ cả site khỏi kết quả tìm kiếm.
 - mọi URL tuyệt đối trỏ `https://duhoctesolhcmc.vn`; 0 lần xuất hiện `duhoctesol.duystudy.vn` trong HTML
 - mọi trang (trừ trang chủ) có đúng **1** khối `id="page-schema"`; mọi khối JSON-LD parse được
+- đúng **1** `<link rel="canonical">` mỗi trang, `og:url` == canonical, đích canonical tồn tại · 0 `<title>` chứa `…` ·
+  description 50–160 ký tự, không kết thúc bằng `…` · title/description không trùng giữa 2 trang trừ cặp canonical
+  (10 bản tin gốc ↔ `/tin-tuc/`) · sitemap == **723** URL, tất cả tự-canonical — `tools/verify-site.py` kiểm hết
 - 0 video demo Google (`M7lc1UVf-VE`, `ScMzIvxBSi4`); 0 link nội bộ gãy; 0 ảnh thiếu
 - org name luôn viết đầy đủ `Ban Du học Hội TESOL TP.HCM`; 0 lần `Du học TESOL` / `Công ty Tư vấn`
 - 0 ghi chú nội bộ/dev/demo trong `index.html`

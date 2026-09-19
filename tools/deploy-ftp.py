@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Deploy duhoctesol qua FTP. Dùng: python3 deploy.py <cfgfile> <phase>
-phase: login | images | css | html | all
+phase: login | images | css | html | seo | all
 cfg: file kiểu curl -K, dòng:  user "USER:PASS"   (chmod 600)
 Không bao giờ in password ra log."""
 import os, sys, glob, subprocess, tempfile, time
@@ -31,7 +31,7 @@ def files_for(phase):
     if phase == 'css':
         return ['wp-content/themes/duy-study/assets/css/main.css']
     if phase == 'seo':
-        return [f for f in ('robots.txt', 'sitemap.xml') if os.path.isfile(f)]
+        return [f for f in ('robots.txt', 'sitemap.xml', 'llms.txt') if os.path.isfile(f)]
     if phase == 'images':
         return sorted(slash(f) for f in glob.glob('wp-content/uploads/**/*', recursive=True)
                       if os.path.isfile(f))
