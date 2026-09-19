@@ -11,8 +11,8 @@ Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 
 ### Việc tiếp theo, theo thứ tự ưu tiên
 | # | Việc | Ai làm | Ghi chú |
 |---|---|---|---|
-| 1 | 🔴 **Đổi mật khẩu FTP** | user | Đã lộ qua chat ngày 2026-09-18. cPanel → FTP Accounts → `uploadtesolhcm@duhoctesol.duystudy.vn` → Change Password. Rồi sửa `C:\Users\louis\.duhoctesol-ftp.cfg` |
-| 2 | Khai báo **Google Search Console** + nộp `https://duhoctesolhcmc.vn/sitemap.xml` | user | Cần tài khoản Google. Không cần "Change of Address" — domain cũ luôn `noindex`, chưa từng được index |
+| 1 | ~~Đổi mật khẩu FTP~~ — **user quyết định 2026-09-19: GIỮ NGUYÊN, không đổi.** Đừng nhắc lại. Credential ở `C:\Users\louis\.duhoctesol-ftp.cfg` (ngoài repo, KHÔNG có trong DEPLOY.md/HANDOFF.md — cố ý vì repo trên GitHub) → deploy không hỏi | — | xong |
+| 2 | **Google Search Console** — đang làm 2026-09-19, xem mục *Google Search Console* ngay dưới bảng này | user + Claude | Domain property (TXT DNS); Claude kiểm TXT bằng nslookup, sau xác minh nộp sitemap |
 | 3 | Kiểm **Rich Results Test** với 1 trang trường | user | https://search.google.com/test/rich-results — kỳ vọng thấy *Breadcrumbs* hợp lệ |
 | 4 | ✅ **xong 2026-09-19** — title: sửa **170** (102 bị generator cũ cắt cứng ở 68 ký tự, 61 `thpt`→`THPT`, 3 trang học sinh, 4 stub ngành) | Claude | đã deploy · chi tiết ở *Milestone 2026-09-19* |
 | 5 | ✅ **xong 2026-09-19** — description: viết lại **273** (158 trùng + 129 THPT Mỹ bị cắt dở câu + 3 quá dài) · gỡ **35 canonical thừa** (9 trang sự kiện từng trỏ về `/su-kien/canada-fair/` 404) | Claude | đã deploy |
@@ -21,6 +21,19 @@ Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 
 | 8 | (tuỳ chọn) 4 stub `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` = trang "Không tìm thấy" từ WP export | Claude, **hỏi user trước** | 2026-09-19 đã canonical về trang ngành thật + bỏ khỏi sitemap. Sạch hẳn thì thêm 301 vào block `.htaccess` của mình trên server — là sửa file server nên chưa làm |
 | 9 | (tuỳ chọn) graph JSON-LD site-wide: `EducationalOrganization.description` + `WebSite.description` copy description của từng trang → 607 trang mô tả tổ chức lệch (trang Anh mang câu của Đức…) | Claude, **hỏi user trước** | nên đặt 1 câu cố định cho cả 748 trang. CLAUDE.md cấm đụng JSON-LD site-wide nếu task không yêu cầu |
 | 10 | (không cần làm) 61 title trang trường dài > 65 ký tự | — | không bị cắt, chỉ Google rút gọn khi hiển thị; tên trường dài là lý do |
+
+
+### Google Search Console (bắt đầu 2026-09-19)
+Trạng thái: **đang chờ user xác minh** (cập nhật dòng này khi xong).
+- Thuộc tính khuyến nghị: **Miền (Domain)** `duhoctesolhcmc.vn` — gom http/https/www/non-www vào 1 chỗ. Xác minh bằng **TXT DNS** `google-site-verification=…`
+  thêm ở đúng panel DNS nơi đã tạo A record `103.221.223.76`. Claude kiểm: `nslookup -type=TXT duhoctesolhcmc.vn 8.8.8.8`.
+- Phương án B (nếu không vào được DNS): thuộc tính **Tiền tố URL** `https://duhoctesolhcmc.vn/` + xác minh bằng **file HTML**:
+  user tải file `googleXXXX.html` → đưa Claude → Claude upload lên docroot qua FTP (curl -T, cùng credential deploy) → user bấm Xác minh.
+  KHÔNG dùng cách "thẻ meta" (phải sửa `<head>` trang chủ → phá invariant header/meta).
+- Sau xác minh: Sơ đồ trang web → nộp `sitemap.xml` (kỳ vọng 723 URL) · Kiểm tra URL → yêu cầu lập chỉ mục trang chủ, `/truong/`, `/quoc-gia/my/`, `/quoc-gia/canada/`, `/quoc-gia/uc/` (hạn ~10 URL/ngày)
+  · sau 3–7 ngày xem *Lập chỉ mục trang* + *Cải tiến → Breadcrumbs*.
+- Tiền kiểm 2026-09-19 (Claude): homepage 200, không có header `X-Robots-Tag`; sitemap/robots/llms trả 200; http + www đều 301 về `https://duhoctesolhcmc.vn/`.
+- Bước phụ đáng làm: **Bing Webmaster Tools** → "Import from Google Search Console" (1 click) — Bing index là nguồn của ChatGPT search / Copilot (GEO).
 
 ### Deploy — 1 lệnh, không cần hỏi mật khẩu
 Credential nằm **ngoài repo** ở `C:\Users\louis\.duhoctesol-ftp.cfg` (Git Bash: `~/.duhoctesol-ftp.cfg`).

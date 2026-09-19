@@ -172,7 +172,7 @@ curl -s "https://duhoctesolhcmc.vn/truong/" | grep -o "data-finder-card" | wc -l
 - **Hosting dùng chung:** cPanel `infkkcwh` còn chạy `duystudy.vn`, `vnguide.vn`… → xem phần "KHÔNG được làm" ở §Đổi domain
 - **FTP host:** `pbf43-22360.azdigihost.com`  **port 21, PLAIN FTP** (server từ chối AUTH TLS → dùng FTP thường, không `--ssl`)
 - **FTP username:** `uploadtesolhcm@duhoctesol.duystudy.vn`
-- **FTP password:** ⚠️ KHÔNG lưu ở đây. Nằm trong `~/.duhoctesol-ftp.cfg` ngoài repo (xem §Credential) — có file là deploy luôn, không hỏi. 🔴 Mật khẩu hiện tại đã lộ qua chat 2026-09-18 → user cần đổi rồi cập nhật file cfg.
+- **FTP password:** ⚠️ KHÔNG lưu ở đây (repo trên GitHub). Nằm trong `~/.duhoctesol-ftp.cfg` ngoài repo (xem §Credential) — có file là deploy luôn, không hỏi. User quyết định 2026-09-19: **giữ nguyên mật khẩu, không đổi** — đừng nhắc.
 - **Docroot:** FTP account chroot thẳng vào docroot — FTP `/` == `/home/infkkcwh/duhoctesol.duystudy.vn`. Upload path = repo-relative (vd `quoc-gia/my/index.html`).
 - cPanel: `pbf43-22360.azdigihost.com:2083`, cPanel user `infkkcwh` (home `/home/infkkcwh`).
 
@@ -219,7 +219,7 @@ curl -s "https://duhoctesolhcmc.vn/truong/" | grep -o "data-finder-card" | wc -l
      echo "$(curl -s -o /dev/null -w '%{http_code}' "$u")  $u"; done
    ```
    Kỳ vọng `200` cả 3.
-5. **Xoá mọi file tạm chứa password** (config/mktemp). Nhắc user đổi lại pass FTP sau khi deploy vì đã gửi qua chat.
+5. **Xoá mọi file tạm chứa password** (config/mktemp). (Cũ: nhắc đổi pass sau deploy — user đã quyết giữ nguyên 2026-09-19, không nhắc nữa.)
 
 ## Runbook nhỏ (chỉ đổi text, KHÔNG đổi ảnh/CSS)
 Dùng khi task chỉ sửa nội dung HTML: `python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html` (bỏ qua images/css); đổi robots/sitemap/llms thì thêm phase `seo`. Trên Windows dùng `python`, không phải `python3`.
