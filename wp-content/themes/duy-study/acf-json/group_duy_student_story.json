@@ -1,0 +1,136 @@
+{
+    "key": "group_duy_student_story",
+    "title": "Student story fields",
+    "fields": [
+        {
+            "key": "field_duy_story_school_rel",
+            "label": "School relationship",
+            "name": "school_relationship",
+            "type": "relationship",
+            "instructions": "Optional relation to school CPT.",
+            "post_type": [
+                "school"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "return_format": "object",
+            "min": "",
+            "max": ""
+        },
+        {
+            "key": "field_duy_story_school_text",
+            "label": "School text",
+            "name": "school_text",
+            "type": "text",
+            "instructions": "Mockup `school` / `s` fallback text.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_story_award",
+            "label": "Award",
+            "name": "award",
+            "type": "text",
+            "instructions": "Mockup `award`; keep {{TODO: confirm}} when unverified.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_story_quote",
+            "label": "Quote",
+            "name": "quote",
+            "type": "textarea",
+            "instructions": "Mockup `quote` / `q`.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_duy_story_student_video",
+            "label": "Student video URL",
+            "name": "student_video",
+            "type": "url",
+            "instructions": "Mockup student video slot.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_story_school_video",
+            "label": "School video URL",
+            "name": "school_video",
+            "type": "url",
+            "instructions": "Mockup school video slot.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_story_avatar",
+            "label": "Avatar/photo",
+            "name": "avatar",
+            "type": "image",
+            "instructions": "{{TODO: thay ảnh thật}} Do not use identifiable real testimonial photo without rights/model release.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_duy_story_country",
+            "label": "Country",
+            "name": "country",
+            "type": "taxonomy",
+            "instructions": "Country for story filter/context.",
+            "taxonomy": "country",
+            "field_type": "select",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "object",
+            "multiple": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "student_story"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "modified": 1781519267
+}

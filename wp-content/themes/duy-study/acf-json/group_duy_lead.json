@@ -1,0 +1,166 @@
+{
+    "key": "group_duy_lead",
+    "title": "Lead fields",
+    "fields": [
+        {
+            "key": "field_duy_lead_name",
+            "label": "Name",
+            "name": "name",
+            "type": "text",
+            "instructions": "Mockup form `name`.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_lead_phone",
+            "label": "Phone",
+            "name": "phone",
+            "type": "text",
+            "instructions": "Mockup form `phone`.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_lead_email",
+            "label": "Email",
+            "name": "email",
+            "type": "text",
+            "instructions": "Mockup form `email`.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_lead_country",
+            "label": "Interested country",
+            "name": "country",
+            "type": "text",
+            "instructions": "Mockup form country select.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_lead_intended_time",
+            "label": "Intended time",
+            "name": "intended_time",
+            "type": "text",
+            "instructions": "Mockup form timeline select.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_lead_office",
+            "label": "Nearest office",
+            "name": "office",
+            "type": "text",
+            "instructions": "Mockup form office select.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_lead_role",
+            "label": "Role",
+            "name": "role",
+            "type": "select",
+            "instructions": "Mockup role toggle.",
+            "choices": {
+                "student": "Học sinh",
+                "parent": "Phụ huynh"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_duy_lead_message",
+            "label": "Message/internal note",
+            "name": "message",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_duy_lead_status",
+            "label": "Status",
+            "name": "status",
+            "type": "select",
+            "instructions": "Internal lead pipeline status.",
+            "choices": {
+                "new": "New",
+                "contacted": "Contacted",
+                "closed": "Closed"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_duy_lead_source",
+            "label": "Source",
+            "name": "source",
+            "type": "text",
+            "instructions": "Home/contact/event/cam nang form source for M9.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "lead"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "modified": 1781519267
+}

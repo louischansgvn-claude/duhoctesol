@@ -19,7 +19,31 @@ Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 
 > ❗ **Site này KHÔNG phải WordPress.** Không có `wp-admin`, `wp-login.php`, PHP hay database — tất cả trả 404. Thư mục `wp-content/` chỉ là tên còn lại từ bản WP export, bên trong chỉ có `themes/` (CSS, ảnh giao diện) và `uploads/` (ảnh).
 > Sửa nội dung = sửa file HTML trong repo rồi deploy. Nếu user hỏi tài khoản wp-admin: giải thích điều này, đừng đi tìm.
 
-### 🚧 ĐANG LÀM DỞ: chuyển site sang WordPress (user yêu cầu 2026-09-20)
+### ✅ SITE ĐÃ CHẠY WORDPRESS (2026-09-20)
+
+**https://duhoctesolhcmc.vn chạy WordPress 6.9.4 trên SQLite.** `tools/wp-verify.py`: **723/723 URL đạt**
+(718 trả 200 · 5 trang phân loại rỗng 301 về trang thật). Không còn dùng site tĩnh.
+
+| | |
+|---|---|
+| Đăng nhập | https://duhoctesolhcmc.vn/wp-admin/ — tài khoản + mật khẩu ở **`wp-build/ADMIN.txt`** (ngoài git, không gửi qua chat) |
+| Nội dung | 571 trường · 9 sự kiện · 2 bài viết · trang quốc gia/bậc học/ngành/lộ trình sinh từ `inc/routes.php` |
+| Ảnh | `wp-content/uploads/2026/07/…` (3.817 file) — hệ ảnh của WordPress |
+| robots.txt · llms.txt · wp-sitemap.xml | **WordPress tự sinh**, luôn cập nhật. 3 file tĩnh cũ đã xoá khỏi server |
+| `/sitemap.xml` | 301 → `/wp-sitemap.xml` (giữ cho mục đã khai báo trong Search Console không lỗi) |
+| Đường lui | `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg htaccess-static` → về site tĩnh trong vài giây (748 file `index.html` vẫn còn trên server) |
+
+**Việc user nên làm trong wp-admin:** xoá 2 nội dung mặc định của WordPress (`Hello world!` và `Sample Page`),
+đổi mật khẩu admin, điền Hotline/Email/Zalo ở trang tuỳ chọn của theme (hiện đang dùng giá trị mặc định đã đúng).
+**Trong Search Console:** nộp thêm `https://duhoctesolhcmc.vn/wp-sitemap.xml`.
+
+**Dọn dẹp còn lại (chưa làm, không gấp):** 748 file `index.html` + thư mục của site tĩnh vẫn nằm trên server,
+đang bị `.htaccess` cho qua (rule WordPress đã bỏ điều kiện `!-d`). Vô hại nhưng nên xoá khi đã chắc chắn,
+lúc đó có thể trả rule về bản mặc định của WordPress. Xoá rồi thì mất đường lui.
+
+<details><summary>Nhật ký chuyển đổi (2026-09-20)</summary>
+
+### Chuyển site sang WordPress (user yêu cầu 2026-09-20)
 
 **Quyết định của user:** *"tôi cần bạn chuyển qua wordpress liền cho tôi"* + *"hãy học hỏi từ trang duystudy đã làm xong trước đó để build"*.
 Claude đã nêu rủi ro (site vừa nộp Google hôm 19/09) — user vẫn chốt làm. Tiến hành.
@@ -40,14 +64,26 @@ Lên sóng WordPress = đảo thành `index.php index.html` + thêm khối rewri
 
 | Bước | Trạng thái |
 |---|---|
-| Khảo sát nguồn, xác nhận URL/SEO tương thích | ✅ xong |
-| `.htaccess` static-first (WordPress vào không ảnh hưởng site đang chạy) | ✅ đã lên server, bản sao `docs/server/htaccess-live-2026-09-20b.txt` |
-| `tools/wp-prepare.py` → `wp-build/` (CSDL đổi domain + thương hiệu + mật khẩu admin mới, `wp-config.php` salt mới) | ✅ xong · 1.155 guid + 3 option + 2 post_content đổi sang `duhoctesolhcmc.vn`, 0 sót |
-| `tools/wp-deploy.py` (6 phase, 7.358 file / 770 MB) | ✅ viết xong, **CHƯA CHẠY — bị chặn** |
-| Tải lên server | 🔴 **BỊ CHẶN** bởi lớp kiểm duyệt Claude Code ("Production Deploy") — cần user cấp quyền |
-| Đổi thương hiệu trong theme (chuỗi "Duy Study" trong PHP), số điện thoại, 3 VP | ⬜ chưa |
-| Đối chiếu 723 URL WordPress vs bản tĩnh trước khi đổi | ⬜ chưa |
-| Đảo `DirectoryIndex` → lên sóng | ⬜ chưa |
+| Khảo sát nguồn, xác nhận URL/SEO tương thích | ✅ |
+| `.htaccess` static-first (WordPress vào không ảnh hưởng site đang chạy) | ✅ |
+| `tools/wp-prepare.py` → `wp-build/` (CSDL đổi domain + thương hiệu + mật khẩu admin, salt mới) | ✅ 1.155 guid + 3 option + 2 post_content đổi sang `duhoctesolhcmc.vn`, 0 sót |
+| `tools/wp-theme-sync.py` — chép theme vào repo + đổi thương hiệu | ✅ 580 file · **201 chỗ** đổi · 0 chữ "Duy Study" còn lại trong mã |
+| Tải lên server (7.358 file / 770 MB) | ✅ 6 phase, 0 lỗi |
+| Đảo `DirectoryIndex` → WordPress lên sóng | ✅ |
+| Đối chiếu 723 URL | ✅ `tools/wp-verify.py` 723/723 |
+
+**🔴 Bẫy đã gặp — nhớ cho lần sau:** rule rewrite **mặc định** của WordPress có điều kiện `!-d`
+(bỏ qua thư mục có thật). Docroot còn 748 thư mục của site tĩnh, mỗi thư mục có `index.html`, nên
+`!-d` làm mod_rewrite bỏ qua → `DirectoryIndex` lấy `index.html` → **WordPress không chạy dù đã đảo công tắc**.
+Đo thực tế lúc đó: 746/751 URL vẫn trả về file tĩnh, chỉ mỗi trang chủ chạy WordPress (vì docroot có `index.php`).
+Cách sửa: **bỏ `!-d`** và loại trừ `wp-admin|wp-includes|wp-content|cgi-bin`. Xem khối `# BEGIN WordPress`
+trong `docs/server/htaccess-wordpress-2026-09-20.txt`.
+
+**Bẫy thứ hai:** phép thay thương hiệu hàng loạt biến `"Công ty Tư vấn Du học Duy Study"` thành
+`"Công ty Tư vấn Ban Du học Hội TESOL TP.HCM"` — sai, tổ chức là một **ban thuộc hội**, không phải công ty
+(bản tĩnh ghi `© 2026 Ban Du học Hội TESOL TP.HCM.`). Đã sửa `footer.php` + câu mở đầu `llms.txt`
+trong `inc/seo.php`, và thêm 2 luật vào `tools/wp-theme-sync.py` để lần chép sau không tái diễn.
+Giữ nguyên khẩu hiệu `Avenue to New World` vì bản tĩnh đang chạy cũng có và user đã duyệt nội dung đó.
 
 **Quy mô tải lên** (`python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg <phase>`):
 `core` 2.913 file/59 MB · `theme` 578/10,6 MB · `plugin` 46 · `db` 3/6,8 MB · `config` 1 · `uploads` 3.817/693 MB.
@@ -61,6 +97,12 @@ WordPress `wp-content/uploads/2026/07/*.jpeg` (3.817 file, 693 MB). Hai hệ nà
 Sau khi WordPress lên sóng và ổn định mới tính chuyện xoá hệ cũ.
 
 🔐 `wp-build/` **đã git-ignore** (chứa CSDL + `wp-config.php` + `ADMIN.txt` có mật khẩu admin). Không commit, không gửi qua chat.
+
+**Theme nằm trong repo này** ở `wp-content/themes/duy-study/` (580 file, đã đổi thương hiệu).
+Sửa theme → `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg theme` → `python tools/wp-verify.py`.
+`tools/wp-theme-sync.py` chỉ chạy lại khi muốn lấy bản cập nhật mới từ project Duy Study (sẽ ghi đè các sửa đổi cục bộ).
+
+</details>
 
 ### Việc tiếp theo, theo thứ tự ưu tiên
 | # | Việc | Ai làm | Ghi chú |

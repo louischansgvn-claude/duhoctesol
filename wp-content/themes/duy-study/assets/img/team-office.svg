@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">Duy Study team office illustration</title>
+  <desc id="desc">Bright office and advisory team scene.</desc>
+  <rect width="1200" height="820" rx="54" fill="#ffffff"/>
+  <circle cx="1020" cy="138" r="150" fill="#23a9d8" opacity=".12"/>
+  <circle cx="168" cy="672" r="210" fill="#df1f83" opacity=".10"/>
+  <rect x="130" y="110" width="940" height="620" rx="48" fill="#f7fbff" stroke="#dbe7f3" stroke-width="4"/>
+  <rect x="210" y="180" width="780" height="220" rx="32" fill="#fff" stroke="#dbe7f3" stroke-width="4"/>
+  <path d="M280 250 H600" stroke="#df1f83" stroke-width="22" stroke-linecap="round" opacity=".8"/>
+  <path d="M280 312 H820" stroke="#23a9d8" stroke-width="16" stroke-linecap="round" opacity=".5"/>
+  <g transform="translate(210 455)">
+    <circle cx="80" cy="60" r="48" fill="#ffd8c2"/><path d="M32 188 C48 116 112 116 128 188 V238 H32Z" fill="#23a9d8"/>
+    <circle cx="260" cy="60" r="48" fill="#eec19e"/><path d="M212 188 C228 116 292 116 308 188 V238 H212Z" fill="#df1f83"/>
+    <circle cx="440" cy="60" r="48" fill="#f5c8a8"/><path d="M392 188 C408 116 472 116 488 188 V238 H392Z" fill="#fff" stroke="#dbe7f3"/>
+    <circle cx="620" cy="60" r="48" fill="#ffd0ad"/><path d="M572 188 C588 116 652 116 668 188 V238 H572Z" fill="#147da9"/>
+  </g>
+</svg>

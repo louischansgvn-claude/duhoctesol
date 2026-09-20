@@ -1,0 +1,350 @@
+{
+    "key": "group_duy_guide",
+    "title": "Guide fields",
+    "fields": [
+        {
+            "key": "field_duy_guide_order",
+            "label": "Order",
+            "name": "order",
+            "type": "number",
+            "instructions": "Mockup guide order 1-5.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": 1
+        },
+        {
+            "key": "field_duy_guide_lead",
+            "label": "Lead",
+            "name": "lead",
+            "type": "textarea",
+            "instructions": "Mockup `lead`.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_duy_guide_section_title",
+            "label": "Section title",
+            "name": "section_title",
+            "type": "text",
+            "instructions": "Mockup `st`.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_guide_steps",
+            "label": "Steps",
+            "name": "steps",
+            "type": "repeater",
+            "instructions": "",
+            "layout": "row",
+            "button_label": "Thêm steps",
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_duy_guide_step_icon",
+                    "label": "Icon key",
+                    "name": "icon",
+                    "type": "text",
+                    "instructions": "Optional sprite icon key.",
+                    "required": 0,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_duy_guide_step_title",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "Mockup step `h`.",
+                    "required": 0,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_duy_guide_step_desc",
+                    "label": "Description",
+                    "name": "desc",
+                    "type": "textarea",
+                    "instructions": "Mockup step `p`.",
+                    "required": 0,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "rows": 4,
+                    "new_lines": "br"
+                }
+            ]
+        },
+        {
+            "key": "field_duy_guide_is_sequential",
+            "label": "Sequential guide",
+            "name": "is_sequential",
+            "type": "true_false",
+            "instructions": "Used for prev/next navigation in M4.",
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_duy_guide_extra_type",
+            "label": "Extra type",
+            "name": "extra_type",
+            "type": "select",
+            "instructions": "Mockup `extra` variant.",
+            "choices": {
+                "none": "None",
+                "cost_table": "Cost table",
+                "phases": "Phases",
+                "faq": "FAQ",
+                "checklist": "Checklist"
+            },
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_duy_guide_extra",
+            "label": "Extra content",
+            "name": "extra",
+            "type": "flexible_content",
+            "instructions": "Flexible blocks matching guide mockup extras.",
+            "layouts": {
+                "layout_duy_guide_cost_table": {
+                    "key": "layout_duy_guide_cost_table",
+                    "name": "cost_table",
+                    "label": "Cost table",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_duy_guide_cost_rows",
+                            "label": "Cost rows",
+                            "name": "rows",
+                            "type": "repeater",
+                            "instructions": "",
+                            "layout": "row",
+                            "button_label": "Thêm cost rows",
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "sub_fields": [
+                                {
+                                    "key": "field_duy_guide_cost_country",
+                                    "label": "Country",
+                                    "name": "country",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_duy_guide_cost_value",
+                                    "label": "Value",
+                                    "name": "value",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_duy_guide_phases": {
+                    "key": "layout_duy_guide_phases",
+                    "name": "phases",
+                    "label": "Phases",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_duy_guide_phase_rows",
+                            "label": "Phase rows",
+                            "name": "rows",
+                            "type": "repeater",
+                            "instructions": "",
+                            "layout": "row",
+                            "button_label": "Thêm phase rows",
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "sub_fields": [
+                                {
+                                    "key": "field_duy_guide_phase_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_duy_guide_phase_desc",
+                                    "label": "Description",
+                                    "name": "desc",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "rows": 4,
+                                    "new_lines": "br"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_duy_guide_faq": {
+                    "key": "layout_duy_guide_faq",
+                    "name": "faq",
+                    "label": "FAQ",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_duy_guide_faq_rows",
+                            "label": "FAQ rows",
+                            "name": "rows",
+                            "type": "repeater",
+                            "instructions": "",
+                            "layout": "row",
+                            "button_label": "Thêm faq rows",
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "sub_fields": [
+                                {
+                                    "key": "field_duy_guide_faq_question",
+                                    "label": "Question",
+                                    "name": "question",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_duy_guide_faq_answer",
+                                    "label": "Answer",
+                                    "name": "answer",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "rows": 4,
+                                    "new_lines": "br"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_duy_guide_checklist": {
+                    "key": "layout_duy_guide_checklist",
+                    "name": "checklist",
+                    "label": "Checklist",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_duy_guide_checklist_items",
+                            "label": "Checklist items",
+                            "name": "items",
+                            "type": "repeater",
+                            "instructions": "",
+                            "layout": "row",
+                            "button_label": "Thêm checklist items",
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "sub_fields": [
+                                {
+                                    "key": "field_duy_guide_checklist_item",
+                                    "label": "Item",
+                                    "name": "item",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "rows": 4,
+                                    "new_lines": "br"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "button_label": "Thêm extra block",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "guide"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "modified": 1781519267
+}

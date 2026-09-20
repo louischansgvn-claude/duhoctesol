@@ -1,0 +1,37 @@
+{
+	"version": 3,
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "bg", "color": "#ffffff", "name": "Background" },
+				{ "slug": "bg-soft", "color": "#f7fbff", "name": "Soft background" },
+				{ "slug": "surface", "color": "#ffffff", "name": "Surface" },
+				{ "slug": "ink", "color": "#0b1220", "name": "Ink" },
+				{ "slug": "ink-2", "color": "#475569", "name": "Ink secondary" },
+				{ "slug": "muted", "color": "#64748b", "name": "Muted" },
+				{ "slug": "line", "color": "#dbe7f3", "name": "Line" },
+				{ "slug": "primary", "color": "#23a9d8", "name": "Duy cyan" },
+				{ "slug": "primary-2", "color": "#147da9", "name": "Duy cyan dark" },
+				{ "slug": "accent", "color": "#df1f83", "name": "Duy pink" },
+				{ "slug": "accent-2", "color": "#b8186b", "name": "Duy pink dark" },
+				{ "slug": "accent-soft", "color": "#fff0f7", "name": "Duy pink soft" },
+				{ "slug": "success", "color": "#16a34a", "name": "Success" },
+				{ "slug": "danger", "color": "#dc2626", "name": "Danger" }
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Inter,Arial,sans-serif",
+					"name": "Duy body",
+					"slug": "duy-body"
+				},
+				{
+					"fontFamily": "-apple-system,BlinkMacSystemFont,\"SF Pro Display\",\"Segoe UI\",Inter,Arial,sans-serif",
+					"name": "Duy display",
+					"slug": "duy-display"
+				}
+			]
+		}
+	}
+}

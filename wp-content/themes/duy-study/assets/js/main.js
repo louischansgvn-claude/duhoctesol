@@ -212,7 +212,7 @@
 					return;
 				}
 				form.reset();
-				setMessage(result.data?.message || 'Cảm ơn bạn. Du học TESOL sẽ liên hệ sớm.');
+				setMessage(result.data?.message || 'Cảm ơn bạn. Ban Du học Hội TESOL TP.HCM sẽ liên hệ sớm.');
 			} catch (error) {
 				setMessage('Đã ghi nhận thông tin demo. Kết nối gửi form thật sẽ hoàn thiện ở M9.');
 			}
@@ -220,6 +220,126 @@
 	});
 
 	const skeletonMarkup = () => '<div class="skeleton-card glass" aria-hidden="true"></div><div class="skeleton-card glass" aria-hidden="true"></div><div class="skeleton-card glass" aria-hidden="true"></div>';
+
+	/**
+	 * Finder phía server: server đã lọc/phân trang, JS chỉ nạp lại khối kết quả
+	 * bằng fetch của chính URL đó rồi thay các phần tử tương ứng. Nhờ vậy markup
+	 * thẻ chỉ tồn tại một bản trong PHP, và trang vẫn dùng được khi tắt JS.
+	 */
+	const initServerFinder = (finder, type, grid) => {
+		const form = finder.querySelector('[data-finder-form]');
+		if (!form) {
+			return;
+		}
+
+		const results = grid.parentElement;
+		let pending = null;
+
+		const urlFor = () => {
+			const params = new URLSearchParams(new FormData(form));
+			const sortField = finder.querySelector('[data-finder-sort]');
+			if (sortField && sortField.value) {
+				params.set('sort', sortField.value);
+			}
+			[...params.entries()].forEach(([key, value]) => {
+				if (!value || (key === 'sort' && value === 'featured')) {
+					params.delete(key);
+				}
+			});
+			const qs = params.toString();
+			return form.action + (qs ? `?${qs}` : '');
+		};
+
+		const swap = async (url, push = true) => {
+			const token = {};
+			pending = token;
+			grid.setAttribute('aria-busy', 'true');
+			grid.innerHTML = skeletonMarkup();
+
+			try {
+				const response = await fetch(url, { headers: { 'X-Requested-With': 'fetch' }, credentials: 'same-origin' });
+				if (!response.ok) {
+					throw new Error(String(response.status));
+				}
+				const next = new DOMParser().parseFromString(await response.text(), 'text/html');
+				if (pending !== token) {
+					return;
+				}
+
+				const pairs = [
+					[`[data-finder-grid="${type}"]`, 'innerHTML'],
+					[`[data-finder-count="${type}"]`, 'textContent'],
+					['[data-finder-pagination]', 'outerHTML'],
+				];
+				pairs.forEach(([selector, prop]) => {
+					const from = next.querySelector(selector);
+					const to = results.querySelector(selector) || finder.querySelector(selector);
+					if (from && to) {
+						to[prop] = from[prop];
+					}
+				});
+
+				const nextEmpty = next.querySelector(`[data-finder-empty="${type}"]`);
+				const currentEmpty = finder.querySelector(`[data-finder-empty="${type}"]`);
+				if (nextEmpty && currentEmpty) {
+					currentEmpty.hidden = nextEmpty.hidden;
+				}
+
+				if (push) {
+					window.history.pushState({ finder: type }, '', url);
+				}
+				document.title = next.title || document.title;
+			} catch (error) {
+				window.location.href = url;
+				return;
+			} finally {
+				if (pending === token) {
+					grid.removeAttribute('aria-busy');
+					pending = null;
+				}
+			}
+		};
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			swap(urlFor());
+		});
+
+		form.addEventListener('change', () => swap(urlFor()));
+
+		let typing;
+		form.querySelectorAll('[data-filter-keyword]').forEach((input) => {
+			input.addEventListener('input', () => {
+				window.clearTimeout(typing);
+				typing = window.setTimeout(() => swap(urlFor()), 350);
+			});
+		});
+
+		finder.querySelector('[data-finder-sort]')?.addEventListener('change', () => swap(urlFor()));
+
+		finder.addEventListener('click', (event) => {
+			const link = event.target.closest('[data-finder-pagination] a.page-link');
+			if (!link) {
+				return;
+			}
+			event.preventDefault();
+			swap(link.href);
+			results.scrollIntoView({ block: 'start', behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+		});
+
+		window.addEventListener('popstate', () => swap(window.location.href, false));
+
+		finder.querySelectorAll('[data-view-toggle]').forEach((button) => {
+			button.addEventListener('click', () => {
+				const view = button.dataset.viewToggle || 'grid';
+				finder.querySelectorAll('[data-view-toggle]').forEach((item) => {
+					item.classList.toggle('active', item === button);
+					item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
+				});
+				grid.classList.toggle('is-list', view === 'list');
+			});
+		});
+	};
 
 	document.querySelectorAll('[data-finder]').forEach((finder) => {
 		const type = finder.dataset.finder;
@@ -232,6 +352,11 @@
 		const state = { page: 1, pageSize: Number(finder.dataset.pageSize || 6) };
 
 		if (!grid) {
+			return;
+		}
+
+		if (finder.dataset.finderMode === 'server') {
+			initServerFinder(finder, type, grid);
 			return;
 		}
 

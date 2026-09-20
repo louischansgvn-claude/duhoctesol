@@ -140,8 +140,22 @@ def main(argv):
                  ("blog_public", "1"), ("permalink_structure", "/%postname%/")):
         c.execute("update wp_options set option_value=? where option_name=?", (v, k))
 
-    # 3. tài khoản admin: mật khẩu mạnh mới (WordPress nhận md5 cũ rồi tự băm lại khi đăng nhập)
-    pw = gen_password()
+    # 3. xoá transient: cache cũ của theme (thẻ trường, kích thước ảnh SEO, lastmod) còn mang
+    #    dữ liệu và thương hiệu Duy Study. Xoá đi để WordPress tự dựng lại theo nội dung mới.
+    n_tr = c.execute("select count(*) from wp_options where option_name like '\\_transient\\_%' "
+                     "escape '\\' or option_name like '\\_site\\_transient\\_%' escape '\\'").fetchone()[0]
+    c.execute("delete from wp_options where option_name like '\\_transient\\_%' escape '\\' "
+              "or option_name like '\\_site\\_transient\\_%' escape '\\'")
+    stats["transient đã xoá"] = n_tr
+
+    # 4. tài khoản admin: giữ mật khẩu đã phát nếu ADMIN.txt còn, để khỏi đổi mỗi lần chạy lại
+    pw = None
+    admin_txt = os.path.join(BUILD, "ADMIN.txt")
+    if os.path.isfile(admin_txt):
+        for line in open(admin_txt, encoding="utf-8"):
+            if line.startswith("Mật khẩu:"):
+                pw = line.split(":", 1)[1].strip()
+    pw = pw or gen_password()
     c.execute("update wp_users set user_pass=?, user_email=?, display_name=? where user_login=?",
               (hashlib.md5(pw.encode()).hexdigest(), ADMIN_EMAIL, "Quản trị", ADMIN_USER))
     got = c.execute("select ID, user_login, user_email from wp_users").fetchall()

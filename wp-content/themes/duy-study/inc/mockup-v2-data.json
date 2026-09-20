@@ -1,0 +1,1386 @@
+{
+  "generatedFrom": "docs/mockup/duy-study-mockup-v2.html",
+  "schools": [
+    {
+      "id": "metu",
+      "n": "Middle East Technical University",
+      "c": "Thổ Nhĩ Kỳ",
+      "code": "TR",
+      "r": "Top Turkey",
+      "fee": "6.000 USD/năm",
+      "feeBand": "low",
+      "level": "Đại học",
+      "major": "Kỹ thuật",
+      "tag": "pink",
+      "city": "Ankara",
+      "programs": [
+        "Engineering",
+        "Architecture",
+        "Economics"
+      ]
+    }
+  ],
+  "countries": [
+    {
+      "id": "country-us",
+      "code": "US",
+      "cls": "cc-us",
+      "name": "Mỹ",
+      "title": "Du học Mỹ",
+      "lead": "Hệ thống đại học đa dạng, cơ hội nghiên cứu mạnh và môi trường học tập cạnh tranh.",
+      "stats": [
+        [
+          "4.000+",
+          "cơ sở đào tạo"
+        ],
+        [
+          "OPT",
+          "lộ trình làm việc sau tốt nghiệp"
+        ],
+        [
+          "USD",
+          "học phí linh hoạt theo bang"
+        ],
+        [
+          "Nhiều",
+          "học bổng merit-based"
+        ]
+      ],
+      "overview": "Điểm đến của những ai muốn môi trường học thuật năng động, nhiều lựa chọn ngành và cơ hội nghề nghiệp rộng mở bậc nhất thế giới.",
+      "why": [
+        {
+          "icon": "cap",
+          "t": "Hệ đại học top đầu thế giới",
+          "d": "Mỹ sở hữu nhiều trường trong nhóm dẫn đầu toàn cầu, chương trình linh hoạt cho phép đổi ngành và chọn hướng đi theo đam mê."
+        },
+        {
+          "icon": "target",
+          "t": "Cơ hội nghề nghiệp & OPT",
+          "d": "Sau tốt nghiệp, sinh viên có thể ở lại làm việc theo diện OPT — bệ phóng vào thị trường lao động lớn nhất thế giới."
+        },
+        {
+          "icon": "layers",
+          "t": "Lộ trình linh hoạt, học bổng đa dạng",
+          "d": "Từ community college (lộ trình 2+2 tiết kiệm) đến đại học nghiên cứu, cùng nhiều học bổng merit-based theo năng lực."
+        }
+      ],
+      "system": [
+        "High School: lớp 9-12, cần chuẩn bị tiếng Anh và giám hộ nếu dưới 18 tuổi.",
+        "Community College: lộ trình 2+2 giúp tối ưu chi phí và chuyển tiếp đại học.",
+        "University: chương trình cử nhân/sau đại học, yêu cầu hồ sơ học thuật và bài luận rõ."
+      ],
+      "visa": [
+        "I-20 từ trường",
+        "SEVIS fee và DS-160",
+        "Phỏng vấn F-1",
+        "Bảo hiểm y tế theo trường"
+      ],
+      "cost": [
+        "Học phí: 10.000 - 60.000 USD/năm",
+        "Sinh hoạt: tùy bang và thành phố",
+        "Bảo hiểm và phí trường: theo từng trường."
+      ],
+      "schools": [
+        "harvard-university",
+        "stanford-university",
+        "massachusetts-institute-of-technology",
+        "university-of-california-berkeley",
+        "columbia-university",
+        "austin-community-college"
+      ],
+      "schols": [
+        "future-leaders"
+      ],
+      "news": [
+        "us-it-major",
+        "us-living-cost",
+        "us-health-insurance"
+      ]
+    },
+    {
+      "id": "country-au",
+      "code": "AU",
+      "cls": "cc-au",
+      "name": "Úc",
+      "title": "Du học Úc",
+      "lead": "Điểm đến quen thuộc với du học sinh Việt Nam: chương trình rõ, cộng đồng lớn và nhiều học bổng.",
+      "stats": [
+        [
+          "Visa 500",
+          "student visa"
+        ],
+        [
+          "2-4 năm",
+          "post-study work"
+        ],
+        [
+          "48h",
+          "làm thêm/2 tuần"
+        ],
+        [
+          "40+",
+          "trường đối tác"
+        ]
+      ],
+      "overview": "Lựa chọn quen thuộc và an tâm cho du học sinh Việt: chất lượng cao, lộ trình rõ ràng và cơ hội ở lại sau tốt nghiệp.",
+      "why": [
+        {
+          "icon": "shield",
+          "t": "Chất lượng đào tạo công nhận toàn cầu",
+          "d": "Nhiều đại học Úc nằm trong top thế giới; bằng cấp được công nhận rộng rãi khi xin việc trong và ngoài nước."
+        },
+        {
+          "icon": "route",
+          "t": "Ở lại làm việc 2–4 năm sau tốt nghiệp",
+          "d": "Diện post-study work cho phép tích luỹ kinh nghiệm và thu nhập, mở đường cho lộ trình định cư."
+        },
+        {
+          "icon": "heart",
+          "t": "Cộng đồng người Việt lớn, dễ hoà nhập",
+          "d": "Môi trường an toàn, đa văn hoá và cộng đồng du học sinh đông giúp bạn nhanh ổn định cuộc sống."
+        }
+      ],
+      "system": [
+        "Secondary school: phù hợp học sinh muốn làm quen sớm môi trường quốc tế.",
+        "Foundation/Diploma: pathway vào đại học khi cần bổ sung học thuật/tiếng Anh.",
+        "Bachelor/Master: nhiều lựa chọn ngành và học bổng theo năng lực."
+      ],
+      "visa": [
+        "CoE từ trường",
+        "OSHC bảo hiểm du học sinh",
+        "Chứng minh tài chính theo yêu cầu hiện hành",
+        "GTE/GS statement"
+      ],
+      "cost": [
+        "Học phí: 20.000 - 45.000 AUD/năm",
+        "Sinh hoạt: khoảng 24.500 AUD/năm",
+        "OSHC: theo thời gian khóa học."
+      ],
+      "schools": [
+        "the-university-of-melbourne-unimelb-bang-victoria",
+        "the-university-of-new-south-wales-unsw-sydney-bang-nsw",
+        "the-university-of-sydney-usyd-bang-nsw",
+        "australian-national-university-anu-th-do-canberra",
+        "monash-university-bang-victoria",
+        "the-university-of-queensland-uq-bang-queensland"
+      ],
+      "schols": [
+        "principal-50",
+        "stem-30"
+      ],
+      "news": [
+        "australia-scholarship",
+        "deadline-sep"
+      ]
+    },
+    {
+      "id": "country-ca",
+      "code": "CA",
+      "cls": "cc-ca",
+      "name": "Canada",
+      "title": "Du học Canada",
+      "lead": "Môi trường học an toàn, chi phí tương đối hợp lý và lộ trình sau tốt nghiệp được nhiều gia đình quan tâm.",
+      "stats": [
+        [
+          "PGWP",
+          "sau tốt nghiệp"
+        ],
+        [
+          "CAD",
+          "chi phí theo tỉnh bang"
+        ],
+        [
+          "Co-op",
+          "nhiều chương trình thực tập"
+        ],
+        [
+          "Song ngữ",
+          "Anh/Pháp tùy khu vực"
+        ]
+      ],
+      "overview": "Cân bằng tốt giữa chi phí, chất lượng và cơ hội định cư — lý do Canada ngày càng được nhiều gia đình ưu tiên.",
+      "why": [
+        {
+          "icon": "award",
+          "t": "Chi phí hợp lý, chất lượng cao",
+          "d": "Học phí và sinh hoạt dễ chịu hơn nhiều điểm đến nói tiếng Anh khác, trong khi chất lượng đào tạo vẫn hàng đầu."
+        },
+        {
+          "icon": "route",
+          "t": "PGWP & lộ trình định cư rõ ràng",
+          "d": "Giấy phép làm việc sau tốt nghiệp (PGWP) và nhiều chương trình nhập cư minh bạch là lý do được phụ huynh tin chọn."
+        },
+        {
+          "icon": "cap",
+          "t": "Nhiều chương trình co-op thực tiễn",
+          "d": "Học đi đôi với thực tập hưởng lương giúp sinh viên ra trường đã có kinh nghiệm và mạng lưới nghề nghiệp."
+        }
+      ],
+      "system": [
+        "College: thực tiễn, nhiều ngành nghề, phù hợp lộ trình nghề nghiệp rõ.",
+        "University: học thuật và nghiên cứu, phù hợp mục tiêu dài hạn.",
+        "Pathway/ESL: hỗ trợ khi cần nâng tiếng Anh trước khóa chính."
+      ],
+      "visa": [
+        "Letter of Acceptance",
+        "Proof of funds",
+        "Biometrics/medical nếu được yêu cầu",
+        "Study permit approval"
+      ],
+      "cost": [
+        "Học phí: 18.000 - 45.000 CAD/năm",
+        "Sinh hoạt: tùy thành phố",
+        "Phí hồ sơ/biometrics/khám sức khỏe: theo quy định hiện hành."
+      ],
+      "schools": [
+        "university-of-toronto-uoft",
+        "mcmaster-university",
+        "university-of-waterloo",
+        "western-university-university-of-western-ontario",
+        "queen-s-university",
+        "seneca-polytechnic-toronto"
+      ],
+      "schols": [
+        "global-excellence",
+        "early-bird-ca"
+      ],
+      "news": [
+        "canada-pgwp",
+        "parent-budget"
+      ]
+    },
+    {
+      "id": "country-nz",
+      "code": "NZ",
+      "cls": "cc-nz",
+      "name": "New Zealand",
+      "title": "Du học New Zealand",
+      "lead": "Môi trường học tập yên bình, an toàn, phù hợp học sinh thích lớp học gần gũi và chất lượng sống cao.",
+      "stats": [
+        [
+          "NZQA",
+          "khung chất lượng quốc gia"
+        ],
+        [
+          "20h",
+          "làm thêm/tuần"
+        ],
+        [
+          "An toàn",
+          "môi trường sống thân thiện"
+        ],
+        [
+          "Pathway",
+          "chuyển tiếp linh hoạt"
+        ]
+      ],
+      "overview": "Môi trường an toàn, gần gũi và chất lượng sống cao — phù hợp cho hành trình du học đầu đời.",
+      "why": [
+        {
+          "icon": "shield",
+          "t": "An toàn và chất lượng sống cao",
+          "d": "Môi trường yên bình, thân thiện, phù hợp cho cả học sinh nhỏ tuổi lần đầu xa nhà."
+        },
+        {
+          "icon": "user",
+          "t": "Lớp học nhỏ, sát sao từng sinh viên",
+          "d": "Quy mô lớp vừa phải giúp bạn tương tác trực tiếp với giảng viên và được hỗ trợ kỹ hơn."
+        },
+        {
+          "icon": "route",
+          "t": "Pathway linh hoạt & được làm thêm",
+          "d": "Các chương trình chuyển tiếp lên đại học rõ ràng, sinh viên được làm thêm hợp pháp trong thời gian học."
+        }
+      ],
+      "system": [
+        "Secondary school: hỗ trợ học sinh nhỏ tuổi làm quen môi trường mới.",
+        "Foundation/Diploma: chuyển tiếp vào đại học.",
+        "Bachelor/Master: ưu tiên trải nghiệm thực tế và kỹ năng nghề nghiệp."
+      ],
+      "visa": [
+        "Offer of Place",
+        "Evidence of funds",
+        "Insurance/travel plan",
+        "Student visa submission"
+      ],
+      "cost": [
+        "Học phí: 20.500 - 36.000 NZD/năm",
+        "Sinh hoạt: theo thành phố và loại chỗ ở",
+        "Bảo hiểm: thường yêu cầu trong thời gian học."
+      ],
+      "schools": [
+        "the-university-of-auckland-uoa",
+        "university-of-otago-dunedin",
+        "university-of-waikato-hamilton-and-tauranga",
+        "university-of-canterbury-uc-christchurch",
+        "massey-university-auckland-palmerston-north-wellington",
+        "victoria-university-of-wellington-vuw"
+      ],
+      "schols": [
+        "international-merit"
+      ],
+      "news": [
+        "parent-budget"
+      ]
+    },
+    {
+      "id": "country-tr",
+      "code": "TR",
+      "cls": "cc-tr",
+      "name": "Thổ Nhĩ Kỳ",
+      "title": "Du học Thổ Nhĩ Kỳ",
+      "lead": "Điểm đến mới với học phí cạnh tranh, vị trí giao thoa Á-Âu và nhiều chương trình học bằng tiếng Anh.",
+      "stats": [
+        [
+          "Chi phí",
+          "cạnh tranh"
+        ],
+        [
+          "Á-Âu",
+          "môi trường đa văn hóa"
+        ],
+        [
+          "English",
+          "nhiều chương trình quốc tế"
+        ],
+        [
+          "Bursları",
+          "học bổng chính phủ"
+        ]
+      ],
+      "overview": "Điểm đến mới mẻ với chi phí hợp lý, học bổng chính phủ và trải nghiệm văn hoá giao thoa Á–Âu.",
+      "why": [
+        {
+          "icon": "award",
+          "t": "Học phí cạnh tranh, học bổng chính phủ",
+          "d": "Chi phí mềm hơn nhiều nước nói tiếng Anh, cùng học bổng Türkiye Bursları cho sinh viên quốc tế."
+        },
+        {
+          "icon": "globe",
+          "t": "Cầu nối Á – Âu, đa văn hoá",
+          "d": "Vị trí giao thoa hai châu lục mang lại trải nghiệm văn hoá phong phú và mạng lưới quốc tế rộng."
+        },
+        {
+          "icon": "cap",
+          "t": "Nhiều chương trình giảng dạy bằng tiếng Anh",
+          "d": "Các đại học công và tư cung cấp chương trình tiếng Anh ở nhiều ngành kỹ thuật, y sinh, kiến trúc."
+        }
+      ],
+      "system": [
+        "Undergraduate: nhiều chương trình tiếng Anh ở đại học công/tư.",
+        "Graduate: nhóm ngành kỹ thuật, kinh tế, khoa học xã hội.",
+        "Language prep: có thể cần dự bị tiếng tùy chương trình."
+      ],
+      "visa": [
+        "Acceptance letter",
+        "Proof of accommodation/funds",
+        "Health insurance",
+        "Student visa appointment"
+      ],
+      "cost": [
+        "Học phí: khoảng 3.000 - 12.000 USD/năm",
+        "Sinh hoạt: thấp hơn nhiều nước nói tiếng Anh",
+        "Học bổng: tùy trường/chính phủ từng năm."
+      ],
+      "schools": [
+        "istanbul-okan-university",
+        "istanbul-university-dai-hoc-istanbul",
+        "istanbul-ayd-n-university-iau",
+        "bilkent-university-ankara",
+        "ko-university-istanbul",
+        "hacettepe-university"
+      ],
+      "schols": [
+        "turkiye-pathway"
+      ],
+      "news": [
+        "parent-budget"
+      ]
+    },
+    {
+      "id": "country-sg",
+      "code": "SG",
+      "cls": "cc-sg",
+      "name": "Singapore",
+      "title": "Du học Singapore",
+      "lead": "Trung tâm giáo dục hàng đầu châu Á, gần Việt Nam, môi trường an toàn và song ngữ.",
+      "stats": [
+        [
+          "Top châu Á",
+          "đại học hàng đầu"
+        ],
+        [
+          "Gần VN",
+          "bay ~2 giờ"
+        ],
+        [
+          "English",
+          "ngôn ngữ giảng dạy chính"
+        ],
+        [
+          "An toàn",
+          "đô thị bậc nhất thế giới"
+        ]
+      ],
+      "overview": "Điểm đến gần, an toàn và chất lượng cao cho gia đình muốn môi trường quốc tế nhưng không quá xa nhà.",
+      "why": [
+        {
+          "icon": "cap",
+          "t": "Đại học top châu Á",
+          "d": "Singapore sở hữu các đại học nằm trong nhóm dẫn đầu châu Á và thế giới, mạnh về kinh doanh, kỹ thuật và khoa học."
+        },
+        {
+          "icon": "globe",
+          "t": "Gần Việt Nam, dễ về thăm nhà",
+          "d": "Khoảng cách bay ngắn và múi giờ tương đồng giúp học sinh và gia đình giữ kết nối thuận tiện."
+        },
+        {
+          "icon": "shield",
+          "t": "An toàn, song ngữ, dễ hoà nhập",
+          "d": "Môi trường đô thị an toàn, sử dụng tiếng Anh rộng rãi và cộng đồng quốc tế đa dạng."
+        }
+      ],
+      "system": [
+        "Polytechnic/Diploma: lộ trình thực tiễn, dễ chuyển tiếp đại học.",
+        "University: chương trình cử nhân/sau đại học chất lượng cao.",
+        "Private/Pathway: lựa chọn linh hoạt khi cần bổ sung học thuật."
+      ],
+      "visa": [
+        "Letter of Offer từ trường",
+        "Student's Pass (ICA)",
+        "Chứng minh tài chính",
+        "Khám sức khỏe nếu được yêu cầu"
+      ],
+      "cost": [
+        "Học phí: theo trường và chương trình",
+        "Sinh hoạt: mức đô thị, cần dự trù chỗ ở",
+        "Bảo hiểm/phí trường: theo quy định từng trường."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    },
+    {
+      "id": "country-kr",
+      "code": "KR",
+      "cls": "cc-kr",
+      "name": "Hàn Quốc",
+      "title": "Du học Hàn Quốc",
+      "lead": "Nền giáo dục năng động, học bổng đa dạng và cơ hội làm thêm, gần gũi văn hoá với Việt Nam.",
+      "stats": [
+        [
+          "Học bổng",
+          "đa dạng theo trường"
+        ],
+        [
+          "Làm thêm",
+          "được phép trong kỳ học"
+        ],
+        [
+          "K-culture",
+          "môi trường năng động"
+        ],
+        [
+          "Gần VN",
+          "bay ~5 giờ"
+        ]
+      ],
+      "overview": "Lựa chọn hấp dẫn cho học sinh yêu văn hoá Hàn, muốn học bổng tốt và chi phí hợp lý hơn nhiều nước phương Tây.",
+      "why": [
+        {
+          "icon": "award",
+          "t": "Học bổng phong phú",
+          "d": "Nhiều trường cấp học bổng theo điểm tiếng Hàn/Anh và thành tích học tập, giảm đáng kể chi phí."
+        },
+        {
+          "icon": "target",
+          "t": "Cơ hội làm thêm & thực tập",
+          "d": "Sinh viên được làm thêm hợp pháp trong giới hạn, hỗ trợ trải nghiệm và chi phí."
+        },
+        {
+          "icon": "heart",
+          "t": "Văn hoá gần gũi, cộng đồng lớn",
+          "d": "Cộng đồng du học sinh Việt đông, văn hoá quen thuộc giúp nhanh hoà nhập."
+        }
+      ],
+      "system": [
+        "Korean Language Program: học tiếng trước khi vào chuyên ngành.",
+        "Undergraduate: cử nhân nhiều ngành, xét tiếng Hàn (TOPIK) hoặc tiếng Anh.",
+        "Graduate: sau đại học, nhiều học bổng nghiên cứu."
+      ],
+      "visa": [
+        "Standard Admission Letter",
+        "Visa D-2 (du học)",
+        "Chứng minh tài chính",
+        "Khám sức khỏe theo yêu cầu"
+      ],
+      "cost": [
+        "Học phí: theo trường và ngành",
+        "Sinh hoạt: tùy Seoul hay tỉnh",
+        "Ký túc xá/bảo hiểm: theo trường."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    },
+    {
+      "id": "country-de",
+      "code": "DE",
+      "cls": "cc-de",
+      "name": "Đức",
+      "title": "Du học Đức",
+      "lead": "Nhiều chương trình học phí thấp hoặc miễn phí ở trường công, nền công nghiệp - kỹ thuật mạnh.",
+      "stats": [
+        [
+          "Học phí thấp",
+          "nhiều trường công"
+        ],
+        [
+          "Kỹ thuật",
+          "thế mạnh hàng đầu"
+        ],
+        [
+          "EU",
+          "cơ hội việc làm khối EU"
+        ],
+        [
+          "English",
+          "nhiều chương trình quốc tế"
+        ]
+      ],
+      "overview": "Điểm đến lý tưởng cho học sinh định hướng kỹ thuật - kinh tế, muốn chi phí học hợp lý và cơ hội nghề nghiệp tại châu Âu.",
+      "why": [
+        {
+          "icon": "award",
+          "t": "Học phí thấp ở trường công",
+          "d": "Nhiều bang miễn hoặc thu học phí rất thấp tại đại học công, tối ưu chi phí cho gia đình."
+        },
+        {
+          "icon": "cap",
+          "t": "Thế mạnh kỹ thuật & nghiên cứu",
+          "d": "Đức nổi tiếng về kỹ thuật, ô tô, cơ khí và khoa học ứng dụng với nhiều chương trình tiếng Anh."
+        },
+        {
+          "icon": "route",
+          "t": "Cơ hội ở lại làm việc tại EU",
+          "d": "Sau tốt nghiệp, sinh viên có thời gian tìm việc và cơ hội làm việc trong khối EU."
+        }
+      ],
+      "system": [
+        "Studienkolleg: dự bị đại học khi cần bổ sung học thuật.",
+        "Bachelor: cử nhân, nhiều chương trình tiếng Anh/tiếng Đức.",
+        "Master: sau đại học mạnh về kỹ thuật, kinh tế, khoa học."
+      ],
+      "visa": [
+        "Giấy báo nhập học (Zulassung)",
+        "Tài khoản phong toả (Blocked account)",
+        "Visa du học Đức",
+        "Bảo hiểm y tế"
+      ],
+      "cost": [
+        "Học phí: thấp/miễn ở nhiều trường công",
+        "Sinh hoạt: cần chứng minh qua blocked account",
+        "Bảo hiểm/phí học kỳ: theo trường."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    },
+    {
+      "id": "country-nl",
+      "code": "NL",
+      "cls": "cc-nl",
+      "name": "Hà Lan",
+      "title": "Du học Hà Lan",
+      "lead": "Quốc gia có nhiều chương trình tiếng Anh nhất châu Âu lục địa, giáo dục thực tiễn và quốc tế hoá cao.",
+      "stats": [
+        [
+          "English",
+          "nhiều chương trình nhất EU lục địa"
+        ],
+        [
+          "Thực tiễn",
+          "học gắn dự án thật"
+        ],
+        [
+          "EU",
+          "cơ hội việc làm khối EU"
+        ],
+        [
+          "Quốc tế",
+          "môi trường đa văn hoá"
+        ]
+      ],
+      "overview": "Lựa chọn cân bằng giữa chất lượng, chi phí và tính quốc tế cho học sinh muốn học bằng tiếng Anh tại châu Âu.",
+      "why": [
+        {
+          "icon": "globe",
+          "t": "Nhiều chương trình tiếng Anh",
+          "d": "Hà Lan dẫn đầu châu Âu lục địa về số chương trình giảng dạy bằng tiếng Anh ở mọi bậc học."
+        },
+        {
+          "icon": "cap",
+          "t": "Phương pháp học thực tiễn",
+          "d": "Học gắn với dự án, làm nhóm và tình huống thật, giúp sinh viên sẵn sàng cho công việc."
+        },
+        {
+          "icon": "route",
+          "t": "Cơ hội ở lại tìm việc (orientation year)",
+          "d": "Sau tốt nghiệp có thời gian định hướng nghề nghiệp và tìm việc tại Hà Lan/EU."
+        }
+      ],
+      "system": [
+        "Research University: thiên về học thuật và nghiên cứu.",
+        "University of Applied Sciences: thực tiễn, gắn nghề nghiệp.",
+        "Foundation/Pathway: hỗ trợ khi cần bổ sung học thuật/tiếng Anh."
+      ],
+      "visa": [
+        "Letter of Acceptance",
+        "Giấy phép cư trú học tập (MVV/VVR)",
+        "Chứng minh tài chính",
+        "Bảo hiểm y tế"
+      ],
+      "cost": [
+        "Học phí: theo trường và chương trình",
+        "Sinh hoạt: cần dự trù chỗ ở (khan hiếm)",
+        "Bảo hiểm/phí: theo quy định từng trường."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    },
+    {
+      "id": "country-gb",
+      "code": "GB",
+      "cls": "cc-gb",
+      "name": "Anh",
+      "title": "Du học Anh",
+      "lead": "Anh có hệ thống đại học lâu đời và bằng cấp được công nhận rộng. Cử nhân 3 năm và thạc sĩ 1 năm giúp rút ngắn thời gian học và tổng chi phí, nhưng hồ sơ cần chuẩn bị sớm theo lịch UCAS.",
+      "stats": [
+        [
+          "3 năm",
+          "cử nhân tại Anh và xứ Wales"
+        ],
+        [
+          "1 năm",
+          "thạc sĩ phổ biến"
+        ],
+        [
+          "Graduate Route",
+          "visa ở lại sau tốt nghiệp"
+        ],
+        [
+          "UCAS",
+          "cổng nộp hồ sơ đại học"
+        ]
+      ],
+      "overview": "Phù hợp với học sinh muốn bằng cấp quốc tế được công nhận rộng, thời gian học ngắn và môi trường học thuật giàu truyền thống. Chi phí sinh hoạt tại London cao hơn đáng kể so với các thành phố khác.",
+      "why": [
+        {
+          "icon": "cap",
+          "t": "Thời gian học ngắn hơn",
+          "d": "Cử nhân 3 năm và thạc sĩ 1 năm giúp tiết kiệm một năm học phí và sinh hoạt phí so với nhiều điểm đến khác."
+        },
+        {
+          "icon": "globe",
+          "t": "Bằng cấp được công nhận rộng",
+          "d": "Hệ thống đại học lâu đời, nhiều trường có thế mạnh riêng ở kinh doanh, luật, kỹ thuật, y sinh và nghệ thuật sáng tạo."
+        },
+        {
+          "icon": "route",
+          "t": "Graduate Route sau tốt nghiệp",
+          "d": "Sinh viên có thể xin ở lại tìm việc sau tốt nghiệp; thời hạn và điều kiện thay đổi theo bậc học và chính sách hiện hành."
+        }
+      ],
+      "system": [
+        "A-Level/IB: lộ trình trung học phổ biến để vào thẳng đại học Anh.",
+        "Foundation/Pathway: dành cho hồ sơ cần bổ sung học thuật hoặc tiếng Anh trước khóa chính.",
+        "Undergraduate: cử nhân 3 năm, nộp qua UCAS với deadline theo từng đợt.",
+        "Postgraduate: thạc sĩ 1 năm, nộp trực tiếp cho trường theo kỳ."
+      ],
+      "visa": [
+        "CAS từ trường đã nhận",
+        "Student visa (đường Student route)",
+        "Chứng chỉ tiếng Anh đạt chuẩn SELT/UKVI nếu được yêu cầu",
+        "Chứng minh tài chính theo mức quy định hiện hành",
+        "Đóng phí y tế IHS khi nộp visa"
+      ],
+      "cost": [
+        "Học phí: thay đổi theo trường và ngành; nhóm y - nha - dược thường cao hơn.",
+        "Sinh hoạt: London cao hơn rõ rệt so với các thành phố khác.",
+        "Học bổng: nhiều trường có suất theo thành tích, cần nộp sớm theo deadline riêng.",
+        "Chi phí trên là tham khảo, cần kiểm tra lại trên website trường trước khi chốt hồ sơ."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    },
+    {
+      "id": "country-my2",
+      "code": "MY",
+      "cls": "cc-my",
+      "name": "Malaysia",
+      "title": "Du học Malaysia",
+      "lead": "Malaysia là lựa chọn chi phí hợp lý tại châu Á, giảng dạy bằng tiếng Anh, có nhiều phân hiệu của đại học Anh - Úc và chương trình chuyển tiếp sang nước thứ ba.",
+      "stats": [
+        [
+          "English",
+          "ngôn ngữ giảng dạy chính"
+        ],
+        [
+          "Campus quốc tế",
+          "phân hiệu đại học Anh - Úc"
+        ],
+        [
+          "Chi phí",
+          "mềm hơn Âu - Mỹ"
+        ],
+        [
+          "Gần Việt Nam",
+          "bay thẳng, dễ về thăm nhà"
+        ]
+      ],
+      "overview": "Phù hợp với gia đình muốn con học chương trình quốc tế bằng tiếng Anh nhưng cần kiểm soát ngân sách, hoặc muốn học 1-2 năm đầu rồi chuyển tiếp sang Anh, Úc.",
+      "why": [
+        {
+          "icon": "award",
+          "t": "Ngân sách dễ kiểm soát",
+          "d": "Học phí và sinh hoạt phí thấp hơn đáng kể so với Anh, Úc, Mỹ trong khi chương trình vẫn giảng dạy bằng tiếng Anh."
+        },
+        {
+          "icon": "globe",
+          "t": "Phân hiệu đại học quốc tế",
+          "d": "Nhiều đại học Anh và Úc có campus tại Malaysia, cấp bằng của trường mẹ với chi phí thấp hơn."
+        },
+        {
+          "icon": "route",
+          "t": "Lộ trình chuyển tiếp linh hoạt",
+          "d": "Có thể học giai đoạn đầu tại Malaysia rồi chuyển tiếp sang campus chính; cần xác nhận điều kiện chuyển tiếp với từng trường."
+        }
+      ],
+      "system": [
+        "Foundation: chương trình dự bị 1 năm trước khi vào cử nhân.",
+        "Diploma: lộ trình thực hành, có thể liên thông lên cử nhân.",
+        "Bachelor: cử nhân tại đại học Malaysia hoặc phân hiệu đại học nước ngoài.",
+        "Twinning/3+0: học toàn bộ tại Malaysia nhưng nhận bằng của trường đối tác."
+      ],
+      "visa": [
+        "Offer Letter từ trường",
+        "Duyệt hồ sơ qua EMGS trước khi xin visa",
+        "Khám sức khỏe theo yêu cầu",
+        "Chứng minh tài chính",
+        "Student Pass sau khi nhập cảnh"
+      ],
+      "cost": [
+        "Học phí: thấp hơn rõ so với học cùng chương trình tại Anh hoặc Úc.",
+        "Sinh hoạt: Kuala Lumpur cao hơn các bang khác nhưng vẫn dễ chịu so với Âu - Mỹ.",
+        "Chi phí trên là tham khảo, cần kiểm tra lại trên website trường trước khi chốt hồ sơ."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    },
+    {
+      "id": "country-ch",
+      "code": "CH",
+      "cls": "cc-ch",
+      "name": "Thụy Sỹ",
+      "title": "Du học Thụy Sỹ",
+      "lead": "Thụy Sỹ mạnh về quản trị khách sạn, du lịch và tài chính, với mô hình học gắn kỳ thực tập. Học phí và sinh hoạt phí thuộc nhóm cao nên ngân sách cần được dự trù kỹ từ đầu.",
+      "stats": [
+        [
+          "Hospitality",
+          "nhóm ngành thế mạnh"
+        ],
+        [
+          "Internship",
+          "kỳ thực tập tích hợp trong chương trình"
+        ],
+        [
+          "CHF",
+          "chi phí cần dự trù ở mức cao"
+        ],
+        [
+          "Đa ngôn ngữ",
+          "môi trường học quốc tế"
+        ]
+      ],
+      "overview": "Phù hợp với học sinh xác định rõ hướng quản trị khách sạn, du lịch, ẩm thực hoặc tài chính và gia đình có khả năng chuẩn bị ngân sách ở mức cao.",
+      "why": [
+        {
+          "icon": "award",
+          "t": "Thế mạnh quản trị khách sạn",
+          "d": "Các trường hospitality tại Thụy Sỹ có lịch sử lâu đời và mạng lưới đối tác ngành rộng."
+        },
+        {
+          "icon": "route",
+          "t": "Học gắn với thực tập",
+          "d": "Nhiều chương trình thiết kế xen kẽ kỳ học và kỳ thực tập, giúp sinh viên tích lũy kinh nghiệm ngay trong quá trình học."
+        },
+        {
+          "icon": "globe",
+          "t": "Môi trường quốc tế",
+          "d": "Lớp học đa quốc tịch, nhiều chương trình giảng dạy bằng tiếng Anh, vị trí trung tâm châu Âu."
+        }
+      ],
+      "system": [
+        "Hospitality school: chương trình quản trị khách sạn, du lịch, ẩm thực gắn kỳ thực tập.",
+        "Đại học công lập: mạnh về kỹ thuật, khoa học và nghiên cứu; yêu cầu đầu vào chặt.",
+        "Bachelor/Master: cần kiểm tra ngôn ngữ giảng dạy theo từng chương trình."
+      ],
+      "visa": [
+        "Thư nhập học từ trường",
+        "Chứng minh tài chính theo mức quy định của bang",
+        "Bảo hiểm y tế",
+        "Visa dài hạn (loại D) nộp tại cơ quan đại diện",
+        "Đăng ký cư trú sau khi nhập cảnh"
+      ],
+      "cost": [
+        "Học phí: thuộc nhóm cao; các trường hospitality thường gộp cả ăn ở trong gói học phí.",
+        "Sinh hoạt: chi phí tại Thụy Sỹ cao hơn phần lớn các nước châu Âu.",
+        "Kỳ thực tập có thể có phụ cấp, nhưng không nên xem là nguồn tài chính chính.",
+        "Chi phí trên là tham khảo, cần kiểm tra lại trên website trường trước khi chốt hồ sơ."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    },
+    {
+      "id": "country-ph",
+      "code": "PH",
+      "cls": "cc-ph",
+      "name": "Philippines",
+      "title": "Du học Anh ngữ Philippines",
+      "lead": "Philippines phù hợp với học sinh cần nâng tiếng Anh nhanh trước khóa chính, nhờ mô hình lớp một kèm một, độ dài khóa linh hoạt và chi phí thấp đã gồm ăn ở tại ký túc.",
+      "stats": [
+        [
+          "1 kèm 1",
+          "mô hình lớp đặc trưng"
+        ],
+        [
+          "4-12 tuần",
+          "độ dài khóa linh hoạt"
+        ],
+        [
+          "Trọn gói",
+          "học phí thường gồm ăn ở"
+        ],
+        [
+          "Gần Việt Nam",
+          "bay thẳng, chi phí đi lại thấp"
+        ]
+      ],
+      "overview": "Lựa chọn phổ biến để tăng tốc tiếng Anh trong thời gian ngắn trước khi vào chương trình chính tại nước khác, hoặc để luyện thi IELTS tập trung.",
+      "why": [
+        {
+          "icon": "cap",
+          "t": "Lớp một kèm một",
+          "d": "Mô hình đặc trưng của Philippines cho phép giáo viên bám sát điểm yếu của từng học viên, giúp cải thiện nhanh phản xạ nói."
+        },
+        {
+          "icon": "award",
+          "t": "Chi phí thấp, trọn gói",
+          "d": "Học phí thường đã bao gồm chỗ ở và bữa ăn tại ký túc, giúp gia đình dự trù ngân sách đơn giản hơn."
+        },
+        {
+          "icon": "route",
+          "t": "Linh hoạt thời gian",
+          "d": "Khóa học nhận đăng ký quanh năm với độ dài từ vài tuần, phù hợp lịch nghỉ hè hoặc giai đoạn chờ nhập học."
+        }
+      ],
+      "system": [
+        "ESL: khóa tiếng Anh tổng quát, tập trung giao tiếp và phản xạ.",
+        "IELTS/TOEIC: khóa luyện thi có cam kết đầu ra tùy trung tâm.",
+        "Business English: khóa tiếng Anh cho môi trường công việc.",
+        "Sparta/Semi-Sparta: mức độ kỷ luật và cường độ học khác nhau, cần chọn theo tính cách học viên."
+      ],
+      "visa": [
+        "Nhập cảnh miễn thị thực ngắn hạn, gia hạn tại chỗ nếu khóa dài",
+        "SSP (Special Study Permit) do trung tâm hỗ trợ làm",
+        "ACR I-Card nếu lưu trú vượt thời hạn quy định",
+        "Xác nhận đăng ký khóa học từ trung tâm"
+      ],
+      "cost": [
+        "Học phí: thường tính theo tuần và đã gồm chỗ ở, bữa ăn tại ký túc.",
+        "Chi phí phát sinh: SSP, điện nước, đặt cọc sách vở tính riêng khi nhập học.",
+        "Chi phí trên là tham khảo, cần kiểm tra lại trên website trung tâm trước khi chốt hồ sơ."
+      ],
+      "schools": [],
+      "schols": [],
+      "news": []
+    }
+  ],
+  "bac": {
+    "thpt": {
+      "tagline": "Du học sớm bậc THPT: trưởng thành trong môi trường học chuẩn quốc tế.",
+      "overview": "Du học bậc THPT (Trung học phổ thông / High School) là lựa chọn cho học sinh muốn hòa nhập sớm vào môi trường học tập quốc tế, hoàn thiện tiếng Anh và làm quen văn hóa trước khi bước vào đại học. Vì học sinh còn ở độ tuổi vị thành niên, bậc học này đặc biệt chú trọng người giám hộ, chỗ ở an toàn (homestay hoặc nội trú) và sự đồng hành sát sao của cả nhà trường lẫn phụ huynh. Ban Du học Hội TESOL TP.HCM giúp gia đình chọn trường, sắp xếp người giám hộ và chuẩn bị tâm lý để con đi học xa nhà một cách vững vàng.",
+      "whoFor": [
+        "Học sinh đang học lớp 8-11 muốn chuyển tiếp sang chương trình THPT ở nước ngoài",
+        "Gia đình muốn con làm quen sớm với môi trường học và tiếng Anh trước khi vào đại học",
+        "Học sinh có nền tảng tiếng Anh khá và khả năng tự lập tương đối tốt",
+        "Phụ huynh sẵn sàng đầu tư dài hạn cho lộ trình THPT lên thẳng đại học",
+        "Học sinh nhắm tới các trường đại học top và muốn có lợi thế bản ngữ cùng học bạ quốc tế"
+      ],
+      "requirements": [
+        "Học bạ THCS/THPT các năm gần nhất, thường yêu cầu điểm trung bình từ khá trở lên",
+        "Chứng chỉ tiếng Anh hoặc bài kiểm tra đầu vào của trường; một số trường nhận học sinh chưa đủ tiếng Anh rồi xếp lớp tiếng Anh tăng cường (ESL)",
+        "Độ tuổi phù hợp với khối lớp, thường nhận học sinh khoảng 14-18 tuổi tùy nước và chương trình",
+        "Bắt buộc có người giám hộ hợp pháp tại nước du học cho học sinh dưới 18 tuổi",
+        "Hộ chiếu, giấy khai sinh, sổ tiêm chủng và giấy tờ chứng minh tài chính của phụ huynh bảo trợ",
+        "Thư giới thiệu của giáo viên hoặc buổi phỏng vấn ngắn tùy trường"
+      ],
+      "timeline": [
+        {
+          "step": "Đánh giá học lực và định hướng",
+          "detail": "Xem học bạ, trình độ tiếng Anh và mong muốn của con để chọn khối lớp vào học cùng nhóm trường phù hợp."
+        },
+        {
+          "step": "Chọn trường và loại hình ở",
+          "detail": "So sánh trường công và trường tư, ở nội trú hay homestay; xác định người giám hộ và phương án chỗ ở an toàn cho con."
+        },
+        {
+          "step": "Chuẩn bị hồ sơ và thi tiếng Anh",
+          "detail": "Hoàn thiện học bạ dịch công chứng, làm bài kiểm tra đầu vào hoặc thi chứng chỉ tiếng Anh nếu trường yêu cầu."
+        },
+        {
+          "step": "Nộp hồ sơ và nhận thư mời nhập học",
+          "detail": "Nộp theo kỳ nhập học của trường, nhận thư mời (offer) và đóng phí giữ chỗ; sắp xếp người giám hộ chính thức."
+        },
+        {
+          "step": "Xin visa và chuẩn bị lên đường",
+          "detail": "Chuẩn bị hồ sơ visa du học, chứng minh tài chính, khám sức khỏe và định hướng tâm lý trước khi con đi học xa."
+        }
+      ],
+      "costsNotes": [
+        "Học phí THPT chênh lệch nhiều giữa trường công và trường tư/nội trú; trường nội trú thường cao hơn đáng kể",
+        "Cần dự trù thêm chi phí giám hộ, homestay hoặc ký túc xá, ăn uống và bảo hiểm y tế cho học sinh dưới 18 tuổi",
+        "Một số trường có học bổng đầu vào cho học sinh giỏi, nhưng học bổng bậc THPT thường ít hơn bậc đại học",
+        "Nên tính tổng chi phí theo cả lộ trình nhiều năm THPT, không chỉ riêng năm đầu"
+      ],
+      "pathway": "Hoàn thành chương trình THPT ở nước ngoài giúp học sinh có học bạ quốc tế và nền tảng tiếng Anh bản ngữ, mở đường thuận lợi để xét tuyển thẳng vào đại học và tạo lợi thế khi săn học bổng đầu vào.",
+      "duyStudySupport": [
+        "Tư vấn chọn khối lớp, chọn trường và loại hình ở (nội trú/homestay) phù hợp độ tuổi và tính cách của con",
+        "Kết nối và hỗ trợ thủ tục người giám hộ hợp pháp cùng phương án chỗ ở an toàn",
+        "Đồng hành chuẩn bị hồ sơ, dịch công chứng học bạ và ôn luyện bài kiểm tra đầu vào",
+        "Hướng dẫn xin visa du học và chứng minh tài chính cho học sinh vị thành niên",
+        "Định hướng tâm lý cho con và phụ huynh, theo dõi sát giai đoạn đầu khi con mới sang"
+      ],
+      "countryNote": "Tại {country}, độ tuổi nhập học, quy định giám hộ cho học sinh dưới 18 tuổi và lựa chọn trường công hay trường tư/nội trú có thể khác nhau; Ban Du học Hội TESOL TP.HCM sẽ tư vấn chi tiết theo từng trường và từng kỳ nhập học."
+    },
+    "cao-dang": {
+      "tagline": "Học thực hành, chi phí nhẹ, dễ liên thông lên đại học",
+      "overview": "Bậc Cao đẳng (College/Diploma) là lựa chọn thực tế cho học sinh muốn học nghề bài bản, ra trường đi làm sớm hoặc tích lũy tín chỉ trước khi học tiếp lên đại học. Chương trình thiên về kỹ năng ứng dụng, lớp học nhỏ, gắn với thực tập và doanh nghiệp, học phí thường mềm hơn so với đại học. Đây cũng là cửa ngõ phổ biến cho lộ trình liên thông 2+2 hoặc 1+3 lên bậc cử nhân.",
+      "whoFor": [
+        "Học sinh thích học theo hướng thực hành, ưu tiên kỹ năng nghề và cơ hội đi làm sớm",
+        "Bạn muốn vào đại học tốt nhưng chọn lộ trình liên thông 2+2 để nhẹ hơn về điểm và tiếng Anh đầu vào",
+        "Gia đình cần phương án tiết kiệm học phí hơn so với học thẳng đại học 4 năm",
+        "Học sinh có học lực hoặc tiếng Anh chưa đủ vào thẳng đại học, cần một bước đệm vững chắc",
+        "Người đã đi làm muốn lấy bằng nghề/diploma để chuyển hướng hoặc nâng cấp kỹ năng"
+      ],
+      "requirements": [
+        "Tốt nghiệp THPT hoặc tương đương; một số ngành có thể xét từ lớp 11 tùy chương trình",
+        "Học bạ thường yêu cầu từ mức trung bình khá trở lên, ngưỡng cụ thể tùy trường và ngành",
+        "Tiếng Anh IELTS khoảng 5.5-6.0, hoặc học khóa tiếng Anh dự bị nếu chưa đạt",
+        "Hồ sơ: học bạ/bằng tốt nghiệp, chứng chỉ tiếng Anh, hộ chiếu, giấy tờ chứng minh tài chính cho visa",
+        "Một số ngành thực hành (thiết kế, ẩm thực, sức khỏe, kỹ thuật) có thể yêu cầu portfolio hoặc phỏng vấn",
+        "Độ tuổi nhập học phổ biến từ 17-18 trở lên tùy quy định từng nước"
+      ],
+      "timeline": [
+        {
+          "step": "Định hướng ngành và mục tiêu",
+          "detail": "Xác định học để đi làm sớm hay để liên thông lên đại học (2+2), từ đó chọn diploma phù hợp và trường có thỏa thuận liên thông."
+        },
+        {
+          "step": "Chọn trường và kiểm tra điều kiện",
+          "detail": "So sánh học phí, ngành học, vị trí, cơ hội thực tập và lộ trình liên thông lên đại học liên kết; rà lại điều kiện học lực và tiếng Anh."
+        },
+        {
+          "step": "Hoàn thiện hồ sơ và tiếng Anh",
+          "detail": "Chuẩn bị học bạ, chứng chỉ tiếng Anh, portfolio (nếu cần); nếu chưa đủ tiếng Anh thì lên kế hoạch học dự bị/pathway."
+        },
+        {
+          "step": "Nộp hồ sơ và nhận thư mời",
+          "detail": "Apply theo kỳ nhập học, bám sát deadline; nhận offer và xác nhận nhập học (CoE/LoA tùy nước)."
+        },
+        {
+          "step": "Chứng minh tài chính và xin visa",
+          "detail": "Chuẩn bị giấy tờ chứng minh tài chính, mua bảo hiểm, hoàn tất hồ sơ visa du học và chuẩn bị lên đường."
+        }
+      ],
+      "costsNotes": [
+        "Học phí cao đẳng/diploma thường thấp hơn đại học, giúp tiết kiệm chi phí ở 1-2 năm đầu trước khi liên thông",
+        "Lộ trình 2+2 (2 năm cao đẳng + 2 năm đại học) có thể giảm tổng học phí so với học thẳng 4 năm đại học",
+        "Cần dự trù thêm chi phí sinh hoạt, bảo hiểm và mức chứng minh tài chính cho visa theo từng nước",
+        "Một số trường/ngành có học bổng đầu vào hoặc miễn giảm học phí cho học sinh khá giỏi"
+      ],
+      "pathway": "Sau khi hoàn tất diploma, bạn có thể đi làm theo đúng ngành nghề được đào tạo, hoặc liên thông lên năm 2-3 đại học bằng tín chỉ đã tích lũy, qua đó rút ngắn thời gian và chi phí để lấy bằng cử nhân.",
+      "duyStudySupport": [
+        "Tư vấn chọn diploma đúng mục tiêu: đi làm sớm hay làm bước đệm liên thông lên đại học",
+        "Lập lộ trình 2+2/liên thông và xác định trường đại học liên kết nhận chuyển tín chỉ",
+        "Hỗ trợ hồ sơ học bạ, portfolio và đăng ký khóa tiếng Anh dự bị/pathway khi cần",
+        "Hướng dẫn chuẩn bị chứng minh tài chính và hồ sơ xin visa du học",
+        "Đồng hành nhắc deadline nhập học, kết nối cơ hội thực tập và dịch vụ trước khi lên đường"
+      ],
+      "countryNote": "Tại {country}, hệ cao đẳng/diploma thường gắn chặt với thực hành nghề và có thỏa thuận liên thông lên các trường đại học sở tại, nên là bước đệm tiết kiệm và an toàn trước khi học lên cử nhân; điều kiện cụ thể về học phí, tiếng Anh và lộ trình liên thông sẽ khác nhau theo từng nước."
+    },
+    "dai-hoc": {
+      "tagline": "Chọn đúng ngành, vào đại học bằng hồ sơ học thuật vững.",
+      "overview": "Bậc Đại học (Bachelor / Undergraduate) là chương trình cử nhân chính quy, thường kéo dài 3-4 năm tùy quốc gia và ngành. Đây là bậc học mà việc chọn đúng ngành và đáp ứng yêu cầu học thuật ảnh hưởng trực tiếp đến cơ hội trúng tuyển: trường xét học bạ/bằng tốt nghiệp THPT, điểm các môn nền liên quan đến ngành, năng lực tiếng Anh và ở nhiều trường còn cần bài luận cá nhân. Học sinh bắt đầu định hình chuyên môn ngay từ năm nhất, nên sự phù hợp giữa năng lực, sở thích và đầu ra nghề nghiệp là yếu tố cốt lõi của lộ trình này.",
+      "whoFor": [
+        "Học sinh lớp 12 hoặc vừa tốt nghiệp THPT, đã xác định nhóm ngành muốn theo đuổi",
+        "Bạn muốn lấy bằng cử nhân quốc tế và xây nền chuyên môn ngay từ năm nhất",
+        "Học sinh có học lực khá - giỏi, sẵn sàng đầu tư cho bài luận và hồ sơ học thuật",
+        "Bạn đang học chương trình dự bị/foundation hoặc cao đẳng và muốn chuyển tiếp lên đại học",
+        "Gia đình muốn lộ trình rõ ràng từ chọn ngành đến đầu ra việc làm sau tốt nghiệp"
+      ],
+      "requirements": [
+        "Tốt nghiệp THPT hoặc tương đương; học bạ/điểm các môn nền theo yêu cầu của ngành",
+        "GPA/điểm trung bình đạt ngưỡng xét tuyển của từng trường và từng ngành",
+        "Chứng chỉ tiếng Anh học thuật (IELTS/TOEFL/PTE) đạt mức tối thiểu của ngành, thường cao hơn bậc dự bị",
+        "Bài luận cá nhân/statement of purpose nêu rõ động lực chọn ngành và định hướng (yêu cầu ở nhiều trường)",
+        "Một số ngành cần điều kiện riêng: portfolio (thiết kế/kiến trúc), bài kiểm tra năng lực, hoặc môn tiên quyết",
+        "Hồ sơ tài chính chứng minh đủ học phí và sinh hoạt phí theo yêu cầu visa hiện hành"
+      ],
+      "timeline": [
+        {
+          "step": "12-18 tháng trước nhập học: chọn ngành & trường",
+          "detail": "Tư vấn định hướng ngành theo năng lực, sở thích và đầu ra nghề nghiệp; lập danh sách trường phù hợp với học lực và ngân sách."
+        },
+        {
+          "step": "9-12 tháng trước: chuẩn bị học thuật & tiếng Anh",
+          "detail": "Củng cố điểm các môn nền của ngành, luyện và thi IELTS/TOEFL đạt ngưỡng; lên dàn ý bài luận cá nhân."
+        },
+        {
+          "step": "6-9 tháng trước: hoàn thiện & nộp hồ sơ",
+          "detail": "Viết và biên tập bài luận, chuẩn bị học bạ/bảng điểm, thư giới thiệu (nếu cần) và portfolio cho ngành đặc thù; nộp đúng deadline từng đợt tuyển sinh."
+        },
+        {
+          "step": "3-6 tháng trước: nhận offer & xác nhận nhập học",
+          "detail": "So sánh các thư mời, chọn trường, đặt cọc/CoE và bắt đầu chuẩn bị hồ sơ tài chính cho bước visa."
+        },
+        {
+          "step": "1-3 tháng trước: visa & lên đường",
+          "detail": "Hoàn tất hồ sơ visa, bảo hiểm và chỗ ở; tham gia buổi định hướng tiền du học trước khi bay."
+        }
+      ],
+      "costsNotes": [
+        "Học phí cử nhân thường cao hơn dự bị và cao đẳng, dao động mạnh theo quốc gia và ngành (ngành y - kỹ thuật thường đắt hơn)",
+        "Tổng chi phí gồm học phí 3-4 năm cộng sinh hoạt phí; cần tính cả khoản phát sinh khi học ngành có thực hành/phòng lab",
+        "Nhiều trường có học bổng đầu vào theo thành tích học tập (merit) giúp giảm đáng kể học phí, nên tìm hiểu và nộp sớm",
+        "Một số ngành/đợt tuyển có phí nộp hồ sơ và phí giữ chỗ; cần xác nhận theo từng trường"
+      ],
+      "pathway": "Sau khi tốt nghiệp cử nhân, bạn có thể học tiếp bậc Sau đại học (Thạc sĩ) đúng hoặc gần ngành, hoặc tận dụng diện làm việc sau tốt nghiệp để tích lũy kinh nghiệm trước khi quyết định lộ trình tiếp theo.",
+      "duyStudySupport": [
+        "Tư vấn chọn ngành và trường dựa trên học lực, sở thích và mục tiêu nghề nghiệp, kèm bản so sánh học phí - đầu ra",
+        "Hỗ trợ xây dựng và biên tập bài luận cá nhân/statement of purpose để hồ sơ nổi bật đúng ngành",
+        "Rà soát học bạ, bảng điểm và đối chiếu điều kiện đầu vào theo yêu cầu từng trường",
+        "Lập kế hoạch luyện và thi tiếng Anh học thuật đạt ngưỡng của ngành đúng deadline",
+        "Tìm và nộp hồ sơ học bổng đầu vào theo thành tích, đồng hành tới khi xác nhận nhập học và làm visa"
+      ],
+      "countryNote": "Tại {country}, chương trình cử nhân, danh mục ngành thế mạnh, ngưỡng học thuật và mức tiếng Anh đầu vào sẽ khác nhau theo từng trường; Ban Du học Hội TESOL TP.HCM sẽ tư vấn lựa chọn phù hợp với hồ sơ của bạn."
+    },
+    "sau-dai-hoc": {
+      "tagline": "Bệ phóng cho người đi sâu chuyên môn và nghiên cứu",
+      "overview": "Du học bậc Sau đại học (Master, PhD và các chương trình Postgraduate) dành cho người đã có bằng đại học và muốn đi sâu vào chuyên môn, chuyển hướng nghề nghiệp hoặc theo đuổi con đường nghiên cứu, giảng dạy. Khác với bậc đại học vốn xét tuyển chủ yếu qua học bạ và bài luận, bậc này coi trọng định hướng nghiên cứu rõ ràng, kinh nghiệm liên quan và sự phù hợp giữa hồ sơ của bạn với thế mạnh của khoa và giáo sư hướng dẫn. Đây là bậc học đòi hỏi tính tự chủ cao: bạn cần biết mình muốn nghiên cứu gì và vì sao chọn chương trình đó.",
+      "whoFor": [
+        "Người đã tốt nghiệp đại học, muốn nâng cao chuyên môn hoặc lấy bằng Thạc sĩ trong ngành hiện tại",
+        "Người muốn chuyển hướng sự nghiệp sang lĩnh vực mới qua chương trình Master dạng conversion hoặc coursework",
+        "Người có định hướng nghiên cứu, mong theo PhD và làm việc cùng một giáo sư hướng dẫn cụ thể",
+        "Người đi làm muốn nâng bằng cấp để thăng tiến hoặc đáp ứng yêu cầu hành nghề",
+        "Người nhắm tới học bổng nghiên cứu, vị trí trợ giảng/trợ lý nghiên cứu (TA/RA) hoặc tài trợ từ chính phủ và trường"
+      ],
+      "requirements": [
+        "Bằng đại học phù hợp với ngành đăng ký; GPA tối thiểu thường khoảng 2.8-3.0/4.0 tùy trường và chương trình",
+        "Tiếng Anh học thuật: IELTS Academic thường 6.5-7.0, một số ngành hoặc bậc PhD yêu cầu cao hơn",
+        "Thư động lực (Statement of Purpose) và đề cương nghiên cứu (research proposal) cho hướng PhD hoặc research master",
+        "2-3 thư giới thiệu từ giảng viên hoặc cấp trên, ưu tiên người hiểu rõ năng lực học thuật và chuyên môn của bạn",
+        "Kinh nghiệm liên quan: công bố khoa học, đồ án, dự án hoặc kinh nghiệm làm việc tùy ngành",
+        "Một số ngành hoặc quốc gia yêu cầu GRE/GMAT, hoặc cần liên hệ trước với giáo sư hướng dẫn (supervisor)"
+      ],
+      "timeline": [
+        {
+          "step": "Xác định hướng nghiên cứu và mục tiêu nghề nghiệp",
+          "detail": "Làm rõ bạn theo Master coursework, research master hay PhD; chốt lĩnh vực muốn đi sâu để định hình toàn bộ hồ sơ."
+        },
+        {
+          "step": "Tìm chương trình và giáo sư phù hợp",
+          "detail": "Đọc hồ sơ khoa và công trình của giáo sư; với PhD hoặc research master nên email liên hệ supervisor sớm để xác nhận họ nhận hướng dẫn."
+        },
+        {
+          "step": "Chuẩn bị hồ sơ học thuật",
+          "detail": "Hoàn thiện SOP, research proposal, CV học thuật, thư giới thiệu và thi tiếng Anh hoặc GRE/GMAT nếu được yêu cầu."
+        },
+        {
+          "step": "Nộp đơn và săn học bổng nghiên cứu",
+          "detail": "Nộp đơn theo deadline của khoa; song song ứng tuyển học bổng chính phủ, học bổng trường, vị trí TA/RA hoặc tài trợ từ giáo sư."
+        },
+        {
+          "step": "Nhận offer và làm visa du học",
+          "detail": "Hoàn tất chứng minh tài chính, khám sức khỏe và hồ sơ visa; chuẩn bị kế hoạch nghiên cứu và học tập cho năm đầu."
+        }
+      ],
+      "costsNotes": [
+        "Học phí bậc Sau đại học dao động lớn theo ngành và quốc gia; ngành nghiên cứu, y khoa và kỹ thuật thường cao hơn ngành xã hội",
+        "Chương trình PhD ở nhiều nước có thể được miễn hoặc giảm học phí kèm trợ cấp sinh hoạt nếu nhận học bổng hoặc vị trí RA/TA",
+        "Cần dự trù chi phí sinh hoạt, bảo hiểm và mức chứng minh tài chính theo yêu cầu visa của từng nước",
+        "Học bổng nghiên cứu, tài trợ từ giáo sư và stipend có thể bù đắp đáng kể chi phí; nên ứng tuyển sớm vì mức độ cạnh tranh cao"
+      ],
+      "pathway": "Sau khi tốt nghiệp Master, bạn có thể đi làm theo diện sau tốt nghiệp, học tiếp lên PhD, hoặc theo đuổi con đường nghiên cứu và giảng dạy. Nghiên cứu sinh PhD thường hướng tới sự nghiệp học thuật, R&D hoặc vị trí chuyên gia. Lộ trình cụ thể và quyền ở lại làm việc sau tốt nghiệp tùy chính sách từng nước.",
+      "duyStudySupport": [
+        "Tư vấn chọn hướng Master coursework, research master hay PhD dựa trên mục tiêu nghề nghiệp và năng lực thực tế",
+        "Hỗ trợ tìm chương trình, khoa và giáo sư phù hợp; hướng dẫn cách email liên hệ supervisor cho hướng nghiên cứu",
+        "Góp ý và hoàn thiện SOP, research proposal, CV học thuật cùng chiến lược xin thư giới thiệu",
+        "Định hướng săn học bổng nghiên cứu, học bổng chính phủ và vị trí TA/RA theo từng deadline",
+        "Đồng hành làm hồ sơ visa, chứng minh tài chính và chuẩn bị cho giai đoạn đầu nhập học"
+      ],
+      "countryNote": "Tại {country}, chương trình Sau đại học có thể khác nhau về thời lượng, cách xét research proposal và chính sách học bổng, tài trợ nghiên cứu; Ban Du học Hội TESOL TP.HCM sẽ tư vấn lộ trình cụ thể phù hợp với ngành và mục tiêu của bạn."
+    },
+    "anh-ngu": {
+      "tagline": "Nâng tiếng Anh tập trung trước khi vào khóa chính",
+      "overview": "Khóa Anh ngữ là chương trình học tiếng Anh ngắn hạn, thường kéo dài từ vài tuần đến vài tháng, dành cho học sinh cần đạt chuẩn đầu vào trước khi bắt đầu chương trình THPT, cao đẳng hay đại học. Chương trình tập trung vào kỹ năng giao tiếp, phát âm và luyện thi chứng chỉ, với lịch khai giảng linh hoạt quanh năm. Đây cũng là lựa chọn cho người đi làm muốn cải thiện tiếng Anh trong thời gian ngắn.",
+      "whoFor": [
+        "Học sinh đã có thư mời nhập học nhưng chưa đạt chuẩn tiếng Anh đầu vào",
+        "Bạn cần luyện thi IELTS/TOEIC tập trung trong thời gian ngắn",
+        "Học sinh muốn làm quen môi trường học quốc tế trước khi vào khóa chính",
+        "Người đi làm muốn nâng tiếng Anh giao tiếp hoặc tiếng Anh công việc",
+        "Gia đình muốn con trải nghiệm du học ngắn hạn trong kỳ nghỉ hè"
+      ],
+      "requirements": [
+        "Không yêu cầu chứng chỉ tiếng Anh đầu vào; trung tâm sẽ kiểm tra xếp lớp khi nhập học",
+        "Hộ chiếu còn hạn theo quy định của nước đến",
+        "Độ tuổi nhận học thay đổi theo trung tâm; học viên nhỏ tuổi có thể cần người giám hộ",
+        "Hồ sơ: hộ chiếu, ảnh thẻ, đơn đăng ký khóa học và giấy tờ theo yêu cầu của trung tâm",
+        "Một số khóa luyện thi có yêu cầu trình độ tối thiểu để xếp vào lớp phù hợp"
+      ],
+      "timeline": [
+        {
+          "step": "Xác định mục tiêu và độ dài khóa",
+          "detail": "Làm rõ học để đạt chuẩn đầu vào, luyện thi chứng chỉ hay nâng giao tiếp, từ đó chọn loại khóa và số tuần phù hợp."
+        },
+        {
+          "step": "Chọn trung tâm và loại lớp",
+          "detail": "So sánh mô hình lớp (một kèm một, nhóm nhỏ), mức độ kỷ luật, chỗ ở và chi phí trọn gói giữa các trung tâm."
+        },
+        {
+          "step": "Đăng ký và giữ chỗ",
+          "detail": "Nộp đơn đăng ký, đóng phí giữ chỗ theo lịch khai giảng mong muốn và nhận xác nhận từ trung tâm."
+        },
+        {
+          "step": "Chuẩn bị giấy tờ nhập cảnh",
+          "detail": "Hoàn tất hộ chiếu, giấy tờ nhập cảnh và các loại giấy phép học tập ngắn hạn theo quy định nước đến."
+        },
+        {
+          "step": "Nhập học và kiểm tra xếp lớp",
+          "detail": "Làm bài kiểm tra đầu vào để xếp lớp đúng trình độ, nhận lịch học và ổn định chỗ ở tại ký túc."
+        }
+      ],
+      "costsNotes": [
+        "Học phí thường tính theo tuần và ở nhiều trung tâm đã bao gồm chỗ ở cùng bữa ăn tại ký túc",
+        "Cần dự trù thêm phí ghi danh, giấy phép học tập, sách vở, điện nước và đặt cọc theo quy định từng trung tâm",
+        "Khóa càng dài thì chi phí trung bình mỗi tuần thường càng giảm",
+        "Chi phí là con số tham khảo, cần xác nhận lại với trung tâm trước khi đăng ký"
+      ],
+      "pathway": "Sau khi hoàn tất khóa Anh ngữ, học viên có thể thi lấy chứng chỉ quốc tế, nộp hồ sơ vào chương trình THPT, cao đẳng hoặc đại học tại nước đã chọn, hoặc dùng kết quả để đáp ứng điều kiện tiếng Anh của trường đã cấp thư mời.",
+      "duyStudySupport": [
+        "Tư vấn chọn loại khóa và số tuần phù hợp với mục tiêu tiếng Anh và ngân sách",
+        "So sánh trung tâm theo mô hình lớp, mức độ kỷ luật, chất lượng chỗ ở và chi phí trọn gói",
+        "Hỗ trợ đăng ký, giữ chỗ theo lịch khai giảng và hoàn tất giấy tờ nhập cảnh",
+        "Kết nối lộ trình từ khóa Anh ngữ sang chương trình chính tại nước học tiếp theo",
+        "Đồng hành trong suốt khóa học và hỗ trợ khi cần đổi lớp hoặc gia hạn khóa"
+      ],
+      "countryNote": "Tại {country}, khóa Anh ngữ thường có lịch khai giảng linh hoạt quanh năm và nhận học viên ở nhiều trình độ; điều kiện nhập học, giấy phép học tập và mức chi phí sẽ khác nhau theo từng trung tâm nên cần xác nhận trực tiếp trước khi đăng ký."
+    }
+  },
+  "majors": [
+    {
+      "id": "nganh-kinh-te",
+      "icon": "target",
+      "title": "Kinh tế",
+      "lead": "Kinh doanh, tài chính, quản trị, marketing — nhóm ngành nhu cầu cao và dễ chuyển đổi quốc gia.",
+      "overview": "Ngành kinh tế phù hợp với học sinh thích con số, chiến lược và môi trường năng động. Bằng cấp được công nhận rộng, cơ hội việc làm đa dạng tại nhiều quốc gia.",
+      "match": [
+        "Kinh doanh",
+        "Kinh tế"
+      ],
+      "countries": [
+        "Mỹ",
+        "Úc",
+        "Canada",
+        "Singapore"
+      ],
+      "why": [
+        {
+          "icon": "globe",
+          "t": "Nhu cầu nhân lực cao toàn cầu",
+          "d": "Doanh nghiệp ở mọi quốc gia đều cần nhân sự kinh tế - kinh doanh, dễ tìm việc và chuyển vùng."
+        },
+        {
+          "icon": "route",
+          "t": "Lộ trình nghề nghiệp rộng",
+          "d": "Từ tài chính, marketing, phân tích dữ liệu đến khởi nghiệp — nhiều hướng đi sau tốt nghiệp."
+        },
+        {
+          "icon": "award",
+          "t": "Nhiều học bổng merit",
+          "d": "Nhóm ngành phổ biến nên có nhiều học bổng theo thành tích học tập."
+        }
+      ],
+      "careers": [
+        "Tài chính - ngân hàng",
+        "Marketing & thương hiệu",
+        "Phân tích kinh doanh / dữ liệu",
+        "Quản trị & khởi nghiệp"
+      ]
+    },
+    {
+      "id": "nganh-suc-khoe",
+      "icon": "heart",
+      "title": "Sức khoẻ",
+      "lead": "Y, điều dưỡng, dược, y tế công cộng — nhóm ngành ổn định, nhân văn và cơ hội định cư tốt.",
+      "overview": "Ngành sức khoẻ dành cho học sinh kiên trì, thích chăm sóc con người. Yêu cầu học thuật và tiếng Anh cao, nhưng cơ hội việc làm và định cư rất tốt ở nhiều nước.",
+      "match": [
+        "Y - Sức khỏe"
+      ],
+      "countries": [
+        "Úc",
+        "Canada",
+        "New Zealand"
+      ],
+      "why": [
+        {
+          "icon": "shield",
+          "t": "Nghề nghiệp ổn định, được trọng dụng",
+          "d": "Nhu cầu nhân lực y tế cao và bền vững, mức thu nhập và cơ hội định cư hấp dẫn ở nhiều quốc gia."
+        },
+        {
+          "icon": "cap",
+          "t": "Đào tạo bài bản, chuẩn quốc tế",
+          "d": "Chương trình gắn thực hành lâm sàng, chứng chỉ hành nghề được công nhận rộng."
+        },
+        {
+          "icon": "heart",
+          "t": "Ý nghĩa nhân văn",
+          "d": "Công việc trực tiếp chăm sóc và cải thiện chất lượng sống của cộng đồng."
+        }
+      ],
+      "careers": [
+        "Điều dưỡng",
+        "Dược",
+        "Y tế công cộng",
+        "Khoa học sức khoẻ"
+      ]
+    },
+    {
+      "id": "nganh-cong-nghe",
+      "icon": "layers",
+      "title": "Công nghệ",
+      "lead": "CNTT, khoa học dữ liệu, AI, kỹ thuật phần mềm — nhóm ngành dẫn đầu xu hướng và thu nhập cao.",
+      "overview": "Ngành công nghệ phù hợp với học sinh yêu logic, sáng tạo và giải quyết vấn đề. Cơ hội việc làm toàn cầu, nhiều chương trình thực tập hưởng lương.",
+      "match": [
+        "CNTT",
+        "Kỹ thuật"
+      ],
+      "countries": [
+        "Mỹ",
+        "Đức",
+        "Singapore",
+        "Úc"
+      ],
+      "why": [
+        {
+          "icon": "target",
+          "t": "Thu nhập và nhu cầu hàng đầu",
+          "d": "Nhân lực công nghệ luôn thiếu hụt, mức lương khởi điểm và cơ hội thăng tiến rất tốt."
+        },
+        {
+          "icon": "layers",
+          "t": "Học gắn dự án thực tế",
+          "d": "Nhiều chương trình co-op, internship giúp ra trường đã có kinh nghiệm và portfolio."
+        },
+        {
+          "icon": "route",
+          "t": "Dễ làm việc & định cư",
+          "d": "Nhóm ngành ưu tiên trong chính sách thu hút nhân tài của nhiều quốc gia."
+        }
+      ],
+      "careers": [
+        "Kỹ sư phần mềm",
+        "Khoa học dữ liệu / AI",
+        "An ninh mạng",
+        "Kỹ thuật & tự động hoá"
+      ]
+    },
+    {
+      "id": "nganh-giao-duc",
+      "icon": "cap",
+      "title": "Giáo dục",
+      "lead": "Sư phạm, giáo dục mầm non, quản lý giáo dục, công nghệ giáo dục — nhóm ngành nền tảng, nhu cầu nhân lực ổn định.",
+      "overview": "Ngành giáo dục phù hợp với học sinh yêu thích giảng dạy, làm việc với con người và muốn tạo tác động lâu dài. Lộ trình học kết hợp lý thuyết sư phạm và thực hành đứng lớp.",
+      "match": [],
+      "countries": [
+        "Úc",
+        "New Zealand",
+        "Canada"
+      ],
+      "why": [
+        {
+          "icon": "cap",
+          "t": "Nền tảng vững, nhu cầu ổn định",
+          "d": "Giáo dục là ngành thiết yếu, nhu cầu giáo viên và chuyên gia đào tạo duy trì ổn định ở nhiều quốc gia."
+        },
+        {
+          "icon": "target",
+          "t": "Nhiều hướng phát triển",
+          "d": "Từ giảng dạy phổ thông đến quản lý giáo dục, công nghệ giáo dục (EdTech) và đào tạo doanh nghiệp."
+        },
+        {
+          "icon": "heart",
+          "t": "Tạo tác động ý nghĩa",
+          "d": "Phù hợp với người kiên nhẫn, yêu thích đồng hành và phát triển con người."
+        }
+      ],
+      "careers": [
+        "Giáo viên / giảng viên",
+        "Quản lý giáo dục",
+        "Chuyên viên thiết kế chương trình",
+        "Chuyên viên công nghệ giáo dục (EdTech)"
+      ]
+    },
+    {
+      "id": "nganh-tieng-anh",
+      "icon": "book",
+      "title": "Tiếng Anh",
+      "lead": "Ngôn ngữ Anh, sư phạm Anh, biên - phiên dịch — nền tảng vững cho học thuật và nhiều nghề nghiệp.",
+      "overview": "Ngành tiếng Anh phù hợp với học sinh yêu ngôn ngữ, giao tiếp và văn hoá. Là bệ phóng cho giảng dạy, truyền thông, biên - phiên dịch và làm việc quốc tế.",
+      "match": [],
+      "countries": [
+        "Úc",
+        "New Zealand",
+        "Canada"
+      ],
+      "why": [
+        {
+          "icon": "book",
+          "t": "Nền tảng cho nhiều nghề",
+          "d": "Năng lực tiếng Anh tốt mở cửa cho giảng dạy, truyền thông, du lịch, kinh doanh quốc tế."
+        },
+        {
+          "icon": "globe",
+          "t": "Làm việc toàn cầu",
+          "d": "Kỹ năng ngôn ngữ giúp dễ dàng làm việc trong môi trường đa quốc gia."
+        },
+        {
+          "icon": "cap",
+          "t": "Lộ trình học thuật rõ ràng",
+          "d": "Từ cử nhân ngôn ngữ/sư phạm đến các chứng chỉ giảng dạy quốc tế."
+        }
+      ],
+      "careers": [
+        "Giảng dạy tiếng Anh (TESOL)",
+        "Biên - phiên dịch",
+        "Truyền thông & nội dung",
+        "Du lịch - dịch vụ quốc tế"
+      ]
+    }
+  ]
+}

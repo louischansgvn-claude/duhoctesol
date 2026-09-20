@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">Turkey study abroad scene</title>
+  <desc id="desc">Turkey campus scene with warm architecture and Duy Study colors.</desc>
+  <rect width="1200" height="820" rx="54" fill="#fff8fb"/>
+  <circle cx="190" cy="130" r="120" fill="#23a9d8" opacity=".16"/>
+  <path d="M0 610 C250 530 430 650 650 580 C850 516 1010 552 1200 470 V820 H0Z" fill="#fff"/>
+  <rect x="190" y="350" width="820" height="240" rx="42" fill="#fff" stroke="#dbe7f3" stroke-width="4"/>
+  <path d="M260 350 C320 250 450 250 510 350 M690 350 C750 250 880 250 940 350" fill="#fff" stroke="#df1f83" stroke-width="16" stroke-linecap="round" opacity=".75"/>
+  <path d="M372 590 V440 H500 V590 M700 590 V440 H828 V590" fill="#f7fbff" stroke="#dbe7f3" stroke-width="3"/>
+  <path d="M560 590 V392 H640 V590" fill="#147da9" opacity=".86"/>
+  <circle cx="600" cy="304" r="58" fill="#df1f83" opacity=".86"/>
+  <path d="M622 282 C590 272 560 296 570 330 C581 365 628 360 642 330 C618 344 590 332 590 306 C590 286 606 278 622 282Z" fill="#fff"/>
+  <rect x="742" y="642" width="300" height="74" rx="37" fill="#fff" opacity=".88"/>
+  <path d="M790 680 H990" stroke="#23a9d8" stroke-width="16" stroke-linecap="round" opacity=".72"/>
+</svg>

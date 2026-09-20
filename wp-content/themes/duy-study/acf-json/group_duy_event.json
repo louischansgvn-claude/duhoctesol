@@ -1,0 +1,109 @@
+{
+    "key": "group_duy_event",
+    "title": "Event fields",
+    "fields": [
+        {
+            "key": "field_duy_event_datetime",
+            "label": "Date/time",
+            "name": "datetime",
+            "type": "date_time_picker",
+            "instructions": "Mockup `time` in machine-readable form.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "display_format": "d/m/Y H:i",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 1
+        },
+        {
+            "key": "field_duy_event_type",
+            "label": "Event type",
+            "name": "type",
+            "type": "taxonomy",
+            "instructions": "Mockup `type`.",
+            "taxonomy": "event_type",
+            "field_type": "select",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "object",
+            "multiple": 0
+        },
+        {
+            "key": "field_duy_event_place",
+            "label": "Place",
+            "name": "place",
+            "type": "text",
+            "instructions": "Mockup `place`.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_duy_event_agenda",
+            "label": "Agenda",
+            "name": "agenda",
+            "type": "repeater",
+            "instructions": "",
+            "layout": "row",
+            "button_label": "Thêm agenda",
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_duy_event_agenda_item",
+                    "label": "Agenda item",
+                    "name": "item",
+                    "type": "text",
+                    "instructions": "Mockup `agenda[]`.",
+                    "required": 0,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_duy_event_register_cta",
+            "label": "Register CTA",
+            "name": "register_cta",
+            "type": "text",
+            "instructions": "Button label/text for M7/M9.",
+            "required": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "modified": 1781519267
+}

@@ -14,7 +14,15 @@ Dùng: python tools/wp-deploy.py <cfg> <phase>
   db          1 file (7 MB)   — wp-build/.ht.sqlite (đã đổi domain + thương hiệu + mật khẩu)
   config      1 file          — wp-build/wp-config.php
   uploads  3.817 file (693 MB)— ảnh WordPress (`2026/07/...`), khác hệ ảnh của site tĩnh
-  all     tất cả, đúng thứ tự trên
+  theme-assets 2 file        — main.css + main.js bản WordPress; chạy NGAY TRƯỚC khi đổi sang WordPress
+  all     tất cả file, đúng thứ tự trên (KHÔNG gồm 2 phase .htaccess bên dưới)
+
+Hai phase đổi công tắc — chỉ đụng đúng file `.htaccess` ở docroot:
+  htaccess-wp      ĐỔI SANG WORDPRESS: `DirectoryIndex index.php index.html` + khối rewrite WordPress.
+                   748 file index.html tĩnh vẫn nằm nguyên đó, chỉ là không được dùng nữa.
+  htaccess-static  ĐƯỜNG LUI: trả về site tĩnh trong vài giây. Chạy nếu WordPress lỗi.
+Cả hai đều giữ nguyên khối PHP của cPanel và toàn bộ redirect canonical host + 4 redirect nganh-hoc.
+Bản đang chạy và bản cũ đều lưu ở `docs/server/`.
 
 Không bao giờ in mật khẩu ra log."""
 import glob, os, subprocess, sys, tempfile, time
@@ -28,15 +36,21 @@ except Exception:
 TGT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(os.path.dirname(TGT), "duystudy - website")
 WP = os.path.join(SRC, "wp")
-THEME = os.path.join(SRC, "wp-content", "themes", "duy-study")
+# theme đọc TỪ REPO NÀY (đã chép + đổi thương hiệu bằng tools/wp-theme-sync.py),
+# không đọc từ project Duy Study nữa.
+THEME = os.path.join(TGT, "wp-content", "themes", "duy-study")
 BUILD = os.path.join(TGT, "wp-build")
 HOST = "ftp://pbf43-22360.azdigihost.com"
 
-# 6 file theme đang phục vụ site tĩnh LIVE và KHÁC bản WordPress (logo Duy Study, CSS/JS cũ hơn).
-# Đè bây giờ là đổi giao diện/logo của site đang chạy -> chỉ tải ở bước chuyển đổi cuối.
-KEEP_STATIC = {"assets/css/main.css", "assets/js/main.js", "assets/img/logo.png",
-               "assets/img/logo-full.png", "assets/img/campus-global.svg",
-               "assets/img/hero-students.svg"}
+# Ảnh thương hiệu: bản trong theme WordPress là **logo Duy Study**, bản đang chạy là logo
+# "Ban Du học Hội TESOL TP.HCM". KHÔNG BAO GIỜ đè 4 file này, kể cả sau khi chuyển sang WordPress.
+KEEP_STATIC = {"assets/img/logo.png", "assets/img/logo-full.png",
+               "assets/img/campus-global.svg", "assets/img/hero-students.svg"}
+
+# CSS/JS bản WordPress mới hơn bản đang phục vụ site tĩnh. Template WordPress cần bản mới,
+# nhưng đè sớm thì site tĩnh đang chạy đổi giao diện -> tách ra phase `theme-assets`,
+# chạy ngay trước khi đảo DirectoryIndex sang WordPress.
+DEFER_ASSETS = {"assets/css/main.css", "assets/js/main.js"}
 
 
 def slash(p):
@@ -62,7 +76,11 @@ def files_for(phase):
     if phase == "theme":
         base = "wp-content/themes/duy-study/"
         return [(p, base + rel) for p, rel in walk(THEME, skip_rel=("inc/data",))
-                if rel not in KEEP_STATIC]
+                if rel not in KEEP_STATIC and rel not in DEFER_ASSETS]
+    if phase == "theme-assets":
+        base = "wp-content/themes/duy-study/"
+        return [(os.path.join(THEME, rel.replace("/", os.sep)), base + rel)
+                for rel in sorted(DEFER_ASSETS)]
     if phase == "plugin":
         out = [(p, "wp-content/plugins/sqlite-database-integration/" + rel)
                for p, rel in walk(os.path.join(WP, "wp-content", "plugins", "sqlite-database-integration"))]
@@ -77,6 +95,10 @@ def files_for(phase):
     if phase == "uploads":
         return [(p, "wp-content/uploads/" + rel)
                 for p, rel in walk(os.path.join(WP, "wp-content", "uploads"))]
+    if phase == "htaccess-wp":
+        return [(os.path.join(TGT, "docs", "server", "htaccess-wordpress-2026-09-20.txt"), ".htaccess")]
+    if phase == "htaccess-static":
+        return [(os.path.join(TGT, "docs", "server", "htaccess-live-2026-09-20b.txt"), ".htaccess")]
     raise SystemExit("phase? " + __doc__)
 
 

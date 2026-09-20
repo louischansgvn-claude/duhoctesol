@@ -1,0 +1,82 @@
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php8_module>
+   php_value error_log "/home/infkkcwh/logs/php.error.log"
+   php_flag log_errors On
+</IfModule>
+<IfModule lsapi_module>
+   php_value error_log "/home/infkkcwh/logs/php.error.log"
+   php_flag log_errors On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+# BEGIN wordpress-first  (doi 2026-09-20)
+# WordPress phuc vu site. 748 file index.html tinh van con trong thu muc nhung KHONG duoc dung
+# nua vi index.php dung truoc. Muon quay lai site tinh: dao lai thanh
+#   DirectoryIndex index.html index.php
+# va xoa khoi "# BEGIN WordPress" ben duoi. Ban htaccess cu: docs/server/htaccess-live-2026-09-20b.txt
+DirectoryIndex index.php index.html
+# END wordpress-first
+
+# BEGIN duhoctesolhcmc.vn canonical host  (them 2026-09-18)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1. KHONG dung vao xac thuc SSL - neu chan, AutoSSL se khong gia han duoc cert
+RewriteRule ^\.well-known/ - [L]
+
+# 1b. 4 trang nganh rong tu WP export (soft-404) -> trang nganh that  (them 2026-09-20)
+RewriteRule ^nganh-hoc/cntt/?$ https://duhoctesolhcmc.vn/nganh-hoc/cong-nghe/ [R=301,L]
+RewriteRule ^nganh-hoc/ky-thuat/?$ https://duhoctesolhcmc.vn/nganh-hoc/cong-nghe/ [R=301,L]
+RewriteRule ^nganh-hoc/kinh-doanh/?$ https://duhoctesolhcmc.vn/nganh-hoc/kinh-te/ [R=301,L]
+RewriteRule ^nganh-hoc/y-suc-khoe/?$ https://duhoctesolhcmc.vn/nganh-hoc/suc-khoe/ [R=301,L]
+
+# 1c. URL cua ban tinh KHONG con ton tai trong WordPress -> trang tuong duong  (them 2026-09-20)
+# 5 URL nay la trang luu tru phan loai rong, theme co y loai khoi sitemap (xem inc/seo.php:
+# "Taxonomy archive khong index - trang mong trung /tin-tuc/"). Chung nam trong sitemap.xml da
+# nop cho Google ngay 19/09 nen chuyen huong thay vi de 404.
+RewriteRule ^bac-hoc/(cao-dang|dai-hoc)/?$ https://duhoctesolhcmc.vn/truong/ [R=301,L]
+RewriteRule ^gia-tri-hoc-bong/(25|50|toan-phan)/?$ https://duhoctesolhcmc.vn/hoc-bong/ [R=301,L]
+
+# 1d. sitemap.xml tinh da xoa; WordPress tu sinh /wp-sitemap.xml (luon cap nhat theo noi dung).
+# Giu redirect de muc sitemap da khai bao trong Search Console khong bi loi.
+RewriteRule ^sitemap\.xml$ https://duhoctesolhcmc.vn/wp-sitemap.xml [R=301,L]
+
+# 2. Subdomain test cu -> domain chinh
+RewriteCond %{HTTP_HOST} ^duhoctesol\.duystudy\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+
+# 3. Subdomain cPanel tu sinh khi tao addon domain -> domain chinh
+RewriteCond %{HTTP_HOST} ^duhoctesolhcmc\.vn\.amigoagency\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+
+# 4. www -> non-www  (canonical trong trang la non-www)
+RewriteCond %{HTTP_HOST} ^www\.duhoctesolhcmc\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+
+# 5. http -> https cho domain chinh
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} ^duhoctesolhcmc\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+</IfModule>
+# END duhoctesolhcmc.vn canonical host
+
+# BEGIN WordPress
+# Rewrite cho permalink dep (/%postname%/). Dat SAU khoi canonical host de 301 o tren chay truoc.
+#
+# KHAC voi rule mac dinh cua WordPress: ban mac dinh co dieu kien  !-d  (bo qua thu muc co that).
+# Docroot nay van con 748 thu muc cua site tinh cu (vd /truong/adrian-high-school/ chua index.html),
+# nen voi  !-d  thi mod_rewrite bo qua -> DirectoryIndex lai lay index.html -> WordPress KHONG chay.
+# Da do dung thuc te: 746/751 URL van tra ve file tinh. Vi vay BO  !-d  va loai tru thu muc he thong.
+# Khi nao xoa het 748 file index.html cu thi co the quay ve rule mac dinh.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_URI} !^/(wp-admin|wp-includes|wp-content|cgi-bin)/ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

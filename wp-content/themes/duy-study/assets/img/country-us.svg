@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">US study abroad campus scene</title>
+  <desc id="desc">Stylized US campus and city skyline in Duy Study colors.</desc>
+  <rect width="1200" height="820" rx="54" fill="#f7fbff"/>
+  <circle cx="1000" cy="130" r="150" fill="#df1f83" opacity=".14"/>
+  <path d="M0 618 C220 550 430 690 654 604 C820 540 1000 552 1200 476 V820 H0Z" fill="#fff0f7"/>
+  <g fill="#ffffff" stroke="#dbe7f3" stroke-width="4">
+    <rect x="120" y="260" width="120" height="320" rx="18"/>
+    <rect x="270" y="210" width="140" height="370" rx="18"/>
+    <rect x="442" y="290" width="120" height="290" rx="18"/>
+    <rect x="620" y="230" width="180" height="350" rx="18"/>
+    <rect x="838" y="180" width="150" height="400" rx="18"/>
+  </g>
+  <path d="M150 630 H1040" stroke="#23a9d8" stroke-width="12" stroke-linecap="round" opacity=".35"/>
+  <path d="M620 168 L712 232 H528Z" fill="#df1f83" opacity=".9"/>
+  <rect x="560" y="232" width="120" height="196" rx="12" fill="#fff" stroke="#dbe7f3" stroke-width="4"/>
+  <path d="M590 428 H650 V580 H590Z" fill="#147da9"/>
+  <g stroke="#23a9d8" stroke-width="10" stroke-linecap="round" opacity=".55">
+    <path d="M154 330 H206M154 384 H206M304 282 H374M304 338 H374M664 300 H756M664 360 H756M875 252 H950M875 316 H950"/>
+  </g>
+  <rect x="738" y="636" width="300" height="80" rx="28" fill="#fff" opacity=".88"/>
+  <path d="M790 676 H986" stroke="#df1f83" stroke-width="16" stroke-linecap="round" opacity=".75"/>
+</svg>
