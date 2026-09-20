@@ -239,6 +239,7 @@ Thêm các file đó vào vòng upload (đổi glob `**/index.html` → cần th
 - 2026-09-18: **GO-LIVE domain mới `duhoctesolhcmc.vn`** — addon domain trỏ vào docroot cũ, AutoSSL, 301 trong `.htaccess`; deploy đủ 1.753 ảnh + 748 HTML + css + robots/sitemap (0 lỗi); xoá 34 thư mục demo; gỡ `noindex`; thêm JSON-LD `page-schema`. Live == local 748/748.
 - 2026-09-19: Deploy `html` + `seo` — 170 title, 273 description, 35 canonical thừa, 4 stub nganh-hoc, sitemap 723, `llms.txt` mới. Live == local 751/751.
 - 2026-09-20: `.htaccess` += rule 1b (4 stub → 301). Deploy `html` — Organization/WebSite.description cố định trên 748 trang. live-compare: 747 identical + 4 × 301.
+- 2026-09-20b: Deploy `html` — sửa 1.497 link `tel:` + 748 link Zalo về số chính thức `0906510747`, làm giàu schema Organization/LocalBusiness. **Footer md5 đổi** sang `3ae6ee31b32be287c3086bc59c27d427`. live-compare OK.
 
 ## Xoá thư mục demo (bắt buộc sau lần deploy lớn đầu tiên)
 

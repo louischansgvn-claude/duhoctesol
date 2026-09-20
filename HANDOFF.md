@@ -1,6 +1,6 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-20 — GSC: sitemap 723 OK + Bing import xong · 301 cho 4 stub ngành (server) · Organization.description cố định (748 trang, deployed) · GA4 chờ mã G-. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-20 (cuối phiên) — GSC xong phần làm được (sitemap 723 · Bing · Rich Results 10 mục hợp lệ) · 301 cho 4 stub ngành · số điện thoại + Zalo sửa về số chính thức (2.245 link) · Organization/LocalBusiness làm giàu schema. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
@@ -8,20 +8,23 @@ _Last updated: 2026-09-20 — GSC: sitemap 723 OK + Bing import xong · 301 cho 
 Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 file** (kiểm 2026-09-19).
 **Trước khi deploy bất kỳ lần nào:** `python tools/verify-site.py` phải in `OK — all invariants hold`.
 
-**Phiên sau bắt đầu bằng các việc này (theo ngày):**
-1. **Yêu cầu lập chỉ mục 5 URL** trong Search Console — user định làm lúc 17:00 ngày 20/09 (hạn mức ~10/ngày). Nếu chưa: ô "Kiểm tra mọi URL" → dán URL đầy đủ → *Yêu cầu lập chỉ mục*:
+**Phiên sau bắt đầu bằng các việc này:**
+1. **Yêu cầu lập chỉ mục 5 URL** trong Search Console — 20/09 hết hạn mức, user định làm lại lúc 17:00. Nếu chưa xong: ô "Kiểm tra mọi URL" → dán URL đầy đủ → *Yêu cầu lập chỉ mục*:
    `https://duhoctesolhcmc.vn/` · `/truong/` · `/quoc-gia/my/` · `/quoc-gia/canada/` · `/quoc-gia/uc/`.
-2. **Rich Results Test** với URL ĐÚNG `https://duhoctesolhcmc.vn/truong/university-of-toronto-uoft/` (lần đầu Claude đưa nhầm `/university-of-toronto/` → 404). Kỳ vọng *Đường dẫn: 1 mục hợp lệ*.
-3. **GA4** — chờ user gửi mã đo lường `G-XXXXXXXXXX` → `python tools/add-ga4.py G-XXXX` (dry-run) → `--apply` → `verify-site.py` → deploy `html` → `live-compare.py`. Script đã viết, chưa chạy.
-4. **Từ ~2026-09-22** — user gửi ảnh *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*; Claude đọc, xử lý lỗi (kỳ vọng: 723 URL hợp lệ tăng dần, Breadcrumbs hợp lệ).
+2. **GA4 (đã hoãn)** — user 20/09: "bỏ qua phần google analytic làm sau nếu không quan trọng". Khi user muốn: gửi mã `G-XXXXXXXXXX` → `python tools/add-ga4.py G-XXXX` → `--apply` → `verify-site.py` → deploy `html` → `live-compare.py`.
+3. **Từ ~2026-09-22** — user gửi ảnh *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*; Claude đọc, xử lý lỗi (kỳ vọng: 723 URL hợp lệ tăng dần, Breadcrumbs hợp lệ).
    Google báo "Trùng lặp, Google chọn canonical khác" cho 10 bản tin gốc `/<slug>/` là **đúng thiết kế**, không sửa. 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` báo "Trang có lệnh chuyển hướng" cũng đúng.
+4. Việc tồn: #7 (32 trang trường có mô tả tiếng Việt trong `<h1>`) — **chỉ làm khi user yêu cầu**.
+
+> ❗ **Site này KHÔNG phải WordPress.** Không có `wp-admin`, `wp-login.php`, PHP hay database — tất cả trả 404. Thư mục `wp-content/` chỉ là tên còn lại từ bản WP export, bên trong chỉ có `themes/` (CSS, ảnh giao diện) và `uploads/` (ảnh).
+> Sửa nội dung = sửa file HTML trong repo rồi deploy. Nếu user hỏi tài khoản wp-admin: giải thích điều này, đừng đi tìm.
 
 ### Việc tiếp theo, theo thứ tự ưu tiên
 | # | Việc | Ai làm | Ghi chú |
 |---|---|---|---|
 | 1 | ~~Đổi mật khẩu FTP~~ — **user quyết định 2026-09-19: GIỮ NGUYÊN, không đổi.** Đừng nhắc lại. Credential ở `C:\Users\louis\.duhoctesol-ftp.cfg` (ngoài repo, KHÔNG có trong DEPLOY.md/HANDOFF.md — cố ý vì repo trên GitHub) → deploy không hỏi | — | xong |
 | 2 | **Google Search Console** — ✅ xác minh (Miền, TXT DNS) · ✅ sitemap **Thành công, 723 trang đã khám phá** (user xác nhận 20/09) · ✅ **Bing Webmaster import xong 20/09**. Còn: yêu cầu index 5 URL (user, 17:00 20/09) · đọc báo cáo từ 22/09 | user + Claude | chi tiết ở mục *Google Search Console* dưới bảng |
-| 3 | Kiểm **Rich Results Test** — dùng URL `https://duhoctesolhcmc.vn/truong/university-of-toronto-uoft/` | user | lần đầu 20/09 test nhầm URL không tồn tại → "không thể kiểm tra"; test lại với URL đúng, kỳ vọng *Breadcrumbs* 1 mục hợp lệ |
+| 3 | ✅ **xong 2026-09-20** — Rich Results Test `/truong/university-of-toronto-uoft/`: **10 mục hợp lệ** (Đường dẫn 1 · Doanh nghiệp địa phương 4 · Tổ chức 5). Cảnh báo "vấn đề không nghiêm trọng" = thiếu trường khuyến nghị → đã bổ sung, xem *Milestone 2026-09-20b* | user | |
 | 4 | ✅ **xong 2026-09-19** — title: sửa **170** (102 bị generator cũ cắt cứng ở 68 ký tự, 61 `thpt`→`THPT`, 3 trang học sinh, 4 stub ngành) | Claude | đã deploy · chi tiết ở *Milestone 2026-09-19* |
 | 5 | ✅ **xong 2026-09-19** — description: viết lại **273** (158 trùng + 129 THPT Mỹ bị cắt dở câu + 3 quá dài) · gỡ **35 canonical thừa** (9 trang sự kiện từng trỏ về `/su-kien/canada-fair/` 404) | Claude | đã deploy |
 | 6 | ✅ **xong 2026-09-19** — `https://duhoctesolhcmc.vn/llms.txt` (101 link), sinh bằng `tools/build-llms.py` | Claude | đã deploy, nằm trong phase `seo` |
@@ -29,7 +32,9 @@ Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 
 | 8 | ✅ **xong 2026-09-20** — 4 stub `/nganh-hoc/{cntt,ky-thuat}→cong-nghe`, `kinh-doanh→kinh-te`, `y-suc-khoe→suc-khoe` **301 trên server** (rule 1b trong block `.htaccess` của mình, bản sao ở `docs/server/`). File local vẫn giữ (748 không đổi), sitemap không chứa, `live-compare.py` kỳ vọng đúng 4 × 301 | Claude | user duyệt 20/09 |
 | 9 | ✅ **xong 2026-09-20** — `EducationalOrganization.description` + `WebSite.description` = **1 câu cố định** (câu của trang chủ) trên 748 trang, bằng `tools/fix-org-schema.py` (round-trip JSON byte-exact, 747 đổi). `verify-site.py` giờ kiểm luôn. Đã deploy, live == local | Claude | user duyệt 20/09 |
 | 10 | (không cần làm) 61 title trang trường dài > 65 ký tự | — | không bị cắt, chỉ Google rút gọn khi hiển thị; tên trường dài là lý do |
-| 11 | **Google Analytics 4** — chờ user tạo property GA4 và gửi mã `G-XXXXXXXXXX` | user → Claude | `tools/add-ga4.py` đã sẵn: chèn gtag.js trước `</head>` 748 trang (không đụng header/footer/meta), idempotent. Sau đó verify → deploy html → live-compare |
+| 11 | **Google Analytics 4** — user hoãn 20/09 ("làm sau nếu không quan trọng"). Khi cần: user gửi mã `G-XXXXXXXXXX` | user → Claude | `tools/add-ga4.py` đã sẵn: chèn gtag.js trước `</head>` 748 trang (không đụng header/footer/meta), idempotent. Sau đó verify → deploy html → live-compare |
+| 12 | ✅ **xong 2026-09-20** — số điện thoại: 1.497 link `tel:` + 748 link Zalo trỏ số Duy Study `0909542539` → đổi về `0906510747` (user xác nhận số chính thức). Schema `telephone` → E.164 `+84906510747` | Claude | 4 trang sự kiện giữ nguyên chữ ký Duy Study trong bài — cố ý |
+| 13 | ✅ **xong 2026-09-20** — làm giàu schema: Organization thêm `logo` `image` `address` `areaServed`; 3 LocalBusiness thêm `image`. **Không** thêm `priceRange`/`openingHours`/`sameAs`/`email` vì site không có dữ liệu thật | Claude | nếu sau này có fanpage/email chính thức thì thêm `sameAs`/`email` vào `tools/fix-org-schema.py` |
 
 
 ### Google Search Console (bắt đầu 2026-09-19)
@@ -68,6 +73,7 @@ Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DE
 | `tools/fix-org-schema.py` | đặt lại câu mô tả tổ chức cố định trong graph JSON-LD site-wide (748 trang). Chạy lại nếu sinh lại trang từ template WP cũ. Dry-run mặc định |
 | `tools/live-compare.py` | **chạy sau mỗi lần deploy** — GET từng URL không theo redirect, so byte với local. Kỳ vọng `identical 747 · expected 301 4 · OK — live == local` |
 | `tools/add-ga4.py` | chèn/thay khối gtag.js GA4 trước `</head>`; tham số mã `G-…`; dry-run mặc định, `--apply` ghi |
+| `tools/fix-contact.py` | đồng bộ số điện thoại trong `href` (`tel:` + `zalo.me/`). Chạy lại nếu sinh trang mới từ template cũ. Giữ nguyên chữ ký Duy Study trong 4 trang sự kiện |
 
 ### Git
 - Nhánh `tesol-content-rewrite` — đã push lên `origin` (github.com/louischansgvn-claude/duhoctesol). **Chưa merge vào `main`.**
@@ -122,6 +128,32 @@ site-wide (graph cũ — `EducationalOrganization` + `WebSite` + 3 `LocalBusines
   - `WebPage.name` lấy từ `<h1>`, **không** lấy `<title>`; `WebPage.description` = meta description (đồng bộ lại 2026-09-19)
 - **176 trang còn lại**: chỉ `BreadcrumbList` (trang chủ không có — breadcrumb chỉ 1 cấp)
 - Verify: 0 lỗi parse JSON · 2.287 mục breadcrumb đều trỏ trang có thật · `position` liên tục · header/footer vẫn 1 md5
+
+## Milestone 2026-09-20b — Số điện thoại/Zalo sai + làm giàu schema tổ chức (đã deploy)
+
+**OUTPUT** — DONE. Deploy `html` 0 lỗi · `live-compare.py`: identical 747 · expected 301 4 · OK. Commit: xem `git log` (sau `125df59`).
+
+**PROMPT/GOAL** — user: *"đã xong cái số 01, bỏ qua phần google analytic làm sau nếu không quan trọng, chuyển qua công việc khác"* →
+đọc cảnh báo "vấn đề không nghiêm trọng" của Rich Results Test và xử lý. Goal: dữ liệu có cấu trúc đủ trường khuyến nghị, không bịa dữ liệu.
+
+🔴 **Lỗi nghiêm trọng phát hiện khi đọc cảnh báo** (không nằm trong kế hoạch, đáng nhớ):
+Chân trang **hiển thị** `0906.510.747` nhưng thẻ `<a>` lại `href="tel:0909542539"` — số của Duy Study. Nút Zalo nổi cũng trỏ
+`zalo.me/0909542539`. Tức là suốt thời gian qua khách bấm nút gọi/Zalo trên **cả 748 trang** đều liên hệ nhầm sang công ty khác.
+Nguyên nhân sót: CLAUDE.md cấm sửa `href` trong task nội dung → mọi lần cập nhật trước chỉ đổi chữ hiển thị.
+User xác nhận `0906.510.747` là số chính thức → đổi **1.497** link `tel:` + **748** link Zalo (`tools/fix-contact.py`).
+**Bài học:** khi audit liên kết, `grep -E` KHÔNG hỗ trợ negative lookahead `(?!...)` — lần quét đầu dùng
+`href="https?://(?!duhoctesolhcmc\.vn)..."` nên im lặng bỏ sót toàn bộ 748 link Zalo. Dùng Python để quét liên kết ngoài.
+
+Làm giàu schema (đáp cảnh báo Rich Results): `EducationalOrganization` += `logo` + `image` (logo.png 760×760, có thật)
++ `address` (y hệt office-1, tránh lệch NAP) + `areaServed` "VN"; 3 `LocalBusiness` += `image`; mọi `telephone` → E.164 `+84906510747`.
+**Cố ý KHÔNG thêm** `priceRange`, `openingHours`, `sameAs`, `email`: site không có dữ liệu thật, bịa ra là sai lệch thông tin doanh nghiệp.
+
+Giữ nguyên: chữ ký Duy Study (hotline + email + hashtag) trong nội dung 4 trang `su-kien/` — user đã chốt từ phiên trước.
+Footer md5 đổi (link nằm trong `<footer>`): `3e1a808c…` → `3ae6ee31…`, vẫn đồng nhất 748/748.
+
+**Câu hỏi của user cuối phiên:** xin tài khoản wp-admin → **không có**. Đã kiểm: repo không có file `.php` nào,
+server trả 404 cho `/wp-admin/`, `/wp-login.php`, `/xmlrpc.php`; `wp-content/` trên server chỉ chứa `themes/` + `uploads/`.
+Site là HTML tĩnh, sửa nội dung phải qua repo + deploy.
 
 ## Milestone 2026-09-20 — Search Console hoàn tất phần Claude · 301 stub · Organization.description · GA4 chuẩn bị
 
@@ -345,7 +377,8 @@ Header/footer đồng nhất: kiểm bằng Python (xem invariants), **không** 
 
 ## Global invariants (cập nhật 2026-09-18 — site đã LIVE)
 - `index.html` == **748** · `truong/*` == **571** · `su-kien/*` == **9**
-- header == 1 md5 `482537d6b5e00b6df298935c27b4eefb` · footer == 1 md5 `3e1a808c1520d98d61f7616b4c193be1`
+- header == 1 md5 `482537d6b5e00b6df298935c27b4eefb` · footer == 1 md5 `3ae6ee31b32be287c3086bc59c27d427`
+  (footer md5 đổi 2026-09-20 khi sửa link `tel:` trong nút hotline; md5 cũ `3e1a808c1520d98d61f7616b4c193be1` đã hết hiệu lực)
   (dùng Python, **không** dùng awk one-liner — `<` `>` làm vỡ)
 - 🔴 **`noindex` == 0 trên mọi trang.** Site đã go-live. Invariant cũ "noindex có trên cả 171 trang" đã
   **HẾT HIỆU LỰC** — **tuyệt đối không thêm lại**, thêm lại là Google gỡ cả site khỏi kết quả tìm kiếm.
@@ -354,7 +387,9 @@ Header/footer đồng nhất: kiểm bằng Python (xem invariants), **không** 
 - đúng **1** `<link rel="canonical">` mỗi trang, `og:url` == canonical, đích canonical tồn tại · 0 `<title>` chứa `…` ·
   description 50–160 ký tự, không kết thúc bằng `…` · title/description không trùng giữa 2 trang trừ cặp canonical
   (10 bản tin gốc ↔ `/tin-tuc/`) · sitemap == **723** URL, tất cả tự-canonical — `tools/verify-site.py` kiểm hết
-- graph JSON-LD site-wide: `EducationalOrganization.description` == `WebSite.description` == 1 câu cố định (hằng `ORG_DESC` trong `tools/fix-org-schema.py` và `tools/verify-site.py`) trên cả 748 trang
+- graph JSON-LD site-wide giống hệt nhau trên 748 trang: `EducationalOrganization` (+`logo` `image` `address` `areaServed` `telephone`) và `WebSite` dùng chung 1 câu `ORG_DESC`;
+  mọi `telephone` == `+84906510747` (hằng trong `tools/fix-org-schema.py`, `verify-site.py` kiểm)
+- **0 thuộc tính `href` mang số Duy Study `0909542539`** (tel + zalo.me). Số đó chỉ được phép nằm trong NỘI DUNG 4 trang `su-kien/` — chữ ký bài viết, user dặn giữ
 - server: 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` trả **301** (rule 1b `.htaccess`); mọi URL khác trong sitemap trả 200 và == local (`tools/live-compare.py`)
 - 0 video demo Google (`M7lc1UVf-VE`, `ScMzIvxBSi4`); 0 link nội bộ gãy; 0 ảnh thiếu
 - org name luôn viết đầy đủ `Ban Du học Hội TESOL TP.HCM`; 0 lần `Du học TESOL` / `Công ty Tư vấn`

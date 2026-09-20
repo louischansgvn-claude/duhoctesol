@@ -36,6 +36,7 @@ Every implementation task in this repo follows this loop. Do NOT skip steps.
 ## Project rules (apply to all content tasks)
 - **Never change** the file count (currently **748**), any URL/slug/path, CSS/JS under `wp-content/**`, images, or any `class`/`href`. Replace only text inside tags unless a task explicitly adds new pages/links.
 - **Shared header/footer/meta** are byte-identical across all 748 files. Body tasks must NOT touch `<header>`, `<footer>`, `<meta>`, or JSON-LD unless a task explicitly changes shared navigation.
+- **`href` exception (2026-09-20):** the rule "never change any `href`" hid a real bug for months — the footer hotline and the floating Zalo button still pointed at Duy Study's number while the visible text showed the current one. When an `href` contradicts what the page displays, raise it; don't silently keep it.
 - **Brand stays:** `Du học TESOL` (header/footer/title/logo alt) is the site brand — keep it. It is a name, not a claim about specific TESOL programs.
 - **9 country video pages** live at `quoc-gia/{my,uc,canada,new-zealand,tho-nhi-ky,duc,ha-lan,singapore,han-quoc}/video/`. Nav has 5 dropdown-country video links (my/uc/canada/new-zealand/tho-nhi-ky); the other 4 link their video page from the country landing body (`Xem tất cả video`).
 - **Numbers are indicative** — hedge ("tham khảo", "cập nhật 2026"); use REAL program/school names.
@@ -45,7 +46,7 @@ Every implementation task in this repo follows this loop. Do NOT skip steps.
 - Revert plan: `docs/superpowers/plans/2026-07-09-revert-to-pre-tesol.md`
 - Live status & next steps: `HANDOFF.md`
 - Deploy runbook (FTP): `DEPLOY.md`
-- Tools (`tools/`): `verify-site.py` (**chạy trước deploy, phải OK**) · `live-compare.py` (**chạy sau deploy**) · `deploy-ftp.py` · `add-schema.py` · `fix-meta.py` · `fix-org-schema.py` · `build-llms.py` · `add-ga4.py` — bảng "Công cụ" trong `HANDOFF.md`
+- Tools (`tools/`): `verify-site.py` (**chạy trước deploy, phải OK**) · `live-compare.py` (**chạy sau deploy**) · `deploy-ftp.py` · `add-schema.py` · `fix-meta.py` · `fix-org-schema.py` · `fix-contact.py` · `build-llms.py` · `add-ga4.py` — bảng "Công cụ" trong `HANDOFF.md`
 - Archived TESOL docs (không còn phản ánh site): `docs/superpowers/plans/2026-07-03-duhoc-tesol-rewrite.md`, `docs/superpowers/specs/2026-07-02-duhoc-tesol-rewrite-design.md`, `docs/superpowers/research/2026-07-02-tesol-facts.md`
 - Progress ledger: `.superpowers/sdd/progress.md` (git-ignored)
 

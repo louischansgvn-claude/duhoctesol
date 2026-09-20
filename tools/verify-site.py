@@ -11,7 +11,11 @@ except Exception:
 TGT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://duhoctesolhcmc.vn"
 HEADER_MD5 = "482537d6b5e00b6df298935c27b4eefb"
-FOOTER_MD5 = "3e1a808c1520d98d61f7616b4c193be1"
+# đổi 2026-09-20: nút .footer-hotline trong <footer> từng trỏ tel:0909542539 (số Duy Study) trong khi
+# chữ hiển thị là 0906.510.747 -> sửa href cho khớp (xem tools/fix-contact.py). Md5 cũ: 3e1a808c1520d98d61f7616b4c193be1
+FOOTER_MD5 = "3ae6ee31b32be287c3086bc59c27d427"
+OLD_PHONE = "0909542539"                      # số Duy Study: chỉ được còn trong nội dung 4 trang sự kiện
+PHONE_TEL, PHONE_DISPLAY = "0906510747", "0906.510.747"
 EXPECT = {"index.html": 748, "truong": 571, "su-kien": 9, "page-schema": 747, "sitemap": 723}
 ORG_DESC = ("Ban Du học Hội TESOL TP.HCM đồng hành cùng học sinh và phụ huynh trong lộ trình du học: "
             "chọn quốc gia, chọn trường, học bổng, visa và chuẩn bị lên đường.")   # = tools/fix-org-schema.py
@@ -47,6 +51,11 @@ def main():
         fm.add(hashlib.md5(ft.group(0).encode()).hexdigest() if ft else "MISSING")
         n_noindex += "noindex" in s
         n_schema += 'id="page-schema"' in s
+        # điện thoại: mọi href phải là số chính thức; số cũ chỉ được nằm trong nội dung 4 trang sự kiện
+        check(f'href="tel:{OLD_PHONE}"' not in s and f"zalo.me/{OLD_PHONE}" not in s,
+              f"href vẫn mang số Duy Study cũ: {f}")
+        check(s.count(f'href="tel:{PHONE_TEL}"') >= 2, f"thiếu link tel chính thức: {f}")
+        check(PHONE_DISPLAY in s, f"không thấy số hiển thị chính thức: {f}")
         n_old += "duhoctesol.duystudy.vn" in s
         n_demo += bool(re.search(r"M7lc1UVf-VE|ScMzIvxBSi4", s))
         t = html.unescape(re.search(r"<title>(.*?)</title>", s, re.S).group(1))
