@@ -1,0 +1,53 @@
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php8_module>
+   php_value error_log "/home/infkkcwh/logs/php.error.log"
+   php_flag log_errors On
+</IfModule>
+<IfModule lsapi_module>
+   php_value error_log "/home/infkkcwh/logs/php.error.log"
+   php_flag log_errors On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+# BEGIN static-first  (them 2026-09-20)
+# Giai doan chuyen sang WordPress: file .html tinh duoc uu tien HON index.php.
+# Site tinh 748 trang van chay binh thuong du WordPress da nam san trong thu muc.
+# Khi doi sang WordPress: dao thu tu thanh  DirectoryIndex index.php index.html
+DirectoryIndex index.html index.php
+# END static-first
+
+# BEGIN duhoctesolhcmc.vn canonical host  (them 2026-09-18)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1. KHONG dung vao xac thuc SSL - neu chan, AutoSSL se khong gia han duoc cert
+RewriteRule ^\.well-known/ - [L]
+
+# 1b. 4 trang nganh rong tu WP export (soft-404) -> trang nganh that  (them 2026-09-20)
+RewriteRule ^nganh-hoc/cntt/?$ https://duhoctesolhcmc.vn/nganh-hoc/cong-nghe/ [R=301,L]
+RewriteRule ^nganh-hoc/ky-thuat/?$ https://duhoctesolhcmc.vn/nganh-hoc/cong-nghe/ [R=301,L]
+RewriteRule ^nganh-hoc/kinh-doanh/?$ https://duhoctesolhcmc.vn/nganh-hoc/kinh-te/ [R=301,L]
+RewriteRule ^nganh-hoc/y-suc-khoe/?$ https://duhoctesolhcmc.vn/nganh-hoc/suc-khoe/ [R=301,L]
+
+# 2. Subdomain test cu -> domain chinh
+RewriteCond %{HTTP_HOST} ^duhoctesol\.duystudy\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+
+# 3. Subdomain cPanel tu sinh khi tao addon domain -> domain chinh
+RewriteCond %{HTTP_HOST} ^duhoctesolhcmc\.vn\.amigoagency\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+
+# 4. www -> non-www  (canonical trong trang la non-www)
+RewriteCond %{HTTP_HOST} ^www\.duhoctesolhcmc\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+
+# 5. http -> https cho domain chinh
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} ^duhoctesolhcmc\.vn$ [NC]
+RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+</IfModule>
+# END duhoctesolhcmc.vn canonical host

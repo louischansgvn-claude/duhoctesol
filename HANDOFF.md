@@ -19,6 +19,49 @@ Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 
 > ❗ **Site này KHÔNG phải WordPress.** Không có `wp-admin`, `wp-login.php`, PHP hay database — tất cả trả 404. Thư mục `wp-content/` chỉ là tên còn lại từ bản WP export, bên trong chỉ có `themes/` (CSS, ảnh giao diện) và `uploads/` (ảnh).
 > Sửa nội dung = sửa file HTML trong repo rồi deploy. Nếu user hỏi tài khoản wp-admin: giải thích điều này, đừng đi tìm.
 
+### 🚧 ĐANG LÀM DỞ: chuyển site sang WordPress (user yêu cầu 2026-09-20)
+
+**Quyết định của user:** *"tôi cần bạn chuyển qua wordpress liền cho tôi"* + *"hãy học hỏi từ trang duystudy đã làm xong trước đó để build"*.
+Claude đã nêu rủi ro (site vừa nộp Google hôm 19/09) — user vẫn chốt làm. Tiến hành.
+
+**Phát hiện then chốt:** thư mục anh em `../duystudy - website/` **chính là bản WordPress đã sinh ra 748 trang tĩnh này**.
+WordPress 6.9.4, chạy **SQLite** qua drop-in `wp-content/db.php` (KHÔNG cần MySQL — rất hợp shared hosting chỉ có FTP).
+CSDL `.ht.sqlite` có đúng **571 school + 9 event + 2 post + 1 page**, slug trùng khít site tĩnh.
+CPT rewrite: `truong` · `su-kien` · `hoc-bong` · `hoc-sinh` · `lo-trinh-du-hoc`; `inc/routes.php` lo `/quoc-gia/`, `/nganh-hoc/`, `/tin-tuc/`
+→ **URL giữ nguyên 100%**, đây là điều kiện sống còn vì Google vừa bắt đầu index.
+Theme có sẵn `inc/seo.php` **1.796 dòng** tự sinh title/description/canonical/og/robots + JSON-LD
+(WebPage · WebSite · EducationalOrganization · LocalBusiness · CollegeOrUniversity · HighSchool · BreadcrumbList)
+→ phần SEO hai ngày qua làm bằng script trên file tĩnh, bên WordPress đã có sẵn cơ chế tương đương.
+
+**Cơ chế chuyển đổi an toàn (ĐÃ BẬT trên server):** `.htaccess` thêm khối `# BEGIN static-first` với
+`DirectoryIndex index.html index.php`. Nhờ vậy **WordPress nằm sẵn trong docroot mà site tĩnh vẫn chạy y nguyên**.
+Lên sóng WordPress = đảo thành `index.php index.html` + thêm khối rewrite WordPress. Quay lui = đảo ngược, vài giây.
+Đã verify sau khi bật: trang chủ/trang trường/CSS đều 200, 301 stub `nganh-hoc` vẫn đúng.
+
+| Bước | Trạng thái |
+|---|---|
+| Khảo sát nguồn, xác nhận URL/SEO tương thích | ✅ xong |
+| `.htaccess` static-first (WordPress vào không ảnh hưởng site đang chạy) | ✅ đã lên server, bản sao `docs/server/htaccess-live-2026-09-20b.txt` |
+| `tools/wp-prepare.py` → `wp-build/` (CSDL đổi domain + thương hiệu + mật khẩu admin mới, `wp-config.php` salt mới) | ✅ xong · 1.155 guid + 3 option + 2 post_content đổi sang `duhoctesolhcmc.vn`, 0 sót |
+| `tools/wp-deploy.py` (6 phase, 7.358 file / 770 MB) | ✅ viết xong, **CHƯA CHẠY — bị chặn** |
+| Tải lên server | 🔴 **BỊ CHẶN** bởi lớp kiểm duyệt Claude Code ("Production Deploy") — cần user cấp quyền |
+| Đổi thương hiệu trong theme (chuỗi "Duy Study" trong PHP), số điện thoại, 3 VP | ⬜ chưa |
+| Đối chiếu 723 URL WordPress vs bản tĩnh trước khi đổi | ⬜ chưa |
+| Đảo `DirectoryIndex` → lên sóng | ⬜ chưa |
+
+**Quy mô tải lên** (`python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg <phase>`):
+`core` 2.913 file/59 MB · `theme` 578/10,6 MB · `plugin` 46 · `db` 3/6,8 MB · `config` 1 · `uploads` 3.817/693 MB.
+Bỏ `inc/data` (1.521 file, 347 MB — chỉ seeder dùng, runtime không đọc).
+⚠️ **6 file theme KHÔNG được đè lúc này** (`KEEP_STATIC` trong `wp-deploy.py`): `assets/css/main.css`, `assets/js/main.js`,
+`logo.png`, `logo-full.png`, `campus-global.svg`, `hero-students.svg` — bản WordPress là **logo Duy Study** và CSS/JS mới hơn;
+đè bây giờ là đổi luôn logo của site đang chạy. Chỉ tải 6 file này ở bước đảo `DirectoryIndex`.
+
+⚠️ **Ảnh dùng hai hệ khác nhau:** site tĩnh `wp-content/uploads/thpt-seo/*.jpeg` (1.753 file, 438 MB);
+WordPress `wp-content/uploads/2026/07/*.jpeg` (3.817 file, 693 MB). Hai hệ này **cùng tồn tại được**, không đè nhau.
+Sau khi WordPress lên sóng và ổn định mới tính chuyện xoá hệ cũ.
+
+🔐 `wp-build/` **đã git-ignore** (chứa CSDL + `wp-config.php` + `ADMIN.txt` có mật khẩu admin). Không commit, không gửi qua chat.
+
 ### Việc tiếp theo, theo thứ tự ưu tiên
 | # | Việc | Ai làm | Ghi chú |
 |---|---|---|---|

@@ -9,3 +9,6 @@ wp-content/uploads/
 # Python bytecode cache
 __pycache__/
 *.pyc
+
+# WordPress build (CSDL + config + mật khẩu admin) - KHÔNG commit
+wp-build/
