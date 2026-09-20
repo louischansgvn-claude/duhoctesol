@@ -1,5 +1,17 @@
 # CLAUDE.md — Du học TESOL (site du học tổng quát)
 
+> ## ⚠️ ĐỌC TRƯỚC TIÊN (cập nhật 2026-09-20)
+> **Site đã chuyển sang WordPress.** https://duhoctesolhcmc.vn chạy WordPress 6.9.4 trên SQLite,
+> không còn là 748 trang HTML tĩnh. Theme nằm trong repo ở `wp-content/themes/duy-study/`.
+>
+> - Deploy: `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg theme` → `python tools/wp-verify.py` (phải 723/723).
+> - **Đừng chạy** `deploy-ftp.py`, `verify-site.py`, `live-compare.py`, `fix-meta.py`, `fix-org-schema.py`,
+>   `fix-contact.py`, `add-schema.py`, `build-llms.py`, `add-ga4.py` — công cụ thời site tĩnh, chạy là đè
+>   file HTML cũ lên server WordPress.
+> - **Đừng chạy phase `db`** của `wp-deploy.py` nếu user đã sửa nội dung trong wp-admin — sẽ xoá sạch.
+> - 748 file `index.html` tĩnh còn trong repo và trên server chỉ để làm đường lui, **không phải site nữa**.
+> - Các mục bên dưới viết cho thời site tĩnh; đọc `HANDOFF.md` trước khi làm bất cứ việc gì.
+
 Project: static Vietnamese **study-abroad** site (**748 HTML pages**, LIVE at https://duhoctesolhcmc.vn since 2026-09-18) built on the Duy Study template
 (originally a WordPress export). The content is **general du học** — định hướng, chọn quốc gia,
 chọn trường, ngành học, học bổng, visa và chuẩn bị trước khi lên đường. Design/CSS/images stay;

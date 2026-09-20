@@ -1,23 +1,49 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-20 (cuối phiên) — GSC xong phần làm được (sitemap 723 · Bing · Rich Results 10 mục hợp lệ) · 301 cho 4 stub ngành · số điện thoại + Zalo sửa về số chính thức (2.245 link) · Organization/LocalBusiness làm giàu schema. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-20 (cuối phiên) — **site đã chuyển sang WordPress**, 723/723 URL đạt. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
-**Site đang LIVE:** https://duhoctesolhcmc.vn — 748 trang · 571 trường · 9 sự kiện · 72 video thật · sitemap 723 URL · `llms.txt`.
-Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 file** (kiểm 2026-09-19).
-**Trước khi deploy bất kỳ lần nào:** `python tools/verify-site.py` phải in `OK — all invariants hold`.
+> ⚠️ **ĐỌC KỸ:** từ 2026-09-20 site chạy **WordPress**, KHÔNG còn là site HTML tĩnh.
+> Mọi hướng dẫn phía dưới có nhắc `deploy-ftp.py`, `verify-site.py`, `live-compare.py`, `fix-meta.py`,
+> `fix-org-schema.py`, `fix-contact.py`, `add-schema.py`, `build-llms.py`, `add-ga4.py`
+> **đều thuộc thời kỳ site tĩnh và KHÔNG được dùng nữa** — chạy chúng là ghi đè file tĩnh cũ lên server.
+> Giữ lại chỉ để tra cứu lịch sử. Công cụ dùng bây giờ: `wp-*.py` (xem bảng ngay dưới).
+
+**Site đang LIVE:** https://duhoctesolhcmc.vn — WordPress 6.9.4 trên SQLite · 571 trường · 9 sự kiện ·
+`robots.txt` / `llms.txt` / `wp-sitemap.xml` do WordPress tự sinh.
+Chi tiết đầy đủ ở mục **✅ SITE ĐÃ CHẠY WORDPRESS** ngay bên dưới.
+
+**Quy trình chuẩn khi sửa gì đó:**
+```bash
+# sửa theme trong repo: wp-content/themes/duy-study/...
+python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg theme      # đẩy theme (578 file, ~2 phút)
+python tools/wp-verify.py                                  # PHẢI in 723/723, ~3 phút
+```
+| Việc | Lệnh |
+|---|---|
+| Sửa theme (giao diện, SEO, chữ) | `wp-deploy.py … theme` |
+| Đổi nội dung CSDL từ máy | sửa `wp-build/.ht.sqlite` → `wp-deploy.py … db` (⚠️ **ghi đè CSDL trên server**, mất thay đổi user làm trong wp-admin) |
+| Thêm/bớt ảnh | `wp-deploy.py … uploads` |
+| Quay về site tĩnh (khẩn cấp) | `wp-deploy.py … htaccess-static` |
+| Trở lại WordPress | `wp-deploy.py … htaccess-wp` |
+
+> 🔴 **CSDL trên server là bản gốc kể từ khi user bắt đầu dùng wp-admin.** Đừng chạy phase `db`
+> nếu user đã tự sửa nội dung, sẽ xoá sạch công sức của họ. Muốn sửa nội dung → làm trong wp-admin,
+> hoặc tải CSDL từ server về trước.
 
 **Phiên sau bắt đầu bằng các việc này:**
-1. **Yêu cầu lập chỉ mục 5 URL** trong Search Console — 20/09 hết hạn mức, user định làm lại lúc 17:00. Nếu chưa xong: ô "Kiểm tra mọi URL" → dán URL đầy đủ → *Yêu cầu lập chỉ mục*:
+1. **Hỏi user đã làm 3 việc trong wp-admin chưa:** xoá `Hello world!` + `Sample Page`, đổi mật khẩu admin,
+   nộp `https://duhoctesolhcmc.vn/wp-sitemap.xml` vào Search Console.
+2. **Yêu cầu lập chỉ mục 5 URL** trong Search Console (20/09 hết hạn mức):
    `https://duhoctesolhcmc.vn/` · `/truong/` · `/quoc-gia/my/` · `/quoc-gia/canada/` · `/quoc-gia/uc/`.
-2. **GA4 (đã hoãn)** — user 20/09: "bỏ qua phần google analytic làm sau nếu không quan trọng". Khi user muốn: gửi mã `G-XXXXXXXXXX` → `python tools/add-ga4.py G-XXXX` → `--apply` → `verify-site.py` → deploy `html` → `live-compare.py`.
-3. **Từ ~2026-09-22** — user gửi ảnh *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*; Claude đọc, xử lý lỗi (kỳ vọng: 723 URL hợp lệ tăng dần, Breadcrumbs hợp lệ).
-   Google báo "Trùng lặp, Google chọn canonical khác" cho 10 bản tin gốc `/<slug>/` là **đúng thiết kế**, không sửa. 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` báo "Trang có lệnh chuyển hướng" cũng đúng.
-4. Việc tồn: #7 (32 trang trường có mô tả tiếng Việt trong `<h1>`) — **chỉ làm khi user yêu cầu**.
-
-> ❗ **Site này KHÔNG phải WordPress.** Không có `wp-admin`, `wp-login.php`, PHP hay database — tất cả trả 404. Thư mục `wp-content/` chỉ là tên còn lại từ bản WP export, bên trong chỉ có `themes/` (CSS, ảnh giao diện) và `uploads/` (ảnh).
-> Sửa nội dung = sửa file HTML trong repo rồi deploy. Nếu user hỏi tài khoản wp-admin: giải thích điều này, đừng đi tìm.
+3. **Từ ~2026-09-22** — user gửi ảnh *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*. Kỳ vọng: URL hợp lệ tăng dần.
+   Google báo "Trang có lệnh chuyển hướng" cho 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/`
+   và 5 URL `/bac-hoc/*` `/gia-tri-hoc-bong/*` là **đúng thiết kế**, không sửa.
+4. **GA4 (đã hoãn)** — user 20/09: *"bỏ qua phần google analytic làm sau nếu không quan trọng"*.
+   Khi user muốn: WordPress rồi nên **không dùng `add-ga4.py`** nữa; chèn mã `G-…` vào theme
+   (`wp-content/themes/duy-study/header.php` hoặc hook `wp_head`) rồi `wp-deploy.py … theme`.
+5. **Dọn 748 file tĩnh trên server** — chỉ khi user xác nhận WordPress đã ổn định. Xoá rồi mất đường lui.
 
 ### ✅ SITE ĐÃ CHẠY WORDPRESS (2026-09-20)
 
@@ -134,23 +160,22 @@ Trạng thái 2026-09-19: **ĐÃ XÁC MINH** thuộc tính Miền `duhoctesolhcm
 - Tiền kiểm 2026-09-19 (Claude): homepage 200, không có header `X-Robots-Tag`; sitemap/robots/llms trả 200; http + www đều 301 về `https://duhoctesolhcmc.vn/`.
 - Bước phụ đáng làm: **Bing Webmaster Tools** → "Import from Google Search Console" (1 click) — Bing index là nguồn của ChatGPT search / Copilot (GEO).
 
-### Deploy — 1 lệnh, không cần hỏi mật khẩu
+### Deploy — không cần hỏi mật khẩu
 Credential nằm **ngoài repo** ở `C:\Users\louis\.duhoctesol-ftp.cfg` (Git Bash: `~/.duhoctesol-ftp.cfg`).
-Nếu file tồn tại và không còn chuỗi `DANMATKHAUVAODAY` → deploy luôn, **không hỏi user**:
-```bash
-cd "/c/Users/louis/Dropbox/Tintt/claude code/duhoctesol"
-python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html     # chỉ sửa chữ  (~2 phút)
-python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg seo      # robots.txt + sitemap.xml + llms.txt
-python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg css      # main.css
-python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg images   # 442 MB (~4 phút) - chỉ khi đổi ảnh
-```
-Chỉ hỏi user khi: file mất · còn placeholder · `login` trả `530` (mật khẩu đã đổi).
-Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DEPLOY.md`.
+Có file thì deploy luôn, **không hỏi user**. Chỉ hỏi khi: file mất · còn placeholder · `login` trả `530`.
+Trên Windows dùng `python`, không phải `python3`.
 
-### Công cụ trong repo
-| File | Dùng khi |
+**Site chạy WordPress → chỉ dùng `tools/wp-deploy.py`.** Phase: `core` `theme` `theme-assets` `plugin`
+`db` `config` `uploads` `all` `htaccess-wp` `htaccess-static`. Xong thì chạy `python tools/wp-verify.py`.
+Quyền chạy đã được user cấp trong `.claude/settings.local.json` (`Bash(python tools/wp-deploy.py:*)`).
+
+<details><summary>Công cụ thời site tĩnh — KHÔNG dùng nữa, giữ để tra cứu</summary>
+
+⚠️ Chạy bất kỳ công cụ nào dưới đây là ghi đè file HTML tĩnh cũ lên server WordPress đang chạy.
+
+| File | Dùng khi (thời site tĩnh) |
 |---|---|
-| `tools/deploy-ftp.py` | deploy. Phase: `login` `images` `css` `html` `seo` `all`. Đã sửa chạy được trên Windows (path `\` → `/`, stdout UTF-8) |
+| `tools/deploy-ftp.py` | deploy site tĩnh. Phase: `login` `images` `css` `html` `seo` `all` |
 | `tools/add-schema.py` | **chạy lại mỗi khi sinh lại trang trường hoặc thêm trường mới.** Idempotent — thay khối `id="page-schema"` cũ, không nhân đôi. Đọc dataset từ thư mục anh em `../duystudy.vn - content/`. `WebPage.description` copy meta description → đổi description xong phải chạy lại |
 | `tools/verify-site.py` | **chạy trước mỗi lần deploy.** Kiểm 748/571/9, header/footer md5, `noindex`=0, 1 canonical/trang, title/description không cắt · không trùng · ≤160, sitemap 723 tự-canonical, JSON-LD parse. Phải in `OK — all invariants hold` |
 | `tools/fix-meta.py` | sửa title/description/canonical hàng loạt (2026-09-19). Dry-run mặc định, `--apply` ghi, `-v` in diff. Idempotent. Nếu sinh lại trang trường: chạy `fix-meta.py --apply` → `add-schema.py --apply` → `verify-site.py` |
@@ -158,13 +183,24 @@ Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DE
 | `tools/fix-org-schema.py` | đặt lại câu mô tả tổ chức cố định trong graph JSON-LD site-wide (748 trang). Chạy lại nếu sinh lại trang từ template WP cũ. Dry-run mặc định |
 | `tools/live-compare.py` | **chạy sau mỗi lần deploy** — GET từng URL không theo redirect, so byte với local. Kỳ vọng `identical 747 · expected 301 4 · OK — live == local` |
 | `tools/add-ga4.py` | chèn/thay khối gtag.js GA4 trước `</head>`; tham số mã `G-…`; dry-run mặc định, `--apply` ghi |
-| `tools/fix-contact.py` | đồng bộ số điện thoại trong `href` (`tel:` + `zalo.me/`). Chạy lại nếu sinh trang mới từ template cũ. Giữ nguyên chữ ký Duy Study trong 4 trang sự kiện |
+| `tools/fix-contact.py` | đồng bộ số điện thoại trong `href` (`tel:` + `zalo.me/`). Giữ nguyên chữ ký Duy Study trong 4 trang sự kiện |
+
+</details>
+
+### Công cụ WordPress — dùng từ 2026-09-20
+| File | Dùng khi |
+|---|---|
+| `tools/wp-deploy.py` | **deploy.** Đọc lõi WordPress + ảnh từ `../duystudy - website/wp`, đọc **theme từ repo này**, đọc CSDL + config từ `wp-build/`. Phase `htaccess-wp` / `htaccess-static` là công tắc đổi qua lại giữa WordPress và site tĩnh |
+| `tools/wp-verify.py` | **chạy sau mỗi lần deploy.** Gọi 723 URL trong sitemap: HTTP · title không cắt · canonical tự trỏ · có description · không lỗi PHP · đúng tên tổ chức · không sót số điện thoại cũ. Phải in **723/723** |
+| `tools/wp-prepare.py` | dựng lại `wp-build/` từ CSDL nguồn (đổi domain an toàn với dữ liệu serialize, đổi thương hiệu, xoá transient, giữ mật khẩu admin đã phát). ⚠️ chỉ dùng khi muốn **làm lại từ đầu** — sẽ mất mọi thứ user đã sửa trong wp-admin |
+| `tools/wp-theme-sync.py` | chép theme từ project Duy Study sang repo + đổi thương hiệu (201 chỗ). ⚠️ **ghi đè sửa đổi cục bộ trong theme** — chỉ chạy khi muốn lấy bản cập nhật mới từ bên đó |
 
 ### Git
 - Nhánh `tesol-content-rewrite` — đã push lên `origin` (github.com/louischansgvn-claude/duhoctesol). **Chưa merge vào `main`.**
-- ⚠️ **`wp-content/uploads/` KHÔNG nằm trong git** (`.gitignore`) — 1.753 ảnh / 442 MB.
-  Ảnh sống ở 3 nơi: thư mục repo trên Dropbox (bản làm việc) · server · nguồn gốc `../duystudy - website/wp/wp-content/uploads/`
-  và `../duystudy.vn - content/assets/`. Clone mới từ GitHub **sẽ không có ảnh** → deploy ảnh phải chạy từ máy có Dropbox.
+- ⚠️ **KHÔNG nằm trong git** (`.gitignore`): `wp-content/uploads/` (ảnh) và `wp-build/` (CSDL + `wp-config.php` + mật khẩu admin).
+  Lõi WordPress cũng không nằm trong repo — nó đọc thẳng từ `../duystudy - website/wp`.
+  **Trong repo có:** toàn bộ theme `wp-content/themes/duy-study/` (580 file) + `tools/` + tài liệu.
+  Clone mới từ GitHub sẽ **không deploy được** nếu thiếu thư mục anh em `duystudy - website` và `wp-build/` → phải chạy từ máy có Dropbox.
 
 ---
 
@@ -440,33 +476,39 @@ brand string `Du học TESOL` was removed site-wide on 2026-07-09). Old TESOL pl
 - **No internal/dev notes anywhere**: `bản dev`, `Liquid Glass design`, `demo`, `repo`, `trước khi công bố`,
   `Học phí cần xác nhận`, `Kết quả cần xác nhận` all = 0 hits.
 
-## FIRST THING ON RESUME — sanity check (cập nhật 2026-09-18, máy Windows)
+## FIRST THING ON RESUME — sanity check (cập nhật 2026-09-20, site đã là WordPress)
 ```bash
 cd "/c/Users/louis/Dropbox/Tintt/claude code/duhoctesol"
-git log --oneline | head -5
-git status --short | wc -l                                              # 0 = sạch
-find . -name index.html -not -path './.git/*' | wc -l                   # == 748
-ls -d truong/*/ | wc -l                                                 # == 571
-ls -d su-kien/*/ | wc -l                                                # == 9
-grep -rl 'noindex' --include=index.html . | wc -l                       # == 0  ← PHẢI = 0, site đang live
-grep -rl 'id="page-schema"' --include=index.html . | wc -l              # == 747
-grep -rl 'M7lc1UVf-VE\|ScMzIvxBSi4' --include=index.html . | wc -l      # == 0  (video demo Google)
-grep -rl 'duhoctesol.duystudy.vn' --include=index.html . | wc -l        # == 0  (domain cũ)
-grep -c '<loc>' sitemap.xml                                             # == 723
-python tools/verify-site.py                                             # "OK — all invariants hold"
-python tools/live-compare.py                                            # "OK — live == local" (747 identical + 4 expected 301)
-curl -s -o /dev/null -w '%{http_code}\n' https://duhoctesolhcmc.vn/     # 200
-curl -s https://duhoctesolhcmc.vn/truong/ | grep -o data-finder-card | wc -l   # 571
+git log --oneline | head -3
+git status --short | wc -l                                                  # 0 = sạch
+python tools/wp-verify.py                                                   # PHẢI in 723/723 (~3 phút)
+curl -s -o /dev/null -w '%{http_code}\n' https://duhoctesolhcmc.vn/wp-login.php   # 200 = WordPress sống
+curl -s https://duhoctesolhcmc.vn/robots.txt | head -3                      # WordPress sinh, trỏ wp-sitemap.xml
+ls wp-build/                                                                # .ht.sqlite · wp-config.php · ADMIN.txt
+ls wp-content/themes/duy-study/inc/seo.php                                  # theme phải có trong repo
 ```
-Header/footer đồng nhất: kiểm bằng Python (xem invariants), **không** dùng awk one-liner.
+`wp-verify.py` không đạt → xem nó báo URL nào, sửa theme rồi `wp-deploy.py … theme`.
+Site chết hẳn → `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg htaccess-static` để về bản tĩnh ngay.
 
-## Global invariants (cập nhật 2026-09-18 — site đã LIVE)
+## Global invariants — WordPress (từ 2026-09-20)
+- `tools/wp-verify.py` == **723/723**. Trong đó 718 trả 200, 5 URL 301 có chủ đích
+  (`/bac-hoc/{cao-dang,dai-hoc}/` → `/truong/`; `/gia-tri-hoc-bong/{25,50,toan-phan}/` → `/hoc-bong/`).
+- 🔴 **Không bao giờ thêm `noindex`.** Site đang được Google index.
+- Mọi URL tuyệt đối trỏ `https://duhoctesolhcmc.vn`; 0 lần `duhoctesol.duystudy.vn`; 0 lần `0909542539`.
+- Tên tổ chức luôn viết đủ `Ban Du học Hội TESOL TP.HCM`; **không** gọi là "Công ty" (là một ban thuộc hội).
+- Chữ "Duy Study" chỉ được xuất hiện trong **nội dung** trang sự kiện / tiêu đề video YouTube
+  (bài viết thật về sự kiện do Duy Study tổ chức), **không** được có trong mã theme.
+- `robots.txt` · `llms.txt` · `wp-sitemap.xml` do WordPress sinh — **đừng tạo lại file tĩnh** đè lên.
+- Logo `assets/img/logo.png` + `logo-full.png` + 2 file svg là **bản TESOL** — `wp-theme-sync.py` giữ lại,
+  đừng để bản logo Duy Study trong theme gốc ghi đè.
+
+<details><summary>Global invariants thời site tĩnh (HẾT HIỆU LỰC, giữ để tra cứu)</summary>
+
 - `index.html` == **748** · `truong/*` == **571** · `su-kien/*` == **9**
 - header == 1 md5 `482537d6b5e00b6df298935c27b4eefb` · footer == 1 md5 `3ae6ee31b32be287c3086bc59c27d427`
-  (footer md5 đổi 2026-09-20 khi sửa link `tel:` trong nút hotline; md5 cũ `3e1a808c1520d98d61f7616b4c193be1` đã hết hiệu lực)
-  (dùng Python, **không** dùng awk one-liner — `<` `>` làm vỡ)
-- 🔴 **`noindex` == 0 trên mọi trang.** Site đã go-live. Invariant cũ "noindex có trên cả 171 trang" đã
-  **HẾT HIỆU LỰC** — **tuyệt đối không thêm lại**, thêm lại là Google gỡ cả site khỏi kết quả tìm kiếm.
+  (footer md5 đổi 2026-09-20 khi sửa link `tel:`; md5 cũ `3e1a808c1520d98d61f7616b4c193be1`)
+- mọi trang (trừ trang chủ) có đúng 1 khối `id="page-schema"` · sitemap tĩnh 723 URL tự-canonical
+</details>
 - mọi URL tuyệt đối trỏ `https://duhoctesolhcmc.vn`; 0 lần xuất hiện `duhoctesol.duystudy.vn` trong HTML
 - mọi trang (trừ trang chủ) có đúng **1** khối `id="page-schema"`; mọi khối JSON-LD parse được
 - đúng **1** `<link rel="canonical">` mỗi trang, `og:url` == canonical, đích canonical tồn tại · 0 `<title>` chứa `…` ·
