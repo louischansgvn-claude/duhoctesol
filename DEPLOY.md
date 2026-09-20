@@ -14,8 +14,12 @@ python tools/verify-site.py                              # phải in "OK — all
 python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg html    # 748 index.html, ~2 phút
 python tools/deploy-ftp.py ~/.duhoctesol-ftp.cfg seo     # robots.txt + sitemap.xml + llms.txt
 ```
-Sau deploy: so byte live vs local (748 trang + 3 file seo, GET từng URL — LiteSpeed trả Content-Length sai với HEAD).
-Lần 2026-09-19 khớp **751/751**.
+Sau deploy: `python tools/live-compare.py` — kỳ vọng `identical 747 · expected 301 4 · OK — live == local` (4 stub `/nganh-hoc/` được 301 trong `.htaccess`; GET không theo redirect vì LiteSpeed trả Content-Length sai với HEAD).
+Lần 2026-09-20: 747 identical + 4 expected 301.
+
+`.htaccess` trên server: block `# BEGIN duhoctesolhcmc.vn canonical host` … `# END` là của mình (rule 1 well-known, **1b: 4 stub nganh-hoc → 301**, 2–5 host canonical);
+block PHP của cPanel phía trên giữ nguyên. Bản đang chạy: `docs/server/htaccess-live-2026-09-20.txt`; bản trước: `docs/server/htaccess-backup-2026-09-18.txt`.
+Sửa `.htaccess`: tải bản live về → sửa local → `curl -K ~/.duhoctesol-ftp.cfg -T file ftp://pbf43-22360.azdigihost.com/.htaccess` → curl trang chủ + 1 trang trường THẬT (vd `/truong/adrian-high-school/`) + CSS phải 200, sai thì upload lại bản cũ ngay trong cùng lệnh.
 
 ## Đổi domain — `duhoctesol.duystudy.vn` → `duhoctesolhcmc.vn`
 
@@ -234,6 +238,7 @@ Thêm các file đó vào vòng upload (đổi glob `**/index.html` → cần th
   Khi deploy: 782 HTML + 1.712 ảnh (414 MB) + `main.css`. Kiểm tra dung lượng host còn đủ trước khi đẩy.
 - 2026-09-18: **GO-LIVE domain mới `duhoctesolhcmc.vn`** — addon domain trỏ vào docroot cũ, AutoSSL, 301 trong `.htaccess`; deploy đủ 1.753 ảnh + 748 HTML + css + robots/sitemap (0 lỗi); xoá 34 thư mục demo; gỡ `noindex`; thêm JSON-LD `page-schema`. Live == local 748/748.
 - 2026-09-19: Deploy `html` + `seo` — 170 title, 273 description, 35 canonical thừa, 4 stub nganh-hoc, sitemap 723, `llms.txt` mới. Live == local 751/751.
+- 2026-09-20: `.htaccess` += rule 1b (4 stub → 301). Deploy `html` — Organization/WebSite.description cố định trên 748 trang. live-compare: 747 identical + 4 × 301.
 
 ## Xoá thư mục demo (bắt buộc sau lần deploy lớn đầu tiên)
 

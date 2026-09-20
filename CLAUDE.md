@@ -45,7 +45,7 @@ Every implementation task in this repo follows this loop. Do NOT skip steps.
 - Revert plan: `docs/superpowers/plans/2026-07-09-revert-to-pre-tesol.md`
 - Live status & next steps: `HANDOFF.md`
 - Deploy runbook (FTP): `DEPLOY.md`
-- Tools (`tools/`): `verify-site.py` (**chạy trước deploy, phải OK**) · `deploy-ftp.py` · `add-schema.py` · `fix-meta.py` · `build-llms.py` — bảng "Công cụ" trong `HANDOFF.md`
+- Tools (`tools/`): `verify-site.py` (**chạy trước deploy, phải OK**) · `live-compare.py` (**chạy sau deploy**) · `deploy-ftp.py` · `add-schema.py` · `fix-meta.py` · `fix-org-schema.py` · `build-llms.py` · `add-ga4.py` — bảng "Công cụ" trong `HANDOFF.md`
 - Archived TESOL docs (không còn phản ánh site): `docs/superpowers/plans/2026-07-03-duhoc-tesol-rewrite.md`, `docs/superpowers/specs/2026-07-02-duhoc-tesol-rewrite-design.md`, `docs/superpowers/research/2026-07-02-tesol-facts.md`
 - Progress ledger: `.superpowers/sdd/progress.md` (git-ignored)
 

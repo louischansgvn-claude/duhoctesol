@@ -13,6 +13,8 @@ BASE = "https://duhoctesolhcmc.vn"
 HEADER_MD5 = "482537d6b5e00b6df298935c27b4eefb"
 FOOTER_MD5 = "3e1a808c1520d98d61f7616b4c193be1"
 EXPECT = {"index.html": 748, "truong": 571, "su-kien": 9, "page-schema": 747, "sitemap": 723}
+ORG_DESC = ("Ban Du học Hội TESOL TP.HCM đồng hành cùng học sinh và phụ huynh trong lộ trình du học: "
+            "chọn quốc gia, chọn trường, học bổng, visa và chuẩn bị lên đường.")   # = tools/fix-org-schema.py
 
 
 def read(p):
@@ -77,6 +79,8 @@ def main():
             for node in j.get("@graph", []):
                 if node.get("@type") == "WebPage":
                     check(node.get("description") == d, f"WebPage.description ≠ meta description: {f}")
+                if node.get("@type") in ("EducationalOrganization", "WebSite") and node.get("@id", "").startswith(BASE + "/#"):
+                    check(node.get("description") == ORG_DESC, f"{node['@type']}.description not the fixed sentence: {f}")
     check(hm == {HEADER_MD5}, f"header md5 set = {hm}")
     check(fm == {FOOTER_MD5}, f"footer md5 set = {fm}")
     check(n_noindex == 0, f"noindex on {n_noindex} pages (must be 0 — site is live)")

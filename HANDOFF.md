@@ -1,6 +1,6 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-19 (cuối phiên) — SEO meta cleanup + `llms.txt` đã deploy · Google Search Console đã xác minh + nộp sitemap. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-20 — GSC: sitemap 723 OK + Bing import xong · 301 cho 4 stub ngành (server) · Organization.description cố định (748 trang, deployed) · GA4 chờ mã G-. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
@@ -8,26 +8,28 @@ _Last updated: 2026-09-19 (cuối phiên) — SEO meta cleanup + `llms.txt` đã
 Google đã được phép index (`noindex` đã gỡ). Live == local **751/751 file** (kiểm 2026-09-19).
 **Trước khi deploy bất kỳ lần nào:** `python tools/verify-site.py` phải in `OK — all invariants hold`.
 
-**Phiên sau bắt đầu bằng 3 việc này (theo ngày):**
-1. **Từ 2026-09-20** — user vào Search Console → ô "Kiểm tra mọi URL" → dán từng URL đầy đủ → *Yêu cầu lập chỉ mục* cho các URL còn thiếu trong 5 URL:
-   `https://duhoctesolhcmc.vn/` · `/truong/` · `/quoc-gia/my/` · `/quoc-gia/canada/` · `/quoc-gia/uc/` (hạn mức ~10/ngày, hôm 19/09 đã hết hạn mức giữa chừng).
-2. **Bing Webmaster** (chưa xác nhận đã làm): https://www.bing.com/webmasters → đăng nhập Google → *Import from Google Search Console* → tick `duhoctesolhcmc.vn`.
-3. **Từ ~2026-09-22** — user gửi ảnh *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*; Claude đọc, xử lý lỗi (kỳ vọng: 723 URL hợp lệ dần tăng, Breadcrumbs hợp lệ, 0 lỗi).
-   Trang bị Google báo "Trùng lặp, Google chọn canonical khác" cho 10 bản tin gốc `/<slug>/` là **đúng thiết kế** (canonical trỏ `/tin-tuc/`), không sửa.
+**Phiên sau bắt đầu bằng các việc này (theo ngày):**
+1. **Yêu cầu lập chỉ mục 5 URL** trong Search Console — user định làm lúc 17:00 ngày 20/09 (hạn mức ~10/ngày). Nếu chưa: ô "Kiểm tra mọi URL" → dán URL đầy đủ → *Yêu cầu lập chỉ mục*:
+   `https://duhoctesolhcmc.vn/` · `/truong/` · `/quoc-gia/my/` · `/quoc-gia/canada/` · `/quoc-gia/uc/`.
+2. **Rich Results Test** với URL ĐÚNG `https://duhoctesolhcmc.vn/truong/university-of-toronto-uoft/` (lần đầu Claude đưa nhầm `/university-of-toronto/` → 404). Kỳ vọng *Đường dẫn: 1 mục hợp lệ*.
+3. **GA4** — chờ user gửi mã đo lường `G-XXXXXXXXXX` → `python tools/add-ga4.py G-XXXX` (dry-run) → `--apply` → `verify-site.py` → deploy `html` → `live-compare.py`. Script đã viết, chưa chạy.
+4. **Từ ~2026-09-22** — user gửi ảnh *Lập chỉ mục → Trang* và *Cải tiến → Đường dẫn*; Claude đọc, xử lý lỗi (kỳ vọng: 723 URL hợp lệ tăng dần, Breadcrumbs hợp lệ).
+   Google báo "Trùng lặp, Google chọn canonical khác" cho 10 bản tin gốc `/<slug>/` là **đúng thiết kế**, không sửa. 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` báo "Trang có lệnh chuyển hướng" cũng đúng.
 
 ### Việc tiếp theo, theo thứ tự ưu tiên
 | # | Việc | Ai làm | Ghi chú |
 |---|---|---|---|
 | 1 | ~~Đổi mật khẩu FTP~~ — **user quyết định 2026-09-19: GIỮ NGUYÊN, không đổi.** Đừng nhắc lại. Credential ở `C:\Users\louis\.duhoctesol-ftp.cfg` (ngoài repo, KHÔNG có trong DEPLOY.md/HANDOFF.md — cố ý vì repo trên GitHub) → deploy không hỏi | — | xong |
-| 2 | **Google Search Console** — ✅ đã xác minh (Miền, TXT DNS) + ✅ đã nộp sitemap 2026-09-19. Còn: yêu cầu index 5 URL (từ 20/09) · Bing import · đọc báo cáo từ 22/09 | user + Claude | chi tiết ở mục *Google Search Console* dưới bảng |
-| 3 | Kiểm **Rich Results Test** với 1 trang trường | user | https://search.google.com/test/rich-results — kỳ vọng thấy *Breadcrumbs* hợp lệ |
+| 2 | **Google Search Console** — ✅ xác minh (Miền, TXT DNS) · ✅ sitemap **Thành công, 723 trang đã khám phá** (user xác nhận 20/09) · ✅ **Bing Webmaster import xong 20/09**. Còn: yêu cầu index 5 URL (user, 17:00 20/09) · đọc báo cáo từ 22/09 | user + Claude | chi tiết ở mục *Google Search Console* dưới bảng |
+| 3 | Kiểm **Rich Results Test** — dùng URL `https://duhoctesolhcmc.vn/truong/university-of-toronto-uoft/` | user | lần đầu 20/09 test nhầm URL không tồn tại → "không thể kiểm tra"; test lại với URL đúng, kỳ vọng *Breadcrumbs* 1 mục hợp lệ |
 | 4 | ✅ **xong 2026-09-19** — title: sửa **170** (102 bị generator cũ cắt cứng ở 68 ký tự, 61 `thpt`→`THPT`, 3 trang học sinh, 4 stub ngành) | Claude | đã deploy · chi tiết ở *Milestone 2026-09-19* |
 | 5 | ✅ **xong 2026-09-19** — description: viết lại **273** (158 trùng + 129 THPT Mỹ bị cắt dở câu + 3 quá dài) · gỡ **35 canonical thừa** (9 trang sự kiện từng trỏ về `/su-kien/canada-fair/` 404) | Claude | đã deploy |
 | 6 | ✅ **xong 2026-09-19** — `https://duhoctesolhcmc.vn/llms.txt` (101 link), sinh bằng `tools/build-llms.py` | Claude | đã deploy, nằm trong phase `seo` |
 | 7 | 32 trang trường có mô tả tiếng Việt dính vào `<h1>` + breadcrumb | Claude, **chỉ khi user yêu cầu** | vd `Đại học Cape Breton University (CBU – Thu hút rất đông sinh viên…)`. Schema + `<title>` đã sạch, chữ hiển thị vẫn còn. Nội dung có sẵn → user dặn không tự sửa |
-| 8 | (tuỳ chọn) 4 stub `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` = trang "Không tìm thấy" từ WP export | Claude, **hỏi user trước** | 2026-09-19 đã canonical về trang ngành thật + bỏ khỏi sitemap. Sạch hẳn thì thêm 301 vào block `.htaccess` của mình trên server — là sửa file server nên chưa làm |
-| 9 | (tuỳ chọn) graph JSON-LD site-wide: `EducationalOrganization.description` + `WebSite.description` copy description của từng trang → 607 trang mô tả tổ chức lệch (trang Anh mang câu của Đức…) | Claude, **hỏi user trước** | nên đặt 1 câu cố định cho cả 748 trang. CLAUDE.md cấm đụng JSON-LD site-wide nếu task không yêu cầu |
+| 8 | ✅ **xong 2026-09-20** — 4 stub `/nganh-hoc/{cntt,ky-thuat}→cong-nghe`, `kinh-doanh→kinh-te`, `y-suc-khoe→suc-khoe` **301 trên server** (rule 1b trong block `.htaccess` của mình, bản sao ở `docs/server/`). File local vẫn giữ (748 không đổi), sitemap không chứa, `live-compare.py` kỳ vọng đúng 4 × 301 | Claude | user duyệt 20/09 |
+| 9 | ✅ **xong 2026-09-20** — `EducationalOrganization.description` + `WebSite.description` = **1 câu cố định** (câu của trang chủ) trên 748 trang, bằng `tools/fix-org-schema.py` (round-trip JSON byte-exact, 747 đổi). `verify-site.py` giờ kiểm luôn. Đã deploy, live == local | Claude | user duyệt 20/09 |
 | 10 | (không cần làm) 61 title trang trường dài > 65 ký tự | — | không bị cắt, chỉ Google rút gọn khi hiển thị; tên trường dài là lý do |
+| 11 | **Google Analytics 4** — chờ user tạo property GA4 và gửi mã `G-XXXXXXXXXX` | user → Claude | `tools/add-ga4.py` đã sẵn: chèn gtag.js trước `</head>` 748 trang (không đụng header/footer/meta), idempotent. Sau đó verify → deploy html → live-compare |
 
 
 ### Google Search Console (bắt đầu 2026-09-19)
@@ -63,6 +65,9 @@ Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DE
 | `tools/verify-site.py` | **chạy trước mỗi lần deploy.** Kiểm 748/571/9, header/footer md5, `noindex`=0, 1 canonical/trang, title/description không cắt · không trùng · ≤160, sitemap 723 tự-canonical, JSON-LD parse. Phải in `OK — all invariants hold` |
 | `tools/fix-meta.py` | sửa title/description/canonical hàng loạt (2026-09-19). Dry-run mặc định, `--apply` ghi, `-v` in diff. Idempotent. Nếu sinh lại trang trường: chạy `fix-meta.py --apply` → `add-schema.py --apply` → `verify-site.py` |
 | `tools/build-llms.py` | sinh lại `llms.txt` từ title/description thật. Chạy khi đổi description trang hub hoặc thêm/bớt trang, rồi deploy phase `seo` |
+| `tools/fix-org-schema.py` | đặt lại câu mô tả tổ chức cố định trong graph JSON-LD site-wide (748 trang). Chạy lại nếu sinh lại trang từ template WP cũ. Dry-run mặc định |
+| `tools/live-compare.py` | **chạy sau mỗi lần deploy** — GET từng URL không theo redirect, so byte với local. Kỳ vọng `identical 747 · expected 301 4 · OK — live == local` |
+| `tools/add-ga4.py` | chèn/thay khối gtag.js GA4 trước `</head>`; tham số mã `G-…`; dry-run mặc định, `--apply` ghi |
 
 ### Git
 - Nhánh `tesol-content-rewrite` — đã push lên `origin` (github.com/louischansgvn-claude/duhoctesol). **Chưa merge vào `main`.**
@@ -86,7 +91,7 @@ Trên Windows dùng `python`, không phải `python3`. Runbook đầy đủ: `DE
 | `sitemap.xml` | **723 URL** (748 − 11 trang robots chặn − 10 bản tin trùng − 4 stub `/nganh-hoc/`) — mọi URL đều tự-canonical |
 | `llms.txt` | https://duhoctesolhcmc.vn/llms.txt — 101 link, `text/plain`, sinh bằng `tools/build-llms.py` |
 | canonical | đúng **1 thẻ/trang**, `og:url` == canonical. 2026-09-19 gỡ 35 thẻ thừa (9 trang sự kiện từng trỏ nhầm về `/su-kien/canada-fair/` đã xoá) |
-| 301 (`.htaccess`) | subdomain cũ + `duhoctesolhcmc.vn.amigoagency.vn` + `www` + `http` → `https://duhoctesolhcmc.vn`, **giữ nguyên đường dẫn** |
+| 301 (`.htaccess`) | subdomain cũ + `duhoctesolhcmc.vn.amigoagency.vn` + `www` + `http` → `https://duhoctesolhcmc.vn`, **giữ nguyên đường dẫn**. **20/09 thêm rule 1b:** 4 stub `/nganh-hoc/` → trang ngành thật (1 hop, đích tuyệt đối). Bản live + bản backup trước đó lưu ở `docs/server/` |
 | `.well-known/` | loại trừ khỏi 301 — nếu chặn, AutoSSL không gia hạn được cert, sau 90 ngày site chết HTTPS |
 | 10 bài tin trùng `/<slug>/` + `/tin-tuc/<slug>/` | bản root (rác WP export, không ai link tới) đã trỏ canonical về bản `/tin-tuc/` |
 
@@ -117,6 +122,20 @@ site-wide (graph cũ — `EducationalOrganization` + `WebSite` + 3 `LocalBusines
   - `WebPage.name` lấy từ `<h1>`, **không** lấy `<title>`; `WebPage.description` = meta description (đồng bộ lại 2026-09-19)
 - **176 trang còn lại**: chỉ `BreadcrumbList` (trang chủ không có — breadcrumb chỉ 1 cấp)
 - Verify: 0 lỗi parse JSON · 2.287 mục breadcrumb đều trỏ trang có thật · `position` liên tục · header/footer vẫn 1 md5
+
+## Milestone 2026-09-20 — Search Console hoàn tất phần Claude · 301 stub · Organization.description · GA4 chuẩn bị
+
+**OUTPUT** — DONE (trừ GA4 chờ mã). `.htaccess` server thêm rule 1b (4 × 301), kiểm: 4 stub 301 đúng đích, trang chủ/trang trường/CSS/`/nganh-hoc/` 200,
+www + domain cũ vẫn 301, `.well-known` không bị đụng, md5 server == bản local. `tools/fix-org-schema.py --apply`: 747 trang, round-trip JSON
+byte-exact; deploy `html` 0 lỗi; `tools/live-compare.py`: identical 747 · expected 301 4 · OK. Commit: xem `git log` (sau `3fcaf2f`).
+File mới: `tools/fix-org-schema.py`, `tools/live-compare.py`, `tools/add-ga4.py`, `docs/server/htaccess-live-2026-09-20.txt`, `docs/server/htaccess-backup-2026-09-18.txt`.
+
+**PROMPT/GOAL** — user: *"các phần liên quan tới google search console chưa xong thì tiến hành xử lý cho xong rồi tiếp tục các công việc còn lại, step by step"*.
+Goal theo dõi: GSC xong phần làm được (sitemap 723 ✅, Bing ✅, index request chờ hạn mức 17:00, Rich Results test lại URL đúng) → 301 stub → mô tả tổ chức cố định → GA4.
+Ràng buộc giữ: không đổi body/header/footer/file count; `.htaccess` chỉ sửa trong block của mình, có rollback tự động trong cùng lệnh.
+
+Ghi chú: lần upload `.htaccess` đầu bị rollback tự động vì URL health-check `/truong/university-of-toronto/` không tồn tại (slug thật `-uoft`), không phải lỗi rewrite;
+lần 2 dùng `/truong/adrian-high-school/` → OK. Cùng lỗi URL đó khiến user test Rich Results bị "không thể kiểm tra" → đã đưa URL đúng.
 
 ## Milestone 2026-09-19 — SEO meta cleanup + `llms.txt` (đã deploy)
 
@@ -318,6 +337,7 @@ grep -rl 'M7lc1UVf-VE\|ScMzIvxBSi4' --include=index.html . | wc -l      # == 0  
 grep -rl 'duhoctesol.duystudy.vn' --include=index.html . | wc -l        # == 0  (domain cũ)
 grep -c '<loc>' sitemap.xml                                             # == 723
 python tools/verify-site.py                                             # "OK — all invariants hold"
+python tools/live-compare.py                                            # "OK — live == local" (747 identical + 4 expected 301)
 curl -s -o /dev/null -w '%{http_code}\n' https://duhoctesolhcmc.vn/     # 200
 curl -s https://duhoctesolhcmc.vn/truong/ | grep -o data-finder-card | wc -l   # 571
 ```
@@ -334,6 +354,8 @@ Header/footer đồng nhất: kiểm bằng Python (xem invariants), **không** 
 - đúng **1** `<link rel="canonical">` mỗi trang, `og:url` == canonical, đích canonical tồn tại · 0 `<title>` chứa `…` ·
   description 50–160 ký tự, không kết thúc bằng `…` · title/description không trùng giữa 2 trang trừ cặp canonical
   (10 bản tin gốc ↔ `/tin-tuc/`) · sitemap == **723** URL, tất cả tự-canonical — `tools/verify-site.py` kiểm hết
+- graph JSON-LD site-wide: `EducationalOrganization.description` == `WebSite.description` == 1 câu cố định (hằng `ORG_DESC` trong `tools/fix-org-schema.py` và `tools/verify-site.py`) trên cả 748 trang
+- server: 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` trả **301** (rule 1b `.htaccess`); mọi URL khác trong sitemap trả 200 và == local (`tools/live-compare.py`)
 - 0 video demo Google (`M7lc1UVf-VE`, `ScMzIvxBSi4`); 0 link nội bộ gãy; 0 ảnh thiếu
 - org name luôn viết đầy đủ `Ban Du học Hội TESOL TP.HCM`; 0 lần `Du học TESOL` / `Công ty Tư vấn`
 - 0 ghi chú nội bộ/dev/demo trong `index.html`
