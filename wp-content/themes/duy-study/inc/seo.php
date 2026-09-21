@@ -673,6 +673,18 @@ function duy_seo_image( string $path ): array {
 
 function duy_seo_is_noindex_route( string $path ): bool {
 	$path = trim( $path, '/' );
+
+	// Trang danh sách rỗng là trang mỏng: không index và không vào sitemap
+	// (duy_virtual_sitemap_routes lọc theo đúng hàm này). Có nội dung thật thì
+	// tự động index lại, không phải sửa code.
+	if ( 'hoc-bong' === $path ) {
+		return ! duy_demo_scholarships();
+	}
+
+	if ( 'hoc-sinh' === $path ) {
+		return ! ( duy_demo_stories() || duy_demo_pairs() );
+	}
+
 	foreach ( DUY_SEO_NOINDEX_PATTERNS as $pattern ) {
 		if ( ! preg_match( $pattern, $path ) ) {
 			continue;

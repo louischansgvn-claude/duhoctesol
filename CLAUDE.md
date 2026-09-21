@@ -10,6 +10,11 @@
 >   file HTML cũ lên server WordPress.
 > - **Đừng chạy phase `db`** của `wp-deploy.py` nếu user đã sửa nội dung trong wp-admin — sẽ xoá sạch.
 > - 748 file `index.html` tĩnh còn trong repo và trên server chỉ để làm đường lui, **không phải site nữa**.
+> - **Nội dung mẫu nằm trong code theme, không phải trong CSDL.** `inc/demo-data.php` có các hàm
+>   `duy_demo_*()` chèn dữ liệu cứng khi CSDL chưa có bài tương ứng. Ngày 21/09/2026 đã gỡ 7 học bổng
+>   và 7 câu chuyện học sinh bịa khỏi đó. Gặp nội dung đáng ngờ trên site thì tìm ở đây trước —
+>   **xoá trong wp-admin không có tác dụng** với loại này. Đừng chạy `wp-theme-sync.py` nếu không
+>   chắc, nó chép đè theme từ project Duy Study và có thể làm dữ liệu mẫu sống lại.
 > - Các mục bên dưới viết cho thời site tĩnh; đọc `HANDOFF.md` trước khi làm bất cứ việc gì.
 
 Project: static Vietnamese **study-abroad** site (**748 HTML pages**, LIVE at https://duhoctesolhcmc.vn since 2026-09-18) built on the Duy Study template

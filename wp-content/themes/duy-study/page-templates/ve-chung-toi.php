@@ -154,8 +154,9 @@ duy_page_hero(
 	</div>
 </section>
 
+<?php $duy_about_quotes = array_slice( duy_demo_pairs(), 0, 2 ); ?>
 <section class="band">
-	<div class="wrap grid g2" style="align-items:start">
+	<div class="wrap<?php echo $duy_about_quotes ? ' grid g2' : ''; ?>" style="align-items:start">
 		<div class="glass glass-strong single-hero-card">
 			<span class="eyebrow"><?php esc_html_e( 'Đối tác & thành tựu', 'duy-study' ); ?></span>
 			<h2><?php esc_html_e( 'Công bố có kiểm chứng', 'duy-study' ); ?></h2>
@@ -165,14 +166,16 @@ duy_page_hero(
 				<?php endforeach; ?>
 			</ul>
 		</div>
-		<div class="glass single-hero-card">
-			<span class="eyebrow"><?php esc_html_e( 'Phụ huynh & học sinh', 'duy-study' ); ?></span>
-			<?php
-			foreach ( array_slice( duy_demo_pairs(), 0, 2 ) as $pair ) :
-				duy_part( 'pull-quote', [ 'text' => $pair['quote'] ] );
-			endforeach;
-			?>
-		</div>
+		<?php if ( $duy_about_quotes ) : ?>
+			<div class="glass single-hero-card">
+				<span class="eyebrow"><?php esc_html_e( 'Phụ huynh & học sinh', 'duy-study' ); ?></span>
+				<?php
+				foreach ( $duy_about_quotes as $pair ) :
+					duy_part( 'pull-quote', [ 'text' => $pair['quote'] ] );
+				endforeach;
+				?>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>
 

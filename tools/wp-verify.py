@@ -28,6 +28,17 @@ EXPECT_301 = {   # 5 trang lưu trữ phân loại rỗng: theme cố ý không 
     "/gia-tri-hoc-bong/25/": "/hoc-bong/", "/gia-tri-hoc-bong/50/": "/hoc-bong/",
     "/gia-tri-hoc-bong/toan-phan/": "/hoc-bong/",
 }
+# 14 trang dữ liệu mẫu đã gỡ ngày 21/09/2026: 7 học bổng bịa (tên chương trình,
+# giá trị, deadline đều tự đặt) và 7 câu chuyện học sinh bịa. Chúng vẫn nằm trong
+# sitemap.xml tĩnh nộp hôm 19/09 nên phải khai báo là ĐÃ XOÁ, nếu không script báo lỗi.
+EXPECT_GONE = {
+    "/hoc-bong/early-bird-ca/", "/hoc-bong/future-leaders/", "/hoc-bong/global-excellence/",
+    "/hoc-bong/international-merit/", "/hoc-bong/principal-50/", "/hoc-bong/stem-30/",
+    "/hoc-bong/turkiye-pathway/",
+    "/hoc-sinh/an-nhien/", "/hoc-sinh/khuong-duy/", "/hoc-sinh/minh-anh/",
+    "/hoc-sinh/quoc-bao/", "/hoc-sinh/thao-vy/", "/hoc-sinh/thao-vy-video/",
+    "/hoc-sinh/tuong-van/",
+}
 ALLOW_BRAND = {"/",                       # trang chủ liệt kê tiêu đề sự kiện do Duy Study tổ chức
                "/quoc-gia/uc/", "/quoc-gia/uc/video/", "/quoc-gia/my/video/",
                "/quoc-gia/canada/video/",  # tiêu đề video từ kênh YouTube Duy Study — nội dung thật
@@ -70,6 +81,8 @@ def check(url):
     problems = []
     if path in EXPECT_301:
         return path, code, [] if code == 301 else [f"đáng lẽ 301 nhưng nhận HTTP {code}"]
+    if path in EXPECT_GONE:
+        return path, code, [] if code in (404, 410) else [f"đáng lẽ đã xoá nhưng nhận HTTP {code}"]
     if code != 200:
         return path, code, [f"HTTP {code}"]
     t = re.search(r"<title>(.*?)</title>", body, re.S)

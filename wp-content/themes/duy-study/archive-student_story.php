@@ -19,6 +19,7 @@ duy_page_hero(
 	'Stories'
 );
 ?>
+<?php if ( $stories || $pairs ) : ?>
 <section class="band" style="padding-top:1rem">
 	<div class="wrap">
 		<div class="feature-block glass glass-strong">
@@ -31,6 +32,7 @@ duy_page_hero(
 		</div>
 	</div>
 </section>
+<?php if ( $pairs ) : ?>
 <section class="band">
 	<div class="wrap">
 		<div class="vp-carousel" tabindex="0" aria-label="<?php esc_attr_e( 'Carousel video Ask Duy', 'duy-study' ); ?>">
@@ -44,6 +46,8 @@ duy_page_hero(
 		</div>
 	</div>
 </section>
+<?php endif; ?>
+<?php if ( $stories ) : ?>
 <section class="band">
 	<div class="wrap grid g4">
 		<?php foreach ( $stories as $story ) : ?>
@@ -51,5 +55,19 @@ duy_page_hero(
 		<?php endforeach; ?>
 	</div>
 </section>
+<?php endif; ?>
+<?php else : ?>
+<section class="band" style="padding-top:1rem">
+	<div class="wrap">
+		<div class="empty-state glass">
+			<?php echo duy_icon_tile( 'cap' ); ?>
+			<h2><?php esc_html_e( 'Câu chuyện học sinh đang được cập nhật', 'duy-study' ); ?></h2>
+			<p class="muted"><?php esc_html_e( 'Chúng tôi chỉ đăng câu chuyện của học sinh có thật, khi học sinh và gia đình đồng ý chia sẻ kết quả của mình.', 'duy-study' ); ?></p>
+			<p class="muted"><?php esc_html_e( 'Nếu bạn muốn biết hồ sơ như thế nào thì phù hợp với trường nào, chuyên viên sẽ trao đổi trực tiếp thay vì để bạn đọc một câu chuyện chung chung.', 'duy-study' ); ?></p>
+			<a class="btn btn-primary" href="<?php echo esc_url( duy_route_path( 'lien-he' ) ); ?>"><?php esc_html_e( 'Đăng ký tư vấn', 'duy-study' ); ?></a>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
 <?php
 get_footer();

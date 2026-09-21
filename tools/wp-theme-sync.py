@@ -28,8 +28,15 @@ SRC = os.path.join(os.path.dirname(TGT), "duystudy - website", "wp-content", "th
 DST = os.path.join(TGT, "wp-content", "themes", "duy-study")
 
 SKIP_DIRS = ("inc/data",)
+# Bản của repo này phải thắng bản nguồn. Ngoài 4 ảnh thương hiệu, 6 file dưới đã bị
+# sửa ngày 21/09/2026 để xoá 7 học bổng và 7 câu chuyện học sinh bịa (xem
+# duy_demo_scholarships_defaults / duy_demo_pairs / duy_demo_stories). Chép đè là
+# dữ liệu giả sống lại ngay trên production.
 KEEP_OURS = {"assets/img/logo.png", "assets/img/logo-full.png",
-             "assets/img/campus-global.svg", "assets/img/hero-students.svg"}
+             "assets/img/campus-global.svg", "assets/img/hero-students.svg",
+             "inc/demo-data.php", "inc/seo.php", "front-page.php",
+             "archive-scholarship.php", "archive-student_story.php",
+             "page-templates/ve-chung-toi.php"}
 TEXT_EXT = (".php", ".css", ".js", ".json", ".txt", ".md", ".html")
 
 ORG = "Ban Du học Hội TESOL TP.HCM"

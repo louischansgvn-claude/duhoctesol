@@ -75,6 +75,7 @@ duy_page_hero(
 		</div>
 	</section>
 <?php endif; ?>
+<?php if ( $scholarships ) : ?>
 <section class="band scholarship-results-band">
 	<div class="wrap finder" data-finder="scholarships" data-page-size="6">
 		<?php duy_part( 'finder-filter', [ 'type' => 'scholarships', 'heading' => 'Lọc học bổng' ] ); ?>
@@ -105,6 +106,19 @@ duy_page_hero(
 		</div>
 	</div>
 </section>
+<?php else : ?>
+<section class="band scholarship-results-band">
+	<div class="wrap">
+		<div class="empty-state glass">
+			<?php echo duy_icon_tile( 'award' ); ?>
+			<h2><?php esc_html_e( 'Danh sách học bổng đang được cập nhật', 'duy-study' ); ?></h2>
+			<p class="muted"><?php esc_html_e( 'Chúng tôi chỉ đăng học bổng đã xác nhận được với trường hoặc đơn vị cấp, kèm giá trị và deadline đúng theo thông báo chính thức.', 'duy-study' ); ?></p>
+			<p class="muted"><?php esc_html_e( 'Trong lúc chờ, chuyên viên có thể rà soát hồ sơ của bạn và chỉ ra những học bổng đang mở phù hợp với ngành, bậc học và ngân sách.', 'duy-study' ); ?></p>
+			<a class="btn btn-primary" href="<?php echo esc_url( duy_route_path( 'lien-he' ) ); ?>"><?php esc_html_e( 'Nhờ tư vấn học bổng theo hồ sơ', 'duy-study' ); ?></a>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
 <section class="band">
 	<div class="wrap listing-guide">
 		<div class="glass glass-strong rich-section">

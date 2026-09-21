@@ -134,18 +134,20 @@ get_header();
 	<div class="wrap">
 		<div class="section-head">
 			<span class="eyebrow"><?php esc_html_e( 'Gợi ý nổi bật', 'duy-study' ); ?></span>
-			<h2><?php esc_html_e( 'Trường và học bổng đang được quan tâm', 'duy-study' ); ?></h2>
+			<h2><?php echo esc_html( $scholarships ? __( 'Trường và học bổng đang được quan tâm', 'duy-study' ) : __( 'Trường đang được quan tâm', 'duy-study' ) ); ?></h2>
 		</div>
 		<div class="grid g3">
 			<?php foreach ( array_slice( $schools, 0, 3 ) as $school ) : ?>
 				<?php duy_part( 'card-school', [ 'item' => $school ] ); ?>
 			<?php endforeach; ?>
 		</div>
-		<div class="grid g3" style="margin-top:var(--gap)">
-			<?php foreach ( array_slice( $scholarships, 0, 3 ) as $scholarship ) : ?>
-				<?php duy_part( 'card-scholarship', [ 'item' => $scholarship ] ); ?>
-			<?php endforeach; ?>
-		</div>
+		<?php if ( $scholarships ) : ?>
+			<div class="grid g3" style="margin-top:var(--gap)">
+				<?php foreach ( array_slice( $scholarships, 0, 3 ) as $scholarship ) : ?>
+					<?php duy_part( 'card-scholarship', [ 'item' => $scholarship ] ); ?>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>
 
@@ -215,6 +217,7 @@ get_header();
 	</div>
 </section>
 
+<?php if ( $pairs ) : ?>
 <section class="band">
 	<div class="wrap">
 		<div class="section-head">
@@ -232,6 +235,7 @@ get_header();
 		</div>
 	</div>
 </section>
+<?php endif; ?>
 
 <section class="band">
 	<div class="wrap grid g2" style="align-items:start">

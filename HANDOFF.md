@@ -1,6 +1,6 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-20 (cuối phiên) — **site đã chuyển sang WordPress**, 723/723 URL đạt. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-21 — **đã gỡ 14 trang dữ liệu mẫu bịa** (7 học bổng + 7 câu chuyện học sinh), 723/723 URL đạt. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
@@ -43,7 +43,11 @@ python tools/wp-verify.py                                  # PHẢI in 723/723, 
 4. **GA4 (đã hoãn)** — user 20/09: *"bỏ qua phần google analytic làm sau nếu không quan trọng"*.
    Khi user muốn: WordPress rồi nên **không dùng `add-ga4.py`** nữa; chèn mã `G-…` vào theme
    (`wp-content/themes/duy-study/header.php` hoặc hook `wp_head`) rồi `wp-deploy.py … theme`.
-5. **Dọn 748 file tĩnh trên server** — chỉ khi user xác nhận WordPress đã ổn định. Xoá rồi mất đường lui.
+5. **Hỏi user về 10 bài `/tin-tuc/`** — cũng là dữ liệu mẫu (`duy_demo_news_defaults()`): tiêu đề hứa hẹn
+   tin thật ("Úc cập nhật chính sách visa 500 cho 2026") nhưng thân bài là một đoạn khuôn dùng chung cho
+   cả 10 bài, chỉ đổi tên chủ đề. Chưa xoá vì bỏ cả mục Tin tức là quyết định nội dung của user, không phải
+   lỗi rõ ràng như học bổng/câu chuyện bịa. Ba hướng: viết lại bằng nội dung thật · xoá cả mục · để nguyên.
+6. **Dọn 748 file tĩnh trên server** — chỉ khi user xác nhận WordPress đã ổn định. Xoá rồi mất đường lui.
 
 ### ✅ SITE ĐÃ CHẠY WORDPRESS (2026-09-20)
 
@@ -57,7 +61,7 @@ python tools/wp-verify.py                                  # PHẢI in 723/723, 
 | Ảnh | `wp-content/uploads/2026/07/…` (3.817 file) — hệ ảnh của WordPress |
 | robots.txt · llms.txt · wp-sitemap.xml | **WordPress tự sinh**, luôn cập nhật. 3 file tĩnh cũ đã xoá khỏi server |
 | `/sitemap.xml` | 301 → `/wp-sitemap.xml` (giữ cho mục đã khai báo trong Search Console không lỗi) |
-| Đường lui | `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg htaccess-static` → về site tĩnh trong vài giây (748 file `index.html` vẫn còn trên server) |
+| Đường lui | `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg htaccess-static` → về site tĩnh trong vài giây (748 file `index.html` vẫn còn trên server). ⚠️ **Quay lui là 14 trang dữ liệu mẫu bịa sống lại** — xem mục "Đã gỡ dữ liệu mẫu" bên dưới |
 
 **Việc user nên làm trong wp-admin:** xoá 2 nội dung mặc định của WordPress (`Hello world!` và `Sample Page`),
 đổi mật khẩu admin, điền Hotline/Email/Zalo ở trang tuỳ chọn của theme (hiện đang dùng giá trị mặc định đã đúng).
@@ -66,6 +70,54 @@ python tools/wp-verify.py                                  # PHẢI in 723/723, 
 **Dọn dẹp còn lại (chưa làm, không gấp):** 748 file `index.html` + thư mục của site tĩnh vẫn nằm trên server,
 đang bị `.htaccess` cho qua (rule WordPress đã bỏ điều kiện `!-d`). Vô hại nhưng nên xoá khi đã chắc chắn,
 lúc đó có thể trả rule về bản mặc định của WordPress. Xoá rồi thì mất đường lui.
+
+### 🗑️ Đã gỡ 14 trang dữ liệu mẫu bịa (2026-09-21)
+
+User phát hiện các thẻ học bổng trên site là hàng mẫu: *"có một số giống như vầy đều đang là data
+mẫu/demo không phải trường thật, bạn kiểm tra lại rồi xóa đi"*. Kiểm lại thì đúng, và rộng hơn user thấy.
+
+**Đã gỡ 7 học bổng** — `principal-50` · `global-excellence` · `international-merit` · `future-leaders`
+· `stem-30` · `early-bird-ca` · `turkiye-pathway`. Tên chương trình, giá trị và deadline đều tự đặt,
+không tra được ở trường nào (University of Sydney không có "Học bổng Hiệu trưởng 50%"; học bổng quốc tế
+lớn nhất của University of Toronto là Lester B. Pearson). Thân bài chỉ có một câu khuôn lặp lại, còn ghi
+thẳng *"đơn vị cấp học bổng cần xác nhận"* — nhưng trang vẫn gắn nút **"Ứng tuyển học bổng"**.
+
+**Đã gỡ 7 câu chuyện học sinh** — `tuong-van` · `thao-vy-video` · `khuong-duy` · `minh-anh` · `quoc-bao`
+· `thao-vy` · `an-nhien`. Lời chứng thực bịa gắn tên người cụ thể và kết quả cụ thể ("Học bổng 100%",
+"Học bổng tiến sĩ 100%"), dùng chung một đoạn hành trình, ảnh stock của theme, không có video nào dù
+mục tên là "video-pair". Trang `an-nhien` còn ghi trường ở Mỹ nhưng quốc gia là Úc.
+
+> **Điểm quan trọng nhất cho phiên sau:** dữ liệu này **nằm trong code theme**, không phải trong CSDL.
+> `duy_demo_scholarships()` lấy bài thật rồi **chèn thêm bản mẫu cứng** cho id nào chưa có; `duy_demo_stories()`
+> và `duy_demo_pairs()` thì không đọc CSDL chút nào. Vì vậy **xoá trong wp-admin không có tác dụng** —
+> nội dung mẫu hiện lại ngay. Phải sửa theme rồi `wp-deploy.py … theme`.
+
+Cách sửa: ba hàm trên trả `[]`, giữ nguyên chữ ký để mọi lời gọi cũ vẫn chạy. Học bổng thật nhập ở
+wp-admin (CPT `scholarship`) vẫn vào site bình thường qua `duy_scholarship_cpt_cards()`.
+
+| File | Thay đổi |
+|---|---|
+| `inc/demo-data.php` | 3 hàm trả `[]`; xoá 5 danh sách `schols` trỏ tới học bổng đã gỡ |
+| `inc/mockup-v2-data.json` | xoá 5 danh sách `schols` tương ứng |
+| `inc/seo.php` | `/hoc-bong/` và `/hoc-sinh/` khi rỗng → `noindex` + tự rớt khỏi sitemap (có nội dung thật thì tự index lại) |
+| `front-page.php` | ẩn lưới thẻ học bổng và cả khối carousel học viên khi rỗng; đổi tiêu đề thành "Trường đang được quan tâm" |
+| `archive-scholarship.php` · `archive-student_story.php` | trạng thái rỗng "đang được cập nhật" + nút tư vấn, thay cho bộ lọc và lưới trống |
+| `page-templates/ve-chung-toi.php` | ẩn thẻ trích dẫn phụ huynh; lưới 2 cột tự về 1 cột |
+| `tools/wp-verify.py` | thêm `EXPECT_GONE` — 14 URL này phải trả 404 |
+| `tools/wp-theme-sync.py` | thêm 6 file trên vào `KEEP_OURS` |
+
+> ⚠️ **`wp-theme-sync.py` sẽ làm sống lại dữ liệu bịa nếu chạy ẩu.** Script chép theme từ
+> `../duystudy - website/` đè lên repo. 6 file đã sửa nay nằm trong `KEEP_OURS` nên được giữ, nhưng
+> nếu ai đó thêm file mới hoặc bỏ `KEEP_OURS` thì hàng mẫu quay lại. Theme giờ thuộc repo này, không cần
+> đồng bộ lại nữa.
+
+**Đã kiểm trên site thật:** 14 URL trả 404 · trang chủ, `/hoc-bong/`, `/hoc-sinh/`, `/ve-chung-toi/`,
+5 trang quốc gia, `/truong/` đều 200 và không còn tên bịa · hai trang danh sách rỗng có `noindex` +
+trạng thái rỗng · `/wp-sitemap.xml` không còn 14 URL · `wp-verify.py` **723/723**.
+
+**Chưa xử lý:** 10 bài `/tin-tuc/` cũng sinh từ `duy_demo_news_defaults()` — xem việc số 5 ở đầu file.
+Và 14 thư mục HTML tĩnh tương ứng vẫn nằm trong repo lẫn trên server (không được phục vụ, chỉ là ảnh
+chụp đường lui) — quay lui bằng `htaccess-static` là chúng sống lại.
 
 <details><summary>Nhật ký chuyển đổi (2026-09-20)</summary>
 
