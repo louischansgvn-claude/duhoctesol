@@ -1,6 +1,6 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-21 — **đã gỡ 14 trang dữ liệu mẫu bịa** (7 học bổng + 7 câu chuyện học sinh), 723/723 URL đạt. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-21 — **trả lại bộ nhận diện gốc** (logo + màu) và **gỡ 15 mục dữ liệu mẫu**, 723/723 URL đạt. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
@@ -70,6 +70,77 @@ python tools/wp-verify.py                                  # PHẢI in 723/723, 
 **Dọn dẹp còn lại (chưa làm, không gấp):** 748 file `index.html` + thư mục của site tĩnh vẫn nằm trên server,
 đang bị `.htaccess` cho qua (rule WordPress đã bỏ điều kiện `!-d`). Vô hại nhưng nên xoá khi đã chắc chắn,
 lúc đó có thể trả rule về bản mặc định của WordPress. Xoá rồi thì mất đường lui.
+
+### 🎨 Trả lại bộ nhận diện gốc (2026-09-21) — SỬA LỖI DO CHÍNH TA GÂY RA
+
+User: *"trang này thiết kế ban đầu trước khi chuyển qua wp design nội dung đã ok rồi, chỉ chuyển qua
+wp thôi, sao bạn lại bê y chang của duystudy qua vậy, phải làm đúng thiết kế, logo, màu sắc"*. **Đúng.**
+
+Chuyển sang WordPress hôm 20/09, `wp-theme-sync.py` chép theme từ `../duystudy - website/`. Nó có
+`KEEP_OURS` giữ `logo.png` + `logo-full.png`, nhưng **không chặn file MỚI**. Ba thứ lọt qua:
+
+| Lọt qua | Hậu quả | Đã xử lý |
+|---|---|---|
+| `assets/img/logo.webp` | `duy_logo_uri()` ưu tiên `.webp` hơn `.png` → **site treo logo "DUY Study" suốt từ 20/09** | xoá khỏi repo **và khỏi server** |
+| `assets/img/og-default.jpg` | ảnh bìa khi chia sẻ link lên Facebook/Zalo là **poster Duy Study** | xoá; quay về `photo-campus-library.webp` như bản tĩnh |
+| bảng màu trong `main.css`, `theme.json`, 7 SVG | đổi cả site sang **cyan `#23a9d8` + hồng `#df1f83`** của Duy Study | trả về **navy `#173C8F` + đỏ `#C4302B`** |
+
+Màu gốc lấy từ chính logo `logo.png`: chữ **TESOL** navy, chữ **HCMC** đỏ. Ảnh học bổng user gửi
+(nút hồng, viền hồng) là bằng chứng trực tiếp của lỗi này.
+
+**Cách sửa:** chỉ đổi GIÁ TRỊ MÀU (116 chỗ), giữ nguyên mọi bổ sung CSS thật sự cần cho bản WordPress
+(`.pagination`, `.ev-thumb`, `.country-video-*`, `.article-body .post-content`…). Đã đối chiếu
+`main.css` với bản trước khi chuyển (`72af1df`): khác biệt còn lại **không còn dòng màu nào**.
+
+> ⚠️ **FTP chỉ biết tải lên, không tự xoá.** Xoá file trong repo là chưa đủ — bản trên server vẫn
+> còn và vẫn được phục vụ. Đã thêm phase `wp-deploy.py … prune-brand` để gọi lệnh FTP `DELE`.
+> Cần xoá file nào trên server thì thêm vào hằng `PRUNE`.
+
+`wp-theme-sync.py` nay có `SKIP_FILES` (không bao giờ chép `logo.webp`/`og-default.jpg`) và `KEEP_OURS`
+đã gồm `main.css`, `theme.json`, 7 SVG cùng các file template đã sửa.
+
+**Đã kiểm trên site thật:** logo = `logo.png` · og:image = `photo-campus-library.webp` ·
+hai file Duy Study trả 404 · `main.css` trên server có `--primary:#173C8F` và `--accent:#C4302B`,
+không còn `#23a9d8`/`#df1f83`.
+
+### 🏫 Gỡ trường mẫu METU + trang ngành học hết rỗng (2026-09-21)
+
+`inc/mockup-v2-data.json` còn đúng **1 trường dựng sẵn: `metu`** (Middle East Technical University,
+"Top Turkey", 6.000 USD/năm). METU là trường có thật ở Ankara nhưng **không có bài `school` nào** đứng
+sau, nên `/truong/metu/` là trang ma dựng từ mảng mockup. Đã xoá → URL đó trả 404.
+
+Gỡ xong lộ ra vấn đề lớn hơn user đã chỉ (*"hiển thị các trường đang có ra"*): **4/5 trang
+`/nganh-hoc/` không còn trường nào**. Nguyên nhân: 571 trường thật đều có `major` rỗng và `programs`
+rỗng (importer không điền), còn `desc` chỉ là câu giới thiệu chung → cách khớp cũ (dò chuỗi trong
+`major`/`desc`/`programs`) chỉ khớp được đúng mục mockup METU.
+
+**Cách sửa** (`duy_major_match_rules()` trong `inc/mockup-v2-data.php`): khớp theo **TÊN trường** —
+tín hiệu đáng tin duy nhất — kèm `exclude` chặn khớp bẫy và `levels` giới hạn bậc học:
+
+| Ngành | Cách khớp | Kết quả |
+|---|---|---|
+| Công nghệ | tên có *University of Technology*, *Polytechnic*, *Engineering*… | 28 trường (TUM, TU Delft, TU/e, AUT…) |
+| Kinh tế | tên có *Business*, *Commerce*, *Economics*, *Hospitality*… | 17 trường (LSE, Geneva Business School, EHL…) |
+| Tiếng Anh | **đúng bằng bậc học `anh-ngu`**, không đoán từ tên | 7 trung tâm Anh ngữ Philippines |
+| Sức khoẻ | *medical*, *nursing*, *pharmac*… — **loại "medicine hat"** | 0 (xem ghi chú) |
+| Giáo dục | *college of education*, *teachers college*… — **loại "higher education"** | 0 (xem ghi chú) |
+
+> Hai `exclude` trên là khớp bẫy có thật: **Medicine Hat College** lấy tên thành phố ở Alberta chứ
+> không phải trường y; **Glion Institute of Higher Education** / **Les Roches Global Hospitality
+> Education** là trường khách sạn, không phải sư phạm. Không chặn là site nói sai về trường.
+
+Ngành chưa khớp đủ 4 trường thì **bù bằng đại học thật của các quốc gia tiêu biểu, luân phiên mỗi
+nước một trường** (Sức khoẻ → Melbourne · Toronto · Auckland, khớp đúng dòng "Quốc gia tiêu biểu" ngay
+phía trên). Tiêu đề đổi từ *"Trường tiêu biểu ngành X"* sang **"Gợi ý trường cho ngành X"** vì danh
+sách có thể gồm trường bù.
+
+**Không bù trên trang quốc gia** — 5 thẻ ngành nằm cạnh nhau, bù vào là cả 5 hiện y hệt nhau (Thổ Nhĩ
+Kỳ chỉ có 6 đại học). Thẻ không có trường vẫn hiện tiêu đề + mô tả, và ngay phía trên đã có lưới
+trường của chính quốc gia đó.
+
+> Cache thẻ trường sống 12 giờ (`duy_schools_cards`). Đổi dữ liệu trường mà không đổi khoá cache thì
+> server vẫn trả bản cũ. Đã đổi khoá sang `duy_schools_cards_v2` / `duy_school_order_v2`; **lần sau
+> sửa dữ liệu trường nhớ tăng số.**
 
 ### 🗑️ Đã gỡ 14 trang dữ liệu mẫu bịa (2026-09-21)
 

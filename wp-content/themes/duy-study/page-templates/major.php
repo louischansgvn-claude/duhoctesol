@@ -88,7 +88,7 @@ get_header();
 		</div>
 
 		<div class="results-top">
-			<h2><?php echo esc_html( 'Trường tiêu biểu ngành ' . $title ); ?></h2>
+			<h2><?php echo esc_html( 'Gợi ý trường cho ngành ' . $title ); ?></h2>
 			<a class="btn btn-ghost btn-sm" href="<?php echo esc_url( duy_route_path( 'truong' ) ); ?>"><?php esc_html_e( 'Xem tất cả', 'duy-study' ); ?> <?php echo duy_icon( 'arrow' ); ?></a>
 		</div>
 		<div class="grid g3">

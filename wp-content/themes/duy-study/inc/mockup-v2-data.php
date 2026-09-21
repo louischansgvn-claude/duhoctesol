@@ -231,34 +231,136 @@ function duy_mockup_v2_major_by_slug( string $slug ): ?array {
 	return null;
 }
 
+/**
+ * Luat khop truong theo nganh.
+ *
+ * 571 truong that deu co `major` rong va `programs` rong (importer khong dien),
+ * con `desc` chi la cau gioi thieu chung. Tin hieu dung duy nhat la TEN truong:
+ * "University of Technology", "Business School", "College of Education"...
+ *
+ * `exclude` chan khop bay: "Medicine Hat College" lay ten thanh pho o Alberta chu
+ * khong phai truong y; "Higher Education"/"Hospitality Education" khong phai nganh
+ * su pham. `levels` gioi han bac hoc: nganh Tieng Anh khop ĐUNG bang bac `anh-ngu`
+ * nen khong phai doan tu ten.
+ */
+function duy_major_match_rules(): array {
+	return [
+		'kinh-te'   => [
+			'include' => [ 'business', 'commerce', 'economics', 'management', 'finance',
+			               'hospitality', 'hotel', 'kinh doanh', 'kinh te' ],
+			'exclude' => [],
+			'levels'  => [ 'dai-hoc', 'cao-dang' ],
+		],
+		'suc-khoe'  => [
+			'include' => [ 'medical', 'medicine', 'health science', 'nursing', 'pharmac',
+			               'dental', 'y khoa', 'duoc', 'suc khoe' ],
+			'exclude' => [ 'medicine hat' ],
+			'levels'  => [ 'dai-hoc', 'cao-dang' ],
+		],
+		'cong-nghe' => [
+			'include' => [ 'institute of technology', 'university of technology',
+			               'technical university', 'technolog', 'polytechnic', 'engineering',
+			               'informatics', 'cong nghe', 'ky thuat', 'bach khoa' ],
+			'exclude' => [],
+			'levels'  => [ 'dai-hoc', 'cao-dang' ],
+		],
+		'giao-duc'  => [
+			'include' => [ 'college of education', 'school of education', 'teachers college',
+			               'teacher', 'normal university', 'su pham' ],
+			'exclude' => [ 'higher education', 'hospitality education' ],
+			'levels'  => [ 'dai-hoc', 'cao-dang' ],
+		],
+		'tieng-anh' => [
+			'include' => [],                       // khop bang bac hoc, khong doc ten
+			'exclude' => [],
+			'levels'  => [ 'anh-ngu' ],
+		],
+	];
+}
+
+/** Bo dau + ha chu thuong de so khop khong phu thuoc dau tieng Viet. */
+function duy_major_fold( string $value ): string {
+	$value = function_exists( 'remove_accents' ) ? remove_accents( $value ) : $value;
+
+	return function_exists( 'mb_strtolower' ) ? mb_strtolower( $value, 'UTF-8' ) : strtolower( $value );
+}
+
+/**
+ * Bac hoc cua the truong, cung cach ma `card-school.php` sinh ra `data-level`
+ * (duy_slugify tren nhan hien thi): "Dai hoc" -> dai-hoc, "Anh ngu" -> anh-ngu.
+ * Dung chung mot ham de bo loc o trang /truong/ va o day khong lech nhau.
+ */
+function duy_major_school_level_slug( array $school ): string {
+	return duy_slugify( (string) ( $school['level'] ?? '' ) );
+}
+
 function duy_mockup_v2_school_matches_major( array $school, array $major ): bool {
-	$matches = array_values( array_filter( (array) ( $major['match'] ?? [] ), 'is_string' ) );
-	if ( ! $matches ) {
+	$rules = duy_major_match_rules();
+	$rule  = $rules[ (string) ( $major['slug'] ?? '' ) ] ?? null;
+
+	if ( ! $rule ) {
 		return false;
 	}
 
-	$haystack = [
-		(string) ( $school['major'] ?? '' ),
-		(string) ( $school['desc'] ?? '' ),
-	];
+	if ( ! in_array( duy_major_school_level_slug( $school ), (array) $rule['levels'], true ) ) {
+		return false;
+	}
 
-	foreach ( (array) ( $school['programs'] ?? [] ) as $program ) {
-		if ( is_string( $program ) ) {
-			$haystack[] = $program;
+	$name = duy_major_fold( (string) ( $school['n'] ?? '' ) );
+
+	foreach ( (array) $rule['exclude'] as $bad ) {
+		if ( '' !== $bad && str_contains( $name, $bad ) ) {
+			return false;
 		}
 	}
 
-	$haystack = function_exists( 'mb_strtolower' )
-		? mb_strtolower( implode( ' ', $haystack ), 'UTF-8' )
-		: strtolower( implode( ' ', $haystack ) );
-	foreach ( $matches as $match ) {
-		$needle = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( $match ), 'UTF-8' ) : strtolower( trim( $match ) );
-		if ( '' !== $needle && str_contains( $haystack, $needle ) ) {
+	// Khong co tu khoa => luat chi dua vao bac hoc (nganh Tieng Anh).
+	if ( ! $rule['include'] ) {
+		return true;
+	}
+
+	foreach ( (array) $rule['include'] as $needle ) {
+		if ( '' !== $needle && str_contains( $name, $needle ) ) {
 			return true;
 		}
 	}
 
 	return false;
+}
+
+/**
+ * Truong de bu khi mot nganh chua khop du: lay danh sach truong tieu bieu da tuyen
+ * cua quoc gia (5 diem den chinh), neu quoc gia do chua co thi lay dai hoc cua chinh
+ * quoc gia do theo thu tu chuan cua site. Day la GOI Y truong theo quoc gia, khong
+ * phai khang dinh truong manh nganh do.
+ */
+function duy_major_country_schools( string $country_slug ): array {
+	$countries = function_exists( 'duy_demo_countries' ) ? duy_demo_countries() : [];
+	$country   = $countries[ $country_slug ] ?? [];
+	$all       = function_exists( 'duy_demo_schools' ) ? duy_demo_schools() : [];
+
+	$picked = function_exists( 'duy_items_by_ids' )
+		? duy_items_by_ids( $all, array_values( (array) ( $country['schools'] ?? [] ) ) )
+		: [];
+
+	if ( $picked ) {
+		return $picked;
+	}
+
+	$rest = array_filter(
+		$all,
+		static function ( array $school ) use ( $country_slug ): bool {
+			if ( duy_country_slug( (string) ( $school['c'] ?? '' ) ) !== $country_slug ) {
+				return false;
+			}
+
+			return in_array( duy_major_school_level_slug( $school ), [ 'dai-hoc', 'cao-dang' ], true );
+		}
+	);
+
+	return function_exists( 'duy_items_featured_then_newest' )
+		? duy_items_featured_then_newest( array_values( $rest ), 'school' )
+		: array_values( $rest );
 }
 
 function duy_mockup_v2_schools_for_major( string $major_slug, string $country_slug = '', int $limit = 0 ): array {
@@ -281,6 +383,53 @@ function duy_mockup_v2_schools_for_major( string $major_slug, string $country_sl
 	$schools = function_exists( 'duy_items_featured_then_newest' )
 		? duy_items_featured_then_newest( array_values( $schools ), 'school' )
 		: array_values( $schools );
+
+	// Trang /nganh-hoc/ ma rong thi la ngo cut -> bu bang dai hoc that cua cac quoc gia
+	// tieu bieu, moi quoc gia lay luan phien mot truong nen danh sach khop voi dong
+	// "Quoc gia tieu bieu" ngay phia tren, khong phai 4 truong cung mot nuoc.
+	//
+	// KHONG bu tren trang quoc gia ($country_slug co gia tri): o do 5 the nganh nam
+	// canh nhau, bu vao la ca 5 the hien y het nhau (Tho Nhi Ky chi co 6 dai hoc).
+	// The nganh khong co truong van hien tieu de + mo ta, va ngay phia tren da co
+	// luoi truong cua chinh quoc gia do.
+	$want = $limit > 0 ? $limit : 4;
+	if ( ! $country_slug && count( $schools ) < $want ) {
+		$seen = [];
+		foreach ( $schools as $school ) {
+			$seen[ (string) ( $school['id'] ?? '' ) ] = true;
+		}
+
+		$pools = [];
+		foreach ( array_values( (array) ( $major['countries'] ?? [] ) ) as $country_name ) {
+			$pool = duy_major_country_schools( duy_country_slug( (string) $country_name ) );
+			if ( $pool ) {
+				$pools[] = array_values( $pool );
+			}
+		}
+
+		for ( $round = 0; $pools && count( $schools ) < $want; $round++ ) {
+			$added = false;
+			foreach ( $pools as $pool ) {
+				if ( count( $schools ) >= $want ) {
+					break;
+				}
+				$school = $pool[ $round ] ?? null;
+				if ( ! is_array( $school ) ) {
+					continue;
+				}
+				$added = true;
+				$id    = (string) ( $school['id'] ?? '' );
+				if ( '' === $id || isset( $seen[ $id ] ) ) {
+					continue;
+				}
+				$seen[ $id ] = true;
+				$schools[]   = $school;
+			}
+			if ( ! $added ) {
+				break;
+			}
+		}
+	}
 
 	return $limit > 0 ? array_slice( $schools, 0, $limit ) : $schools;
 }

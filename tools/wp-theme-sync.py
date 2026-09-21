@@ -28,6 +28,10 @@ SRC = os.path.join(os.path.dirname(TGT), "duystudy - website", "wp-content", "th
 DST = os.path.join(TGT, "wp-content", "themes", "duy-study")
 
 SKIP_DIRS = ("inc/data",)
+# KHONG BAO GIO chep sang: day la nhan dien cua Duy Study. Ban dong bo 20/09 da chep
+# `logo.webp` va `og-default.jpg` sang, va vi duy_logo_uri() uu tien .webp hon .png nen
+# site treo logo "DUY Study" suot tu do; moi link chia se cung hien anh bia cua ho.
+SKIP_FILES = {"assets/img/logo.webp", "assets/img/og-default.jpg"}
 # Bản của repo này phải thắng bản nguồn. Ngoài 4 ảnh thương hiệu, 6 file dưới đã bị
 # sửa ngày 21/09/2026 để xoá 7 học bổng và 7 câu chuyện học sinh bịa (xem
 # duy_demo_scholarships_defaults / duy_demo_pairs / duy_demo_stories). Chép đè là
@@ -36,7 +40,19 @@ KEEP_OURS = {"assets/img/logo.png", "assets/img/logo-full.png",
              "assets/img/campus-global.svg", "assets/img/hero-students.svg",
              "inc/demo-data.php", "inc/seo.php", "front-page.php",
              "archive-scholarship.php", "archive-student_story.php",
-             "page-templates/ve-chung-toi.php"}
+             "page-templates/ve-chung-toi.php",
+             # 21/09: go truong mockup METU + sua cach khop nganh-truong de trang
+             # /nganh-hoc/ hien duoc truong that (ban nguon khop bang truong `major`
+             # rong nen 4/5 trang khong co truong nao).
+             "inc/mockup-v2-data.php", "inc/mockup-v2-data.json",
+             "inc/components.php", "page-templates/major.php",
+             # Bang mau: 21/09 da tra ve navy #173C8F + do #C4302B lay tu logo TESOL HCMC.
+             # Ban nguon dung cyan #23a9d8 + hong #df1f83 cua Duy Study.
+             "assets/css/main.css", "theme.json",
+             "assets/img/article-cover.svg", "assets/img/country-au.svg",
+             "assets/img/country-ca.svg", "assets/img/country-nz.svg",
+             "assets/img/country-tr.svg", "assets/img/country-us.svg",
+             "assets/img/event-workshop.svg", "assets/img/team-office.svg"}
 TEXT_EXT = (".php", ".css", ".js", ".json", ".txt", ".md", ".html")
 
 ORG = "Ban Du học Hội TESOL TP.HCM"
@@ -79,6 +95,8 @@ def main(argv):
             sp = os.path.join(d, f)
             rel = rel_of(SRC, sp)
             dp = os.path.join(DST, rel.replace("/", os.sep))
+            if rel in SKIP_FILES:
+                continue
             if rel in KEEP_OURS and os.path.exists(dp):
                 kept += 1
                 continue

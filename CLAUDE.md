@@ -10,6 +10,12 @@
 >   file HTML cũ lên server WordPress.
 > - **Đừng chạy phase `db`** của `wp-deploy.py` nếu user đã sửa nội dung trong wp-admin — sẽ xoá sạch.
 > - 748 file `index.html` tĩnh còn trong repo và trên server chỉ để làm đường lui, **không phải site nữa**.
+> - **Bộ nhận diện thuộc repo này, không phải của Duy Study.** Logo `assets/img/logo.png`
+>   (chữ TESOL navy + HCMC đỏ) và bảng màu `--primary:#173C8F` / `--accent:#C4302B` lấy từ logo đó.
+>   Theme nguồn dùng cyan `#23a9d8` + hồng `#df1f83` — **màu của Duy Study, không được để lọt lại**.
+>   Hôm 20/09 đã lọt (`logo.webp`, `og-default.jpg`, cả bảng màu) và site treo logo Duy Study 1 ngày.
+> - **FTP không tự xoá file.** Xoá trong repo là chưa đủ, bản trên server vẫn được phục vụ.
+>   Dùng `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg prune-brand` (danh sách ở hằng `PRUNE`).
 > - **Nội dung mẫu nằm trong code theme, không phải trong CSDL.** `inc/demo-data.php` có các hàm
 >   `duy_demo_*()` chèn dữ liệu cứng khi CSDL chưa có bài tương ứng. Ngày 21/09/2026 đã gỡ 7 học bổng
 >   và 7 câu chuyện học sinh bịa khỏi đó. Gặp nội dung đáng ngờ trên site thì tìm ở đây trước —

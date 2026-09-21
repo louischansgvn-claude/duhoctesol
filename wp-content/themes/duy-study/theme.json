@@ -10,11 +10,11 @@
 				{ "slug": "ink-2", "color": "#475569", "name": "Ink secondary" },
 				{ "slug": "muted", "color": "#64748b", "name": "Muted" },
 				{ "slug": "line", "color": "#dbe7f3", "name": "Line" },
-				{ "slug": "primary", "color": "#23a9d8", "name": "Duy cyan" },
-				{ "slug": "primary-2", "color": "#147da9", "name": "Duy cyan dark" },
-				{ "slug": "accent", "color": "#df1f83", "name": "Duy pink" },
-				{ "slug": "accent-2", "color": "#b8186b", "name": "Duy pink dark" },
-				{ "slug": "accent-soft", "color": "#fff0f7", "name": "Duy pink soft" },
+				{ "slug": "primary", "color": "#173C8F", "name": "TESOL navy" },
+				{ "slug": "primary-2", "color": "#0F2C6B", "name": "TESOL navy dark" },
+				{ "slug": "accent", "color": "#C4302B", "name": "TESOL red" },
+				{ "slug": "accent-2", "color": "#9A241F", "name": "TESOL red dark" },
+				{ "slug": "accent-soft", "color": "#FCEDEC", "name": "TESOL red soft" },
 				{ "slug": "success", "color": "#16a34a", "name": "Success" },
 				{ "slug": "danger", "color": "#dc2626", "name": "Danger" }
 			]

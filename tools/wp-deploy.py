@@ -15,6 +15,7 @@ Dùng: python tools/wp-deploy.py <cfg> <phase>
   config      1 file          — wp-build/wp-config.php
   uploads  3.817 file (693 MB)— ảnh WordPress (`2026/07/...`), khác hệ ảnh của site tĩnh
   theme-assets 2 file        — main.css + main.js bản WordPress; chạy NGAY TRƯỚC khi đổi sang WordPress
+  prune-brand  xoá 2 file     — logo.webp + og-default.jpg (nhận diện Duy Study lọt sang 20/09)
   all     tất cả file, đúng thứ tự trên (KHÔNG gồm 2 phase .htaccess bên dưới)
 
 Hai phase đổi công tắc — chỉ đụng đúng file `.htaccess` ở docroot:
@@ -51,6 +52,12 @@ KEEP_STATIC = {"assets/img/logo.png", "assets/img/logo-full.png",
 # nhưng đè sớm thì site tĩnh đang chạy đổi giao diện -> tách ra phase `theme-assets`,
 # chạy ngay trước khi đảo DirectoryIndex sang WordPress.
 DEFER_ASSETS = {"assets/css/main.css", "assets/js/main.js"}
+
+# Nhan dien cua Duy Study lot sang server hom 20/09. FTP chi biet tai len, khong tu xoa
+# file thua, nen phai goi DELE tuong minh. `duy_logo_uri()` uu tien .webp hon .png ->
+# con file nay tren server la site van treo logo "DUY Study" du repo da xoa.
+PRUNE = ["wp-content/themes/duy-study/assets/img/logo.webp",
+         "wp-content/themes/duy-study/assets/img/og-default.jpg"]
 
 
 def slash(p):
@@ -125,10 +132,37 @@ def upload(cfg, batch, label):
             os.remove(path)
 
 
+def prune(cfg, paths):
+    """Xoa file tren server. `*DELE` = bao curl di tiep neu file vang mat (da xoa roi)."""
+    fd, path = tempfile.mkstemp(suffix=".cfg"); os.close(fd)
+    try:
+        with open(cfg) as f:
+            cred = f.read().strip()
+        lines = [cred, "connect-timeout = 25", "silent", "show-error"]
+        for remote in paths:
+            lines.append(f'quote = "*DELE {remote}"')
+        lines.append(f'url = "{HOST}/"')
+        lines.append("list-only")
+        open(path, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+        os.chmod(path, 0o600)
+        r = subprocess.run(["curl", "-K", path], capture_output=True, text=True)
+        err = "\n".join(l for l in r.stderr.splitlines() if l.strip())[:600]
+        print(f"  đã gọi DELE cho {len(paths)} file · exit={r.returncode}"
+              + (f"\n    stderr: {err}" if err else ""))
+        return r.returncode
+    finally:
+        if os.path.exists(path):
+            os.remove(path)
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         print(__doc__); raise SystemExit(2)
     cfg, phase = sys.argv[1], sys.argv[2]
+    if phase == "prune-brand":
+        for f in PRUNE:
+            print("   xoa:", f)
+        raise SystemExit(1 if prune(cfg, PRUNE) else 0)
     phases = ["core", "theme", "plugin", "uploads", "db", "config"] if phase == "all" else [phase]
     bad_total = 0
     for p in phases:

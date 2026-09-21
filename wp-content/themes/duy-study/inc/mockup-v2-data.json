@@ -1,25 +1,6 @@
 {
   "generatedFrom": "docs/mockup/duy-study-mockup-v2.html",
-  "schools": [
-    {
-      "id": "metu",
-      "n": "Middle East Technical University",
-      "c": "Thổ Nhĩ Kỳ",
-      "code": "TR",
-      "r": "Top Turkey",
-      "fee": "6.000 USD/năm",
-      "feeBand": "low",
-      "level": "Đại học",
-      "major": "Kỹ thuật",
-      "tag": "pink",
-      "city": "Ankara",
-      "programs": [
-        "Engineering",
-        "Architecture",
-        "Economics"
-      ]
-    }
-  ],
+  "schools": [],
   "countries": [
     {
       "id": "country-us",

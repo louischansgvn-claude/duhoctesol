@@ -1016,7 +1016,7 @@ function duy_finder_filter_schools( array $schools, array $query ): array {
  * @return array{order:string[],featured:string[]}
  */
 function duy_school_order_cache( array $schools ): array {
-	$cached = get_transient( 'duy_school_order' );
+	$cached = get_transient( 'duy_school_order_v2' );
 	if ( is_array( $cached ) && isset( $cached['order'], $cached['featured'] ) && count( $cached['order'] ) === count( $schools ) ) {
 		return $cached;
 	}
@@ -1036,7 +1036,7 @@ function duy_school_order_cache( array $schools ): array {
 	}
 
 	$cached = [ 'order' => $order, 'featured' => $featured ];
-	set_transient( 'duy_school_order', $cached, 12 * HOUR_IN_SECONDS );
+	set_transient( 'duy_school_order_v2', $cached, 12 * HOUR_IN_SECONDS );
 
 	return $cached;
 }

@@ -2,12 +2,12 @@
   <title id="title">New Zealand study abroad scene</title>
   <desc id="desc">New Zealand campus with green hills and bright sky in brand colors.</desc>
   <rect width="1200" height="820" rx="54" fill="#eaf8fd"/>
-  <circle cx="1010" cy="128" r="110" fill="#df1f83" opacity=".14"/>
+  <circle cx="1010" cy="128" r="110" fill="#C4302B" opacity=".14"/>
   <path d="M0 520 C180 388 370 438 520 520 C690 610 920 470 1200 350 V820 H0Z" fill="#dff7ec"/>
   <path d="M0 608 C230 550 440 644 620 590 C850 520 1000 554 1200 500 V820 H0Z" fill="#fff"/>
   <rect x="170" y="350" width="860" height="210" rx="38" fill="#fff" stroke="#dbe7f3" stroke-width="4"/>
   <path d="M250 560 V418 H386 V560 M450 560 V418 H586 V560 M650 560 V418 H786 V560 M850 560 V418 H952 V560" fill="#f7fbff" stroke="#dbe7f3" stroke-width="3"/>
-  <path d="M230 620 C330 580 405 580 500 620 C610 666 708 666 812 620 C900 582 980 586 1080 620" fill="none" stroke="#23a9d8" stroke-width="14" stroke-linecap="round" opacity=".4"/>
+  <path d="M230 620 C330 580 405 580 500 620 C610 666 708 666 812 620 C900 582 980 586 1080 620" fill="none" stroke="#173C8F" stroke-width="14" stroke-linecap="round" opacity=".4"/>
   <rect x="90" y="146" width="310" height="78" rx="39" fill="#fff" opacity=".86"/>
-  <path d="M142 185 H348" stroke="#147da9" stroke-width="16" stroke-linecap="round" opacity=".62"/>
+  <path d="M142 185 H348" stroke="#0F2C6B" stroke-width="16" stroke-linecap="round" opacity=".62"/>
 </svg>

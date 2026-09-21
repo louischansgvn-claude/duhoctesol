@@ -91,7 +91,7 @@ function duy_demo_schools(): array {
 		return $memo;
 	}
 
-	$cached = get_transient( 'duy_schools_cards' );
+	$cached = get_transient( 'duy_schools_cards_v2' );
 	if ( is_array( $cached ) && $cached ) {
 		$memo = $cached;
 
@@ -99,15 +99,15 @@ function duy_demo_schools(): array {
 	}
 
 	$memo = duy_build_school_cards();
-	set_transient( 'duy_schools_cards', $memo, 12 * HOUR_IN_SECONDS );
+	set_transient( 'duy_schools_cards_v2', $memo, 12 * HOUR_IN_SECONDS );
 
 	return $memo;
 }
 
 /** Xoá cache danh sách + thứ tự trường (gọi khi post school thay đổi). */
 function duy_flush_school_caches(): void {
-	delete_transient( 'duy_schools_cards' );
-	delete_transient( 'duy_school_order' );
+	delete_transient( 'duy_schools_cards_v2' );
+	delete_transient( 'duy_school_order_v2' );
 }
 add_action( 'save_post_school', 'duy_flush_school_caches' );
 add_action( 'deleted_post', 'duy_flush_school_caches' );
