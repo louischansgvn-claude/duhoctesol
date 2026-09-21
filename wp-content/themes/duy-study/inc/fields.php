@@ -65,19 +65,19 @@ function duy_fields_register_school(): void {
 			[
 				duy_cf_association( 'country', 'Country', [ [ 'type' => 'term', 'taxonomy' => 'country' ] ], 1 ),
 				Field::make( 'text', 'code', 'Code' ),
-				Field::make( 'text', 'ranking', 'Ranking / note' )->set_help_text( 'Keep {{TODO: confirm}} when unverified.' ),
+				Field::make( 'text', 'ranking', 'Ranking / note' )->set_help_text( 'Để trống nếu chưa xác nhận được với trường.' ),
 				Field::make( 'text', 'fee', 'Fee' ),
 				Field::make( 'select', 'fee_band', 'Fee band' )->set_options( [ 'low' => 'Low', 'mid' => 'Mid', 'high' => 'High' ] ),
 				duy_cf_association( 'level', 'Study level', [ [ 'type' => 'term', 'taxonomy' => 'study_level' ] ], 1 ),
 				duy_cf_association( 'major', 'Major', [ [ 'type' => 'term', 'taxonomy' => 'major' ] ], 1 ),
 				Field::make( 'text', 'city', 'City' ),
 				duy_cf_complex( 'programs', 'Programs', [ Field::make( 'text', 'name', 'Program' ) ] ),
-				Field::make( 'media_gallery', 'gallery', 'Gallery' )->set_type( 'image' )->set_help_text( '{{TODO: thay ảnh thật}} Slot campus gallery.' ),
+				Field::make( 'media_gallery', 'gallery', 'Gallery' )->set_type( 'image' )->set_help_text( 'Ảnh khuôn viên trường. Chỉ dùng ảnh có quyền sử dụng.' ),
 				Field::make( 'select', 'tag', 'Tag color' )->set_options( [ '' => 'Default', 'cyan' => 'Cyan', 'pink' => 'Pink' ] ),
 				Field::make( 'checkbox', 'is_featured', 'Nổi bật' ),
 				Field::make( 'text', 'full_name', 'Full name' ),
 				Field::make( 'text', 'acronym', 'Acronym' ),
-				Field::make( 'text', 'founded', 'Founded' )->set_help_text( 'Keep {{TODO: confirm}} when unverified.' ),
+				Field::make( 'text', 'founded', 'Founded' )->set_help_text( 'Để trống nếu chưa xác nhận được với trường.' ),
 				Field::make( 'text', 'type', 'School type' ),
 				Field::make( 'text', 'students', 'Students' ),
 				Field::make( 'text', 'website', 'Website URL' ),
@@ -248,10 +248,10 @@ function duy_fields_register_scholarship(): void {
 				duy_cf_association( 'school', 'School', [ [ 'type' => 'post', 'post_type' => 'school' ] ], 1 ),
 				Field::make( 'textarea', 'conditions', 'Conditions' ),
 				Field::make( 'textarea', 'how_to', 'How to apply' ),
-				Field::make( 'image', 'cover_image', 'Cover image' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}}' ),
+				Field::make( 'image', 'cover_image', 'Cover image' )->set_value_type( 'id' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng.' ),
 				Field::make( 'checkbox', 'is_featured', 'Nổi bật' ),
 				Field::make( 'text', 'issuer', 'Issuer / unit' ),
-				Field::make( 'text', 'quota', 'Quota' )->set_help_text( '{{TODO: confirm}}' ),
+				Field::make( 'text', 'quota', 'Quota' )->set_help_text( 'Để trống nếu chưa xác nhận được.' ),
 				Field::make( 'text', 'intake', 'Intake' ),
 				Field::make( 'textarea', 'intro', 'Intro' ),
 				duy_cf_complex(
@@ -295,7 +295,7 @@ function duy_fields_register_event(): void {
 					]
 				),
 				Field::make( 'text', 'register_cta', 'Register CTA' ),
-				Field::make( 'image', 'cover_image', 'Cover image' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}}' ),
+				Field::make( 'image', 'cover_image', 'Cover image' )->set_value_type( 'id' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng.' ),
 				Field::make( 'checkbox', 'is_featured', 'Nổi bật' ),
 				Field::make( 'textarea', 'audience', 'Audience' ),
 				Field::make( 'text', 'fee', 'Fee' ),
@@ -311,7 +311,7 @@ function duy_fields_register_event(): void {
 					'speakers',
 					'Speakers / representatives',
 					[
-						Field::make( 'image', 'photo', 'Photo' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}} Speaker photo.' ),
+						Field::make( 'image', 'photo', 'Photo' )->set_value_type( 'id' )->set_help_text( 'Ảnh diễn giả. Cần có sự đồng ý của người trong ảnh.' ),
 						Field::make( 'text', 'name', 'Name' ),
 						Field::make( 'text', 'role', 'Role' ),
 						Field::make( 'text', 'org', 'Organization' ),
@@ -327,7 +327,7 @@ function duy_fields_register_event(): void {
 						Field::make( 'textarea', 'desc', 'Description' ),
 					]
 				),
-				Field::make( 'media_gallery', 'gallery', 'Gallery' )->set_type( 'image' )->set_help_text( '{{TODO: thay ảnh thật}} Event photo gallery.' ),
+				Field::make( 'media_gallery', 'gallery', 'Gallery' )->set_type( 'image' )->set_help_text( 'Ảnh sự kiện. Chỉ dùng ảnh do mình chụp hoặc có quyền sử dụng.' ),
 				duy_cf_association( 'participating_schools', 'Participating schools / partners', [ [ 'type' => 'post', 'post_type' => 'school' ] ] ),
 				duy_cf_complex( 'who', 'Who should attend', [ Field::make( 'text', 'item', 'Item' ) ] ),
 			]
@@ -340,11 +340,11 @@ function duy_fields_register_student_story(): void {
 		->add_fields(
 			[
 				Field::make( 'text', 'school', 'School' ),
-				Field::make( 'text', 'award', 'Award' )->set_help_text( 'Keep {{TODO: confirm}} when unverified.' ),
+				Field::make( 'text', 'award', 'Award' )->set_help_text( 'Để trống nếu chưa xác nhận được với trường.' ),
 				Field::make( 'textarea', 'quote', 'Quote' ),
 				Field::make( 'text', 'student_video', 'Student video URL' ),
 				Field::make( 'text', 'school_video', 'School video URL' ),
-				Field::make( 'image', 'avatar', 'Avatar/photo' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}} Do not use identifiable real testimonial photo without rights/model release.' ),
+				Field::make( 'image', 'avatar', 'Avatar/photo' )->set_value_type( 'id' )->set_help_text( 'Ảnh đại diện học viên. Không dùng ảnh nhận diện được mặt nếu chưa có sự đồng ý bằng văn bản.' ),
 				duy_cf_association( 'country', 'Country', [ [ 'type' => 'term', 'taxonomy' => 'country' ] ], 1 ),
 				Field::make( 'text', 'major', 'Major' ),
 				Field::make( 'text', 'level', 'Level' ),
@@ -398,7 +398,7 @@ function duy_fields_register_guide(): void {
 				Field::make( 'checkbox', 'is_sequential', 'Sequential steps' ),
 				Field::make( 'select', 'extra_type', 'Extra type' )->set_options( duy_cf_options( [ 'none', 'cost_table', 'phases', 'faq', 'checklist' ] ) ),
 				Field::make( 'textarea', 'extra', 'Extra data / notes' ),
-				Field::make( 'image', 'hero_image', 'Hero image' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}}' ),
+				Field::make( 'image', 'hero_image', 'Hero image' )->set_value_type( 'id' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng.' ),
 			]
 		);
 }
@@ -466,7 +466,7 @@ function duy_fields_register_country(): void {
 						Field::make( 'textarea', 'a', 'Trả lời' ),
 					]
 				)->set_help_text( 'Ghi đè FAQ mặc định của theme cho trang quốc gia (và trang bậc học của quốc gia này). Trống = dùng FAQ mặc định trong inc/demo-data.php.' ),
-				Field::make( 'image', 'hero_image', 'Hero image' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}} Country/campus/landmark image.' ),
+				Field::make( 'image', 'hero_image', 'Hero image' )->set_value_type( 'id' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng. Country/campus/landmark image.' ),
 			]
 		);
 }
@@ -477,7 +477,7 @@ function duy_fields_register_news(): void {
 		->add_fields(
 			[
 				Field::make( 'textarea', 'lead', 'Lead' ),
-				Field::make( 'image', 'cover_image', 'Cover image' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}} Article cover.' ),
+				Field::make( 'image', 'cover_image', 'Cover image' )->set_value_type( 'id' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng. Article cover.' ),
 				Field::make( 'checkbox', 'is_featured', 'Nổi bật' ),
 				duy_cf_complex( 'key_takeaways', 'Key takeaways', [ Field::make( 'text', 'item', 'Item' ) ] ),
 				duy_cf_complex(
@@ -498,7 +498,7 @@ function duy_archive_banner_fields(): array {
 	foreach ( [ 'school' => 'School archive', 'scholarship' => 'Scholarship archive', 'event' => 'Event archive', 'news' => 'News archive' ] as $key => $label ) {
 		$prefix   = 'archive_banner_' . $key;
 		$fields[] = Field::make( 'checkbox', $prefix . '_enabled', $label . ' banner enabled' )->set_default_value( 'yes' );
-		$fields[] = Field::make( 'image', $prefix . '_image', $label . ' banner image' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}}' );
+		$fields[] = Field::make( 'image', $prefix . '_image', $label . ' banner image' )->set_value_type( 'id' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng.' );
 		$fields[] = Field::make( 'text', $prefix . '_url', $label . ' banner URL' );
 		$fields[] = Field::make( 'text', $prefix . '_title', $label . ' banner title' );
 		$fields[] = Field::make( 'text', $prefix . '_cta', $label . ' banner CTA' );
@@ -553,7 +553,7 @@ function duy_fields_register_options(): void {
 					'v2_bac_pages',
 					'Mockup v2 - Bậc học pages',
 					[
-						Field::make( 'text', 'level_slug', 'Level slug' )->set_help_text( 'Match mockup v2 key, e.g. thpt, cao-dang, dai-hoc, sau-dai-hoc. {{TODO: confirm}}' ),
+						Field::make( 'text', 'level_slug', 'Level slug' )->set_help_text( 'Match mockup v2 key, e.g. thpt, cao-dang, dai-hoc, sau-dai-hoc. Để trống nếu chưa xác nhận được.' ),
 						Field::make( 'text', 'tagline', 'Tagline' ),
 						Field::make( 'textarea', 'overview', 'Overview' ),
 						duy_cf_complex( 'who_for', 'Who this is for', [ Field::make( 'text', 'item', 'Item' ) ] ),
@@ -569,15 +569,15 @@ function duy_fields_register_options(): void {
 						duy_cf_complex( 'costs_notes', 'Cost notes', [ Field::make( 'text', 'item', 'Item' ) ] ),
 						Field::make( 'textarea', 'pathway', 'Pathway' ),
 						duy_cf_complex( 'duy_study_support', 'Ban Du học Hội TESOL TP.HCM support', [ Field::make( 'text', 'item', 'Item' ) ] ),
-						Field::make( 'textarea', 'country_note', 'Country note' )->set_help_text( 'Use {country} placeholder when the note is country-specific. {{TODO: confirm}}' ),
+						Field::make( 'textarea', 'country_note', 'Country note' )->set_help_text( 'Use {country} placeholder when the note is country-specific. Để trống nếu chưa xác nhận được.' ),
 					]
-				)->set_help_text( 'Admin source for mockup v2 bậc học data. Keep {{TODO: confirm}} when claims need confirmation.' ),
+				)->set_help_text( 'Admin source for mockup v2 bậc học data. Keep Để trống nếu chưa xác nhận được. when claims need confirmation.' ),
 				duy_cf_complex(
 					'v2_majors',
 					'Mockup v2 - Ngành học HOT',
 					[
-						Field::make( 'text', 'slug', 'Slug' )->set_help_text( 'Match mockup v2 major id, e.g. nganh-kinh-te. {{TODO: confirm}}' ),
-						Field::make( 'text', 'icon', 'Icon' )->set_help_text( 'Use an existing icon key where possible. {{TODO: confirm}}' ),
+						Field::make( 'text', 'slug', 'Slug' )->set_help_text( 'Match mockup v2 major id, e.g. nganh-kinh-te. Để trống nếu chưa xác nhận được.' ),
+						Field::make( 'text', 'icon', 'Icon' )->set_help_text( 'Use an existing icon key where possible. Để trống nếu chưa xác nhận được.' ),
 						Field::make( 'text', 'title', 'Title' ),
 						Field::make( 'textarea', 'lead', 'Lead' ),
 						Field::make( 'textarea', 'overview', 'Overview' ),
@@ -594,7 +594,7 @@ function duy_fields_register_options(): void {
 						),
 						duy_cf_complex( 'careers', 'Careers', [ Field::make( 'text', 'item', 'Career' ) ] ),
 					]
-				)->set_help_text( 'Admin source for mockup v2 ngành học HOT data. Keep {{TODO: confirm}} when claims need confirmation.' ),
+				)->set_help_text( 'Admin source for mockup v2 ngành học HOT data. Keep Để trống nếu chưa xác nhận được. when claims need confirmation.' ),
 				duy_cf_complex(
 					'home_stats',
 						'Home stats',
@@ -649,11 +649,11 @@ function duy_fields_register_options(): void {
 						Field::make( 'text', 'office', 'Office' ),
 						Field::make( 'text', 'role', 'Role' ),
 						Field::make( 'text', 'exp', 'Experience' ),
-						Field::make( 'image', 'photo', 'Photo' )->set_value_type( 'id' )->set_help_text( '{{TODO: thay ảnh thật}}' ),
+						Field::make( 'image', 'photo', 'Photo' )->set_value_type( 'id' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng.' ),
 					]
 					),
 					duy_cf_complex( 'about_partners', 'About partners / achievements', [ Field::make( 'text', 'item', 'Item' ) ] ),
-				Field::make( 'media_gallery', 'about_meet_gallery', 'About — Hình gặp gỡ đối tác / sự kiện' )->set_type( 'image' )->set_help_text( '{{TODO: thay ảnh thật}} Slideshow hiển thị cạnh form ở trang Về chúng tôi.' ),
+				Field::make( 'media_gallery', 'about_meet_gallery', 'About — Hình gặp gỡ đối tác / sự kiện' )->set_type( 'image' )->set_help_text( 'Chỉ dùng ảnh có quyền sử dụng. Slideshow hiển thị cạnh form ở trang Về chúng tôi.' ),
 				],
 				duy_archive_banner_fields()
 			)

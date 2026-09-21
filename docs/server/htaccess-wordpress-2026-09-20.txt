@@ -44,6 +44,14 @@ RewriteRule ^gia-tri-hoc-bong/(25|50|toan-phan)/?$ https://duhoctesolhcmc.vn/hoc
 # Giu redirect de muc sitemap da khai bao trong Search Console khong bi loi.
 RewriteRule ^sitemap\.xml$ https://duhoctesolhcmc.vn/wp-sitemap.xml [R=301,L]
 
+# 1e. 748 file index.html cua site tinh van nam trong docroot, va rule "!-f" o cuoi cho phep
+# goi thang /duong-dan/index.html -> Apache tra ve file HTML cu, bo qua WordPress. Nghia la
+# moi trang deu ton tai hai ban, va 14 trang du lieu mau da go ngay 21/09 van doc duoc tai
+# /hoc-bong/principal-50/index.html. Chuyen ve URL sach de WordPress phuc vu.
+# Ban tinh deu da co canonical tro ve URL sach nen 301 nay dung huong Google da biet.
+# (them 2026-09-21)
+RewriteRule ^(.*/)?index\.html$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+
 # 2. Subdomain test cu -> domain chinh
 RewriteCond %{HTTP_HOST} ^duhoctesol\.duystudy\.vn$ [NC]
 RewriteRule ^(.*)$ https://duhoctesolhcmc.vn/$1 [R=301,L]

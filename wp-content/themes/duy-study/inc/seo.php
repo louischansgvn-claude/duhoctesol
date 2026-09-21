@@ -1265,6 +1265,26 @@ function duy_seo_head_verification(): void {
 }
 add_action( 'wp_head', 'duy_seo_head_verification', 1 );
 
+/**
+ * Favicon.
+ *
+ * Bản tĩnh khai báo `<link rel="icon" href="/favicon.png">` ngay trong <head>. Bản WordPress
+ * chỉ in site icon khi user đặt ở Cài đặt → Site Icon, mà chưa đặt → site mất hẳn biểu tượng
+ * trên tab trình duyệt. In bản của theme để giữ đúng như cũ, và nhường ngay khi user đặt icon
+ * riêng trong wp-admin.
+ */
+function duy_seo_favicon(): void {
+	if ( is_admin() || ( function_exists( 'has_site_icon' ) && has_site_icon() ) ) {
+		return;
+	}
+
+	printf(
+		'<link rel="icon" type="image/png" sizes="96x96" href="%s">' . "\n",
+		esc_url( duy_img_uri( 'favicon.png' ) )
+	);
+}
+add_action( 'wp_head', 'duy_seo_favicon', 2 );
+
 function duy_render_seo_meta(): void {
 	if ( is_admin() ) {
 		return;

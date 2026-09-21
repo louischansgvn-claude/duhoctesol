@@ -112,7 +112,9 @@ def check(url):
 
 def main(argv):
     limit = int(argv[0]) if argv and argv[0].isdigit() else None
-    sm = open(os.path.join(TGT, "sitemap.xml"), encoding="utf-8").read()
+    # Danh sách 723 URL đã nộp cho Google ngày 19/09 — dùng làm mốc kiểm tra hồi quy.
+    # WordPress tự sinh /wp-sitemap.xml; file này giữ nguyên để phát hiện URL nào chết.
+    sm = open(os.path.join(TGT, "docs", "sitemap-submitted-2026-09-19.xml"), encoding="utf-8").read()
     urls = re.findall(r"<loc>(.*?)</loc>", sm)
     if limit:
         urls = urls[:limit]

@@ -12,3 +12,9 @@ __pycache__/
 
 # WordPress build (CSDL + config + mật khẩu admin) - KHÔNG commit
 wp-build/
+
+# Thư mục làm việc tạm của Claude Code
+scratchpad/
+
+# Quyền cục bộ của Claude Code (máy ai nấy đặt)
+.claude/settings.local.json

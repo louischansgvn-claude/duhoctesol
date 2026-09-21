@@ -1,22 +1,22 @@
-# Ban Du học Hội TESOL TP.HCM Demo Images
+# Nguồn ảnh trong theme
 
-These SVG illustrations were created locally for the Ban Du học Hội TESOL TP.HCM mockup by Codex and
-ported into the WordPress theme as demo/fallback assets.
+## Minh hoạ SVG
 
-- `hero-students.svg`
-- `campus-global.svg`
-- `country-us.svg`
-- `country-au.svg`
-- `country-ca.svg`
-- `country-nz.svg`
-- `country-tr.svg`
-- `event-workshop.svg`
-- `team-office.svg`
-- `article-cover.svg`
+Vẽ tại chỗ cho bản dựng của site, không dùng tư liệu bên thứ ba.
 
-No third-party photos, logos, or identifiable testimonial portraits are included.
-Replace these with approved brand/campus/event photography through Carbon image
-fields when available. `{{TODO: thay ảnh thật}}`
+- `hero-students.svg` — trang FAQ, trang câu chuyện học sinh
+- `campus-global.svg` — trang 404
+
+Tám SVG minh hoạ khác (`country-*.svg`, `article-cover.svg`, `event-workshop.svg`,
+`team-office.svg`) đã bị xoá ngày 21/09/2026: không template nào gọi tới, và chúng
+còn mang bảng màu cũ của Duy Study.
+
+## Logo và biểu tượng
+
+- `logo.png`, `logo-full.png` — logo Ban Du học Hội TESOL TP.HCM (navy #173C8F + đỏ #C4302B)
+- `favicon.png` — biểu tượng tab trình duyệt, 96×96
+
+Không có ảnh, logo của bên thứ ba, cũng không có chân dung học viên nào trong thư mục này.
 
 ## Local WebP Demo Photos
 

@@ -15,7 +15,7 @@ Dùng: python tools/wp-deploy.py <cfg> <phase>
   config      1 file          — wp-build/wp-config.php
   uploads  3.817 file (693 MB)— ảnh WordPress (`2026/07/...`), khác hệ ảnh của site tĩnh
   theme-assets 2 file        — main.css + main.js bản WordPress; chạy NGAY TRƯỚC khi đổi sang WordPress
-  prune-brand  xoá 2 file     — logo.webp + og-default.jpg (nhận diện Duy Study lọt sang 20/09)
+  prune        xoá file       — xoá trên server những file đã bỏ khỏi repo (hằng PRUNE)
   all     tất cả file, đúng thứ tự trên (KHÔNG gồm 2 phase .htaccess bên dưới)
 
 Hai phase đổi công tắc — chỉ đụng đúng file `.htaccess` ở docroot:
@@ -37,8 +37,8 @@ except Exception:
 TGT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(os.path.dirname(TGT), "duystudy - website")
 WP = os.path.join(SRC, "wp")
-# theme đọc TỪ REPO NÀY (đã chép + đổi thương hiệu bằng tools/wp-theme-sync.py),
-# không đọc từ project Duy Study nữa.
+# theme đọc TỪ REPO NÀY, không đọc từ project Duy Study nữa. Script chép ban đầu
+# nằm ở archive/tools-migration/wp-theme-sync.py — chạy một lần, đừng chạy lại.
 THEME = os.path.join(TGT, "wp-content", "themes", "duy-study")
 BUILD = os.path.join(TGT, "wp-build")
 HOST = "ftp://pbf43-22360.azdigihost.com"
@@ -53,11 +53,34 @@ KEEP_STATIC = {"assets/img/logo.png", "assets/img/logo-full.png",
 # chạy ngay trước khi đảo DirectoryIndex sang WordPress.
 DEFER_ASSETS = {"assets/css/main.css", "assets/js/main.js"}
 
-# Nhan dien cua Duy Study lot sang server hom 20/09. FTP chi biet tai len, khong tu xoa
-# file thua, nen phai goi DELE tuong minh. `duy_logo_uri()` uu tien .webp hon .png ->
-# con file nay tren server la site van treo logo "DUY Study" du repo da xoa.
-PRUNE = ["wp-content/themes/duy-study/assets/img/logo.webp",
-         "wp-content/themes/duy-study/assets/img/og-default.jpg"]
+# File PHAI KHONG ton tai tren server. FTP chi biet tai len, khong tu xoa file thua,
+# nen xoa trong repo la chua du - ban tren server van duoc phuc vu. Them vao day roi
+# chay phase `prune`.
+PRUNE = [
+    # Nhan dien Duy Study lot sang hom 20/09. duy_logo_uri() uu tien .webp hon .png
+    # -> con file nay la site van treo logo "DUY Study" du repo da xoa.
+    "wp-content/themes/duy-study/assets/img/logo.webp",
+    "wp-content/themes/duy-study/assets/img/og-default.jpg",
+    # 8 SVG minh hoa khong template nao goi toi (da go 21/09).
+    "wp-content/themes/duy-study/assets/img/article-cover.svg",
+    "wp-content/themes/duy-study/assets/img/country-au.svg",
+    "wp-content/themes/duy-study/assets/img/country-ca.svg",
+    "wp-content/themes/duy-study/assets/img/country-nz.svg",
+    "wp-content/themes/duy-study/assets/img/country-tr.svg",
+    "wp-content/themes/duy-study/assets/img/country-us.svg",
+    "wp-content/themes/duy-study/assets/img/event-workshop.svg",
+    "wp-content/themes/duy-study/assets/img/team-office.svg",
+    # Theme dung Carbon Fields, khong dung ACF -> thu muc nay la rac.
+    "wp-content/themes/duy-study/acf-json/group_duy_country_page.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_event.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_guide.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_lead.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_news.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_options.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_scholarship.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_school.json",
+    "wp-content/themes/duy-study/acf-json/group_duy_student_story.json",
+]
 
 
 def slash(p):
@@ -159,7 +182,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 3:
         print(__doc__); raise SystemExit(2)
     cfg, phase = sys.argv[1], sys.argv[2]
-    if phase == "prune-brand":
+    if phase == "prune":
         for f in PRUNE:
             print("   xoa:", f)
         raise SystemExit(1 if prune(cfg, PRUNE) else 0)

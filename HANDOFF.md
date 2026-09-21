@@ -1,14 +1,25 @@
 # HANDOFF — Ban Du học Hội TESOL TP.HCM (site du học tổng quát)
 
-_Last updated: 2026-09-21 — **trả lại bộ nhận diện gốc** (logo + màu) và **gỡ 15 mục dữ liệu mẫu**, 723/723 URL đạt. Update this at every milestone (see CLAUDE.md)._
+_Last updated: 2026-09-21 — **trả lại bộ nhận diện gốc**, **gỡ 15 mục dữ liệu mẫu**, **dọn lại bố cục repo**. 723/723 URL đạt. Update this at every milestone (see CLAUDE.md)._
 
 ## 👉 BẮT ĐẦU PHIÊN SAU TỪ ĐÂY
 
 > ⚠️ **ĐỌC KỸ:** từ 2026-09-20 site chạy **WordPress**, KHÔNG còn là site HTML tĩnh.
-> Mọi hướng dẫn phía dưới có nhắc `deploy-ftp.py`, `verify-site.py`, `live-compare.py`, `fix-meta.py`,
-> `fix-org-schema.py`, `fix-contact.py`, `add-schema.py`, `build-llms.py`, `add-ga4.py`
-> **đều thuộc thời kỳ site tĩnh và KHÔNG được dùng nữa** — chạy chúng là ghi đè file tĩnh cũ lên server.
-> Giữ lại chỉ để tra cứu lịch sử. Công cụ dùng bây giờ: `wp-*.py` (xem bảng ngay dưới).
+> Ngày 21/09 đã dọn repo: site tĩnh và mọi công cụ thời đó nằm trong **`archive/`** —
+> **không chạy gì trong đó**, chạy là đè file HTML cũ lên bản WordPress đang sống.
+> `tools/` giờ chỉ còn `wp-deploy.py` và `wp-verify.py`. Xem `tools/README.md` và `archive/README.md`.
+> Các mục phía dưới viết trước ngày dọn nên còn nhắc đường dẫn cũ ở gốc repo — đọc là `archive/…`.
+
+**Bố cục repo:**
+
+| Thư mục | Là gì |
+|---|---|
+| `wp-content/themes/duy-study/` | **theme — sản phẩm chính** |
+| `tools/` | `wp-deploy.py` + `wp-verify.py` |
+| `docs/server/` | các bản `.htaccess` trên server |
+| `docs/sitemap-submitted-2026-09-19.xml` | 723 URL đã nộp Google — mốc kiểm tra của `wp-verify.py` |
+| `archive/` | site tĩnh đã nghỉ hưu + 11 công cụ cũ. **Không chạy** |
+| `wp-build/` | CSDL + config + mật khẩu admin. Ngoài git |
 
 **Site đang LIVE:** https://duhoctesolhcmc.vn — WordPress 6.9.4 trên SQLite · 571 trường · 9 sự kiện ·
 `robots.txt` / `llms.txt` / `wp-sitemap.xml` do WordPress tự sinh.
@@ -17,7 +28,7 @@ Chi tiết đầy đủ ở mục **✅ SITE ĐÃ CHẠY WORDPRESS** ngay bên d
 **Quy trình chuẩn khi sửa gì đó:**
 ```bash
 # sửa theme trong repo: wp-content/themes/duy-study/...
-python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg theme      # đẩy theme (578 file, ~2 phút)
+python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg theme      # đẩy theme (~560 file, ~2 phút)
 python tools/wp-verify.py                                  # PHẢI in 723/723, ~3 phút
 ```
 | Việc | Lệnh |
@@ -25,6 +36,7 @@ python tools/wp-verify.py                                  # PHẢI in 723/723, 
 | Sửa theme (giao diện, SEO, chữ) | `wp-deploy.py … theme` |
 | Đổi nội dung CSDL từ máy | sửa `wp-build/.ht.sqlite` → `wp-deploy.py … db` (⚠️ **ghi đè CSDL trên server**, mất thay đổi user làm trong wp-admin) |
 | Thêm/bớt ảnh | `wp-deploy.py … uploads` |
+| Xoá file trên server | thêm vào hằng `PRUNE` → `wp-deploy.py … prune` (FTP **không tự xoá**) |
 | Quay về site tĩnh (khẩn cấp) | `wp-deploy.py … htaccess-static` |
 | Trở lại WordPress | `wp-deploy.py … htaccess-wp` |
 
@@ -41,13 +53,15 @@ python tools/wp-verify.py                                  # PHẢI in 723/723, 
    Google báo "Trang có lệnh chuyển hướng" cho 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/`
    và 5 URL `/bac-hoc/*` `/gia-tri-hoc-bong/*` là **đúng thiết kế**, không sửa.
 4. **GA4 (đã hoãn)** — user 20/09: *"bỏ qua phần google analytic làm sau nếu không quan trọng"*.
-   Khi user muốn: WordPress rồi nên **không dùng `add-ga4.py`** nữa; chèn mã `G-…` vào theme
+   Khi user muốn: WordPress rồi nên **không dùng `archive/tools-static-era/add-ga4.py`** nữa; chèn mã `G-…` vào theme
    (`wp-content/themes/duy-study/header.php` hoặc hook `wp_head`) rồi `wp-deploy.py … theme`.
 5. **Hỏi user về 10 bài `/tin-tuc/`** — cũng là dữ liệu mẫu (`duy_demo_news_defaults()`): tiêu đề hứa hẹn
    tin thật ("Úc cập nhật chính sách visa 500 cho 2026") nhưng thân bài là một đoạn khuôn dùng chung cho
    cả 10 bài, chỉ đổi tên chủ đề. Chưa xoá vì bỏ cả mục Tin tức là quyết định nội dung của user, không phải
    lỗi rõ ràng như học bổng/câu chuyện bịa. Ba hướng: viết lại bằng nội dung thật · xoá cả mục · để nguyên.
-6. **Dọn 748 file tĩnh trên server** — chỉ khi user xác nhận WordPress đã ổn định. Xoá rồi mất đường lui.
+6. **Dọn 748 file tĩnh trên server** — chỉ khi user xác nhận không cần đường lui nữa. Xoá rồi là mất
+   `htaccess-static`. Xoá xong thì bỏ được cả `archive/static-site/` trong repo và trả rule rewrite
+   WordPress về bản mặc định (thêm lại `!-d`).
 
 ### ✅ SITE ĐÃ CHẠY WORDPRESS (2026-09-20)
 
@@ -70,6 +84,62 @@ python tools/wp-verify.py                                  # PHẢI in 723/723, 
 **Dọn dẹp còn lại (chưa làm, không gấp):** 748 file `index.html` + thư mục của site tĩnh vẫn nằm trên server,
 đang bị `.htaccess` cho qua (rule WordPress đã bỏ điều kiện `!-d`). Vô hại nhưng nên xoá khi đã chắc chắn,
 lúc đó có thể trả rule về bản mặc định của WordPress. Xoá rồi thì mất đường lui.
+
+### 🧹 Dọn lại repo + chặn bản tĩnh còn đọc được (2026-09-21)
+
+User: *"kiểm tra lại và dọn dẹp gọn sạch source code cho chuẩn chỉnh chuyên nghiệp"*.
+
+**Phát hiện trong lúc dọn — bản tĩnh cũ vẫn phục vụ được.** Rule WordPress ở cuối `.htaccess`
+có điều kiện `!-f`, nghĩa là file có thật thì Apache trả thẳng. 748 file `index.html` vẫn nằm
+trong docroot, nên **mọi trang đều tồn tại hai bản**: `/truong/x/` (WordPress) và
+`/truong/x/index.html` (HTML cũ). Nặng hơn: **14 trang dữ liệu mẫu gỡ hôm nay vẫn đọc được**
+tại `/hoc-bong/principal-50/index.html`.
+
+Đã thêm rule vào `.htaccess` (mục 1e), deploy và kiểm: mọi URL `…/index.html` nay **301 về URL
+sạch**, `.well-known/` vẫn không bị đụng (AutoSSL an toàn), site vẫn 200 toàn bộ.
+
+```apache
+RewriteRule ^(.*/)?index\.html$ https://duhoctesolhcmc.vn/$1 [R=301,L]
+```
+
+Đường lui **không mất**: `htaccess-static` đổi `DirectoryIndex`, không phụ thuộc rule 301 này.
+
+**Favicon đã mất từ hôm chuyển WordPress.** Bản tĩnh có `<link rel="icon" href="/favicon.png">`
+ngay trong `<head>`; WordPress chỉ in site icon khi user đặt trong Cài đặt, mà chưa đặt → tab
+trình duyệt trắng trơn suốt từ 20/09. Đã chuyển `favicon.png` vào theme và in qua `wp_head`
+(`duy_seo_favicon`), có nhường nếu sau này user đặt Site Icon riêng trong wp-admin.
+
+**Bố cục repo.** Trước khi dọn: 1.359 file git theo dõi, trong đó 748 file HTML nằm rải ở ~30
+thư mục ngay gốc repo, lẫn với theme. Nhìn vào không biết đâu là sản phẩm.
+
+| Trước | Sau |
+|---|---|
+| 27 thư mục site tĩnh + 5 file ở gốc | `archive/static-site/` |
+| 9 công cụ thời site tĩnh trong `tools/` | `archive/tools-static-era/` |
+| `wp-prepare.py`, `wp-theme-sync.py` (chạy một lần) | `archive/tools-migration/` |
+| `sitemap.xml` ở gốc | `docs/sitemap-submitted-2026-09-19.xml` |
+| `favicon.png` ở gốc | `wp-content/themes/duy-study/assets/img/favicon.png` |
+
+Gốc repo giờ còn: `wp-content/` · `tools/` · `docs/` · `archive/` · 3 file `.md` · `.gitignore`.
+
+> **Dùng `git mv`, không xoá.** Bản tĩnh còn là đường lui thật trên server, và lịch sử git thì
+> khó tra hơn là mở thẳng file. Khi nào user xác nhận bỏ đường lui thì xoá cả `archive/static-site/`.
+
+**Dọn trong theme:** bỏ 8 SVG minh hoạ không template nào gọi tới, bỏ `acf-json/` (9 file — theme
+dùng Carbon Fields chứ không dùng ACF), và thay 22 chỗ `{{TODO: …}}` trong chữ hướng dẫn ở
+wp-admin bằng câu tiếng Việt rõ nghĩa (đó là chữ user đọc khi biên tập, không phải ghi chú code).
+
+**Xoá cả trên server**, không chỉ trong repo — FTP không tự xoá file thừa. Phase `prune-brand`
+đổi tên thành **`prune`** và nhận danh sách chung ở hằng `PRUNE` (19 file: 2 file nhận diện Duy
+Study + 8 SVG + 9 JSON của ACF). Đã kiểm: cả 19 đều trả 404.
+
+**Tài liệu viết lại:** `CLAUDE.md` (đang mô tả site tĩnh 748 trang như thể còn chạy) và
+`DEPLOY.md` (309 dòng runbook thời site tĩnh, hướng dẫn chạy `deploy-ftp.py … html` — làm theo
+là hỏng site). Thêm `tools/README.md` và `archive/README.md`.
+
+**Đã kiểm sau khi dọn:** `wp-verify.py` **723/723** · 14 URL dữ liệu mẫu vẫn 404 · logo `logo.png` ·
+favicon có · og:image `photo-campus-library.webp` · màu navy + đỏ · `robots.txt`, `llms.txt`,
+`wp-sitemap.xml` đều 200 · `/sitemap.xml` 301.
 
 ### 🎨 Trả lại bộ nhận diện gốc (2026-09-21) — SỬA LỖI DO CHÍNH TA GÂY RA
 
@@ -175,7 +245,7 @@ wp-admin (CPT `scholarship`) vẫn vào site bình thường qua `duy_scholarshi
 | `archive-scholarship.php` · `archive-student_story.php` | trạng thái rỗng "đang được cập nhật" + nút tư vấn, thay cho bộ lọc và lưới trống |
 | `page-templates/ve-chung-toi.php` | ẩn thẻ trích dẫn phụ huynh; lưới 2 cột tự về 1 cột |
 | `tools/wp-verify.py` | thêm `EXPECT_GONE` — 14 URL này phải trả 404 |
-| `tools/wp-theme-sync.py` | thêm 6 file trên vào `KEEP_OURS` |
+| `archive/tools-migration/wp-theme-sync.py` | thêm 6 file trên vào `KEEP_OURS` |
 
 > ⚠️ **`wp-theme-sync.py` sẽ làm sống lại dữ liệu bịa nếu chạy ẩu.** Script chép theme từ
 > `../duystudy - website/` đè lên repo. 6 file đã sửa nay nằm trong `KEEP_OURS` nên được giữ, nhưng
@@ -215,8 +285,8 @@ Lên sóng WordPress = đảo thành `index.php index.html` + thêm khối rewri
 |---|---|
 | Khảo sát nguồn, xác nhận URL/SEO tương thích | ✅ |
 | `.htaccess` static-first (WordPress vào không ảnh hưởng site đang chạy) | ✅ |
-| `tools/wp-prepare.py` → `wp-build/` (CSDL đổi domain + thương hiệu + mật khẩu admin, salt mới) | ✅ 1.155 guid + 3 option + 2 post_content đổi sang `duhoctesolhcmc.vn`, 0 sót |
-| `tools/wp-theme-sync.py` — chép theme vào repo + đổi thương hiệu | ✅ 580 file · **201 chỗ** đổi · 0 chữ "Duy Study" còn lại trong mã |
+| `archive/tools-migration/wp-prepare.py` → `wp-build/` (CSDL đổi domain + thương hiệu + mật khẩu admin, salt mới) | ✅ 1.155 guid + 3 option + 2 post_content đổi sang `duhoctesolhcmc.vn`, 0 sót |
+| `archive/tools-migration/wp-theme-sync.py` — chép theme vào repo + đổi thương hiệu | ✅ 580 file · **201 chỗ** đổi · 0 chữ "Duy Study" còn lại trong mã |
 | Tải lên server (7.358 file / 770 MB) | ✅ 6 phase, 0 lỗi |
 | Đảo `DirectoryIndex` → WordPress lên sóng | ✅ |
 | Đối chiếu 723 URL | ✅ `tools/wp-verify.py` 723/723 |
@@ -231,7 +301,7 @@ trong `docs/server/htaccess-wordpress-2026-09-20.txt`.
 **Bẫy thứ hai:** phép thay thương hiệu hàng loạt biến `"Công ty Tư vấn Du học Duy Study"` thành
 `"Công ty Tư vấn Ban Du học Hội TESOL TP.HCM"` — sai, tổ chức là một **ban thuộc hội**, không phải công ty
 (bản tĩnh ghi `© 2026 Ban Du học Hội TESOL TP.HCM.`). Đã sửa `footer.php` + câu mở đầu `llms.txt`
-trong `inc/seo.php`, và thêm 2 luật vào `tools/wp-theme-sync.py` để lần chép sau không tái diễn.
+trong `inc/seo.php`, và thêm 2 luật vào `archive/tools-migration/wp-theme-sync.py` để lần chép sau không tái diễn.
 Giữ nguyên khẩu hiệu `Avenue to New World` vì bản tĩnh đang chạy cũng có và user đã duyệt nội dung đó.
 
 **Quy mô tải lên** (`python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg <phase>`):
@@ -249,7 +319,7 @@ Sau khi WordPress lên sóng và ổn định mới tính chuyện xoá hệ cũ
 
 **Theme nằm trong repo này** ở `wp-content/themes/duy-study/` (580 file, đã đổi thương hiệu).
 Sửa theme → `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg theme` → `python tools/wp-verify.py`.
-`tools/wp-theme-sync.py` chỉ chạy lại khi muốn lấy bản cập nhật mới từ project Duy Study (sẽ ghi đè các sửa đổi cục bộ).
+`archive/tools-migration/wp-theme-sync.py` chỉ chạy lại khi muốn lấy bản cập nhật mới từ project Duy Study (sẽ ghi đè các sửa đổi cục bộ).
 
 </details>
 
@@ -261,14 +331,14 @@ Sửa theme → `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg theme` → `pyt
 | 3 | ✅ **xong 2026-09-20** — Rich Results Test `/truong/university-of-toronto-uoft/`: **10 mục hợp lệ** (Đường dẫn 1 · Doanh nghiệp địa phương 4 · Tổ chức 5). Cảnh báo "vấn đề không nghiêm trọng" = thiếu trường khuyến nghị → đã bổ sung, xem *Milestone 2026-09-20b* | user | |
 | 4 | ✅ **xong 2026-09-19** — title: sửa **170** (102 bị generator cũ cắt cứng ở 68 ký tự, 61 `thpt`→`THPT`, 3 trang học sinh, 4 stub ngành) | Claude | đã deploy · chi tiết ở *Milestone 2026-09-19* |
 | 5 | ✅ **xong 2026-09-19** — description: viết lại **273** (158 trùng + 129 THPT Mỹ bị cắt dở câu + 3 quá dài) · gỡ **35 canonical thừa** (9 trang sự kiện từng trỏ về `/su-kien/canada-fair/` 404) | Claude | đã deploy |
-| 6 | ✅ **xong 2026-09-19** — `https://duhoctesolhcmc.vn/llms.txt` (101 link), sinh bằng `tools/build-llms.py` | Claude | đã deploy, nằm trong phase `seo` |
+| 6 | ✅ **xong 2026-09-19** — `https://duhoctesolhcmc.vn/llms.txt` (101 link), sinh bằng `archive/tools-static-era/build-llms.py` | Claude | đã deploy, nằm trong phase `seo` |
 | 7 | 32 trang trường có mô tả tiếng Việt dính vào `<h1>` + breadcrumb | Claude, **chỉ khi user yêu cầu** | vd `Đại học Cape Breton University (CBU – Thu hút rất đông sinh viên…)`. Schema + `<title>` đã sạch, chữ hiển thị vẫn còn. Nội dung có sẵn → user dặn không tự sửa |
 | 8 | ✅ **xong 2026-09-20** — 4 stub `/nganh-hoc/{cntt,ky-thuat}→cong-nghe`, `kinh-doanh→kinh-te`, `y-suc-khoe→suc-khoe` **301 trên server** (rule 1b trong block `.htaccess` của mình, bản sao ở `docs/server/`). File local vẫn giữ (748 không đổi), sitemap không chứa, `live-compare.py` kỳ vọng đúng 4 × 301 | Claude | user duyệt 20/09 |
-| 9 | ✅ **xong 2026-09-20** — `EducationalOrganization.description` + `WebSite.description` = **1 câu cố định** (câu của trang chủ) trên 748 trang, bằng `tools/fix-org-schema.py` (round-trip JSON byte-exact, 747 đổi). `verify-site.py` giờ kiểm luôn. Đã deploy, live == local | Claude | user duyệt 20/09 |
+| 9 | ✅ **xong 2026-09-20** — `EducationalOrganization.description` + `WebSite.description` = **1 câu cố định** (câu của trang chủ) trên 748 trang, bằng `archive/tools-static-era/fix-org-schema.py` (round-trip JSON byte-exact, 747 đổi). `verify-site.py` giờ kiểm luôn. Đã deploy, live == local | Claude | user duyệt 20/09 |
 | 10 | (không cần làm) 61 title trang trường dài > 65 ký tự | — | không bị cắt, chỉ Google rút gọn khi hiển thị; tên trường dài là lý do |
-| 11 | **Google Analytics 4** — user hoãn 20/09 ("làm sau nếu không quan trọng"). Khi cần: user gửi mã `G-XXXXXXXXXX` | user → Claude | `tools/add-ga4.py` đã sẵn: chèn gtag.js trước `</head>` 748 trang (không đụng header/footer/meta), idempotent. Sau đó verify → deploy html → live-compare |
+| 11 | **Google Analytics 4** — user hoãn 20/09 ("làm sau nếu không quan trọng"). Khi cần: user gửi mã `G-XXXXXXXXXX` | user → Claude | `archive/tools-static-era/add-ga4.py` đã sẵn: chèn gtag.js trước `</head>` 748 trang (không đụng header/footer/meta), idempotent. Sau đó verify → deploy html → live-compare |
 | 12 | ✅ **xong 2026-09-20** — số điện thoại: 1.497 link `tel:` + 748 link Zalo trỏ số Duy Study `0909542539` → đổi về `0906510747` (user xác nhận số chính thức). Schema `telephone` → E.164 `+84906510747` | Claude | 4 trang sự kiện giữ nguyên chữ ký Duy Study trong bài — cố ý |
-| 13 | ✅ **xong 2026-09-20** — làm giàu schema: Organization thêm `logo` `image` `address` `areaServed`; 3 LocalBusiness thêm `image`. **Không** thêm `priceRange`/`openingHours`/`sameAs`/`email` vì site không có dữ liệu thật | Claude | nếu sau này có fanpage/email chính thức thì thêm `sameAs`/`email` vào `tools/fix-org-schema.py` |
+| 13 | ✅ **xong 2026-09-20** — làm giàu schema: Organization thêm `logo` `image` `address` `areaServed`; 3 LocalBusiness thêm `image`. **Không** thêm `priceRange`/`openingHours`/`sameAs`/`email` vì site không có dữ liệu thật | Claude | nếu sau này có fanpage/email chính thức thì thêm `sameAs`/`email` vào `archive/tools-static-era/fix-org-schema.py` |
 
 
 ### Google Search Console (bắt đầu 2026-09-19)
@@ -298,15 +368,15 @@ Quyền chạy đã được user cấp trong `.claude/settings.local.json` (`Ba
 
 | File | Dùng khi (thời site tĩnh) |
 |---|---|
-| `tools/deploy-ftp.py` | deploy site tĩnh. Phase: `login` `images` `css` `html` `seo` `all` |
-| `tools/add-schema.py` | **chạy lại mỗi khi sinh lại trang trường hoặc thêm trường mới.** Idempotent — thay khối `id="page-schema"` cũ, không nhân đôi. Đọc dataset từ thư mục anh em `../duystudy.vn - content/`. `WebPage.description` copy meta description → đổi description xong phải chạy lại |
-| `tools/verify-site.py` | **chạy trước mỗi lần deploy.** Kiểm 748/571/9, header/footer md5, `noindex`=0, 1 canonical/trang, title/description không cắt · không trùng · ≤160, sitemap 723 tự-canonical, JSON-LD parse. Phải in `OK — all invariants hold` |
-| `tools/fix-meta.py` | sửa title/description/canonical hàng loạt (2026-09-19). Dry-run mặc định, `--apply` ghi, `-v` in diff. Idempotent. Nếu sinh lại trang trường: chạy `fix-meta.py --apply` → `add-schema.py --apply` → `verify-site.py` |
-| `tools/build-llms.py` | sinh lại `llms.txt` từ title/description thật. Chạy khi đổi description trang hub hoặc thêm/bớt trang, rồi deploy phase `seo` |
-| `tools/fix-org-schema.py` | đặt lại câu mô tả tổ chức cố định trong graph JSON-LD site-wide (748 trang). Chạy lại nếu sinh lại trang từ template WP cũ. Dry-run mặc định |
-| `tools/live-compare.py` | **chạy sau mỗi lần deploy** — GET từng URL không theo redirect, so byte với local. Kỳ vọng `identical 747 · expected 301 4 · OK — live == local` |
-| `tools/add-ga4.py` | chèn/thay khối gtag.js GA4 trước `</head>`; tham số mã `G-…`; dry-run mặc định, `--apply` ghi |
-| `tools/fix-contact.py` | đồng bộ số điện thoại trong `href` (`tel:` + `zalo.me/`). Giữ nguyên chữ ký Duy Study trong 4 trang sự kiện |
+| `archive/tools-static-era/deploy-ftp.py` | deploy site tĩnh. Phase: `login` `images` `css` `html` `seo` `all` |
+| `archive/tools-static-era/add-schema.py` | **chạy lại mỗi khi sinh lại trang trường hoặc thêm trường mới.** Idempotent — thay khối `id="page-schema"` cũ, không nhân đôi. Đọc dataset từ thư mục anh em `../duystudy.vn - content/`. `WebPage.description` copy meta description → đổi description xong phải chạy lại |
+| `archive/tools-static-era/verify-site.py` | **chạy trước mỗi lần deploy.** Kiểm 748/571/9, header/footer md5, `noindex`=0, 1 canonical/trang, title/description không cắt · không trùng · ≤160, sitemap 723 tự-canonical, JSON-LD parse. Phải in `OK — all invariants hold` |
+| `archive/tools-static-era/fix-meta.py` | sửa title/description/canonical hàng loạt (2026-09-19). Dry-run mặc định, `--apply` ghi, `-v` in diff. Idempotent. Nếu sinh lại trang trường: chạy `fix-meta.py --apply` → `add-schema.py --apply` → `verify-site.py` |
+| `archive/tools-static-era/build-llms.py` | sinh lại `llms.txt` từ title/description thật. Chạy khi đổi description trang hub hoặc thêm/bớt trang, rồi deploy phase `seo` |
+| `archive/tools-static-era/fix-org-schema.py` | đặt lại câu mô tả tổ chức cố định trong graph JSON-LD site-wide (748 trang). Chạy lại nếu sinh lại trang từ template WP cũ. Dry-run mặc định |
+| `archive/tools-static-era/live-compare.py` | **chạy sau mỗi lần deploy** — GET từng URL không theo redirect, so byte với local. Kỳ vọng `identical 747 · expected 301 4 · OK — live == local` |
+| `archive/tools-static-era/add-ga4.py` | chèn/thay khối gtag.js GA4 trước `</head>`; tham số mã `G-…`; dry-run mặc định, `--apply` ghi |
+| `archive/tools-static-era/fix-contact.py` | đồng bộ số điện thoại trong `href` (`tel:` + `zalo.me/`). Giữ nguyên chữ ký Duy Study trong 4 trang sự kiện |
 
 </details>
 
@@ -315,8 +385,8 @@ Quyền chạy đã được user cấp trong `.claude/settings.local.json` (`Ba
 |---|---|
 | `tools/wp-deploy.py` | **deploy.** Đọc lõi WordPress + ảnh từ `../duystudy - website/wp`, đọc **theme từ repo này**, đọc CSDL + config từ `wp-build/`. Phase `htaccess-wp` / `htaccess-static` là công tắc đổi qua lại giữa WordPress và site tĩnh |
 | `tools/wp-verify.py` | **chạy sau mỗi lần deploy.** Gọi 723 URL trong sitemap: HTTP · title không cắt · canonical tự trỏ · có description · không lỗi PHP · đúng tên tổ chức · không sót số điện thoại cũ. Phải in **723/723** |
-| `tools/wp-prepare.py` | dựng lại `wp-build/` từ CSDL nguồn (đổi domain an toàn với dữ liệu serialize, đổi thương hiệu, xoá transient, giữ mật khẩu admin đã phát). ⚠️ chỉ dùng khi muốn **làm lại từ đầu** — sẽ mất mọi thứ user đã sửa trong wp-admin |
-| `tools/wp-theme-sync.py` | chép theme từ project Duy Study sang repo + đổi thương hiệu (201 chỗ). ⚠️ **ghi đè sửa đổi cục bộ trong theme** — chỉ chạy khi muốn lấy bản cập nhật mới từ bên đó |
+| `archive/tools-migration/wp-prepare.py` | dựng lại `wp-build/` từ CSDL nguồn (đổi domain an toàn với dữ liệu serialize, đổi thương hiệu, xoá transient, giữ mật khẩu admin đã phát). ⚠️ chỉ dùng khi muốn **làm lại từ đầu** — sẽ mất mọi thứ user đã sửa trong wp-admin |
+| `archive/tools-migration/wp-theme-sync.py` | chép theme từ project Duy Study sang repo + đổi thương hiệu (201 chỗ). ⚠️ **ghi đè sửa đổi cục bộ trong theme** — chỉ chạy khi muốn lấy bản cập nhật mới từ bên đó |
 
 ### Git
 - Nhánh `tesol-content-rewrite` — đã push lên `origin` (github.com/louischansgvn-claude/duhoctesol). **Chưa merge vào `main`.**
@@ -339,7 +409,7 @@ Quyền chạy đã được user cấp trong `.claude/settings.local.json` (`Ba
 | `noindex,nofollow` | **đã gỡ** khỏi 748 trang |
 | `robots.txt` | chặn `/wp-json/`, `/feed/`, `/category/`, `/loai-su-kien/`, `/quoc-gia-filter/` |
 | `sitemap.xml` | **723 URL** (748 − 11 trang robots chặn − 10 bản tin trùng − 4 stub `/nganh-hoc/`) — mọi URL đều tự-canonical |
-| `llms.txt` | https://duhoctesolhcmc.vn/llms.txt — 101 link, `text/plain`, sinh bằng `tools/build-llms.py` |
+| `llms.txt` | https://duhoctesolhcmc.vn/llms.txt — 101 link, `text/plain`, sinh bằng `archive/tools-static-era/build-llms.py` |
 | canonical | đúng **1 thẻ/trang**, `og:url` == canonical. 2026-09-19 gỡ 35 thẻ thừa (9 trang sự kiện từng trỏ nhầm về `/su-kien/canada-fair/` đã xoá) |
 | 301 (`.htaccess`) | subdomain cũ + `duhoctesolhcmc.vn.amigoagency.vn` + `www` + `http` → `https://duhoctesolhcmc.vn`, **giữ nguyên đường dẫn**. **20/09 thêm rule 1b:** 4 stub `/nganh-hoc/` → trang ngành thật (1 hop, đích tuyệt đối). Bản live + bản backup trước đó lưu ở `docs/server/` |
 | `.well-known/` | loại trừ khỏi 301 — nếu chặn, AutoSSL không gia hạn được cert, sau 90 ngày site chết HTTPS |
@@ -384,7 +454,7 @@ site-wide (graph cũ — `EducationalOrganization` + `WebSite` + 3 `LocalBusines
 Chân trang **hiển thị** `0906.510.747` nhưng thẻ `<a>` lại `href="tel:0909542539"` — số của Duy Study. Nút Zalo nổi cũng trỏ
 `zalo.me/0909542539`. Tức là suốt thời gian qua khách bấm nút gọi/Zalo trên **cả 748 trang** đều liên hệ nhầm sang công ty khác.
 Nguyên nhân sót: CLAUDE.md cấm sửa `href` trong task nội dung → mọi lần cập nhật trước chỉ đổi chữ hiển thị.
-User xác nhận `0906.510.747` là số chính thức → đổi **1.497** link `tel:` + **748** link Zalo (`tools/fix-contact.py`).
+User xác nhận `0906.510.747` là số chính thức → đổi **1.497** link `tel:` + **748** link Zalo (`archive/tools-static-era/fix-contact.py`).
 **Bài học:** khi audit liên kết, `grep -E` KHÔNG hỗ trợ negative lookahead `(?!...)` — lần quét đầu dùng
 `href="https?://(?!duhoctesolhcmc\.vn)..."` nên im lặng bỏ sót toàn bộ 748 link Zalo. Dùng Python để quét liên kết ngoài.
 
@@ -402,9 +472,9 @@ Site là HTML tĩnh, sửa nội dung phải qua repo + deploy.
 ## Milestone 2026-09-20 — Search Console hoàn tất phần Claude · 301 stub · Organization.description · GA4 chuẩn bị
 
 **OUTPUT** — DONE (trừ GA4 chờ mã). `.htaccess` server thêm rule 1b (4 × 301), kiểm: 4 stub 301 đúng đích, trang chủ/trang trường/CSS/`/nganh-hoc/` 200,
-www + domain cũ vẫn 301, `.well-known` không bị đụng, md5 server == bản local. `tools/fix-org-schema.py --apply`: 747 trang, round-trip JSON
-byte-exact; deploy `html` 0 lỗi; `tools/live-compare.py`: identical 747 · expected 301 4 · OK. Commit: xem `git log` (sau `3fcaf2f`).
-File mới: `tools/fix-org-schema.py`, `tools/live-compare.py`, `tools/add-ga4.py`, `docs/server/htaccess-live-2026-09-20.txt`, `docs/server/htaccess-backup-2026-09-18.txt`.
+www + domain cũ vẫn 301, `.well-known` không bị đụng, md5 server == bản local. `archive/tools-static-era/fix-org-schema.py --apply`: 747 trang, round-trip JSON
+byte-exact; deploy `html` 0 lỗi; `archive/tools-static-era/live-compare.py`: identical 747 · expected 301 4 · OK. Commit: xem `git log` (sau `3fcaf2f`).
+File mới: `archive/tools-static-era/fix-org-schema.py`, `archive/tools-static-era/live-compare.py`, `archive/tools-static-era/add-ga4.py`, `docs/server/htaccess-live-2026-09-20.txt`, `docs/server/htaccess-backup-2026-09-18.txt`.
 
 **PROMPT/GOAL** — user: *"các phần liên quan tới google search console chưa xong thì tiến hành xử lý cho xong rồi tiếp tục các công việc còn lại, step by step"*.
 Goal theo dõi: GSC xong phần làm được (sitemap 723 ✅, Bing ✅, index request chờ hạn mức 17:00, Rich Results test lại URL đúng) → 301 stub → mô tả tổ chức cố định → GA4.
@@ -415,10 +485,10 @@ lần 2 dùng `/truong/adrian-high-school/` → OK. Cùng lỗi URL đó khiến
 
 ## Milestone 2026-09-19 — SEO meta cleanup + `llms.txt` (đã deploy)
 
-**OUTPUT** — DONE. Deploy `html` + `seo` 0 lỗi; live == local **751/751** file; `tools/verify-site.py` → OK.
+**OUTPUT** — DONE. Deploy `html` + `seo` 0 lỗi; live == local **751/751** file; `archive/tools-static-era/verify-site.py` → OK.
 Commit: ngay sau `889d628` trên `tesol-content-rewrite` (xem `git log`). File đổi: 409 `index.html`, `sitemap.xml`,
-`llms.txt` (mới), `tools/fix-meta.py` (mới), `tools/verify-site.py` (mới), `tools/build-llms.py` (mới),
-`tools/add-schema.py` (stdout UTF-8), `tools/deploy-ftp.py` (phase `seo` += `llms.txt`).
+`llms.txt` (mới), `archive/tools-static-era/fix-meta.py` (mới), `archive/tools-static-era/verify-site.py` (mới), `archive/tools-static-era/build-llms.py` (mới),
+`archive/tools-static-era/add-schema.py` (stdout UTF-8), `archive/tools-static-era/deploy-ftp.py` (phase `seo` += `llms.txt`).
 
 **PROMPT/GOAL** — user: *"tiếp tục phiên làm việc hôm nay"* → làm 3 việc Claude trong bảng "Việc tiếp theo"
 (title bị cắt · description trùng · `llms.txt`). Goal theo dõi: mọi trang có title/description sạch, duy nhất, không cắt;
@@ -431,7 +501,7 @@ Phát hiện khi đo — rộng hơn HANDOFF cũ ghi:
 - **129/129 description THPT Mỹ bị cắt dở câu** (`..., yêu cầu đầu vào,…`) → dựng lại từ khối THÔNG TIN NHANH của chính trang
   (loại trường công/tư/nội trú, bang, dải lớp, học phí), ≤ 160.
 - 158 trang / 20 nhóm dùng chung description → mỗi trang 1 câu: quốc gia × bậc có **số trường thật**; video/tin tức lấy đoạn dẫn của trang;
-  sự kiện/học bổng/học sinh/archive viết tay trong `tools/fix-meta.py`. 3 description trang quốc gia quá dài (Anh 185, Thụy Sỹ 171, Philippines 166) rút gọn.
+  sự kiện/học bổng/học sinh/archive viết tay trong `archive/tools-static-era/fix-meta.py`. 3 description trang quốc gia quá dài (Anh 185, Thụy Sỹ 171, Philippines 166) rút gọn.
 - **35 trang có 2 thẻ canonical**: 9 trang sự kiện có thẻ thứ hai trỏ về `/su-kien/canada-fair/` (demo đã xoá → 404, Google có thể bỏ index
   cả 9 trang); 10 bản tin gốc còn thẻ tự-canonical cạnh thẻ `/tin-tuc/`; 16 trang có 2 thẻ giống nhau. Giữ thẻ đầu, xoá thẻ sau.
 - 4 stub `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` (h1 "Không tìm thấy trang", vẫn nằm trong sitemap = soft-404)
@@ -481,7 +551,7 @@ trang danh sách…) cho khớp 171 trang cũ. URL `duystudy.vn` → root-relati
 ### Trạng thái deploy
 **CHƯA DEPLOY.** Kiểm chứng lúc 2026-08-18: `/truong/winthrop-high-school/`,
 `/su-kien/hoi-xuan-thpt-trung-vuong-2024/`, `/quoc-gia/anh/dai-hoc/` → **404** trên live;
-`/truong/` live vẫn 32 card. Script deploy đã viết sẵn: `tools/deploy-ftp.py`.
+`/truong/` live vẫn 32 card. Script deploy đã viết sẵn: `archive/tools-static-era/deploy-ftp.py`.
 
 ### Tồn đọng
 - `wp-content/uploads/thpt-seo/jordan-school-district-campus.jpg` **404 ngay trên duystudy.vn** → trang
@@ -491,7 +561,7 @@ trang danh sách…) cho khớp 171 trang cũ. URL `duystudy.vn` → root-relati
 - Deploy lần này **phải upload cả `wp-content/uploads/` (414 MB) + `main.css`**, khác runbook mặc định
   (mặc định chỉ upload `**/index.html`). Kiểm tra dung lượng host còn đủ trước khi đẩy.
 - Chưa commit. Nếu muốn commit: 588 file mới (`truong/*`, `su-kien/*`, `quoc-gia/*`, `wp-content/uploads/*`,
-  `tools/deploy-ftp.py`) + 47 file sửa. Cân nhắc `.gitignore` cho `wp-content/uploads/` vì 414 MB ảnh.
+  `archive/tools-static-era/deploy-ftp.py`) + 47 file sửa. Cân nhắc `.gitignore` cho `wp-content/uploads/` vì 414 MB ảnh.
 - Password FTP `deploy@duystudy.vn` trong `~/.duy-ftp.cfg` đã **lộ ra log phiên chat 2026-08-18**
   (lệnh che password sai định dạng) → **nhắc user đổi password tài khoản đó**.
 
@@ -636,11 +706,11 @@ Site chết hẳn → `python tools/wp-deploy.py ~/.duhoctesol-ftp.cfg htaccess-
 - mọi trang (trừ trang chủ) có đúng **1** khối `id="page-schema"`; mọi khối JSON-LD parse được
 - đúng **1** `<link rel="canonical">` mỗi trang, `og:url` == canonical, đích canonical tồn tại · 0 `<title>` chứa `…` ·
   description 50–160 ký tự, không kết thúc bằng `…` · title/description không trùng giữa 2 trang trừ cặp canonical
-  (10 bản tin gốc ↔ `/tin-tuc/`) · sitemap == **723** URL, tất cả tự-canonical — `tools/verify-site.py` kiểm hết
+  (10 bản tin gốc ↔ `/tin-tuc/`) · sitemap == **723** URL, tất cả tự-canonical — `archive/tools-static-era/verify-site.py` kiểm hết
 - graph JSON-LD site-wide giống hệt nhau trên 748 trang: `EducationalOrganization` (+`logo` `image` `address` `areaServed` `telephone`) và `WebSite` dùng chung 1 câu `ORG_DESC`;
-  mọi `telephone` == `+84906510747` (hằng trong `tools/fix-org-schema.py`, `verify-site.py` kiểm)
+  mọi `telephone` == `+84906510747` (hằng trong `archive/tools-static-era/fix-org-schema.py`, `verify-site.py` kiểm)
 - **0 thuộc tính `href` mang số Duy Study `0909542539`** (tel + zalo.me). Số đó chỉ được phép nằm trong NỘI DUNG 4 trang `su-kien/` — chữ ký bài viết, user dặn giữ
-- server: 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` trả **301** (rule 1b `.htaccess`); mọi URL khác trong sitemap trả 200 và == local (`tools/live-compare.py`)
+- server: 4 URL `/nganh-hoc/{cntt,kinh-doanh,ky-thuat,y-suc-khoe}/` trả **301** (rule 1b `.htaccess`); mọi URL khác trong sitemap trả 200 và == local (`archive/tools-static-era/live-compare.py`)
 - 0 video demo Google (`M7lc1UVf-VE`, `ScMzIvxBSi4`); 0 link nội bộ gãy; 0 ảnh thiếu
 - org name luôn viết đầy đủ `Ban Du học Hội TESOL TP.HCM`; 0 lần `Du học TESOL` / `Công ty Tư vấn`
 - 0 ghi chú nội bộ/dev/demo trong `index.html`
